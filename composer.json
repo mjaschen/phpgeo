@@ -1,8 +1,8 @@
 {
-    "name": "mjaschen/location",
+    "name": "mjaschen/phpgeo",
     "description": "Simple Geo Library",
     "keywords": ["distance", "coordinate", "geo", "gis", "bounds", "ellipsoid", "calculation"],
-    "homepage": "https://mj.gs/",
+    "homepage": "https://github.com/mjaschen/phpgeo",
     "type": "library",
     "license": "MIT",
     "authors": [
