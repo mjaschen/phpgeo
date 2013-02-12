@@ -16,6 +16,7 @@ namespace Location;
 use Location\Ellipsoid;
 use Location\Distance;
 use Location\Distance\AbstractDistance;
+use Location\Formatter\FormatterInterface;
 
 /**
  * Coordinate Implementation
@@ -105,6 +106,16 @@ class Coordinate
     public function getDistance(Coordinate $coordinate, AbstractDistance $calculator)
     {
         return $calculator->getDistance($this, $coordinate);
+    }
+
+    /**
+     * @param FormatterInterface $formatter
+     *
+     * @return mixed
+     */
+    public function format(FormatterInterface $formatter)
+    {
+        return $formatter->format($this);
     }
 
     /**

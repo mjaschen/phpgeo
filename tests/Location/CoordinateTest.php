@@ -4,6 +4,7 @@ namespace Location;
 
 use Location\Coordinate;
 use Location\Ellipsoid;
+use Location\Formatter\DecimalDegrees;
 
 class CoordinateTest extends \PHPUnit_Framework_TestCase
 {
@@ -93,5 +94,13 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     public function testGetEllipsoid()
     {
         $this->assertEquals($this->ellipsoid, $this->coordinate->getEllipsoid());
+    }
+
+    /**
+     * @covers Location\Coordinate::format
+     */
+    public function testFormat()
+    {
+        $this->assertEquals("52.50000 13.50000", $this->coordinate->format(new DecimalDegrees()));
     }
 }
