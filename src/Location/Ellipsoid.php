@@ -5,7 +5,6 @@
  * PHP version 5.3
  *
  * @category  Location
- * @package   Location
  * @author    Marcus T. Jaschen <mjaschen@gmail.com>
  * @copyright 2013 r03.org
  * @license   http://www.opensource.org/licenses/mit-license MIT License

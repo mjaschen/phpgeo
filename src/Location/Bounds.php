@@ -18,7 +18,7 @@ use Location\Coordinate;
 /**
  * Coordinate Bounds Class
  *
- * @category R03
+ * @category Location
  * @author   Marcus T. Jaschen <mjaschen@gmail.com>
  * @license  http://www.opensource.org/licenses/mit-license MIT License
  * @link     http://r03.org/
