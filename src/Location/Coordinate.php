@@ -15,7 +15,7 @@ namespace Location;
 
 use Location\Ellipsoid;
 use Location\Distance;
-use Location\Distance\AbstractDistance;
+use Location\Distance\DistanceInterface;
 use Location\Formatter\FormatterInterface;
 
 /**
@@ -98,12 +98,12 @@ class Coordinate
      * Calculates the distance between the given coordinate
      * and this coordinate.
      *
-     * @param Coordinate       $coordinate
-     * @param AbstractDistance $calculator instance of distance calculation class
+     * @param Coordinate        $coordinate
+     * @param DistanceInterface $calculator instance of distance calculation class
      *
      * @return float
      */
-    public function getDistance(Coordinate $coordinate, AbstractDistance $calculator)
+    public function getDistance(Coordinate $coordinate, DistanceInterface $calculator)
     {
         return $calculator->getDistance($this, $coordinate);
     }

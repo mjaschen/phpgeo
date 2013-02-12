@@ -4,6 +4,7 @@ namespace Location;
 
 use Location\Coordinate;
 use Location\Ellipsoid;
+use Location\Distance\Vincenty;
 use Location\Formatter\DecimalDegrees;
 
 class CoordinateTest extends \PHPUnit_Framework_TestCase
@@ -94,6 +95,17 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     public function testGetEllipsoid()
     {
         $this->assertEquals($this->ellipsoid, $this->coordinate->getEllipsoid());
+    }
+
+    /**
+     * @covers Location\Coordinate::getDistance
+     */
+    public function testGetdistance()
+    {
+        $coordinate1 = new Coordinate(19.820664, -155.468066, $this->ellipsoid);
+        $coordinate2 = new Coordinate(20.709722, -156.253333, $this->ellipsoid);
+
+        $this->assertEquals(128130.850, $coordinate1->getDistance($coordinate2, new Vincenty()));
     }
 
     /**

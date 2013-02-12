@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstract Distance Class
+ * Interface for Distance Calculator Classes
  *
  * PHP version 5.3
  *
@@ -17,7 +17,7 @@ namespace Location\Distance;
 use Location\Coordinate;
 
 /**
- * Abstract Distance Class
+ * Interface for Distance Calculator Classes
  *
  * @category Location
  * @package  Distance
@@ -25,7 +25,7 @@ use Location\Coordinate;
  * @license  http://www.opensource.org/licenses/mit-license MIT License
  * @link     http://r03.org/
  */
-abstract class AbstractDistance
+interface DistanceInterface
 {
     /**
      * @param Coordinate $point1
@@ -33,5 +33,5 @@ abstract class AbstractDistance
      *
      * @return float distance between the two coordinates in meters
      */
-    abstract public function getDistance(Coordinate $point1, Coordinate $point2);
+    public function getDistance(Coordinate $point1, Coordinate $point2);
 }

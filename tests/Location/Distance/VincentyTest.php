@@ -107,4 +107,17 @@ class VincentyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(4932842.135, $distance);
     }
+
+    /**
+     * @covers Location\Distance\Vincenty::getDistance
+     * @expectedException \Location\Exception\NotMatchingEllipsoidException
+     */
+    public function testNotMatchingEllispoids()
+    {
+        $coordinate1 = new Coordinate(19.820664, -155.468066, $this->ellipsoid);
+        $coordinate2 = new Coordinate(20.709722, -156.253333, new Ellipsoid("AnotherEllipsoid", 6378140.0, 6356772.3, 299.2));
+
+        $calculator = new Vincenty();
+        $distance = $calculator->getDistance($coordinate1, $coordinate2);
+    }
 }

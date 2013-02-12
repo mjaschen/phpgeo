@@ -16,6 +16,7 @@ namespace Location\Distance;
 
 use Location\Coordinate;
 use Location\Exception\NotConvergingException;
+use Location\Exception\NotMatchingEllipsoidException;
 
 /**
  * Implementation of distance calculation with Vincenty Method
@@ -28,21 +29,21 @@ use Location\Exception\NotConvergingException;
  * @license  http://www.opensource.org/licenses/mit-license MIT License
  * @link     http://r03.org/
  */
-class Vincenty extends AbstractDistance
+class Vincenty implements DistanceInterface
 {
     /**
      * @param Coordinate $point1
      * @param Coordinate $point2
      *
+     * @throws NotMatchingEllipsoidException
      * @throws NotConvergingException
-     * @throws \InvalidArgumentException
      *
      * @return float
      */
     public function getDistance(Coordinate $point1, Coordinate $point2)
     {
         if ($point1->getEllipsoid() != $point2->getEllipsoid()) {
-            throw new \InvalidArgumentException("The ellipsoids for both coordinates must match");
+            throw new NotMatchingEllipsoidException("The ellipsoids for both coordinates must match");
         }
 
         $lat1 = deg2rad($point1->getLat());
