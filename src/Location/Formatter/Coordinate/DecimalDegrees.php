@@ -55,10 +55,12 @@ class DecimalDegrees implements FormatterInterface
      *
      * @param $separator
      *
-     * @return void
+     * @return $this
      */
     public function setSeparator($separator)
     {
         $this->separator = $separator;
+
+        return $this;
     }
 }
