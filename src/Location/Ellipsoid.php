@@ -120,4 +120,16 @@ class Ellipsoid
     {
         return $this->f;
     }
+
+    /**
+     * Calculates the arithmetic mean radius
+     *
+     * @see http://home.online.no/~sigurdhu/WGS84_Eng.html
+     *
+     * @return float
+     */
+    public function getArithmeticMeanRadius()
+    {
+        return $this->a * (1 - 1 / $this->f / 3);
+    }
 }
