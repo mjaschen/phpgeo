@@ -6,6 +6,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 Using Composer, just add the following configuration to your `composer.json`:
 
+```json
     {
         "require": {
             "mjaschen/phpgeo": "*"
@@ -17,6 +18,9 @@ Using Composer, just add the following configuration to your `composer.json`:
 ### Distance between two coordinates
 
 Use the calculator object directly:
+
+```php
+    <?php
 
     use Location\Coordinate;
     use Location\Distance\Vincenty;
@@ -30,6 +34,9 @@ Use the calculator object directly:
 
 or call the `getDistance()` method of a Coordinate object by injecting a calculator object:
 
+```php
+    <?php
+
     use Location\Coordinate;
     use Location\Distance\Vincenty;
 
@@ -42,6 +49,9 @@ or call the `getDistance()` method of a Coordinate object by injecting a calcula
 
 There exist different methods for calculating the distance between two points. The [Haversine formula](http://en.wikipedia.org/wiki/Law_of_haversines) is much faster the Vincenty's method but less precise:
 
+```php
+    <?php
+
     use Location\Coordinate;
     use Location\Distance\Haversine;
 
@@ -51,6 +61,9 @@ There exist different methods for calculating the distance between two points. T
     echo $coordinate1->getDistance($coordinate2, new Haversine()); // returns 128384.515 (meters; ≈128 kilometers)
 
 ### Formatted output of coordinates
+
+```php
+    <?php
 
     use Location\Coordinate;
     use Location\Formatter\Coordinate\DecimalDegrees;
