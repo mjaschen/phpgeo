@@ -66,6 +66,8 @@ echo $coordinate1->getDistance($coordinate2, new Haversine()); // returns 128384
 
 ### Formatted output of coordinates
 
+You can format a coordinate in different styles. With decimal degrees:
+
 ```php
 <?php
 
@@ -75,6 +77,27 @@ use Location\Formatter\Coordinate\DecimalDegrees;
 $coordinate = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
 
 echo $coordinate->format(new DecimalDegrees());
+```
+
+or with the well known Degrees/Minutes/Seconds (DMS) format:
+
+```php
+<?php
+
+use Location\Coordinate;
+use Location\Formatter\Coordinate\DMS;
+
+$coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
+
+$formatter = new DMS();
+
+echo $coordinate->format($formatter); // 18° 54′ 41″ -155° 40′ 42″
+
+$formatter->setSeparator(", ")
+    ->useCardinalLetters(true)
+    ->setUnits(DMS::UNITS_ASCII);
+
+echo $coordinate->format($formatter); // 18° 54' 41" N, 155° 40' 42" W
 ```
 
 ## Credits
