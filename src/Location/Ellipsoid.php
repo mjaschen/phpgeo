@@ -29,17 +29,14 @@ class Ellipsoid
     protected $name;
 
     /**
+     * The semi-major axis
+     *
      * @var float
      */
     protected $a;
 
     /**
-     * @var float
-     */
-    protected $b;
-
-    /**
-     * the 1/f value (not f!)
+     * The Inverse Flattening (1/f)
      *
      * @var float
      */
@@ -54,7 +51,6 @@ class Ellipsoid
         'WGS-84' => array(
             'name' => 'WGS-84',
             'a'    => 6378137.0,
-            'b'    => 6356752.3142,
             'f'    => 298.257223563,
         ),
     );
@@ -62,14 +58,12 @@ class Ellipsoid
     /**
      * @param $name
      * @param $a
-     * @param $b
      * @param $f
      */
-    public function __construct($name, $a, $b, $f)
+    public function __construct($name, $a, $f)
     {
         $this->name = $name;
         $this->a    = $a;
-        $this->b    = $b;
         $this->f    = $f;
     }
 
@@ -90,7 +84,7 @@ class Ellipsoid
      */
     public static function createFromArray($config)
     {
-        return new self($config['name'], $config['a'], $config['b'], $config['f']);
+        return new self($config['name'], $config['a'], $config['f']);
     }
 
     /**
@@ -110,11 +104,13 @@ class Ellipsoid
     }
 
     /**
+     * Calculation of the semi-minor axis
+     *
      * @return float
      */
     public function getB()
     {
-        return $this->b;
+        return $this->a * (1 - 1 / $this->f);
     }
 
     /**

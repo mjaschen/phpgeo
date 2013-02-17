@@ -28,7 +28,6 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
         $ellipsoidConfig = array(
             'name' => 'WGS-84',
             'a'    => 6378137.0,
-            'b'    => 6356752.3142,
             'f'    => 298.257223563,
         );
 
