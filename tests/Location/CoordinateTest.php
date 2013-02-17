@@ -2,10 +2,10 @@
 
 namespace Location;
 
-use Location\Coordinate;
-use Location\Ellipsoid;
-use Location\Distance\Vincenty;
-use Location\Formatter\DecimalDegrees;
+use Location\Coordinate,
+    Location\Ellipsoid,
+    Location\Distance\Vincenty,
+    Location\Formatter\Coordinate\DecimalDegrees;
 
 class CoordinateTest extends \PHPUnit_Framework_TestCase
 {

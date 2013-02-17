@@ -12,7 +12,7 @@
  * @link      http://r03.org/
  */
 
-namespace Location\Formatter;
+namespace Location\Formatter\Coordinate;
 
 use Location\Coordinate;
 

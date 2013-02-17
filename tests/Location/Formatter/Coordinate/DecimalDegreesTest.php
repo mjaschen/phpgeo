@@ -1,6 +1,6 @@
 <?php
 
-namespace Location\Formatter;
+namespace Location\Formatter\Coordinate;
 
 use Location\Coordinate;
 

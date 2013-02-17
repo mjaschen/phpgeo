@@ -13,10 +13,10 @@
 
 namespace Location;
 
-use Location\Ellipsoid;
-use Location\Distance;
-use Location\Distance\DistanceInterface;
-use Location\Formatter\FormatterInterface;
+use Location\Ellipsoid,
+    Location\Distance,
+    Location\Distance\DistanceInterface,
+    Location\Formatter\Coordinate\FormatterInterface;
 
 /**
  * Coordinate Implementation
