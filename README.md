@@ -1,5 +1,7 @@
 # phpgeo - A Simple Geo Library for PHP
 
+[![Build Status](https://travis-ci.org/mjaschen/phpgeo.png?branch=master)](https://travis-ci.org/mjaschen/phpgeo)
+
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
 
 ## Installation
