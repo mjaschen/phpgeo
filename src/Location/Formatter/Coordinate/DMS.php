@@ -2,7 +2,7 @@
 /**
  * Coordinate Formatter "DMS"
  *
- * PHP version 5
+ * PHP version 5.3
  *
  * @category  Location
  * @package   Formatter

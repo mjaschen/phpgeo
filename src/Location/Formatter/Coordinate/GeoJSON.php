@@ -1,6 +1,6 @@
 <?php
 /**
- * Coordinate Formatter Interface
+ * GeoJSON Coordinate Formatter
  *
  * PHP version 5.3
  *
@@ -17,7 +17,7 @@ namespace Location\Formatter\Coordinate;
 use Location\Coordinate;
 
 /**
- * Coordinate Formatter Interface
+ * GeoJSON Coordinate Formatter
  *
  * @category Location
  * @package  Formatter
@@ -25,12 +25,23 @@ use Location\Coordinate;
  * @license  http://www.opensource.org/licenses/mit-license MIT License
  * @link     http://r03.org/
  */
-interface FormatterInterface
+class GeoJSON implements FormatterInterface
 {
     /**
      * @param Coordinate $coordinate
      *
-     * @return mixed
+     * @return string
      */
-    public function format(Coordinate $coordinate);
+    public function format(Coordinate $coordinate)
+    {
+        return json_encode(
+            array(
+                'type'        => 'point',
+                'coordinates' => array(
+                    $coordinate->getLat(),
+                    $coordinate->getLng(),
+                ),
+            )
+        );
+    }
 }
