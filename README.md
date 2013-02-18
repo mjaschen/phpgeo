@@ -114,9 +114,7 @@ use Location\Formatter\Coordinate\GeoJSON;
 
 $coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
 
-$formatter = new GeoJSON();
-
-echo $coordinate->format($formatter); // { "type" : "point" , "coordinates" : [ 18.911306, -155.678268 ] }
+echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" : [ 18.911306, -155.678268 ] }
 ```
 
 ## Credits
