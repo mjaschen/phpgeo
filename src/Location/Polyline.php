@@ -28,21 +28,29 @@ class Polyline
     /**
      * @var array
      */
-    protected $coordinates = array();
+    protected $points = array();
 
     /**
-     * @param Coordinate $coordinate
+     * @param Coordinate $point
      */
-    public function addCoordinate(Coordinate $coordinate) {
-        $this->coordinates[] = $coordinate;
+    public function addPoint(Coordinate $point) {
+        $this->points[] = $point;
     }
 
     /**
      * @return array
      */
-    public function getCoordinates()
+    public function getPoints()
     {
-        return $this->coordinates;
+        return $this->points;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfPoints()
+    {
+        return count($this->points);
     }
 
     /**
@@ -52,15 +60,15 @@ class Polyline
     {
         $segments = array();
 
-        if (count($this->coordinates) <= 1) {
+        if (count($this->points) <= 1) {
             return $segments;
         }
 
-        $previousCoordinate = reset($this->coordinates);
+        $previousPoint = reset($this->points);
 
-        while ($coordinate = next($this->coordinates)) {
-            $segments[] = new Line($previousCoordinate, $coordinate);
-            $previousCoordinate = $coordinate;
+        while ($point = next($this->points)) {
+            $segments[] = new Line($previousPoint, $point);
+            $previousPoint = $point;
         }
 
         return $segments;
@@ -77,15 +85,15 @@ class Polyline
     {
         $distance = 0.0;
 
-        if (count($this->coordinates) <= 1) {
+        if (count($this->points) <= 1) {
             return $distance;
         }
 
-        $previousCoordinate = reset($this->coordinates);
+        $previousPoint = reset($this->points);
 
-        while ($coordinate = next($this->coordinates)) {
-            $distance += $calculator->getDistance($previousCoordinate, $coordinate);
-            $previousCoordinate = $coordinate;
+        while ($point = next($this->points)) {
+            $distance += $calculator->getDistance($previousPoint, $point);
+            $previousPoint = $point;
         }
 
         return $distance;

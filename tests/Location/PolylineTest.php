@@ -14,15 +14,15 @@ class PolylineTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->polyline = new Polyline();
-        $this->polyline->addCoordinate(new Coordinate(52.5, 13.5));
-        $this->polyline->addCoordinate(new Coordinate(64.1, -21.9));
-        $this->polyline->addCoordinate(new Coordinate(40.7, -74.0));
-        $this->polyline->addCoordinate(new Coordinate(33.9, -118.4));
+        $this->polyline->addPoint(new Coordinate(52.5, 13.5));
+        $this->polyline->addPoint(new Coordinate(64.1, -21.9));
+        $this->polyline->addPoint(new Coordinate(40.7, -74.0));
+        $this->polyline->addPoint(new Coordinate(33.9, -118.4));
     }
 
     public function testCreatePolyline()
     {
-        $this->assertCount(4, $this->polyline->getCoordinates());
+        $this->assertCount(4, $this->polyline->getPoints());
     }
 
     public function testGetSegments()

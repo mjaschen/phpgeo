@@ -28,53 +28,53 @@ class Line
     /**
      * @var \Location\Coordinate
      */
-    protected $coordinate1;
+    protected $point1;
 
     /**
      * @var \Location\Coordinate
      */
-    protected $coordinate2;
+    protected $point2;
 
     /**
-     * @param Coordinate $coordinate1
-     * @param Coordinate $coordinate2
+     * @param Coordinate $point1
+     * @param Coordinate $point2
      */
-    public function __construct(Coordinate $coordinate1, Coordinate $coordinate2)
+    public function __construct(Coordinate $point1, Coordinate $point2)
     {
-        $this->coordinate1 = $coordinate1;
-        $this->coordinate2 = $coordinate2;
+        $this->point1 = $point1;
+        $this->point2 = $point2;
     }
 
     /**
-     * @param \Location\Coordinate $coordinate1
+     * @param \Location\Coordinate $point1
      */
-    public function setCoordinate1($coordinate1)
+    public function setPoint1($point1)
     {
-        $this->coordinate1 = $coordinate1;
-    }
-
-    /**
-     * @return \Location\Coordinate
-     */
-    public function getCoordinate1()
-    {
-        return $this->coordinate1;
-    }
-
-    /**
-     * @param \Location\Coordinate $coordinate2
-     */
-    public function setCoordinate2($coordinate2)
-    {
-        $this->coordinate2 = $coordinate2;
+        $this->point1 = $point1;
     }
 
     /**
      * @return \Location\Coordinate
      */
-    public function getCoordinate2()
+    public function getPoint1()
     {
-        return $this->coordinate2;
+        return $this->point1;
+    }
+
+    /**
+     * @param \Location\Coordinate $point2
+     */
+    public function setPoint2($point2)
+    {
+        $this->point2 = $point2;
+    }
+
+    /**
+     * @return \Location\Coordinate
+     */
+    public function getPoint2()
+    {
+        return $this->point2;
     }
 
     /**
@@ -87,6 +87,6 @@ class Line
      */
     public function getLength(DistanceInterface $calculator)
     {
-        return $calculator->getDistance($this->coordinate1, $this->coordinate2);
+        return $calculator->getDistance($this->point1, $this->point2);
     }
 }
