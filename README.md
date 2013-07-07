@@ -68,6 +68,51 @@ $coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
 echo $coordinate1->getDistance($coordinate2, new Haversine()); // returns 128384.515 (meters; ≈128 kilometers)
 ```
 
+#### Length of a polyline (e.g. "GPS track")
+
+phpgeo has a polyline implementation which can be used to calculate the length of a GPS track or a route. A polyline consists of at least two points. Points are instances of the `Coordinate` class.
+
+```php
+<?php
+
+use Location\Coordinate;
+use Location\Polyline;
+use Location\Distance\Vincenty;
+
+$track = new Polyline();
+$track->addPoint(new Coordinate(52.5, 13.5));
+$track->addPoint(new Coordinate(54.5, 12.5));
+
+echo $track->getLength(new Vincenty());
+```
+
+#### Simplifying a polyline
+
+Polylines can be simplified to save storage space. Simplification is done with the [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) (AKA Douglas-Peucker algorithm).
+
+```php
+<?php
+
+use Location\Coordinate;
+use Location\Polyline;
+use Location\Distance\Vincenty;
+
+$polyline = new Polyline();
+$polyline->addPoint(new Coordinate(10.0, 10.0));
+$polyline->addPoint(new Coordinate(20.0, 20.0));
+$polyline->addPoint(new Coordinate(30.0, 10.0));
+
+$processor = new Simplify($polyline);
+
+// remove all points which perpendicular distance is less
+// than 1500 km from the surrounding points.
+$simplified = $processor->simplify(1500000);
+
+// simplified is the polyline without the second point (which
+// perpendicular distance is ~1046 km and therefore below
+// the simplification threshold)
+```
+
 ### Formatted output of coordinates
 
 You can format a coordinate in different styles.
@@ -123,3 +168,4 @@ echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" :
 
 * Marcus T. Jaschen <mjaschen@gmail.com>
 * [Chris Veness](http://www.movable-type.co.uk/scripts/latlong-vincenty.html) - JavaScript implementation of the [Vincenty formula](http://en.wikipedia.org/wiki/Vincenty%27s_formulae) for distance calculation
+* Ersts,P.J., Horning, N., and M. Polin[Internet] Perpendicular Distance Calculator(version 1.2.2) [Documentation](http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php). American Museum of Natural History, Center for Biodiversity and Conservation. Available from http://biodiversityinformatics.amnh.org/open_source/pdc. Accessed on 2013-07-07.
