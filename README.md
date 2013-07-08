@@ -1,3 +1,19 @@
+**Table of Contents**
+
+- [phpgeo - A Simple Geo Library for PHP](#phpgeo---a-simple-geo-library-for-php)
+	- [Installation](#installation)
+	- [Usage](#usage)
+		- [Calculations](#calculations)
+			- [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincenty's-formula)
+			- [Distance between two coordinates (Haversine Formula)](#distance-between-two-coordinates-haversine-formula)
+			- [Length of a polyline (e.g. "GPS track")](#length-of-a-polyline-eg-gps-track)
+			- [Simplifying a polyline](#simplifying-a-polyline)
+		- [Formatted output of coordinates](#formatted-output-of-coordinates)
+			- [Decimal Degrees](#decimal-degrees)
+			- [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
+			- [GeoJSON](#geojson)
+	- [Credits](#credits)
+
 # phpgeo - A Simple Geo Library for PHP
 
 [![Build Status](https://travis-ci.org/mjaschen/phpgeo.png?branch=master)](https://travis-ci.org/mjaschen/phpgeo)
