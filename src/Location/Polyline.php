@@ -13,7 +13,8 @@
 
 namespace Location;
 
-use Location\Distance\DistanceInterface;
+use Location\Distance\DistanceInterface,
+    Location\Formatter\Polyline\FormatterInterface;
 
 /**
  * Polyline Implementation
@@ -51,6 +52,16 @@ class Polyline
     public function getNumberOfPoints()
     {
         return count($this->points);
+    }
+
+    /**
+     * @param FormatterInterface $formatter
+     *
+     * @return mixed
+     */
+    public function format(FormatterInterface $formatter)
+    {
+        return $formatter->format($this);
     }
 
     /**
