@@ -12,6 +12,8 @@
 			- [Decimal Degrees](#decimal-degrees)
 			- [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
 			- [GeoJSON](#geojson)
+		- [Formatted output of polylines](#formatted-output-of-polylines)
+			- [GeoJSON](#geojson)
 	- [Credits](#credits)
 
 # phpgeo - A Simple Geo Library for PHP
@@ -169,8 +171,6 @@ echo $coordinate->format($formatter); // 18° 54' 41" N, 155° 40' 42" W
 
 #### GeoJSON
 
-For Coordinates:
-
 ```php
 <?php
 
@@ -182,7 +182,11 @@ $coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
 echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" : [ -155.678268, 18.911306 ] }
 ```
 
-For Polylines:
+### Formatted output of polylines
+
+You can format a polyline in different styles.
+
+#### GeoJSON
 
 ```php
 <?php
