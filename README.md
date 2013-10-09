@@ -29,7 +29,7 @@ Using Composer, just add the following configuration to your `composer.json`:
 ```json
 {
     "require": {
-        "mjaschen/phpgeo": "*"
+        "mjaschen/phpgeo": "~0.2.1"
     }
 }
 ```
