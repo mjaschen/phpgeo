@@ -8,7 +8,7 @@
  * @package   Formatter
  * @author    Richard Barnes <rbarnes@umn.edu>
  * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://r03.org/
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location\Formatter\Polyline;
@@ -22,7 +22,7 @@ use Location\Polyline;
  * @package  Formatter
  * @author   Richard Barnes <rbarnes@umn.edu>
  * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://r03.org/
+ * @link     https://github.com/mjaschen/phpgeo
  */
 interface FormatterInterface
 {

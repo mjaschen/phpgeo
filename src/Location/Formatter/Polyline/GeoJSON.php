@@ -8,7 +8,7 @@
  * @package   Formatter
  * @author    Richard Barnes <rbarnes@umn.edu>
  * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://r03.org/
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location\Formatter\Polyline;
@@ -22,25 +22,27 @@ use Location\Polyline;
  * @package  Formatter
  * @author   Richard Barnes <rbarnes@umn.edu>
  * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://r03.org/
+ * @link     https://github.com/mjaschen/phpgeo
  */
 class GeoJSON implements FormatterInterface
 {
     /**
-     * @param Coordinate $coordinate
+     * @param \Location\Polyline $polyline
      *
      * @return string
      */
     public function format(Polyline $polyline)
     {
-        $ppoints=$polyline->getPoints();
-        foreach($ppoints as &$p){
-          $p=array($p->getLng(),$p->getLat());
+        $points = array();
+
+        foreach ($polyline->getPoints() as $point) {
+            $points[] = array($point->getLng(), $point->getLat());
         }
+
         return json_encode(
             array(
                 'type'        => 'LineString',
-                'coordinates' => $ppoints #array_slice($ppoints,0,200)
+                'coordinates' => $points,
             )
         );
     }
