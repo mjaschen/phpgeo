@@ -13,7 +13,7 @@
 			- [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
 			- [GeoJSON](#geojson)
 		- [Formatted output of polylines](#formatted-output-of-polylines)
-			- [GeoJSON](#geojson)
+			- [GeoJSON](#geojson-1)
 	- [Credits](#credits)
 
 # phpgeo - A Simple Geo Library for PHP
