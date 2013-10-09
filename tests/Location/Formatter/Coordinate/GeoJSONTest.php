@@ -26,6 +26,7 @@ class GeoJSONTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
+        unset($this->formatter);
     }
 
     /**
@@ -35,7 +36,7 @@ class GeoJSONTest extends \PHPUnit_Framework_TestCase
     {
         $coordinate = new Coordinate(52.5, 13.5);
 
-        $json = '{ "type" : "point" , "coordinates" : [ 52.5, 13.5 ] }';
+        $json = '{ "type" : "Point" , "coordinates" : [ 13.5, 52.5 ] }';
 
         $this->assertJsonStringEqualsJsonString($json, $this->formatter->format($coordinate));
     }
@@ -47,7 +48,7 @@ class GeoJSONTest extends \PHPUnit_Framework_TestCase
     {
         $coordinate = new Coordinate(52.123456789012345, 13.123456789012345);
 
-        $json = '{ "type" : "point" , "coordinates" : [ 52.123456789012345, 13.123456789012345 ] }';
+        $json = '{ "type" : "Point" , "coordinates" : [ 13.123456789012345, 52.123456789012345 ] }';
 
         $this->assertJsonStringEqualsJsonString($json, $this->formatter->format($coordinate));
     }

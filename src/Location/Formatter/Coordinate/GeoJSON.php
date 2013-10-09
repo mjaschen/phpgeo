@@ -36,10 +36,10 @@ class GeoJSON implements FormatterInterface
     {
         return json_encode(
             array(
-                'type'        => 'point',
+                'type'        => 'Point',
                 'coordinates' => array(
-                    $coordinate->getLat(),
                     $coordinate->getLng(),
+                    $coordinate->getLat(),
                 ),
             )
         );
