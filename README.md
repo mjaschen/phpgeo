@@ -206,7 +206,7 @@ echo $formatter->format($polyline); // { "type" : "LineString" , "coordinates" :
 
 ## Credits
 
-* Marcus T. Jaschen <mail@marcusjaschen.de>
+* Marcus Jaschen <mail@marcusjaschen.de>
 * [Chris Veness](http://www.movable-type.co.uk/scripts/latlong-vincenty.html) - JavaScript implementation of the [Vincenty formula](http://en.wikipedia.org/wiki/Vincenty%27s_formulae) for distance calculation
 * Ersts,P.J., Horning, N., and M. Polin[Internet] Perpendicular Distance Calculator(version 1.2.2) [Documentation](http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php). American Museum of Natural History, Center for Biodiversity and Conservation. Available from http://biodiversityinformatics.amnh.org/open_source/pdc. Accessed on 2013-07-07.
 * [Richard Barnes](https://github.com/r-barnes) Polyline GeoJSON Formatter
