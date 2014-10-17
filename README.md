@@ -24,7 +24,13 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 ## Installation
 
-Using Composer, just add the following configuration to your `composer.json`:
+Using Composer, just add it to your `composer.json` by running (preferred method):
+
+```
+composer require mjaschen/phpgeo
+```
+
+Or add it manually to your `composer.json` (legacy method):
 
 ```json
 {
