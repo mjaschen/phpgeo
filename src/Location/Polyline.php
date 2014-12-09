@@ -100,11 +100,8 @@ class Polyline
             return $distance;
         }
 
-        $previousPoint = reset($this->points);
-
-        while ($point = next($this->points)) {
-            $distance += $calculator->getDistance($previousPoint, $point);
-            $previousPoint = $point;
+        foreach ($this->getSegments() as $segment) {
+            $distance += $segment->getLength($calculator);
         }
 
         return $distance;
