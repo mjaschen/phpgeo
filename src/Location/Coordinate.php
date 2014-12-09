@@ -127,15 +127,7 @@ class Coordinate
      */
     protected function isValidLatitude($latitude)
     {
-        if (! is_numeric($latitude)) {
-            return false;
-        }
-
-        if ($latitude < - 90.0 || $latitude > 90.0) {
-            return false;
-        }
-
-        return true;
+        return $this->isNumericInBounds($latitude, - 90.0, 90.0);
     }
 
     /**
@@ -147,11 +139,26 @@ class Coordinate
      */
     protected function isValidLongitude($longitude)
     {
-        if (! is_numeric($longitude)) {
+        return $this->isNumericInBounds($longitude, -180.0, 180.0);
+    }
+
+    /**
+     * Checks if the given value is (1) numeric, and (2) between lower
+     * and upper bounds (including the bounds values).
+     *
+     * @param float $value
+     * @param float $lower
+     * @param float $upper
+     *
+     * @return bool
+     */
+    protected function isNumericInBounds($value, $lower, $upper)
+    {
+        if (! is_numeric($value)) {
             return false;
         }
 
-        if ($longitude < - 180.0 || $longitude > 180.0) {
+        if ($value < $lower || $value > $upper) {
             return false;
         }
 

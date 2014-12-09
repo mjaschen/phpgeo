@@ -59,6 +59,24 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
      * @covers Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
      */
+    public function testConstructorInvalidLatitudeOutOfBoundsWorksAsExpected()
+    {
+        $c = new Coordinate(91.0, 13.5, $this->ellipsoid);
+    }
+
+    /**
+     * @covers Location\Coordinate::__construct
+     * @expectedException \InvalidArgumentException
+     */
+    public function testConstructorInvalidLongitudeOutOfBoundsWorksAsExpected()
+    {
+        $c = new Coordinate(52.2, 190.0, $this->ellipsoid);
+    }
+
+    /**
+     * @covers Location\Coordinate::__construct
+     * @expectedException \InvalidArgumentException
+     */
     public function testConstructorInvalidLongitude()
     {
         $c = new Coordinate(52.5, 'foo', $this->ellipsoid);
