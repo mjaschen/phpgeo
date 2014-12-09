@@ -18,26 +18,16 @@
 
 # phpgeo - A Simple Geo Library for PHP
 
-[![Build Status](https://travis-ci.org/mjaschen/phpgeo.png?branch=master)](https://travis-ci.org/mjaschen/phpgeo) [![Latest Stable Version](https://poser.pugx.org/mjaschen/phpgeo/v/stable.png)](https://packagist.org/packages/mjaschen/phpgeo)
+[![Build Status](https://travis-ci.org/mjaschen/phpgeo.png?branch=master)](https://travis-ci.org/mjaschen/phpgeo) [![Latest Stable Version](https://poser.pugx.org/mjaschen/phpgeo/v/stable.png)](https://packagist.org/packages/mjaschen/phpgeo) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mjaschen/phpgeo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mjaschen/phpgeo/?branch=master)
 
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
 
 ## Installation
 
-Using Composer, just add it to your `composer.json` by running (preferred method):
+Using [Composer](https://getcomposer.org), just add it to your `composer.json` by running:
 
 ```
 composer require mjaschen/phpgeo
-```
-
-Or add it manually to your `composer.json` (legacy method):
-
-```json
-{
-    "require": {
-        "mjaschen/phpgeo": "~0.2.1"
-    }
-}
 ```
 
 ## Usage
