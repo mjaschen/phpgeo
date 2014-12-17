@@ -53,11 +53,11 @@ class Coordinate
     public function __construct($lat, $lng, Ellipsoid $ellipsoid = null)
     {
         if (! $this->isValidLatitude($lat)) {
-            throw new \InvalidArgumentException("Latitude value must be numeric -90.0 .. +90.0");
+            throw new \InvalidArgumentException("Latitude value must be numeric -90.0 .. +90.0 (given: {$lat})");
         }
 
         if (! $this->isValidLongitude($lng)) {
-            throw new \InvalidArgumentException("Latitude value must be numeric -180.0 .. +180.0");
+            throw new \InvalidArgumentException("Longitude value must be numeric -180.0 .. +180.0 (given: {$lng})");
         }
 
         $this->lat = doubleval($lat);

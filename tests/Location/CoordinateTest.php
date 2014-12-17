@@ -49,6 +49,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Latitude value must be numeric -90.0 .. +90.0 (given: foo)
      */
     public function testConstructorInvalidLatitude()
     {
@@ -58,6 +59,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Latitude value must be numeric -90.0 .. +90.0 (given: 91)
      */
     public function testConstructorInvalidLatitudeOutOfBoundsWorksAsExpected()
     {
@@ -67,6 +69,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Longitude value must be numeric -180.0 .. +180.0 (given: 190)
      */
     public function testConstructorInvalidLongitudeOutOfBoundsWorksAsExpected()
     {
@@ -76,6 +79,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Longitude value must be numeric -180.0 .. +180.0 (given: foo)
      */
     public function testConstructorInvalidLongitude()
     {
