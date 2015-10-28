@@ -7,6 +7,7 @@
 			- [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincenty's-formula)
 			- [Distance between two coordinates (Haversine Formula)](#distance-between-two-coordinates-haversine-formula)
 			- [Length of a polyline (e.g. "GPS track")](#length-of-a-polyline-eg-gps-track)
+			- [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
 			- [Simplifying a polyline](#simplifying-a-polyline)
 		- [Formatted output of coordinates](#formatted-output-of-coordinates)
 			- [Decimal Degrees](#decimal-degrees)
@@ -127,6 +128,27 @@ $simplified = $processor->simplify(1500000);
 // the simplification threshold)
 ```
 
+#### Polygon contains a point (e.g. "GPS geofence")
+
+phpgeo has a polygon implementation which can be used to determinate if a point is contained in it or not. A polygon consists of at least three points. Points are instances of the `Coordinate` class.
+
+```php
+<?php
+
+$geofence = new Polygon();
+
+$geofence->addPoint(new Coordinate(-12.085870,-77.016261));
+$geofence->addPoint(new Coordinate(-12.086373,-77.033813));
+$geofence->addPoint(new Coordinate(-12.102823,-77.030938));
+$geofence->addPoint(new Coordinate(-12.098669,-77.006476));
+
+$outsidePoint = new Coordinate(-12.075452, -76.985079);
+$insidePoint = new Coordinate(-12.092542, -77.021540);
+
+var_dump( $geofence->contains($outsidePoint) ); // returns bool(false) the point is outside the polygon
+var_dump( $geofence->contains($insidePoint) ); // returns bool(true) the point is inside the polygon
+```
+
 ### Formatted output of coordinates
 
 You can format a coordinate in different styles.
@@ -206,3 +228,4 @@ echo $formatter->format($polyline); // { "type" : "LineString" , "coordinates" :
 * [Chris Veness](http://www.movable-type.co.uk/scripts/latlong-vincenty.html) - JavaScript implementation of the [Vincenty formula](http://en.wikipedia.org/wiki/Vincenty%27s_formulae) for distance calculation
 * Ersts,P.J., Horning, N., and M. Polin[Internet] Perpendicular Distance Calculator(version 1.2.2) [Documentation](http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php). American Museum of Natural History, Center for Biodiversity and Conservation. Available from http://biodiversityinformatics.amnh.org/open_source/pdc. Accessed on 2013-07-07.
 * [Richard Barnes](https://github.com/r-barnes) Polyline GeoJSON Formatter
+
