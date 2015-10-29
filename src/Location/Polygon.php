@@ -6,15 +6,14 @@
  *
  * @category  Location
  * @author    Paul Vidal <paul.vidal.lujan@gmail.com>
- * @copyright 1999-2013 MTB-News.de
  * @license   http://www.opensource.org/licenses/mit-license MIT License
  * @link      http://www.mtb-news.de/
  */
 
 namespace Location;
 
-use Location\Distance\DistanceInterface,
-    Location\Formatter\Polygon\FormatterInterface;
+use Location\Distance\DistanceInterface;
+use Location\Formatter\Polygon\FormatterInterface;
 
 /**
  * Polygon Implementation
@@ -34,7 +33,8 @@ class Polygon
     /**
      * @param Coordinate $point
      */
-    public function addPoint(Coordinate $point) {
+    public function addPoint(Coordinate $point)
+    {
         $this->points[] = $point;
     }
 
@@ -110,15 +110,27 @@ class Polygon
         $previousPoint = reset($this->points);
 
         while ($point = next($this->points)) {
-            $segments[] = new Line($previousPoint, $point);
+            $segments[]    = new Line($previousPoint, $point);
             $previousPoint = $point;
         }
+
+        // to close the polygon we have to add the final segment between
+        // the last point and the first point
+        $segments[] = new Line(end($this->points), reset($this->points));
 
         return $segments;
     }
 
     /**
-     * Determine if given point is contained inside the polygon.
+     * Determine if given point is contained inside the polygon. Uses the PNPOLY
+     * algorithm by W. Randolph Franklin. Therfore some edge cases may not give the
+     * expected results, e. g. if the point resides on the polygon boundary.
+     *
+     * @see http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+     *
+     * For special cases this calculation leads to wrong results:
+     *
+     * - if the polygons spans over the longitude boundaries at 180/-180 degrees
      *
      * @param Coordinate $point
      *
@@ -127,18 +139,24 @@ class Polygon
     public function contains(Coordinate $point)
     {
         $numberOfPoints = $this->getNumberOfPoints();
-        $polygonLats = $this->getLats();
-        $polygonLngs = $this->getLngs();
+        $polygonLats    = $this->getLats();
+        $polygonLngs    = $this->getLngs();
 
-        $i = $j = $c = 0;
+        $polygonContainsPoint = false;
 
-        for ($i = 0, $j = $numberOfPoints-1 ; $i < $numberOfPoints; $j = $i++) {
-            if ( (($polygonLngs[$i]  >  $point->getLng() != ($polygonLngs[$j] > $point->getLng())) && ($point->getLat() < ($polygonLats[$j] - $polygonLats[$i]) * ($point->getLng() - $polygonLngs[$i]) / ($polygonLngs[$j] - $polygonLngs[$i]) + $polygonLats[$i]) ) ){
-                $c = !$c;
+        for ($node = 0, $altNode = ($numberOfPoints - 1); $node < $numberOfPoints; $altNode = $node ++) {
+            if (($polygonLngs[$node] > $point->getLng() != ($polygonLngs[$altNode] > $point->getLng()))
+                && ($point->getLat() < ($polygonLats[$altNode] - $polygonLats[$node])
+                                       * ($point->getLng() - $polygonLngs[$node])
+                                       / ($polygonLngs[$altNode] - $polygonLngs[$node])
+                                       + $polygonLats[$node]
+                )
+            ) {
+                $polygonContainsPoint = ! $polygonContainsPoint;
             }
         }
 
-        return $c == 0 ? false : $c;
+        return $polygonContainsPoint;
     }
 
     /**
@@ -167,6 +185,8 @@ class Polygon
      * Calculates the polygon area.
      *
      * @return float
+     *
+     * @fixme This calculation gives wrong results, please don't use it!
      */
     public function getArea()
     {
@@ -179,9 +199,10 @@ class Polygon
 
         foreach ($this->points as $key => $point) {
             $j = ($key + 1) % $numberOfPoints;
-            $area += ($this->points[$j]->getLng() * $point->getLat()) - ($point->getLng() * $this->points[$j]->getLat());
+            $area += ($this->points[$j]->getLng() * $point->getLat())
+                     - ($point->getLng() * $this->points[$j]->getLat());
         }
 
-        return abs( $area / 2 ) * $this->points[0]->getEllipsoid()->getA();
+        return abs($area / 2) * $this->points[0]->getEllipsoid()->getA();
     }
 }
