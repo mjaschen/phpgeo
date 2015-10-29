@@ -13,10 +13,8 @@
 
 namespace Location;
 
-use Location\Ellipsoid,
-    Location\Distance,
-    Location\Distance\DistanceInterface,
-    Location\Formatter\Coordinate\FormatterInterface;
+use Location\Distance\DistanceInterface;
+use Location\Formatter\Coordinate\FormatterInterface;
 
 /**
  * Coordinate Implementation
@@ -44,8 +42,8 @@ class Coordinate
     protected $ellipsoid;
 
     /**
-     * @param float     $lat       -90.0 .. +90.0
-     * @param float     $lng       -180.0 .. +180.0
+     * @param float $lat           -90.0 .. +90.0
+     * @param float $lng           -180.0 .. +180.0
      * @param Ellipsoid $ellipsoid if omitted, WGS-84 is used
      *
      * @throws \InvalidArgumentException
@@ -98,7 +96,7 @@ class Coordinate
      * Calculates the distance between the given coordinate
      * and this coordinate.
      *
-     * @param Coordinate        $coordinate
+     * @param Coordinate $coordinate
      * @param DistanceInterface $calculator instance of distance calculation class
      *
      * @return float
@@ -139,7 +137,7 @@ class Coordinate
      */
     protected function isValidLongitude($longitude)
     {
-        return $this->isNumericInBounds($longitude, -180.0, 180.0);
+        return $this->isNumericInBounds($longitude, - 180.0, 180.0);
     }
 
     /**

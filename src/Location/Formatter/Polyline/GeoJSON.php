@@ -33,17 +33,17 @@ class GeoJSON implements FormatterInterface
      */
     public function format(Polyline $polyline)
     {
-        $points = array();
+        $points = [];
 
         foreach ($polyline->getPoints() as $point) {
-            $points[] = array($point->getLng(), $point->getLat());
+            $points[] = [$point->getLng(), $point->getLat()];
         }
 
         return json_encode(
-            array(
+            [
                 'type'        => 'LineString',
                 'coordinates' => $points,
-            )
+            ]
         );
     }
 }

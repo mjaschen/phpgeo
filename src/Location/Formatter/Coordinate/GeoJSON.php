@@ -35,13 +35,13 @@ class GeoJSON implements FormatterInterface
     public function format(Coordinate $coordinate)
     {
         return json_encode(
-            array(
+            [
                 'type'        => 'Point',
-                'coordinates' => array(
+                'coordinates' => [
                     $coordinate->getLng(),
                     $coordinate->getLat(),
-                ),
-            )
+                ],
+            ]
         );
     }
 }

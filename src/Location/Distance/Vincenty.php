@@ -21,7 +21,7 @@ use Location\Exception\NotMatchingEllipsoidException;
 /**
  * Implementation of distance calculation with Vincenty Method
  *
- * @see http://www.movable-type.co.uk/scripts/latlong-vincenty.html
+ * @see      http://www.movable-type.co.uk/scripts/latlong-vincenty.html
  *
  * @category Location
  * @package  Distance
@@ -68,13 +68,12 @@ class Vincenty implements DistanceInterface
         $cosU2 = cos($U2);
 
         do {
-
             $sinLambda = sin($lambda);
             $cosLambda = cos($lambda);
 
             $sinSigma = sqrt(
                 ($cosU2 * $sinLambda) * ($cosU2 * $sinLambda) +
-                    ($cosU1 * $sinU2 - $sinU1 * $cosU2 * $cosLambda) * ($cosU1 * $sinU2 - $sinU1 * $cosU2 * $cosLambda)
+                ($cosU1 * $sinU2 - $sinU1 * $cosU2 * $cosLambda) * ($cosU1 * $sinU2 - $sinU1 * $cosU2 * $cosLambda)
             );
 
             if ($sinSigma == 0) {
@@ -100,8 +99,7 @@ class Vincenty implements DistanceInterface
             $lambdaP = $lambda;
 
             $lambda = $L + (1 - $C) * $f * $sinAlpha * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM)));
-
-        } while (abs($lambda - $lambdaP) > 1e-12 && --$iterationLimit > 0);
+        } while (abs($lambda - $lambdaP) > 1e-12 && -- $iterationLimit > 0);
 
         if ($iterationLimit == 0) {
             throw new NotConvergingException();

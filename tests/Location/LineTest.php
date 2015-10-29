@@ -9,7 +9,7 @@ class LineTest extends \PHPUnit_Framework_TestCase
     public function testCreateLine()
     {
         $point1 = new Coordinate(52.5, 13.5);
-        $point2 = new Coordinate(64.1, -21.9);
+        $point2 = new Coordinate(64.1, - 21.9);
 
         $line = new Line($point1, $point2);
 
@@ -20,7 +20,7 @@ class LineTest extends \PHPUnit_Framework_TestCase
     public function testCalculateLength()
     {
         $point1 = new Coordinate(52.5, 13.5);
-        $point2 = new Coordinate(64.1, -21.9);
+        $point2 = new Coordinate(64.1, - 21.9);
 
         $line = new Line($point1, $point2);
 

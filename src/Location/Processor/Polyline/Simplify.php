@@ -75,42 +75,34 @@ class Simplify
      *
      * @return array
      */
-    protected function douglasPeucker($line = array(), $tolerance)
+    protected function douglasPeucker($line = [], $tolerance)
     {
         $distanceMax = 0;
-        $index = 0;
+        $index       = 0;
 
         $lineSize = count($line);
 
         for ($i = 1; $i <= ($lineSize - 1); $i ++) {
-
             $distance = $this->getPerpendicularDistance($line[$i], new Line($line[0], $line[$lineSize - 1]));
 
             if ($distance > $distanceMax) {
-
-                $index = $i;
+                $index       = $i;
                 $distanceMax = $distance;
-
             }
-
         }
 
         if ($distanceMax > $tolerance) {
-
-            $lineSplitFirst = array_slice($line, 0, $index);
+            $lineSplitFirst  = array_slice($line, 0, $index);
             $lineSplitSecond = array_slice($line, $index, $lineSize);
 
-            $recursiveResultsSplitFirst = $this->douglasPeucker($lineSplitFirst, $tolerance);
+            $recursiveResultsSplitFirst  = $this->douglasPeucker($lineSplitFirst, $tolerance);
             $recursiveResultsSplitSecond = $this->douglasPeucker($lineSplitSecond, $tolerance);
 
             array_pop($recursiveResultsSplitFirst);
 
             $resultLine = array_merge($recursiveResultsSplitFirst, $recursiveResultsSplitSecond);
-
         } else {
-
-            $resultLine = array($line[0], $line[$lineSize -  1]);
-
+            $resultLine = [$line[0], $line[$lineSize - 1]];
         }
 
         return $resultLine;
@@ -118,7 +110,7 @@ class Simplify
 
     /**
      * @param Coordinate $point
-     * @param Line       $line
+     * @param Line $line
      *
      * @return number
      */

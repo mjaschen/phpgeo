@@ -90,23 +90,25 @@ class BoundsTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCenter()
     {
-        $testBounds = array(
-            array('nw' => new Coordinate(50, 10), 'se' => new Coordinate(30, 30), 'c' => new Coordinate(40, 20)),
-            array('nw' => new Coordinate(50, - 130), 'se' => new Coordinate(30, - 110), 'c' => new Coordinate(40, - 120)),
-            array('nw' => new Coordinate(10, - 10), 'se' => new Coordinate(- 10, 10), 'c' => new Coordinate(0, 0)),
-            array('nw' => new Coordinate(-80, - 130), 'se' => new Coordinate(- 90, -110), 'c' => new Coordinate(-85, -120)),
-            array('nw' => new Coordinate(80, - 130), 'se' => new Coordinate(90, -110), 'c' => new Coordinate(85, -120)),
-            array('nw' => new Coordinate(80, 110), 'se' => new Coordinate(90, 130), 'c' => new Coordinate(85, 120)),
-            array('nw' => new Coordinate(50, 170), 'se' => new Coordinate(30, -160), 'c' => new Coordinate(40, -175)),
-            array('nw' => new Coordinate(-50, 150), 'se' => new Coordinate(-70, -170), 'c' => new Coordinate(-60, 170)),
-        );
+        $testBounds = [
+            ['nw' => new Coordinate(50, 10), 'se' => new Coordinate(30, 30), 'c' => new Coordinate(40, 20)],
+            ['nw' => new Coordinate(50, - 130), 'se' => new Coordinate(30, - 110), 'c' => new Coordinate(40, - 120)],
+            ['nw' => new Coordinate(10, - 10), 'se' => new Coordinate(- 10, 10), 'c' => new Coordinate(0, 0)],
+            [
+                'nw' => new Coordinate(- 80, - 130),
+                'se' => new Coordinate(- 90, - 110),
+                'c'  => new Coordinate(- 85, - 120)
+            ],
+            ['nw' => new Coordinate(80, - 130), 'se' => new Coordinate(90, - 110), 'c' => new Coordinate(85, - 120)],
+            ['nw' => new Coordinate(80, 110), 'se' => new Coordinate(90, 130), 'c' => new Coordinate(85, 120)],
+            ['nw' => new Coordinate(50, 170), 'se' => new Coordinate(30, - 160), 'c' => new Coordinate(40, - 175)],
+            ['nw' => new Coordinate(- 50, 150), 'se' => new Coordinate(- 70, - 170), 'c' => new Coordinate(- 60, 170)],
+        ];
 
         foreach ($testBounds as $bounds) {
-
             $b = new Bounds($bounds['nw'], $bounds['se']);
 
             $this->assertEquals($bounds['c'], $b->getCenter());
-
         }
     }
 }

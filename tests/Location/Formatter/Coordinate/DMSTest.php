@@ -43,7 +43,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormatCustomSeparator()
     {
-        $coordinate = new Coordinate(18.911306, -155.678268);
+        $coordinate = new Coordinate(18.911306, - 155.678268);
 
         $this->formatter->setSeparator(", ");
 
@@ -55,7 +55,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormatCardinalLetters()
     {
-        $coordinate = new Coordinate(18.911306, -155.678268);
+        $coordinate = new Coordinate(18.911306, - 155.678268);
 
         $this->formatter->setSeparator(", ")->useCardinalLetters(true);
 
@@ -67,7 +67,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormatBothNegative()
     {
-        $coordinate = new Coordinate(-18.911306, -155.678268);
+        $coordinate = new Coordinate(- 18.911306, - 155.678268);
 
         $this->formatter->setSeparator(", ");
 
@@ -79,7 +79,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormatASCIIUnits()
     {
-        $coordinate = new Coordinate(-18.911306, -155.678268);
+        $coordinate = new Coordinate(- 18.911306, - 155.678268);
 
         $this->formatter->setSeparator(", ")->setUnits(DMS::UNITS_ASCII);
 

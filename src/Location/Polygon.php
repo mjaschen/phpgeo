@@ -28,7 +28,7 @@ class Polygon
     /**
      * @var array
      */
-    protected $points = array();
+    protected $points = [];
 
     /**
      * @param Coordinate $point
@@ -53,7 +53,7 @@ class Polygon
      */
     public function getLats()
     {
-        $lats = array();
+        $lats = [];
 
         foreach ($this->points as $point) {
             $lats[] = $point->getLat();
@@ -69,7 +69,7 @@ class Polygon
      */
     public function getLngs()
     {
-        $lngs = array();
+        $lngs = [];
 
         foreach ($this->points as $point) {
             $lngs[] = $point->getLng();
@@ -101,7 +101,7 @@ class Polygon
      */
     public function getSegments()
     {
-        $segments = array();
+        $segments = [];
 
         if (count($this->points) <= 1) {
             return $segments;

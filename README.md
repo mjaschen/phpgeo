@@ -27,7 +27,7 @@
 
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
 
-PHP 5.3 compatibility will be dropped with release of version 0.4.
+Minimum required PHP version is 5.4. PHP 5.3 compatibility was dropped with release of version 0.4.
 
 ## Installation
 
@@ -38,6 +38,10 @@ composer require mjaschen/phpgeo
 ```
 
 ## Changelog
+
+### Version 0.4
+
+- removed PHP 5.3 compatibility
 
 ### Version 0.3
 
@@ -162,7 +166,7 @@ echo $polygon->getPerimeter(new Vincenty()); // 4355689.472 (meters)
 
 #### Polygon contains a point (e.g. "GPS geofence")
 
-phpgeo has a polygon implementation which can be used to determinate if a point is contained in it or not. 
+phpgeo has a polygon implementation which can be used to determinate if a point is contained in it or not.
 A polygon consists of at least three points. Points are instances of the `Coordinate` class.
 
 **Warning:** The calculation gives wrong results if the polygons has points on both sides of the 180/-180 degrees meridian.

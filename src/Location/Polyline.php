@@ -13,8 +13,8 @@
 
 namespace Location;
 
-use Location\Distance\DistanceInterface,
-    Location\Formatter\Polyline\FormatterInterface;
+use Location\Distance\DistanceInterface;
+use Location\Formatter\Polyline\FormatterInterface;
 
 /**
  * Polyline Implementation
@@ -29,12 +29,13 @@ class Polyline
     /**
      * @var array
      */
-    protected $points = array();
+    protected $points = [];
 
     /**
      * @param Coordinate $point
      */
-    public function addPoint(Coordinate $point) {
+    public function addPoint(Coordinate $point)
+    {
         $this->points[] = $point;
     }
 
@@ -69,7 +70,7 @@ class Polyline
      */
     public function getSegments()
     {
-        $segments = array();
+        $segments = [];
 
         if (count($this->points) <= 1) {
             return $segments;
@@ -78,7 +79,7 @@ class Polyline
         $previousPoint = reset($this->points);
 
         while ($point = next($this->points)) {
-            $segments[] = new Line($previousPoint, $point);
+            $segments[]    = new Line($previousPoint, $point);
             $previousPoint = $point;
         }
 

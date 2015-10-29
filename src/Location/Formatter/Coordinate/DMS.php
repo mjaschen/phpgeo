@@ -47,18 +47,18 @@ class DMS implements FormatterInterface
      */
     protected $unitType;
 
-    protected $units = array(
-        'UTF-8' => array(
+    protected $units = [
+        'UTF-8' => [
             'deg' => '°',
             'min' => '′',
             'sec' => '″',
-        ),
-        'ASCII' => array(
+        ],
+        'ASCII' => [
             'deg' => '°',
             'min' => '\'',
             'sec' => '"',
-        ),
-    );
+        ],
+    ];
 
     /**
      * @param string $separator
@@ -125,19 +125,19 @@ class DMS implements FormatterInterface
         $lat = $coordinate->getLat();
         $lng = $coordinate->getLng();
 
-        $latValue = abs($lat);
+        $latValue   = abs($lat);
         $latDegrees = intval($latValue);
 
         $latMinutesDecimal = $latValue - $latDegrees;
-        $latMinutes = intval(60 * $latMinutesDecimal);
+        $latMinutes        = intval(60 * $latMinutesDecimal);
 
         $latSeconds = 60 * (60 * $latMinutesDecimal - $latMinutes);
 
-        $lngValue = abs($lng);
+        $lngValue   = abs($lng);
         $lngDegrees = intval($lngValue);
 
         $lngMinutesDecimal = $lngValue - $lngDegrees;
-        $lngMinutes = intval(60 * $lngMinutesDecimal);
+        $lngMinutes        = intval(60 * $lngMinutesDecimal);
 
         $lngSeconds = 60 * (60 * $lngMinutesDecimal - $lngMinutes);
 

@@ -2,10 +2,10 @@
 
 namespace Location;
 
-use Location\Coordinate,
-    Location\Ellipsoid,
-    Location\Distance\Vincenty,
-    Location\Formatter\Coordinate\DecimalDegrees;
+use Location\Coordinate;
+use Location\Ellipsoid;
+use Location\Distance\Vincenty;
+use Location\Formatter\Coordinate\DecimalDegrees;
 
 class CoordinateTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,11 +25,11 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $ellipsoidConfig = array(
+        $ellipsoidConfig = [
             'name' => 'WGS-84',
             'a'    => 6378137.0,
             'f'    => 298.257223563,
-        );
+        ];
 
         $this->ellipsoid = Ellipsoid::createFromArray($ellipsoidConfig);
 
@@ -47,7 +47,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Coordinate::__construct
+     * @covers                   Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Latitude value must be numeric -90.0 .. +90.0 (given: foo)
      */
@@ -57,7 +57,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Coordinate::__construct
+     * @covers                   Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Latitude value must be numeric -90.0 .. +90.0 (given: 91)
      */
@@ -67,7 +67,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Coordinate::__construct
+     * @covers                   Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Longitude value must be numeric -180.0 .. +180.0 (given: 190)
      */
@@ -77,7 +77,7 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Coordinate::__construct
+     * @covers                   Location\Coordinate::__construct
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Longitude value must be numeric -180.0 .. +180.0 (given: foo)
      */
@@ -123,8 +123,8 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetdistance()
     {
-        $coordinate1 = new Coordinate(19.820664, -155.468066, $this->ellipsoid);
-        $coordinate2 = new Coordinate(20.709722, -156.253333, $this->ellipsoid);
+        $coordinate1 = new Coordinate(19.820664, - 155.468066, $this->ellipsoid);
+        $coordinate2 = new Coordinate(20.709722, - 156.253333, $this->ellipsoid);
 
         $this->assertEquals(128130.850, $coordinate1->getDistance($coordinate2, new Vincenty()));
     }

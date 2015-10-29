@@ -47,13 +47,13 @@ class Ellipsoid
      *
      * @var array
      */
-    protected static $configs = array(
-        'WGS-84' => array(
+    protected static $configs = [
+        'WGS-84' => [
             'name' => 'WGS-84',
             'a'    => 6378137.0,
             'f'    => 298.257223563,
-        ),
-    );
+        ],
+    ];
 
     /**
      * @param $name

@@ -21,7 +21,7 @@ use Location\Exception\NotMatchingEllipsoidException;
 /**
  * Implementation of distance calculation with http://en.wikipedia.org/wiki/Law_of_haversines
  *
- * @see http://en.wikipedia.org/wiki/Law_of_haversines
+ * @see      http://en.wikipedia.org/wiki/Law_of_haversines
  *
  * @category Location
  * @package  Distance
@@ -55,13 +55,13 @@ class Haversine implements DistanceInterface
 
         $radius = $point1->getEllipsoid()->getArithmeticMeanRadius();
 
-        $s = 2 * $radius * asin(
+        $distance = 2 * $radius * asin(
             sqrt(
                 pow(sin($dLat / 2), 2)
                 + cos($lat1) * cos($lat2) * pow(sin($dLng / 2), 2)
             )
         );
 
-        return round($s, 3);
+        return round($distance, 3);
     }
 }

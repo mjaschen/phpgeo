@@ -10,17 +10,17 @@ class PolygonTest extends \PHPUnit_Framework_TestCase
     {
         $polygon = new Polygon();
 
-        $this->assertEquals(array(), $polygon->getPoints());
+        $this->assertEquals([], $polygon->getPoints());
 
         $point1 = new Coordinate(10, 10);
         $polygon->addPoint($point1);
 
-        $this->assertEquals(array($point1), $polygon->getPoints());
+        $this->assertEquals([$point1], $polygon->getPoints());
 
         $point2 = new Coordinate(10, 20);
         $polygon->addPoint($point2);
 
-        $this->assertEquals(array($point1, $point2), $polygon->getPoints());
+        $this->assertEquals([$point1, $point2], $polygon->getPoints());
     }
 
     public function testIfGetNumberOfPointsWorksAsExpected()
@@ -51,12 +51,12 @@ class PolygonTest extends \PHPUnit_Framework_TestCase
         $polygon->addPoint($point3);
         $polygon->addPoint($point4);
 
-        $expected = array(
+        $expected = [
             new Line($point1, $point2),
             new Line($point2, $point3),
             new Line($point3, $point4),
             new Line($point4, $point1),
-        );
+        ];
 
         $this->assertEquals($expected, $polygon->getSegments());
     }
@@ -69,7 +69,7 @@ class PolygonTest extends \PHPUnit_Framework_TestCase
         $polygon->addPoint(new Coordinate(30, 40));
         $polygon->addPoint(new Coordinate(30, 20));
 
-        $expected = array(10, 10, 30, 30);
+        $expected = [10, 10, 30, 30];
 
         $this->assertEquals($expected, $polygon->getLats());
     }
@@ -82,7 +82,7 @@ class PolygonTest extends \PHPUnit_Framework_TestCase
         $polygon->addPoint(new Coordinate(30, 40));
         $polygon->addPoint(new Coordinate(30, 20));
 
-        $expected = array(20, 40, 40, 20);
+        $expected = [20, 40, 40, 20];
 
         $this->assertEquals($expected, $polygon->getLngs());
     }

@@ -2,9 +2,9 @@
 
 namespace Location\Distance;
 
-use Location\Distance\Haversine,
-    Location\Ellipsoid,
-    Location\Coordinate;
+use Location\Distance\Haversine;
+use Location\Ellipsoid;
+use Location\Coordinate;
 
 class HaversineTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,11 +17,11 @@ class HaversineTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $ellipsoidConfig = array(
+        $ellipsoidConfig = [
             'name' => 'WGS-84',
             'a'    => 6378137.0,
             'f'    => 298.257223563,
-        );
+        ];
 
         $this->ellipsoid = Ellipsoid::createFromArray($ellipsoidConfig);
 
@@ -81,8 +81,8 @@ class HaversineTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDistance()
     {
-        $coordinate1 = new Coordinate(19.820664, -155.468066, $this->ellipsoid);
-        $coordinate2 = new Coordinate(20.709722, -156.253333, $this->ellipsoid);
+        $coordinate1 = new Coordinate(19.820664, - 155.468066, $this->ellipsoid);
+        $coordinate2 = new Coordinate(20.709722, - 156.253333, $this->ellipsoid);
 
         $distance = $this->calculator->getDistance($coordinate1, $coordinate2);
 
@@ -95,7 +95,7 @@ class HaversineTest extends \PHPUnit_Framework_TestCase
     public function testGetDistanceInternationalDateLine()
     {
         $coordinate1 = new Coordinate(20.0, 170.0, $this->ellipsoid);
-        $coordinate2 = new Coordinate(-20.0, -170.0, $this->ellipsoid);
+        $coordinate2 = new Coordinate(- 20.0, - 170.0, $this->ellipsoid);
 
         $distance = $this->calculator->getDistance($coordinate1, $coordinate2);
 
@@ -108,8 +108,8 @@ class HaversineTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotMatchingEllispoids()
     {
-        $coordinate1 = new Coordinate(19.820664, -155.468066, $this->ellipsoid);
-        $coordinate2 = new Coordinate(20.709722, -156.253333, new Ellipsoid("AnotherEllipsoid", 6378140.0, 299.2));
+        $coordinate1 = new Coordinate(19.820664, - 155.468066, $this->ellipsoid);
+        $coordinate2 = new Coordinate(20.709722, - 156.253333, new Ellipsoid("AnotherEllipsoid", 6378140.0, 299.2));
 
         $distance = $this->calculator->getDistance($coordinate1, $coordinate2);
     }
