@@ -27,6 +27,8 @@
 
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
 
+PHP 5.3 compatibility will be dropped with release of version 0.4.
+
 ## Installation
 
 Using [Composer](https://getcomposer.org), just add it to your `composer.json` by running:
