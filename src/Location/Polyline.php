@@ -6,9 +6,8 @@
  *
  * @category  Location
  * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @copyright 1999-2013 MTB-News.de
- * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://www.mtb-news.de/
+ * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location;
@@ -21,8 +20,8 @@ use Location\Formatter\Polyline\FormatterInterface;
  *
  * @category Location
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://www.mtb-news.de/
+ * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @link     https://github.com/mjaschen/phpgeo
  */
 class Polyline
 {

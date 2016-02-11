@@ -6,10 +6,9 @@
  *
  * @category  Location
  * @package   Formatter
- * @author    Marcus T. Jaschen <mjaschen@gmail.com>
- * @copyright 2012 r03.org
- * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://r03.org/
+ * @author    Marcus Jaschen <mjaschen@gmail.com>
+ * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location\Formatter\Coordinate;
@@ -21,9 +20,9 @@ use Location\Coordinate;
  *
  * @category Location
  * @package  Formatter
- * @author   Marcus T. Jaschen <mjaschen@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://r03.org/
+ * @author   Marcus Jaschen <mjaschen@gmail.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @link     https://github.com/mjaschen/phpgeo
  */
 class DMS implements FormatterInterface
 {

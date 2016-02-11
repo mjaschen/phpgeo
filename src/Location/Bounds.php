@@ -5,10 +5,9 @@
  * PHP version 5.3
  *
  * @category  Location
- * @author    Marcus T. Jaschen <mjaschen@gmail.com>
- * @copyright 2013 r03.org
- * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://r03.org/
+ * @author    Marcus Jaschen <mjaschen@gmail.com>
+ * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location;
@@ -19,9 +18,9 @@ use Location\Coordinate;
  * Coordinate Bounds Class
  *
  * @category Location
- * @author   Marcus T. Jaschen <mjaschen@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://r03.org/
+ * @author   Marcus Jaschen <mjaschen@gmail.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @link     https://github.com/mjaschen/phpgeo
  */
 class Bounds
 {

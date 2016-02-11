@@ -6,8 +6,9 @@
  *
  * @category  Location
  * @author    Paul Vidal <paul.vidal.lujan@gmail.com>
- * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://www.mtb-news.de/
+ * @author    Marcus Jaschen <mjaschen@gmail.com>
+ * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location;
@@ -20,8 +21,9 @@ use Location\Formatter\Polygon\FormatterInterface;
  *
  * @category Location
  * @author   Paul Vidal <paul.vidal.lujan@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://www.mtb-news.de/
+ * @author   Marcus Jaschen <mjaschen@gmail.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @link     https://github.com/mjaschen/phpgeo
  */
 class Polygon
 {

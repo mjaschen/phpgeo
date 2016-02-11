@@ -8,14 +8,11 @@
  * The formula for the Perpendicular Distance is described here:
  * http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php
  *
- * PHP version 5
- *
  * @category  Location
  * @package   Processor
  * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @copyright 2013 r03.org
- * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://r03.org/
+ * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location\Processor\Polyline;
@@ -30,8 +27,8 @@ use Location\Polyline;
  * @category Location
  * @package  Processor
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://r03.org/
+ * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @link     https://github.com/mjaschen/phpgeo
  */
 class Simplify
 {

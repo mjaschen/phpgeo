@@ -6,8 +6,9 @@
  *
  * @category  Location
  * @package   Formatter
+ * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @author    Richard Barnes <rbarnes@umn.edu>
- * @license   http://www.opensource.org/licenses/mit-license MIT License
+ * @license   https://opensource.org/licenses/GPL-3.0 GPL
  * @link      https://github.com/mjaschen/phpgeo
  */
 
@@ -20,8 +21,9 @@ use Location\Polygon;
  *
  * @category Location
  * @package  Formatter
+ * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @author   Richard Barnes <rbarnes@umn.edu>
- * @license  http://www.opensource.org/licenses/mit-license MIT License
+ * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo
  */
 interface FormatterInterface

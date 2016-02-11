@@ -6,10 +6,9 @@
  *
  * @category  Location
  * @package   Distance
- * @author    Marcus T. Jaschen <mjaschen@gmail.com>
- * @copyright 2013 r03.org
- * @license   http://www.opensource.org/licenses/mit-license MIT License
- * @link      http://r03.org/
+ * @author    Marcus Jaschen <mjaschen@gmail.com>
+ * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @link      https://github.com/mjaschen/phpgeo
  */
 
 namespace Location\Distance;
@@ -25,9 +24,9 @@ use Location\Exception\NotMatchingEllipsoidException;
  *
  * @category Location
  * @package  Distance
- * @author   Marcus T. Jaschen <mjaschen@gmail.com>
- * @license  http://www.opensource.org/licenses/mit-license MIT License
- * @link     http://r03.org/
+ * @author   Marcus Jaschen <mjaschen@gmail.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @link     https://github.com/mjaschen/phpgeo
  */
 class Haversine implements DistanceInterface
 {
