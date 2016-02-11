@@ -37,16 +37,6 @@ Using [Composer](https://getcomposer.org), just add it to your `composer.json` b
 composer require mjaschen/phpgeo
 ```
 
-## Changelog
-
-### Version 0.4
-
-- removed PHP 5.3 compatibility
-
-### Version 0.3
-
-- added Polyline class (thanks @paulvl)
-
 ## Usage
 
 ### Calculations
