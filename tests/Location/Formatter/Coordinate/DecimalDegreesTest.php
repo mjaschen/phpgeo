@@ -29,7 +29,7 @@ class DecimalDegreesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DecimalDegrees::format
+     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
      */
     public function testFormatDefaultSeparator()
     {
@@ -41,7 +41,7 @@ class DecimalDegreesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DecimalDegrees::format
+     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
      */
     public function testFormatCustomSeparator()
     {

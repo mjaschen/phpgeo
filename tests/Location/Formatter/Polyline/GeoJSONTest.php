@@ -31,7 +31,7 @@ class GeoJSONTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DecimalDegrees::format
+     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
      */
     public function testFormatDefault()
     {

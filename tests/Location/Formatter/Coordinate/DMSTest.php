@@ -29,7 +29,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DMS::format
+     * @covers Location\Formatter\Coordinate\DMS::format
      */
     public function testFormatDefaultSeparator()
     {
@@ -39,7 +39,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DMS::format
+     * @covers Location\Formatter\Coordinate\DMS::format
      */
     public function testFormatCustomSeparator()
     {
@@ -51,7 +51,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DMS::format
+     * @covers Location\Formatter\Coordinate\DMS::format
      */
     public function testFormatCardinalLetters()
     {
@@ -63,7 +63,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DMS::format
+     * @covers Location\Formatter\Coordinate\DMS::format
      */
     public function testFormatBothNegative()
     {
@@ -75,7 +75,7 @@ class DMSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\DMS::format
+     * @covers Location\Formatter\Coordinate\DMS::format
      */
     public function testFormatASCIIUnits()
     {
