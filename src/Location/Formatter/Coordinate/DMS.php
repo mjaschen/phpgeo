@@ -102,16 +102,11 @@ class DMS implements FormatterInterface
      */
     public function setUnits($type)
     {
-        switch ($type) {
-            case self::UNITS_UTF8:
-                $this->unitType = self::UNITS_UTF8;
-                break;
-            case self::UNITS_ASCII:
-                $this->unitType = self::UNITS_ASCII;
-                break;
-            default:
-                throw new \InvalidArgumentException("Invalid unit type");
+        if (! in_array($type, array(self::UNITS_UTF8, self::UNITS_ASCII))) {
+            throw new \InvalidArgumentException("Invalid unit type");
         }
+
+        $this->unitType = $type;
     }
 
     /**
