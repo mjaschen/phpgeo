@@ -105,18 +105,31 @@ class Bounds
     public function getCenter()
     {
         $centerLat = ($this->getNorth() + $this->getSouth()) / 2;
+
+        return new Coordinate($centerLat, $this->getCenterLng());
+    }
+
+    /**
+     * @return float
+     */
+    protected function getCenterLng()
+    {
         $centerLng = ($this->getEast() + $this->getWest()) / 2;
 
         $overlap = $this->getWest() > 0 && $this->getEast() < 0;
 
         if ($overlap && $centerLng > 0) {
-            $centerLng = -180 + $centerLng;
-        } elseif ($overlap && $centerLng < 0) {
-            $centerLng = 180 + $centerLng;
-        } elseif ($overlap && $centerLng == 0) {
-            $centerLng = 180;
+            return -180 + $centerLng;
         }
 
-        return new Coordinate($centerLat, $centerLng);
+        if ($overlap && $centerLng < 0) {
+            return 180 + $centerLng;
+        }
+
+        if ($overlap && $centerLng == 0) {
+            return 180;
+        }
+
+        return $centerLng;
     }
 }

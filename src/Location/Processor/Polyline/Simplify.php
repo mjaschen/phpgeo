@@ -97,12 +97,10 @@ class Simplify
 
             array_pop($recursiveResultsSplitFirst);
 
-            $resultLine = array_merge($recursiveResultsSplitFirst, $recursiveResultsSplitSecond);
-        } else {
-            $resultLine = [$line[0], $line[$lineSize - 1]];
+            return array_merge($recursiveResultsSplitFirst, $recursiveResultsSplitSecond);
         }
 
-        return $resultLine;
+        return [$line[0], $line[$lineSize - 1]];
     }
 
     /**

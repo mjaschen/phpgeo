@@ -29,6 +29,36 @@ class DMSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Location\Formatter\Coordinate\DMS::setUnits
+     */
+    public function testSetUnitsUTF8()
+    {
+        $this->formatter->setUnits(DMS::UNITS_UTF8);
+
+        $this->assertAttributeSame(DMS::UNITS_UTF8, 'unitType', $this->formatter);
+    }
+
+    /**
+     * @covers Location\Formatter\Coordinate\DMS::setUnits
+     */
+    public function testSetUnitsASCII()
+    {
+        $this->formatter->setUnits(DMS::UNITS_ASCII);
+
+        $this->assertAttributeSame(DMS::UNITS_ASCII, 'unitType', $this->formatter);
+    }
+
+    /**
+     * @covers Location\Formatter\Coordinate\DMS::setUnits
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Invalid unit type
+     */
+    public function testSetUnitsInvalidType()
+    {
+        $this->formatter->setUnits('invalid');
+    }
+
+    /**
      * @covers Location\Formatter\Coordinate\DMS::format
      */
     public function testFormatDefaultSeparator()
