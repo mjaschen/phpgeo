@@ -102,7 +102,7 @@ class DMS implements FormatterInterface
      */
     public function setUnits($type)
     {
-        if (! in_array($type, array(self::UNITS_UTF8, self::UNITS_ASCII))) {
+        if (! array_key_exists($type, $this->units)) {
             throw new \InvalidArgumentException("Invalid unit type");
         }
 
