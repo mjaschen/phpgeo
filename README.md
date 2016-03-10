@@ -1,16 +1,18 @@
 **Table of Contents**
 
+<!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
+
 - [phpgeo - A Simple Geo Library for PHP](#phpgeo---a-simple-geo-library-for-php)
-    - [Installation](#installation)
-	- [Changelog](#changelog)
+	- [Documentation](#documentation)
+	- [Installation](#installation)
 	- [Usage](#usage)
 		- [Calculations](#calculations)
-			- [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincenty's-formula)
+			- [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincentys-formula)
 			- [Distance between two coordinates (Haversine Formula)](#distance-between-two-coordinates-haversine-formula)
 			- [Length of a polyline (e.g. "GPS track")](#length-of-a-polyline-eg-gps-track)
-			- [Perimeter of a Polygon](#perimeter-of-a-polygon)
-            - [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
 			- [Simplifying a polyline](#simplifying-a-polyline)
+			- [Perimeter of a Polygon](#perimeter-of-a-polygon)
+			- [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
 		- [Formatted output of coordinates](#formatted-output-of-coordinates)
 			- [Decimal Degrees](#decimal-degrees)
 			- [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
@@ -18,8 +20,10 @@
 		- [Formatted output of polylines](#formatted-output-of-polylines)
 			- [GeoJSON](#geojson-1)
 		- [Formatted output of polygons](#formatted-output-of-polygons)
-			- [GeoJSON](#geojson-1)
+			- [GeoJSON](#geojson-2)
 	- [Credits](#credits)
+
+<!-- /MarkdownTOC -->
 
 # phpgeo - A Simple Geo Library for PHP
 
@@ -28,6 +32,10 @@
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
 
 Minimum required PHP version is 5.4. PHP 5.3 compatibility was dropped with release of version 0.4.
+
+## Documentation
+
+The documentation is available at http://phpgeo.marcusjaschen.de/
 
 ## Installation
 

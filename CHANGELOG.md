@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.0.3] - 2016-03-10
+
+### Added
+
+* Added documentation sources in mkdocs format. Documentation is now available online at http://phpgeo.marcusjaschen.de/
+
 ## [1.0.2] - 2016-03-04
 
 ### Changed
