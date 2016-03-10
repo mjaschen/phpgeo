@@ -1,0 +1,19 @@
+
+site_name: phpgeo
+repo_url: https://github.com/mjaschen/phpgeo
+theme: readthedocs
+site_author: Marcus Jaschen
+pages:
+  - Home: index.md
+  - Installation: install.md
+  - Calculations:
+    - Distance/Length Calculations: calculations/distance.md
+    - Geofence: calculations/geofence.md
+    - Transformations: calculations/transformations.md
+  - Formatting: formatting.md
+  - Classes:
+    - Coordinate: classes/coordinate.md
+    - Ellipsoid: classes/ellipsoid.md
+
+markdown_extensions:
+  - toc

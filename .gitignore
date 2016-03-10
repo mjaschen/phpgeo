@@ -2,3 +2,4 @@
 /.idea/
 /composer.lock
 /vendor/
+/mkdocs/site/
