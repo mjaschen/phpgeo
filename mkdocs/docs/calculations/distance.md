@@ -68,7 +68,7 @@ $track->addPoint(new Coordinate(54.5, 12.5));
 echo $track->getLength(new Vincenty());
 ```
 
-#### Perimeter of a Polygon
+## Perimeter of a Polygon
 
 The perimeter is calculated as the sum of the length of all segments. 
 The result is given in meters.
