@@ -14,6 +14,7 @@ pages:
   - Classes:
     - Coordinate: classes/coordinate.md
     - Ellipsoid: classes/ellipsoid.md
+    - Polyline: classes/polyline.md
 
 markdown_extensions:
   - toc

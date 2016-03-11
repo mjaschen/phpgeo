@@ -3,6 +3,13 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.0.4] - 2016-03-11
+
+### Added
+
+* Added functionality to change the direction of Line/Polyline instances
+* Added documentation
+
 ## [1.0.3] - 2016-03-10
 
 ### Added

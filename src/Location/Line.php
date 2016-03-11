@@ -88,4 +88,14 @@ class Line
     {
         return $calculator->getDistance($this->point1, $this->point2);
     }
+
+    /**
+     * Create a new instance with reversed point order, i. e. reversed direction.
+     *
+     * @return Line
+     */
+    public function getReverse()
+    {
+        return new static($this->point2, $this->point1);
+    }
 }

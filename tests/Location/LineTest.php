@@ -26,4 +26,17 @@ class LineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(2397867.8, $line->getLength(new Vincenty()), '', 0.01);
     }
+
+    public function testGetReverseWorksAsExpected()
+    {
+        $point1 = new Coordinate(52.5, 13.5);
+        $point2 = new Coordinate(64.1, - 21.9);
+
+        $line = new Line($point1, $point2);
+        $reversedLine = $line->getReverse();
+
+        $expected = new Line($point2, $point1);
+
+        $this->assertEquals($expected, $reversedLine);
+    }
 }

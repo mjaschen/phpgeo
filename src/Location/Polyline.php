@@ -106,4 +106,21 @@ class Polyline
 
         return $distance;
     }
+
+    /**
+     * Create a new polyline with reversed order of points, i. e. reversed
+     * polyline direction.
+     *
+     * @return Polyline
+     */
+    public function getReverse()
+    {
+        $reversed = new static();
+
+        foreach (array_reverse($this->points) as $point) {
+            $reversed->addPoint($point);
+        }
+
+        return $reversed;
+    }
 }

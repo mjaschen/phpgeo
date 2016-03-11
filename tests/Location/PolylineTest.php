@@ -38,4 +38,24 @@ class PolylineTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(10576798.9, $this->polyline->getLength(new Vincenty()), '', 0.1);
     }
+
+    public function testGetReverseWorksAsExpected()
+    {
+        $reversed = $this->polyline->getReverse();
+
+        $expected = new Polyline();
+        $expected->addPoint(new Coordinate(33.9, - 118.4));
+        $expected->addPoint(new Coordinate(40.7, - 74.0));
+        $expected->addPoint(new Coordinate(64.1, - 21.9));
+        $expected->addPoint(new Coordinate(52.5, 13.5));
+
+        $this->assertEquals($expected, $reversed);
+    }
+
+    public function testReverseTwiceWorksAsExpected()
+    {
+        $doubleReversed = $this->polyline->getReverse()->getReverse();
+
+        $this->assertEquals($this->polyline, $doubleReversed);
+    }
 }
