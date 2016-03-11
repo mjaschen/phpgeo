@@ -35,7 +35,7 @@ Minimum required PHP version is 5.4. PHP 5.3 compatibility was dropped with rele
 
 ## Documentation
 
-The documentation is available at http://phpgeo.marcusjaschen.de/
+The documentation is available at https://phpgeo.marcusjaschen.de/
 
 ## Installation
 
@@ -46,6 +46,8 @@ composer require mjaschen/phpgeo
 ```
 
 ## Usage
+
+**Info:** Please visit the [documentation site](https://phpgeo.marcusjaschen.de/) for complete and up-to-date documentation!
 
 ### Calculations
 
