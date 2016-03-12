@@ -17,6 +17,10 @@ $coordinate = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
 echo $coordinate->format(new DecimalDegrees());
 ```
 
+The code above produces the output below:
+
+    19.82066 -155.46807
+
 ### Degrees/Minutes/Seconds (DMS)
 
 ```php
@@ -29,14 +33,19 @@ $coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
 
 $formatter = new DMS();
 
-echo $coordinate->format($formatter); // 18° 54′ 41″ -155° 40′ 42″
+echo $coordinate->format($formatter) . PHP_EOL;
 
 $formatter->setSeparator(", ")
     ->useCardinalLetters(true)
     ->setUnits(DMS::UNITS_ASCII);
 
-echo $coordinate->format($formatter); // 18° 54' 41" N, 155° 40' 42" W
+echo $coordinate->format($formatter) . PHP_EOL;
 ```
+
+The code above produces the output below:
+
+    18° 54′ 41″ -155° 40′ 42″
+    18° 54' 41" N, 155° 40' 42" W
 
 ### GeoJSON
 
@@ -48,7 +57,13 @@ use Location\Formatter\Coordinate\GeoJSON;
 
 $coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
 
-echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" : [ -155.678268, 18.911306 ] }
+echo $coordinate->format(new GeoJSON());
+```
+
+The code above produces the output below:
+
+```json
+{"type":"Point","coordinates":[-155.678268,18.911306]}
 ```
 
 ## Polylines
@@ -70,7 +85,13 @@ $polyline->addPoint(new Coordinate(62.5, 14.5));
 
 $formatter = new GeoJSON;
 
-echo $formatter->format($polyline); // { "type" : "LineString" , "coordinates" : [ [ 13.5, 52.5 ], [ 14.5, 62.5 ] ] }
+echo $formatter->format($polyline);
+```
+
+The code above produces the output below:
+
+```json
+{"type":"LineString","coordinates":[[13.5,52.5],[14.5,62.5]]}
 ```
 
 ## Polygons
@@ -95,4 +116,10 @@ $polygon->addPoint(new Coordinate(30, 20));
 $formatter = new GeoJSON;
 
 echo $formatter->format($polygon); // { "type" : "Polygon" , "coordinates" : [ [ 20, 10 ], [ 40, 20 ], [ 40, 30 ], [ 20, 30] ] }
+```
+
+The code above produces the output below:
+
+```json
+{"type":"Polygon","coordinates":[[20,10],[40,20],[40,30],[20,30]]}
 ```

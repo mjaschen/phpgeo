@@ -5,9 +5,10 @@ get a destination point for a given start point together with a bearing
 angle and a distance.
 
 Multiple calculation algorithms are supported. Currently phpgeo provides
-methods for calculations with a spherical earth model and with an ellipsoidal
-model. The spherical calculations are very fast, compared to the ellipsoidal
-methods. The ellipsoidal algorithms are a bit more precise on the other hand.
+methods for calculations with a *spherical* earth model and with an 
+*ellipsoidal* model. The spherical calculations are very fast, compared 
+to the ellipsoidal methods. The ellipsoidal algorithms are a bit more 
+precise on the other hand.
 
 ## Bearing between two points
 

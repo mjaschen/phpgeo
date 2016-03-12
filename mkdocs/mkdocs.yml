@@ -3,6 +3,8 @@ site_name: phpgeo
 repo_url: https://github.com/mjaschen/phpgeo
 theme: readthedocs
 site_author: Marcus Jaschen
+extra_javascript:
+  - piwik.js
 pages:
   - Home: index.md
   - Installation: install.md
