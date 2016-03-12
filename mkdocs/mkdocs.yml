@@ -8,6 +8,7 @@ pages:
   - Installation: install.md
   - Calculations:
     - Distance/Length Calculations: calculations/distance.md
+    - Bearing/Destination: calculations/bearing.md
     - Geofence: calculations/geofence.md
     - Transformations: calculations/transformations.md
   - Formatting: formatting.md

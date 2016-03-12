@@ -3,6 +3,15 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.1.0] - 2016-03-12
+
+### Added
+
+* Added calculation of the bearing angle between two points (initial and final bearing)
+* Added calculation of the destination point for a given starting point, the bearing angle, and the distance
+* Support for spherical and ellipsoidal algorithms for the described bearing calculations
+* Added documentation for the bearing calculations
+
 ## [1.0.4] - 2016-03-11
 
 ### Added

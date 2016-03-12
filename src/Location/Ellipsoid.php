@@ -73,7 +73,7 @@ class Ellipsoid
      */
     public static function createDefault($name = 'WGS-84')
     {
-        return self::createFromArray(self::$configs[$name]);
+        return static::createFromArray(static::$configs[$name]);
     }
 
     /**
@@ -83,7 +83,7 @@ class Ellipsoid
      */
     public static function createFromArray($config)
     {
-        return new self($config['name'], $config['a'], $config['f']);
+        return new static($config['name'], $config['a'], $config['f']);
     }
 
     /**
