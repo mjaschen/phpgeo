@@ -1,4 +1,4 @@
-# Formatting and Output
+# Formatting
 
 ## Coordinates
 
@@ -46,6 +46,34 @@ The code above produces the output below:
 
     18° 54′ 41″ -155° 40′ 42″
     18° 54' 41" N, 155° 40' 42" W
+
+### Decimal Minutes
+
+This format is commonly used in the Geocaching community.
+
+```php
+<?php
+
+use Location\Coordinate;
+use Location\Formatter\Coordinate\DecimalMinutes;
+
+$coordinate = new Coordinate(43.62310, -70.20787); // Portland Head Light, ME, USA
+
+$formatter = new DecimalMinutes();
+
+echo $coordinate->format($formatter) . PHP_EOL;
+
+$formatter->setSeparator(", ")
+    ->useCardinalLetters(true)
+    ->setUnits(DecimalMinutes::UNITS_ASCII);
+
+echo $coordinate->format($formatter) . PHP_EOL;
+```
+
+The code above produces the output below:
+
+    43° 37.386′ -070° 12.472′
+    43° 37.386' N, 070° 12.472' W
 
 ### GeoJSON
 

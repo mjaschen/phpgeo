@@ -3,6 +3,13 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.1.1] - 2016-03-13
+
+### Added
+
+* Added formatter for "Decimal Minutes" format, e.g. `43° 37.386' N, 070° 12.472' W`
+* Added documentation for the new formatter
+
 ## [1.1.0] - 2016-03-12
 
 ### Added

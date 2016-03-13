@@ -1,8 +1,6 @@
 <?php
 /**
- * Coordinate Formatter "DMS"
- *
- * PHP version 5.3
+ * Coordinate Formatter "DecimalMinutes"
  *
  * @category  Location
  * @package   Formatter
@@ -16,7 +14,7 @@ namespace Location\Formatter\Coordinate;
 use Location\Coordinate;
 
 /**
- * Coordinate Formatter "DMS"
+ * Coordinate Formatter "DecimalMinutes"
  *
  * @category Location
  * @package  Formatter
@@ -24,7 +22,7 @@ use Location\Coordinate;
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo
  */
-class DMS implements FormatterInterface
+class DecimalMinutes implements FormatterInterface
 {
     const UNITS_UTF8  = 'UTF-8';
     const UNITS_ASCII = 'ASCII';
@@ -46,16 +44,27 @@ class DMS implements FormatterInterface
      */
     protected $unitType;
 
+    /**
+     * @var int
+     */
+    protected $digits = 3;
+
+    /**
+     * @var string
+     */
+    protected $decimalPoint = '.';
+
+    /**
+     * @var array
+     */
     protected $units = [
         'UTF-8' => [
             'deg' => '°',
             'min' => '′',
-            'sec' => '″',
         ],
         'ASCII' => [
             'deg' => '°',
             'min' => '\'',
-            'sec' => '"',
         ],
     ];
 
@@ -74,7 +83,7 @@ class DMS implements FormatterInterface
      *
      * @param $separator
      *
-     * @return $this
+     * @return DecimalMinutes
      */
     public function setSeparator($separator)
     {
@@ -86,7 +95,7 @@ class DMS implements FormatterInterface
     /**
      * @param bool $value
      *
-     * @return $this
+     * @return DecimalMinutes
      */
     public function useCardinalLetters($value)
     {
@@ -110,6 +119,30 @@ class DMS implements FormatterInterface
     }
 
     /**
+     * @param int $digits
+     *
+     * @return DecimalMinutes
+     */
+    public function setDigits($digits)
+    {
+        $this->digits = $digits;
+
+        return $this;
+    }
+
+    /**
+     * @param string $decimalPoint
+     *
+     * @return DecimalMinutes
+     */
+    public function setDecimalPoint($decimalPoint)
+    {
+        $this->decimalPoint = $decimalPoint;
+
+        return $this;
+    }
+
+    /**
      * @param Coordinate $coordinate
      *
      * @return string
@@ -123,36 +156,28 @@ class DMS implements FormatterInterface
         $latDegrees = intval($latValue);
 
         $latMinutesDecimal = $latValue - $latDegrees;
-        $latMinutes        = intval(60 * $latMinutesDecimal);
-
-        $latSeconds = 60 * (60 * $latMinutesDecimal - $latMinutes);
+        $latMinutes        = 60 * $latMinutesDecimal;
 
         $lngValue   = abs($lng);
         $lngDegrees = intval($lngValue);
 
         $lngMinutesDecimal = $lngValue - $lngDegrees;
-        $lngMinutes        = intval(60 * $lngMinutesDecimal);
-
-        $lngSeconds = 60 * (60 * $lngMinutesDecimal - $lngMinutes);
+        $lngMinutes        = 60 * $lngMinutesDecimal;
 
         return sprintf(
-            "%s%02d%s %02d%s %02d%s%s%s%s%03d%s %02d%s %02d%s%s",
+            "%s%02d%s %s%s%s%s%s%03d%s %s%s%s",
             $this->getLatPrefix($lat),
             abs($latDegrees),
             $this->units[$this->unitType]['deg'],
-            $latMinutes,
+            number_format($latMinutes, $this->digits, $this->decimalPoint, $this->decimalPoint),
             $this->units[$this->unitType]['min'],
-            round($latSeconds, 0),
-            $this->units[$this->unitType]['sec'],
             $this->getLatSuffix($lat),
             $this->separator,
             $this->getLngPrefix($lng),
             abs($lngDegrees),
             $this->units[$this->unitType]['deg'],
-            $lngMinutes,
+            number_format($lngMinutes, $this->digits, $this->decimalPoint, $this->decimalPoint),
             $this->units[$this->unitType]['min'],
-            round($lngSeconds, 0),
-            $this->units[$this->unitType]['sec'],
             $this->getLngSuffix($lng)
         );
     }

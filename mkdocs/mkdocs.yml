@@ -13,7 +13,7 @@ pages:
     - Bearing/Destination: calculations/bearing.md
     - Geofence: calculations/geofence.md
     - Transformations: calculations/transformations.md
-  - Formatting: formatting.md
+  - Formatting and Output: formatting.md
   - Classes:
     - Coordinate: classes/coordinate.md
     - Ellipsoid: classes/ellipsoid.md
