@@ -23,7 +23,7 @@ use Location\Formatter\Polyline\FormatterInterface;
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo
  */
-class Polyline
+class Polyline implements GeometryInterface
 {
     /**
      * @var array

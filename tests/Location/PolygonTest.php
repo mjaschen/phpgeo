@@ -208,4 +208,311 @@ class PolygonTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(7556565706.2, $polygon->getArea(), 0.01);
     }
     */
+
+    public function testIfPolygonContainsGeometryWithPolygonInsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $insidePolygon = new Polygon();
+        $insidePolygon->addPoint(new Coordinate(52.206110581755638, 13.674710914492607));
+        $insidePolygon->addPoint(new Coordinate(52.202216433361173, 13.673997698351741));
+        $insidePolygon->addPoint(new Coordinate(52.20279042609036, 13.666518358513713));
+        $insidePolygon->addPoint(new Coordinate(52.209159163758159, 13.667042898014188));
+        $insidePolygon->addPoint(new Coordinate(52.215381134301424, 13.664670567959547));
+        $insidePolygon->addPoint(new Coordinate(52.209875900298357, 13.672981224954128));
+
+        $this->assertTrue($polygon->containsGeometry($insidePolygon));
+    }
+
+    public function testIfPolygonContainsGeometryWithPolygonInsideAndOutsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $inAndOutSidePolygon = new Polygon();
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.206110581755638, 13.674710914492607));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.202216433361173, 13.673997698351741));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.20279042609036, 13.666518358513713));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.209159163758159, 13.667042898014188));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.215381134301424, 13.664670567959547));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.209875900298357, 13.672981224954128));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.211303086951375, 13.676270367577672));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.20556978136301, 13.688599476590753));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.205583276227117, 13.688599476590753));
+        $inAndOutSidePolygon->addPoint(new Coordinate(52.204232113435864, 13.683774350211024));
+
+        $this->assertFalse($polygon->containsGeometry($inAndOutSidePolygon));
+    }
+
+    public function testIfPolygonContainsGeometryWithPolygonOutsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $outsidePolygon = new Polygon();
+        $outsidePolygon->addPoint(new Coordinate(52.2123983502388, 13.677485324442387));
+        $outsidePolygon->addPoint(new Coordinate(52.215186841785908, 13.683912232518196));
+        $outsidePolygon->addPoint(new Coordinate(52.207024795934558, 13.685344364494085));
+
+        $this->assertFalse($polygon->containsGeometry($outsidePolygon));
+    }
+
+    public function testIfPolygonContainsGeometryWithPolylineInsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $insidePolyline = new Polyline();
+        $insidePolyline->addPoint(new Coordinate(52.206110581755638, 13.674710914492607));
+        $insidePolyline->addPoint(new Coordinate(52.202216433361173, 13.673997698351741));
+        $insidePolyline->addPoint(new Coordinate(52.20279042609036, 13.666518358513713));
+        $insidePolyline->addPoint(new Coordinate(52.209159163758159, 13.667042898014188));
+        $insidePolyline->addPoint(new Coordinate(52.215381134301424, 13.664670567959547));
+        $insidePolyline->addPoint(new Coordinate(52.209875900298357, 13.672981224954128));
+
+        $this->assertTrue($polygon->containsGeometry($insidePolyline));
+    }
+
+    public function testIfPolygonContainsGeometryWithPolylineInsideAndOutsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $inAndOutSidePolyline = new Polyline();
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.206110581755638, 13.674710914492607));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.202216433361173, 13.673997698351741));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.20279042609036, 13.666518358513713));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.209159163758159, 13.667042898014188));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.215381134301424, 13.664670567959547));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.209875900298357, 13.672981224954128));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.211303086951375, 13.676270367577672));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.20556978136301, 13.688599476590753));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.205583276227117, 13.688599476590753));
+        $inAndOutSidePolyline->addPoint(new Coordinate(52.204232113435864, 13.683774350211024));
+
+        $this->assertFalse($polygon->containsGeometry($inAndOutSidePolyline));
+    }
+
+    public function testIfPolygonContainsGeometryWithPolylineOutsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $outsidePolyline = new Polyline();
+        $outsidePolyline->addPoint(new Coordinate(52.2123983502388, 13.677485324442387));
+        $outsidePolyline->addPoint(new Coordinate(52.215186841785908, 13.683912232518196));
+        $outsidePolyline->addPoint(new Coordinate(52.207024795934558, 13.685344364494085));
+
+        $this->assertFalse($polygon->containsGeometry($outsidePolyline));
+    }
+
+    public function testIfPolygonContainsGeometryWithLineInsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $insideLine = new Line(
+            new Coordinate(52.206110581755638, 13.674710914492607),
+            new Coordinate(52.202216433361173, 13.673997698351741)
+        );
+
+        $this->assertTrue($polygon->containsGeometry($insideLine));
+    }
+
+    public function testIfPolygonContainsGeometryWithLineInsideAndOutsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $inAndOutSidePolyline = new Line(
+            new Coordinate(52.207389576360583, 13.670525830239058),
+            new Coordinate(52.210680730640888, 13.687128368765116)
+        );
+
+        $this->assertFalse($polygon->containsGeometry($inAndOutSidePolyline));
+    }
+
+    public function testIfPolygonContainsGeometryWithLineOutsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $outsidePolyline = new Line(
+            new Coordinate(52.215186841785908, 13.683912232518196),
+            new Coordinate(52.207024795934558, 13.685344364494085)
+        );
+
+        $this->assertFalse($polygon->containsGeometry($outsidePolyline));
+    }
+
+    public function testIfPolygonContainsGeometryWithPointInsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $this->assertTrue($polygon->containsGeometry(new Coordinate(52.206110581755638, 13.674710914492607)));
+    }
+
+    public function testIfPolygonContainsGeometryWithPointOutsideWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
+        $polygon->addPoint(new Coordinate(52.215716242790222, 13.662988655269146));
+        $polygon->addPoint(new Coordinate(52.211922844871879, 13.662990247830749));
+        $polygon->addPoint(new Coordinate(52.208002796396613, 13.664533020928502));
+        $polygon->addPoint(new Coordinate(52.203469779342413, 13.664621533825994));
+        $polygon->addPoint(new Coordinate(52.199896154925227, 13.665583860129118));
+        $polygon->addPoint(new Coordinate(52.199177406728268, 13.665664242580533));
+        $polygon->addPoint(new Coordinate(52.197426510974765, 13.664221465587616));
+        $polygon->addPoint(new Coordinate(52.196468207985163, 13.674150248989463));
+        $polygon->addPoint(new Coordinate(52.200047867372632, 13.674412602558732));
+        $polygon->addPoint(new Coordinate(52.203508755192161, 13.676183195784688));
+        $polygon->addPoint(new Coordinate(52.206863863393664, 13.678688379004598));
+        $polygon->addPoint(new Coordinate(52.213457236066461, 13.67043505422771));
+        $polygon->addPoint(new Coordinate(52.217430174350739, 13.66775787435472));
+        $polygon->addPoint(new Coordinate(52.221683654934168, 13.661622740328312));
+
+        $this->assertFalse($polygon->containsGeometry(new Coordinate(52.2123983502388, 13.677485324442387)));
+    }
 }

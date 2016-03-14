@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.2.0] - 2016-03-14
+
+### Added
+
+* Added geofence check for arbitrary geometry objects
+
 ## [1.1.1] - 2016-03-13
 
 ### Added

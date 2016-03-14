@@ -22,7 +22,7 @@ use Location\Distance\DistanceInterface;
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo
  */
-class Line
+class Line implements GeometryInterface
 {
     /**
      * @var \Location\Coordinate
@@ -74,6 +74,16 @@ class Line
     public function getPoint2()
     {
         return $this->point2;
+    }
+
+    /**
+     * Returns an array containing the two points.
+     *
+     * @return array
+     */
+    public function getPoints()
+    {
+        return [$this->point1, $this->point2];
     }
 
     /**

@@ -25,7 +25,7 @@ use Location\Formatter\Polygon\FormatterInterface;
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo
  */
-class Polygon
+class Polygon implements GeometryInterface
 {
     /**
      * @var array
@@ -121,6 +121,31 @@ class Polygon
         $segments[] = new Line(end($this->points), reset($this->points));
 
         return $segments;
+    }
+
+    /**
+     * Determine if given geometry is contained inside the polygon. This is
+     * assumed to be true, if each point of the geometry is inside the polygon.
+     *
+     * Edge cases:
+     *
+     * - it's not detected when a line between two points is outside the polygon
+     * - @see contains() for more restrictions
+     *
+     * @param GeometryInterface $geometry
+     *
+     * @return boolean
+     */
+    public function containsGeometry(GeometryInterface $geometry)
+    {
+        $geometryInPolygon = true;
+
+        /** @var Coordinate $point */
+        foreach ($geometry->getPoints() as $point) {
+            $geometryInPolygon = $geometryInPolygon && $this->contains($point);
+        }
+
+        return $geometryInPolygon;
     }
 
     /**

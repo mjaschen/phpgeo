@@ -23,7 +23,7 @@ use Location\Formatter\Coordinate\FormatterInterface;
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo
  */
-class Coordinate
+class Coordinate implements GeometryInterface
 {
     /**
      * @var float
@@ -81,6 +81,16 @@ class Coordinate
     public function getLng()
     {
         return $this->lng;
+    }
+
+    /**
+     * Returns an array containing the point
+     *
+     * @return array
+     */
+    public function getPoints()
+    {
+        return [$this];
     }
 
     /**
