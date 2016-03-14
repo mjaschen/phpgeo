@@ -1,35 +1,28 @@
-**Table of Contents**
-
-<!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
-
-- [phpgeo - A Simple Geo Library for PHP](#phpgeo---a-simple-geo-library-for-php)
-	- [Documentation](#documentation)
-	- [Installation](#installation)
-	- [Usage](#usage)
-		- [Calculations](#calculations)
-			- [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincentys-formula)
-			- [Distance between two coordinates (Haversine Formula)](#distance-between-two-coordinates-haversine-formula)
-			- [Length of a polyline (e.g. "GPS track")](#length-of-a-polyline-eg-gps-track)
-			- [Simplifying a polyline](#simplifying-a-polyline)
-			- [Perimeter of a Polygon](#perimeter-of-a-polygon)
-			- [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
-		- [Formatted output of coordinates](#formatted-output-of-coordinates)
-			- [Decimal Degrees](#decimal-degrees)
-			- [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
-			- [GeoJSON](#geojson)
-		- [Formatted output of polylines](#formatted-output-of-polylines)
-			- [GeoJSON](#geojson-1)
-		- [Formatted output of polygons](#formatted-output-of-polygons)
-			- [GeoJSON](#geojson-2)
-	- [Credits](#credits)
-
-<!-- /MarkdownTOC -->
-
 # phpgeo - A Simple Geo Library for PHP
 
 [![Build Status](https://img.shields.io/travis/mjaschen/phpgeo.svg?style=flat-square)](https://travis-ci.org/mjaschen/phpgeo) [![Latest Stable Version](https://img.shields.io/packagist/v/mjaschen/phpgeo.svg?style=flat-square)](https://packagist.org/packages/mjaschen/phpgeo) [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mjaschen/phpgeo.svg?style=flat-square)](https://scrutinizer-ci.com/g/mjaschen/phpgeo/?branch=master)
 
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
+
+<!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
+
+- [Requirements](#requirements)
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+  - [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincentys-formula)
+  - [Simplifying a polyline](#simplifying-a-polyline)
+  - [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
+  - [Formatted output of coordinates](#formatted-output-of-coordinates)
+    - [Decimal Degrees](#decimal-degrees)
+    - [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
+    - [GeoJSON](#geojson)
+- [Credits](#credits)
+
+<!-- /MarkdownTOC -->
+
+## Requirements
 
 Minimum required PHP version is 5.4. PHP 5.3 compatibility was dropped with release of version 0.4.
 
@@ -49,9 +42,34 @@ composer require mjaschen/phpgeo
 
 **Info:** Please visit the [documentation site](https://phpgeo.marcusjaschen.de/) for complete and up-to-date documentation!
 
-### Calculations
+phpgeo provides the following features (follow the links for examples):
 
-#### Distance between two coordinates (Vincenty's Formula)
+- abstractions of several geometry objects ([coordinate/point](https://phpgeo.marcusjaschen.de/geometry/coordinate/),
+  [line](https://phpgeo.marcusjaschen.de/geometry/line/),
+  [polyline/GPS track](https://phpgeo.marcusjaschen.de/geometry/polyline/),
+  [polygon](https://phpgeo.marcusjaschen.de/geometry/polygon/)
+- support for different [ellipsoids](https://phpgeo.marcusjaschen.de/geometry/ellipsoid/), e. g. WGS-84
+- [length/distance/perimeter calculations](https://phpgeo.marcusjaschen.de/calculations/distance/)
+  with different implementations (Haversine, Vincenty)
+- [Geofence](https://phpgeo.marcusjaschen.de/calculations/geofence/) calculation,
+  i. e. answering the question "Is this point contained in that area/polygon?"
+- [formatting and output](https://phpgeo.marcusjaschen.de/formatting/) of geometry objects
+  (GeoJSON, nice strings, e. g. `18° 54′ 41″ -155° 40′ 42″`)
+- calculation of [bearing angle between two points](https://phpgeo.marcusjaschen.de/calculations/bearing/#bearing-between-two-points)
+  (spherical or with Vincenty's formula)
+- calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/calculations/bearing/#destination-point-for-given-bearing-and-distance),
+  bearing angle, and distance (spherical or with Vincenty's formula)
+- getting segments of a [polyline](https://phpgeo.marcusjaschen.de/geometry/polyline/#segments)
+  /[polygon](https://phpgeo.marcusjaschen.de/geometry/polygon/#segments),
+- [reversing direction](https://phpgeo.marcusjaschen.de/geometry/polyline/#reverse-direction) 
+  of polyline/polygon
+
+## Examples
+
+This list is incomplete, please visit the [documentation site](https://phpgeo.marcusjaschen.de/)
+for the full monty of documentation and examples!
+
+### Distance between two coordinates (Vincenty's Formula)
 
 Use the calculator object directly:
 
@@ -83,41 +101,7 @@ $coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
 echo $coordinate1->getDistance($coordinate2, new Vincenty()); // returns 128130.850 (meters; ≈128 kilometers)
 ```
 
-#### Distance between two coordinates (Haversine Formula)
-
-There exist different methods for calculating the distance between two points. The [Haversine formula](http://en.wikipedia.org/wiki/Law_of_haversines) is much faster the Vincenty's method but less precise:
-
-```php
-<?php
-
-use Location\Coordinate;
-use Location\Distance\Haversine;
-
-$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
-$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
-
-echo $coordinate1->getDistance($coordinate2, new Haversine()); // returns 128384.515 (meters; ≈128 kilometers)
-```
-
-#### Length of a polyline (e.g. "GPS track")
-
-phpgeo has a polyline implementation which can be used to calculate the length of a GPS track or a route. A polyline consists of at least two points. Points are instances of the `Coordinate` class.
-
-```php
-<?php
-
-use Location\Coordinate;
-use Location\Polyline;
-use Location\Distance\Vincenty;
-
-$track = new Polyline();
-$track->addPoint(new Coordinate(52.5, 13.5));
-$track->addPoint(new Coordinate(54.5, 12.5));
-
-echo $track->getLength(new Vincenty());
-```
-
-#### Simplifying a polyline
+### Simplifying a polyline
 
 Polylines can be simplified to save storage space or bandwidth. Simplification is done with the [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm) (AKA Douglas-Peucker algorithm).
 
@@ -144,27 +128,7 @@ $simplified = $processor->simplify(1500000);
 // the simplification threshold)
 ```
 
-#### Perimeter of a Polygon
-
-The perimeter is calculated as the sum of the length of all segments. The result is given in meters.
-
-```php
-<?php
-
-use Location\Distance\Vincenty;
-use Location\Coordinate;
-use Location\Polygon;
-
-$polygon = new Polygon();
-$polygon->addPoint(new Coordinate(10, 10));
-$polygon->addPoint(new Coordinate(10, 20));
-$polygon->addPoint(new Coordinate(20, 20));
-$polygon->addPoint(new Coordinate(20, 10));
-
-echo $polygon->getPerimeter(new Vincenty()); // 4355689.472 (meters)
-```
-
-#### Polygon contains a point (e.g. "GPS geofence")
+### Polygon contains a point (e.g. "GPS geofence")
 
 phpgeo has a polygon implementation which can be used to determinate if a point is contained in it or not.
 A polygon consists of at least three points. Points are instances of the `Coordinate` class.
@@ -242,51 +206,6 @@ $coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
 echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" : [ -155.678268, 18.911306 ] }
 ```
 
-### Formatted output of polylines
-
-You can format a polyline in different styles.
-
-#### GeoJSON
-
-```php
-<?php
-
-use Location\Coordinate;
-use Location\Polyline;
-use Location\Formatter\Polyline\GeoJSON;
-
-$polyline = new Polyline;
-$polyline->addPoint(new Coordinate(52.5, 13.5));
-$polyline->addPoint(new Coordinate(62.5, 14.5));
-
-$formatter = new GeoJSON;
-
-echo $formatter->format($polyline); // { "type" : "LineString" , "coordinates" : [ [ 13.5, 52.5 ], [ 14.5, 62.5 ] ] }
-```
-
-### Formatted output of polygons
-
-You can format a polygon in different styles.
-
-#### GeoJSON
-
-```php
-<?php
-
-use Location\Coordinate;
-use Location\Polygon;
-use Location\Formatter\Polygon\GeoJSON;
-
-$polygon = new Polygon;
-$polygon->addPoint(new Coordinate(10, 20));
-$polygon->addPoint(new Coordinate(20, 40));
-$polygon->addPoint(new Coordinate(30, 40));
-$polygon->addPoint(new Coordinate(30, 20));
-
-$formatter = new GeoJSON;
-
-echo $formatter->format($polygon); // { "type" : "Polygon" , "coordinates" : [ [ 20, 10 ], [ 40, 20 ], [ 40, 30 ], [ 20, 30] ] }
-```
 
 ## Credits
 
