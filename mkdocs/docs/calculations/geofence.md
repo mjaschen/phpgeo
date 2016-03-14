@@ -1,9 +1,11 @@
 # Geofence - Polygon Contains a Point
 
-phpgeo has a polygon implementation which can be used to determinate if a point is contained in it or not.
-A polygon consists of at least three points. Points are instances of the `Coordinate` class.
+phpgeo has a polygon implementation which can be used to determinate if a geometry
+(point, line, polyline, polygon) is contained in it or not. A polygon consists of
+at least three points.
 
-**Warning:** The calculation gives wrong results if the polygons has points on both sides of the 180/-180 degrees meridian.
+**Warning:** The calculation gives wrong results if the polygons has points on
+both sides of the 180/-180 degrees meridian.
 
 ```php
 <?php

@@ -14,10 +14,12 @@ pages:
     - Geofence: calculations/geofence.md
     - Transformations: calculations/transformations.md
   - Formatting and Output: formatting.md
-  - Classes:
-    - Coordinate: classes/coordinate.md
-    - Ellipsoid: classes/ellipsoid.md
-    - Polyline: classes/polyline.md
+  - Geometry Objects:
+    - Coordinate: geometry/coordinate.md
+    - Ellipsoid: geometry/ellipsoid.md
+    - Line: geometry/line.md
+    - Polyline: geometry/polyline.md
+    - Polygon: geometry/polygon.md
 
 markdown_extensions:
   - toc

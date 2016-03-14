@@ -8,6 +8,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Added
 
 * Added geofence check for arbitrary geometry objects
+* Extended and updated documentation
 
 ## [1.1.1] - 2016-03-13
 
