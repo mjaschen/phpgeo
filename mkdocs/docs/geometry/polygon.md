@@ -92,3 +92,34 @@ Length calculation is described in the [distance calculations section](/calculat
 
 It's possible to check if a geometry object (point, line, polyline, polygon) lies inside a polygon. The documentation
 can be found in the [Geofence](/calculations/geofence/) section.
+
+## Reverse Direction
+
+It's possible to get a new instance with reversed direction while the original polygon stays unchanged:
+
+```php
+<?php
+
+use Location\Coordinate;
+use Location\Polygon;
+use Location\Formatter\Coordinate\DecimalDegrees;
+
+$polygon = new Polygon();
+$polygon->addPoint(new Coordinate(52.5, 13.5));
+$polygon->addPoint(new Coordinate(64.1, - 21.9));
+$polygon->addPoint(new Coordinate(40.7, - 74.0));
+$polygon->addPoint(new Coordinate(33.9, - 118.4));
+
+$reversed = $polygon->getReverse();
+
+foreach ($reversed->getPoints() as $point) {
+    echo $point->format(new DecimalDegrees(', ')) . PHP_EOL;
+}
+```
+
+The code above produces the output below:
+
+    33.90000, -118.40000
+    40.70000, -74.00000
+    64.10000, -21.90000
+    52.50000, 13.50000

@@ -232,4 +232,21 @@ class Polygon implements GeometryInterface
 
         return abs($area / 2) * $this->points[0]->getEllipsoid()->getA();
     }
+
+    /**
+     * Create a new polygon with reversed order of points, i. e. reversed
+     * polygon direction.
+     *
+     * @return Polygon
+     */
+    public function getReverse()
+    {
+        $reversed = new static();
+
+        foreach (array_reverse($this->points) as $point) {
+            $reversed->addPoint($point);
+        }
+
+        return $reversed;
+    }
 }

@@ -515,4 +515,36 @@ class PolygonTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($polygon->containsGeometry(new Coordinate(52.2123983502388, 13.677485324442387)));
     }
+
+    public function testGetReverseWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.5, 13.5));
+        $polygon->addPoint(new Coordinate(64.1, - 21.9));
+        $polygon->addPoint(new Coordinate(40.7, - 74.0));
+        $polygon->addPoint(new Coordinate(33.9, - 118.4));
+
+        $reversed = $polygon->getReverse();
+
+        $expected = new Polygon();
+        $expected->addPoint(new Coordinate(33.9, - 118.4));
+        $expected->addPoint(new Coordinate(40.7, - 74.0));
+        $expected->addPoint(new Coordinate(64.1, - 21.9));
+        $expected->addPoint(new Coordinate(52.5, 13.5));
+
+        $this->assertEquals($expected, $reversed);
+    }
+
+    public function testReverseTwiceWorksAsExpected()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(52.5, 13.5));
+        $polygon->addPoint(new Coordinate(64.1, - 21.9));
+        $polygon->addPoint(new Coordinate(40.7, - 74.0));
+        $polygon->addPoint(new Coordinate(33.9, - 118.4));
+
+        $doubleReversed = $polygon->getReverse()->getReverse();
+
+        $this->assertEquals($polygon, $doubleReversed);
+    }
 }
