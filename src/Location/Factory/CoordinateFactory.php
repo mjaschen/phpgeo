@@ -34,7 +34,17 @@ class CoordinateFactory implements GeometryFactoryInterface
      */
     public static function fromString($string, Ellipsoid $ellipsoid = null)
     {
-        // Decimal minutes with or without cardinal letters, e. g. "52 12.345, 13 23.456",
+        // Decimal minutes without cardinal letters, e. g. "52 12.345, 13 23.456",
+        // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
+        // "N52° 12.345′ E13° 23.456′"
+        if (preg_match('/(-?\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?[, ]\s*(-?\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?/ui', $string, $match)) {
+            $latitude = $match[1] >= 0 ? $match[1] + $match[2] / 60 : $match[1] - $match[2] / 60;
+            $longitude = $match[3] >= 0 ? $match[3] + $match[4] / 60 : $match[3] - $match[4] / 60;
+
+            return new Coordinate($latitude, $longitude, $ellipsoid);
+        }
+
+        // Decimal minutes with cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
         // "N52° 12.345′ E13° 23.456′"
         if (preg_match('/([NS]?\s*)(\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?(\s*[EW]?)/ui', $string, $match)) {
