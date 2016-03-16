@@ -14,6 +14,8 @@ pages:
     - Geofence: calculations/geofence.md
     - Transformations: calculations/transformations.md
   - Formatting and Output: formatting.md
+  - Parsing and Input:
+    - Coordinates: parser/coordinate.md
   - Geometry Objects:
     - Coordinate: geometry/coordinate.md
     - Ellipsoid: geometry/ellipsoid.md
