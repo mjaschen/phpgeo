@@ -39,13 +39,13 @@ class CoordinateFactory implements GeometryFactoryInterface
     {
         // The most simple format: decimal degrees without cardinal letters,
         // e. g. "52.5, 13.5" or "53.25732 14.24984"
-        if (preg_match('/(-?\d{1,2}\.?\d*)[, ]\s*(-?\d{1,3}\.?\d*)/', $string, $match)) {
+        if (preg_match('/(-?\d{1,2}\.?\d*)°?[, ]\s*(-?\d{1,3}\.?\d*)°?/u', $string, $match)) {
             return new Coordinate($match[1], $match[2], $ellipsoid);
         }
 
-        // Decimal degrees with cardinal letters, e. g. "N52.5, E13.5" or
-        // "40.2S, 135.3485W"
-        if (preg_match('/([NS]?\s*)(\d{1,2}\.?\d*)(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,2}\.?\d*)(\s*[EW]?)/i', $string, $match)) {
+        // Decimal degrees with cardinal letters, e. g. "N52.5, E13.5",
+        // "40.2S, 135.3485W", or "56.234°N, 157.245°W"
+        if (preg_match('/([NS]?\s*)(\d{1,2}\.?\d*)°?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,2}\.?\d*)°?(\s*[EW]?)/ui', $string, $match)) {
             $latitude = $match[2];
             if (trim(strtoupper($match[1])) === 'S' || trim(strtoupper($match[3])) === 'S') {
                 $latitude = - $latitude;

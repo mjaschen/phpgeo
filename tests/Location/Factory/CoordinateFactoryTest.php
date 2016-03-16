@@ -11,6 +11,8 @@ class CoordinateFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Coordinate(52, 13), CoordinateFactory::fromString("52 13"));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5, 13.5"));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5 13.5"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5°, 13.5°"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5° 13.5°"));
         $this->assertEquals(new Coordinate(-52.5, 13.5), CoordinateFactory::fromString("-52.5, 13.5"));
         $this->assertEquals(new Coordinate(-52.5, 13.5), CoordinateFactory::fromString("-52.5 13.5"));
         $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString("-52.5, -13.5"));
@@ -25,8 +27,14 @@ class CoordinateFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Coordinate(52, 13), CoordinateFactory::fromString("N52 E13"));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("N52.5, E13.5"));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("N52.5 E13.5"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("N52.5°, E13.5°"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("N52.5° E13.5°"));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5N, 13.5E"));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5N 13.5E"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5°N, 13.5°E"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5°N 13.5°E"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5° N, 13.5° E"));
+        $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString("52.5° N 13.5° E"));
         $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString("S52.5, W13.5"));
         $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString("S52.5 W13.5"));
         $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString("52.5S, 13.5W"));
