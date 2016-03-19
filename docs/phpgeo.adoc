@@ -13,8 +13,6 @@ coordinates (including support for different ellipsoids), polylines
 different calculations with these abstractions, as distances, track
 lengths, etc.
 
-https://github.com/asciidoctor[Asciidoctor @ *GitHub*]
-
 _phpgeo_ is developed by https://www.marcusjaschen.de/[Marcus Jaschen] and all
 https://github.com/mjaschen/phpgeo/graphs/contributors[contributors].
 
