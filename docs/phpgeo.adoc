@@ -2,6 +2,7 @@
 Marcus Jaschen <mail@marcusjaschen.de>
 v1.2.1, 2016-03-19
 :toc: left
+:toclevels: 3
 :source-highlighter: coderay
 :icons: font
 
@@ -111,6 +112,26 @@ The line has a length of 13013.849 meters
 A polyline consists of an ordered list of locations, i. e. instances of
 the `Coordinate` class.
 
+==== Create a polyline
+
+To create a polyline, just instantiate the class and add points:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polyline;
+
+$polyline = new Polyline();
+$polyline->addPoint(new Coordinate(52.5, 13.5));
+$polyline->addPoint(new Coordinate(54.5, 12.5));
+$polyline->addPoint(new Coordinate(55.5, 14.5));
+?>
+----
+
+It's possible to add points to the end of the polyline at every time.
+
 ==== Segments
 
 It's possible to get a list of polyline segments. Segments are returned as an
@@ -128,75 +149,19 @@ $track->addPoint(new Coordinate(52.5, 13.5));
 $track->addPoint(new Coordinate(54.5, 12.5));
 $track->addPoint(new Coordinate(55.5, 14.5));
 
-print_r($track->getSegments());
+foreach ($track->getSegments() as $segment) {
+    printf(
+        "Segment length: %0.2f kilometers\n",
+        ($segment->getLength(new Haversine()) / 1000)
+    );
+}
 ----
 
 The code above will produce the output below:
 
 ----
-Array
-(
-    [0] => Location\Line Object
-        (
-            [point1:protected] => Location\Coordinate Object
-                (
-                    [lat:protected] => 52.5
-                    [lng:protected] => 13.5
-                    [ellipsoid:protected] => Location\Ellipsoid Object
-                        (
-                            [name:protected] => WGS-84
-                            [a:protected] => 6378137
-                            [f:protected] => 298.257223563
-                        )
-
-                )
-
-            [point2:protected] => Location\Coordinate Object
-                (
-                    [lat:protected] => 54.5
-                    [lng:protected] => 12.5
-                    [ellipsoid:protected] => Location\Ellipsoid Object
-                        (
-                            [name:protected] => WGS-84
-                            [a:protected] => 6378137
-                            [f:protected] => 298.257223563
-                        )
-
-                )
-
-        )
-
-    [1] => Location\Line Object
-        (
-            [point1:protected] => Location\Coordinate Object
-                (
-                    [lat:protected] => 54.5
-                    [lng:protected] => 12.5
-                    [ellipsoid:protected] => Location\Ellipsoid Object
-                        (
-                            [name:protected] => WGS-84
-                            [a:protected] => 6378137
-                            [f:protected] => 298.257223563
-                        )
-
-                )
-
-            [point2:protected] => Location\Coordinate Object
-                (
-                    [lat:protected] => 55.5
-                    [lng:protected] => 14.5
-                    [ellipsoid:protected] => Location\Ellipsoid Object
-                        (
-                            [name:protected] => WGS-84
-                            [a:protected] => 6378137
-                            [f:protected] => 298.257223563
-                        )
-
-                )
-
-        )
-
-)
+Segment length: 232.01 kilometers
+Segment length: 169.21 kilometers
 ----
 
 ==== Length
@@ -264,6 +229,140 @@ Location\Polyline Object
 
 === Polygon
 
+A polygon consists of an ordered list of locations, i. e. instances of
+the `Coordinate` class. It's very similar to a polyline, but its start
+and end points are connected.
+
+==== Create a polygon
+
+To create a polygon, just instantiate the class and add points:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polygon;
+
+$polygon = new Polygon();
+$polygon->addPoint(new Coordinate(52.5, 13.5));
+$polygon->addPoint(new Coordinate(54.5, 12.5));
+$polygon->addPoint(new Coordinate(55.5, 14.5));
+?>
+----
+
+It's possible to add points to the end at every time.
+
+==== Get list of points
+
+`getPoints()` is used to get the list of points, the number of points can be
+retrieved by calling `getNumberOfPoints()`:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Formatter\Coordinate\DMS;
+use Location\Polygon;
+
+$polygon = new Polygon();
+$polygon->addPoint(new Coordinate(52.5, 13.5));
+$polygon->addPoint(new Coordinate(54.5, 12.5));
+$polygon->addPoint(new Coordinate(55.5, 14.5));
+
+printf("The polygon consists of %d points:\n", $polygon->getNumberOfPoints());
+
+foreach ($polygon->getPoints() as $point) {
+    echo $point->format(new DMS()) . PHP_EOL;
+}
+----
+
+The code above will produce the output below:
+
+----
+The polygon consists of 3 points:
+52° 30′ 00″ 013° 30′ 00″
+54° 30′ 00″ 012° 30′ 00″
+55° 30′ 00″ 014° 30′ 00″
+----
+
+==== Segments
+
+It's possible to get a list of polygon segments. Segments are
+returned as an array of `Line` instances.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Distance\Haversine;
+use Location\Polygon;
+
+$polygon = new Polygon();
+$polygon->addPoint(new Coordinate(52.5, 13.5));
+$polygon->addPoint(new Coordinate(54.5, 12.5));
+$polygon->addPoint(new Coordinate(55.5, 14.5));
+
+foreach ($polygon->getSegments() as $line) {
+    printf("%0.3f m\n", $line->getLength(new Haversine()));
+}
+----
+
+The code above will produce the output below:
+
+----
+232011.020 m
+169207.795 m
+339918.069 m
+----
+
+==== Length/Perimeter
+
+Length calculation is described in the <<Distance and Length>> section.
+
+==== Geofence
+
+It's possible to check if a geometry object (point, line, polyline,
+polygon) lies inside a polygon. The documentation can be found in
+the <<Geofence>> section.
+
+==== Reverse Direction
+
+It's possible to get a new instance with reversed direction while the
+original polygon stays unchanged:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polygon;
+use Location\Formatter\Coordinate\DecimalDegrees;
+
+$polygon = new Polygon();
+$polygon->addPoint(new Coordinate(52.5, 13.5));
+$polygon->addPoint(new Coordinate(64.1, - 21.9));
+$polygon->addPoint(new Coordinate(40.7, - 74.0));
+$polygon->addPoint(new Coordinate(33.9, - 118.4));
+
+$reversed = $polygon->getReverse();
+
+foreach ($reversed->getPoints() as $point) {
+    echo $point->format(new DecimalDegrees(', ')) . PHP_EOL;
+}
+----
+
+The code above produces the output below:
+
+----
+33.90000, -118.40000
+40.70000, -74.00000
+64.10000, -21.90000
+52.50000, 13.50000
+----
+
 === Bounds
 
 === Ellipsoid
@@ -272,11 +371,332 @@ Location\Polyline Object
 
 === Distance and Length
 
+==== Distance Between Two Coordinates (Vincenty's Formula)
+
+Use the calculator object directly:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Distance\Vincenty;
+
+$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
+
+$calculator = new Vincenty();
+
+echo $calculator->getDistance($coordinate1, $coordinate2);
+----
+
+The code above will produce the output below:
+
+----
+128130.850
+----
+
+or call the `getDistance()` method of a Coordinate object by injecting
+a calculator object:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Distance\Vincenty;
+
+$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
+
+echo $coordinate1->getDistance($coordinate2, new Vincenty());
+----
+
+The code above will produce the output below:
+
+----
+128130.850
+----
+
+==== Distance Between Two Coordinates (Haversine Formula)
+
+There exist different methods for calculating the distance between
+two points. The http://en.wikipedia.org/wiki/Law_of_haversines[Haversine formula]
+is much faster than Vincenty's method but less precise:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Distance\Haversine;
+
+$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
+
+echo $coordinate1->getDistance($coordinate2, new Haversine());
+----
+
+The code above will produce the output below:
+
+----
+128384.515
+----
+
+==== Length of a Polyline
+
+phpgeo has a polyline implementation which can be used to calculate the
+length of a GPS track or a route. A polyline consists of at least two points.
+Points are instances of the `Coordinate` class.
+
+For more details about polylines/GPS tracks see the <<Polyline>> section.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polyline;
+use Location\Distance\Vincenty;
+
+$track = new Polyline();
+$track->addPoint(new Coordinate(52.5, 13.5));
+$track->addPoint(new Coordinate(54.5, 12.5));
+
+echo $track->getLength(new Vincenty());
+----
+
+==== Perimeter of a Polygon
+
+The perimeter is calculated as the sum of the length of all segments.
+The result is given in meters.
+
+[source,php]
+----
+<?php
+
+use Location\Distance\Vincenty;
+use Location\Coordinate;
+use Location\Polygon;
+
+$polygon = new Polygon();
+$polygon->addPoint(new Coordinate(10, 10));
+$polygon->addPoint(new Coordinate(10, 20));
+$polygon->addPoint(new Coordinate(20, 20));
+$polygon->addPoint(new Coordinate(20, 10));
+
+echo $polygon->getPerimeter(new Vincenty());
+----
+
+The code above will produce the output below:
+
+----
+4355689.472
+----
+
 === Bearing and Destination
+
+phpgeo can be used to calculate the bearing between two points and to
+get a destination point for a given start point together with a bearing
+angle and a distance.
+
+Multiple calculation algorithms are supported. Currently phpgeo provides
+methods for calculations with a _spherical_ earth model and with an
+_ellipsoidal_ model. The spherical calculations are very fast, compared
+to the ellipsoidal methods. The ellipsoidal algorithms are a bit more
+precise on the other hand.
+
+==== Bearing between two points
+
+Given two points, it's possible to calculate the bearing angled between
+those points.
+
+phpgeo can calculate the initial bearing (bearing as seen from the first
+point) and the final bearing (bearing as seen approaching the destination
+point).
+
+===== Calculation with a spherical earth model
+
+[source,php]
+----
+<?php
+
+use Location\Bearing\BearingSpherical;
+use Location\Coordinate;
+
+$berlin = new Coordinate(52.5, 13.5);
+$london = new Coordinate(51.5, -0.12);
+
+$bearingCalculator = new BearingSpherical();
+
+$startTime = microtime(true);
+var_dump($bearingCalculator->calculateBearing($berlin, $london));
+$endTime = microtime(true);
+printf("Time elapsed: %0.6f s\n", ($endTime - $startTime));
+----
+
+The code above will produce the following output:
+
+----
+double(268.60722336693)
+Time elapsed: 0.000268 s
+----
+
+===== Calculation with an ellipsoidal earth model
+
+[source,php]
+----
+<?php
+
+use Location\Bearing\BearingEllipsoidal;
+use Location\Coordinate;
+
+$berlin = new Coordinate(52.5, 13.5);
+$london = new Coordinate(51.5, -0.12);
+
+$bearingCalculator = new BearingEllipsoidal();
+
+$startTime = microtime(true);
+var_dump($bearingCalculator->calculateBearing($berlin, $london));
+$endTime = microtime(true);
+printf("Time elapsed: %0.6f s\n", ($endTime - $startTime));
+----
+
+The code above will produce the following output:
+
+----
+double(268.62436347111)
+Time elapsed: 0.000282 s
+----
+
+Both calculations finish in roughly the same time. One would expect the
+second calculation to be clearly slower than the first one. It seems
+the exit condition for the iteration is reached quite fast. There might
+exist other conditions where the ellipsoidal calculation is noticeable
+slower.
+
+==== Destination point for given bearing and distance
+
+As an example, starting from Berlin, calculate the destination point in
+56.1 km distance with an initial bearing of 153 degrees:
+
+[source,php]
+----
+<?php
+use Location\Bearing\BearingEllipsoidal;
+use Location\Bearing\BearingSpherical;
+use Location\Coordinate;
+use Location\Formatter\Coordinate\DecimalDegrees;
+
+$berlin = new Coordinate(52.5, 13.5);
+
+$bearingSpherical = new BearingSpherical();
+$bearingEllipsoidal = new BearingEllipsoidal();
+
+$destination1 = $BearingSpherical->calculateDestination($berlin, 153, 56100);
+$destination2 = $bearingEllipsoidal->calculateDestination($berlin, 153, 56100);
+
+echo "Spherical:   " . $destination1->format(new DecimalDegrees()) . PHP_EOL;
+echo "Ellipsoidal: " . $destination2->format(new DecimalDegrees()) . PHP_EOL;
+----
+
+The code above will produce the output below:
+
+----
+Spherical:   52.04988 13.87628
+Ellipsoidal: 52.05020 13.87126
+----
+
+Oh, look, what a http://www.openstreetmap.org/?mlat=52.0499&mlon=13.8762#map=13/52.0499/13.8762[beautiful spot on earth] it is. ;-)
+
+==== Final Bearing for a calculated destination
+
+phpgeo can calculate the final bearing angle for a given starting point,
+an initial bearing, and the distance to the destination.
+
+[source,php]
+----
+<?php
+use Location\Bearing\BearingEllipsoidal;
+use Location\Coordinate;
+use Location\Formatter\Coordinate\DecimalDegrees;
+
+$berlin = new Coordinate(52.5, 13.5);
+
+$bearingEllipsoidal = new BearingEllipsoidal();
+
+$finalBearing = $bearingEllipsoidal->calculateDestinationFinalBearing($berlin, 153, 56100);
+
+var_dump($finalBearing);
+----
+
+The code above will produce the output below:
+
+----
+float(153.29365182147)
+----
 
 === Geofence
 
+_phpgeo_ has a polygon implementation which can be used to determinate
+if a geometry (point, line, polyline, polygon) is contained in it or not.
+A polygon consists of at least three points.
+
+WARNING: The calculation gives wrong results if the polygons crosses
+the 180/-180 degrees meridian.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polygon;
+
+$geofence = new Polygon();
+
+$geofence->addPoint(new Coordinate(-12.085870,-77.016261));
+$geofence->addPoint(new Coordinate(-12.086373,-77.033813));
+$geofence->addPoint(new Coordinate(-12.102823,-77.030938));
+$geofence->addPoint(new Coordinate(-12.098669,-77.006476));
+
+$outsidePoint = new Coordinate(-12.075452, -76.985079);
+$insidePoint = new Coordinate(-12.092542, -77.021540);
+
+var_dump($geofence->contains($outsidePoint)); // returns bool(false) the point is outside the polygon
+var_dump($geofence->contains($insidePoint)); // returns bool(true) the point is inside the polygon
+----
+
 === Transformations and Processing
+
+==== Simplifying a polyline
+
+Polylines can be simplified to save storage space or bandwidth.
+Simplification is done with the https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm[_Ramer–Douglas–Peucker algorithm_]
+(also known as _Douglas-Peucker algorithm_).
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polyline;
+use Location\Distance\Vincenty;
+
+$polyline = new Polyline();
+$polyline->addPoint(new Coordinate(10.0, 10.0));
+$polyline->addPoint(new Coordinate(20.0, 20.0));
+$polyline->addPoint(new Coordinate(30.0, 10.0));
+
+$processor = new Simplify($polyline);
+
+// remove all points which perpendicular distance is less
+// than 1500 km from the surrounding points.
+$simplified = $processor->simplify(1500000);
+
+// simplified is the polyline without the second point (which
+// perpendicular distance is ~1046 km and therefore below
+// the simplification threshold)
+----
 
 == Formatting and Output
 
