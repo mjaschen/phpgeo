@@ -1,0 +1,289 @@
+= phpgeo
+Marcus Jaschen <mail@marcusjaschen.de>
+v1.2.1, 2016-03-19
+:toc: left
+:source-highlighter: coderay
+:icons: font
+
+== Introduction
+
+_phpgeo_ is a small PHP library which provides abstractions to geographical
+coordinates (including support for different ellipsoids), polylines
+("GPS Tracks"), polygons, bounds, and more. phpgeo allows you to perform
+different calculations with these abstractions, as distances, track
+lengths, etc.
+
+https://github.com/asciidoctor[Asciidoctor @ *GitHub*]
+
+_phpgeo_ is developed by https://www.marcusjaschen.de/[Marcus Jaschen] and all
+https://github.com/mjaschen/phpgeo/graphs/contributors[contributors].
+
+_phpgeo_ is licensed under the GNU GENERAL PUBLIC LICENSE Version 3
+(https://opensource.org/licenses/gpl-3.0.html[GPL-3.0])
+
+The project is hosted on Github:
+
+- https://github.com/mjaschen/phpgeo[Github Project Site]
+- https://github.com/mjaschen/phpgeo/issues[Issue Tracker]
+
+== Requirements
+
+_phpgeo_ requires at least PHP 5.4.0.
+
+== Installation
+
+_phpgeo_ is best be installed using Composer. Please visit the
+https://getcomposer.org/[Composer website] website for more information.
+
+To install _phpgeo,_ simply _require_ it using Composer:
+
+    php composer.phar require mjaschen/phpgeo
+
+_phpgeo_ is now ready to be used in your project!
+
+== Geometries
+
+_phpgeo_ provides several geometry classes:
+
+* `<<Coordinate>>`
+* `<<Line>>`
+* `<<Polyline>>`
+* `<<Polygon>>`
+
+A Coordinate represents a geographic location, i. e. it contains a latitude
+and a longitude - together with an so called Ellipsoid.
+
+A Line consists of two coordinates, while polylines and polygons are built
+from two or more coordinates.
+
+=== Coordinate
+
+The `Coordinate` class is the most important class of phpgeo and provides the
+base for all features. It's a representation of a geographic location and
+consists of three parts:
+
+- Geographic Latitude
+- Geographic Longitude
+- Ellipsoid
+
+Geographic latitude and longitude values are float numbers between
+-90.0 and 90.0 (degrees latitude) and -180.0 and 180.0 (degrees longitude).
+
+The Ellipsoid is a representation of an approximated shape of the earth and
+is abstracted in its own <<Ellipsoid>> class.
+
+=== Line
+
+A line consists of two points, i. e. instances of the `Coordinate` class.
+
+==== Length
+
+The `Line` class provides a method to calculate its own length. The method
+expects an instance of a class which implements the `DistanceInterface`.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Distance\Haversine;
+use Location\Line;
+
+$line = new Line(
+    new Coordinate(52.5, 13.5),
+    new Coordinate(52.6, 13.4)
+);
+
+$length = $line->getLength(new Haversine()); <1>
+
+printf("The line has a length of %.3f meters\n", $length);
+----
+
+<1> `Haversine` is one of the currently two available classes for
+distance calculation. The other one is named `Vincenty`.
+
+The code above will produce the output below:
+
+----
+The line has a length of 13013.849 meters
+----
+
+=== Polyline
+
+A polyline consists of an ordered list of locations, i. e. instances of
+the `Coordinate` class.
+
+==== Segments
+
+It's possible to get a list of polyline segments. Segments are returned as an
+array of `Line` instances.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polyline;
+
+$track = new Polyline();
+$track->addPoint(new Coordinate(52.5, 13.5));
+$track->addPoint(new Coordinate(54.5, 12.5));
+$track->addPoint(new Coordinate(55.5, 14.5));
+
+print_r($track->getSegments());
+----
+
+The code above will produce the output below:
+
+----
+Array
+(
+    [0] => Location\Line Object
+        (
+            [point1:protected] => Location\Coordinate Object
+                (
+                    [lat:protected] => 52.5
+                    [lng:protected] => 13.5
+                    [ellipsoid:protected] => Location\Ellipsoid Object
+                        (
+                            [name:protected] => WGS-84
+                            [a:protected] => 6378137
+                            [f:protected] => 298.257223563
+                        )
+
+                )
+
+            [point2:protected] => Location\Coordinate Object
+                (
+                    [lat:protected] => 54.5
+                    [lng:protected] => 12.5
+                    [ellipsoid:protected] => Location\Ellipsoid Object
+                        (
+                            [name:protected] => WGS-84
+                            [a:protected] => 6378137
+                            [f:protected] => 298.257223563
+                        )
+
+                )
+
+        )
+
+    [1] => Location\Line Object
+        (
+            [point1:protected] => Location\Coordinate Object
+                (
+                    [lat:protected] => 54.5
+                    [lng:protected] => 12.5
+                    [ellipsoid:protected] => Location\Ellipsoid Object
+                        (
+                            [name:protected] => WGS-84
+                            [a:protected] => 6378137
+                            [f:protected] => 298.257223563
+                        )
+
+                )
+
+            [point2:protected] => Location\Coordinate Object
+                (
+                    [lat:protected] => 55.5
+                    [lng:protected] => 14.5
+                    [ellipsoid:protected] => Location\Ellipsoid Object
+                        (
+                            [name:protected] => WGS-84
+                            [a:protected] => 6378137
+                            [f:protected] => 298.257223563
+                        )
+
+                )
+
+        )
+
+)
+----
+
+==== Length
+
+Length calculation is described in the <<Distance and Length>> section.
+
+==== Reverse Direction
+
+It's possible to get a new instance with reversed direction while the
+original polyline stays unchanged:
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polyline;
+
+$track = new Polyline();
+$track->addPoint(new Coordinate(52.5, 13.5));
+$track->addPoint(new Coordinate(54.5, 12.5));
+
+$reversed = $track->getReverse();
+
+print_r($reversed);
+----
+
+The code above will produce the output below:
+
+----
+Location\Polyline Object
+(
+    [points:protected] => Array
+        (
+            [0] => Location\Coordinate Object
+                (
+                    [lat:protected] => 54.5
+                    [lng:protected] => 12.5
+                    [ellipsoid:protected] => Location\Ellipsoid Object
+                        (
+                            [name:protected] => WGS-84
+                            [a:protected] => 6378137
+                            [f:protected] => 298.257223563
+                        )
+
+                )
+
+            [1] => Location\Coordinate Object
+                (
+                    [lat:protected] => 52.5
+                    [lng:protected] => 13.5
+                    [ellipsoid:protected] => Location\Ellipsoid Object
+                        (
+                            [name:protected] => WGS-84
+                            [a:protected] => 6378137
+                            [f:protected] => 298.257223563
+                        )
+
+                )
+
+        )
+
+)
+----
+
+=== Polygon
+
+=== Bounds
+
+=== Ellipsoid
+
+== Calculations
+
+=== Distance and Length
+
+=== Bearing and Destination
+
+=== Geofence
+
+=== Transformations and Processing
+
+== Formatting and Output
+
+== Parsing and Input
+
+=== Coordinates
+
+
