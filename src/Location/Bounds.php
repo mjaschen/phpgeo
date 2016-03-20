@@ -2,8 +2,6 @@
 /**
  * Coordinate Bounds Class
  *
- * PHP version 5.3
- *
  * @category  Location
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @license   https://opensource.org/licenses/GPL-3.0 GPL

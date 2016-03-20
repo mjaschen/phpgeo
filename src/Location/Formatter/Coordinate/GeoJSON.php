@@ -2,8 +2,6 @@
 /**
  * GeoJSON Coordinate Formatter
  *
- * PHP version 5.3
- *
  * @category  Location
  * @package   Formatter
  * @author    Marcus Jaschen <mjaschen@gmail.com>

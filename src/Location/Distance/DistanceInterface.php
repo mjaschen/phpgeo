@@ -2,8 +2,6 @@
 /**
  * Interface for Distance Calculator Classes
  *
- * PHP version 5.3
- *
  * @category  Location
  * @package   Distance
  * @author    Marcus Jaschen <mjaschen@gmail.com>

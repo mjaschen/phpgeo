@@ -2,8 +2,6 @@
 /**
  * Polyline Formatter Interface
  *
- * PHP version 5.3
- *
  * @category  Location
  * @package   Formatter
  * @author    Richard Barnes <rbarnes@umn.edu>

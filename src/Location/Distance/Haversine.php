@@ -2,8 +2,6 @@
 /**
  * Implementation of distance calculation with http://en.wikipedia.org/wiki/Law_of_haversines
  *
- * PHP version 5.3
- *
  * @category  Location
  * @package   Distance
  * @author    Marcus Jaschen <mjaschen@gmail.com>
