@@ -5,6 +5,7 @@ v1.2.1, 2016-03-19
 :toclevels: 3
 :source-highlighter: coderay
 :icons: font
+:stem: latexmath
 
 == Introduction
 
@@ -34,7 +35,7 @@ _phpgeo_ requires at least PHP 5.4.0.
 _phpgeo_ is best be installed using Composer. Please visit the
 https://getcomposer.org/[Composer website] website for more information.
 
-To install _phpgeo,_ simply _require_ it using Composer:
+To install _phpgeo,_ simply "require" it using Composer:
 
     php composer.phar require mjaschen/phpgeo
 
@@ -366,6 +367,63 @@ The code above produces the output below:
 === Bounds
 
 === Ellipsoid
+
+An ellipsoid is a mathematically defined approximation of the earth's surface.
+
+An ellipsoid is defined by two parameters:
+
+* the semi-major axis _a_ (equatorial radius)
+* the semi-minor axis _b_ (polar radius)
+
+_a_ and _b_ together define the flattening of the ellipsoid _f_:
+
+latexmath:[f = \frac{a-b}{a}]
+
+NOTE: _phpgeo's_ ellipsoids are defined by _a_ and _1/f_ instead of _a_
+and _b_. That's not a problem because each third value can be
+calculated from the other two.
+
+_phpgeo_ supports arbitrary ellipsoids. _WGS-84_ is used as default when
+no other ellipsoid is given. For day-to-day calculations it's not needed
+to care about ellipsoids in the most cases.
+
+It's possible to create an instance of the Ellipsoid class either by
+specifing a name or by providing the three parameters _name,_ _a_, and _1/f_.
+
+[source,php]
+----
+use Location\Ellipsoid;
+
+$ellipsoid = Ellipsoid::createDefault('WGS-84'); <1>
+
+printf(
+    "%s: a=%f; b=%f; 1/f=%f\n",
+    $ellipsoid->getName(),
+    $ellipsoid->getA(),
+    $ellipsoid->getB(),
+    $ellipsoid->getF()
+);
+
+$ellipsoid = new Ellipsoid('GRS-80', 6378137, 298.257222); <2>
+
+printf(
+    "%s: a=%f; b=%f; 1/f=%f\n",
+    $ellipsoid->getName(),
+    $ellipsoid->getA(),
+    $ellipsoid->getB(),
+    $ellipsoid->getF()
+);
+----
+
+<1> Create ellipsoid instance from one of the default configurations
+<2> Create custom ellipsoid by providing name, _a_, and _1/f_
+
+The code above will produce the output below:
+
+----
+WGS-84: a=6378137.000000; b=6356752.314245; 1/f=298.257224
+GRS-80: a=6378137.000000; b=6356752.314133; 1/f=298.257222
+----
 
 == Calculations
 
