@@ -1,6 +1,6 @@
 = phpgeo
 Marcus Jaschen <mail@marcusjaschen.de>
-v1.2.1, 2016-03-19
+v1.2.1, 2016-03-20
 :toc: left
 :toclevels: 3
 :source-highlighter: coderay
@@ -380,7 +380,7 @@ _a_ and _b_ together define the flattening of the ellipsoid _f_:
 latexmath:[f = \frac{a-b}{a}]
 
 NOTE: _phpgeo's_ ellipsoids are defined by _a_ and _1/f_ instead of _a_
-and _b_. That's not a problem because each third value can be
+and _b_. That's not a problem because each of the three values can be
 calculated from the other two.
 
 _phpgeo_ supports arbitrary ellipsoids. _WGS-84_ is used as default when
