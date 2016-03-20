@@ -2,8 +2,6 @@
 /**
  * Polygon Formatter Interface
  *
- * @category  Location
- * @package   Formatter
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @author    Richard Barnes <rbarnes@umn.edu>
  * @license   https://opensource.org/licenses/GPL-3.0 GPL
@@ -17,8 +15,6 @@ use Location\Polygon;
 /**
  * Polygon Formatter Interface
  *
- * @category Location
- * @package  Formatter
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @author   Richard Barnes <rbarnes@umn.edu>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL

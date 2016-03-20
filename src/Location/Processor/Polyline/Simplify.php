@@ -8,8 +8,6 @@
  * The formula for the Perpendicular Distance is described here:
  * http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php
  *
- * @category  Location
- * @package   Processor
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @license   https://opensource.org/licenses/GPL-3.0 GPL
  * @link      https://github.com/mjaschen/phpgeo
@@ -24,8 +22,6 @@ use Location\Polyline;
 /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
- * @category Location
- * @package  Processor
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo

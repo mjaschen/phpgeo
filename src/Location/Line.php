@@ -4,7 +4,6 @@
  *
  * PHP version 5
  *
- * @category  Location
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @license   https://opensource.org/licenses/GPL-3.0 GPL
  * @link      https://github.com/mjaschen/phpgeo
@@ -17,7 +16,6 @@ use Location\Distance\DistanceInterface;
 /**
  * Line Implementation
  *
- * @category Location
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo

@@ -2,8 +2,6 @@
 /**
  * Implementation of distance calculation with Vincenty Method
  *
- * @category  Location
- * @package   Distance
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @license   https://opensource.org/licenses/GPL-3.0 GPL
  * @link      https://github.com/mjaschen/phpgeo
@@ -20,8 +18,6 @@ use Location\Exception\NotMatchingEllipsoidException;
  *
  * @see      http://www.movable-type.co.uk/scripts/latlong-vincenty.html
  *
- * @category Location
- * @package  Distance
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo

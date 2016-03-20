@@ -2,8 +2,6 @@
 /**
  * GeoJSON Polyline Formatter
  *
- * @category  Location
- * @package   Formatter
  * @author    Richard Barnes <rbarnes@umn.edu>
  * @license   https://opensource.org/licenses/GPL-3.0 GPL
  * @link      https://github.com/mjaschen/phpgeo
@@ -16,8 +14,6 @@ use Location\Polyline;
 /**
  * GeoJSON Polyline Formatter
  *
- * @category Location
- * @package  Formatter
  * @author   Richard Barnes <rbarnes@umn.edu>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo

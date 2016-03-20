@@ -4,7 +4,6 @@
  *
  * PHP version 5
  *
- * @category  Location
  * @author    Paul Vidal <paul.vidal.lujan@gmail.com>
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @license   https://opensource.org/licenses/GPL-3.0 GPL
@@ -19,7 +18,6 @@ use Location\Formatter\Polygon\FormatterInterface;
 /**
  * Polygon Implementation
  *
- * @category Location
  * @author   Paul Vidal <paul.vidal.lujan@gmail.com>
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
