@@ -425,6 +425,9 @@ WGS-84: a=6378137.000000; b=6356752.314245; 1/f=298.257224
 GRS-80: a=6378137.000000; b=6356752.314133; 1/f=298.257222
 ----
 
+Please take a look into the https://github.com/mjaschen/phpgeo/blob/master/src/Location/Ellipsoid.php#L45[`Ellipsoid` source file]
+for a list of pre-defined ellipsoids.
+
 == Calculations
 
 === Distance and Length
