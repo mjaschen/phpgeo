@@ -35,8 +35,6 @@ class SimplifyTest extends \PHPUnit_Framework_TestCase
 
         $simplified = $processor->simplify(1000);
 
-        $segments = $simplified->getSegments();
-
         $this->assertEquals($polyline, $simplified);
     }
 }
