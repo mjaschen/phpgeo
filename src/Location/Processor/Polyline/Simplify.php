@@ -22,6 +22,8 @@ use Location\Polyline;
 /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
+ * @deprecated
+ *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
  * @link     https://github.com/mjaschen/phpgeo
