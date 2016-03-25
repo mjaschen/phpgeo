@@ -732,32 +732,92 @@ var_dump($geofence->contains($insidePoint)); // returns bool(true) the point is 
 ==== Simplifying a polyline
 
 Polylines can be simplified to save storage space or bandwidth.
-Simplification is done with the https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm[_Ramer–Douglas–Peucker algorithm_]
-(also known as _Douglas-Peucker algorithm_).
+
+_phpgeo_ provides two implementations for simplifying a polyline.
+
+The first implementation uses the https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm[_Ramer–Douglas–Peucker algorithm_] (also known as _Douglas-Peucker algorithm_). The other
+implementation examines the bearings of the polyline segments and removes
+a segment when its bearing angle is similar to the bearing angle of its
+predecessor segment. I named it the _Delta-Bearing algorithm_.
+
+===== Ramer-Douglas-Peucker Algorithm
 
 [source,php]
 ----
 <?php
 
 use Location\Coordinate;
+use Location\Formatter\Coordinate\DecimalDegrees;
 use Location\Polyline;
-use Location\Distance\Vincenty;
+use Location\Processor\Polyline\SimplifyDouglasPeucker;
 
 $polyline = new Polyline();
 $polyline->addPoint(new Coordinate(10.0, 10.0));
 $polyline->addPoint(new Coordinate(20.0, 20.0));
 $polyline->addPoint(new Coordinate(30.0, 10.0));
 
-$processor = new Simplify($polyline);
+$processor = new SimplifyDouglasPeucker(1500000); <1>
 
-// remove all points which perpendicular distance is less
-// than 1500 km from the surrounding points.
-$simplified = $processor->simplify(1500000);
+$simplified = $processor->simplify($polyline);
 
-// simplified is the polyline without the second point (which
-// perpendicular distance is ~1046 km and therefore below
-// the simplification threshold)
+foreach ($simplified->getPoints() as $point) {
+    echo $point->format(new DecimalDegrees()) . PHP_EOL;
+}
 ----
+
+<1> remove all points which perpendicular distance is less
+than 1,500,000 meters (1,500 km) from the surrounding points.
+
+The code above produces the output below:
+
+----
+10.00000 10.00000
+30.00000 10.00000
+----
+
+===== Delta-Bearing Algorithm
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Formatter\Coordinate\DecimalDegrees;
+use Location\Polyline;
+use Location\Processor\Polyline\SimplifyBearing;
+
+$polyline = new Polyline();
+$polyline->addPoint(new Coordinate(10.0, 10.0));
+$polyline->addPoint(new Coordinate(20.0, 20.0));
+$polyline->addPoint(new Coordinate(30.0, 10.0));
+
+$processor = new SimplifyBearing(90); <1>
+
+$simplified = $processor->simplify($polyline);
+
+foreach ($simplified->getPoints() as $point) {
+    echo $point->format(new DecimalDegrees()) . PHP_EOL;
+}
+----
+
+<1> The constructor argument is the minimum required angle between two
+adjacent polyline segments so that no points will be removed. If the
+bearing angle difference is less that the given value, the middle point will
+be removed from the resulting polyline.
+
+The code above produces the output below:
+
+----
+10.00000 10.00000
+30.00000 10.00000
+----
+
+The following image shows both a polyline and its simplified version. The
+simplification was done with the Delta-Bearing Algorithm with a threshold angle
+of 20 degrees. The original polyline is painted in blue, the simplified polyline
+is magenta.
+
+image::simplify.png[Delta-Bearing simplification]
 
 == Formatting and Output
 
