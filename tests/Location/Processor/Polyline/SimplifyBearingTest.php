@@ -2,9 +2,9 @@
 
 namespace Location;
 
-use Location\Processor\Polyline\SimplifyDouglasPeucker;
+use Location\Processor\Polyline\SimplifyBearing;
 
-class SimplifyDouglasPeuckerTest extends \PHPUnit_Framework_TestCase
+class SimplifyBearingTest extends \PHPUnit_Framework_TestCase
 {
     public function testSimplifyThreePointsToTwoPoints()
     {
@@ -13,9 +13,10 @@ class SimplifyDouglasPeuckerTest extends \PHPUnit_Framework_TestCase
         $polyline->addPoint(new Coordinate(20.0, 20.0));
         $polyline->addPoint(new Coordinate(30.0, 10.0));
 
-        $processor = new SimplifyDouglasPeucker(1500000);
+        $processor = new SimplifyBearing(85);
 
-        // actual deviation is 1046 km, so 1500 km is enough of tolerance to strip the 2nd coordinate
+        // actual bearing difference between the both segments is
+        // 83.3 degrees, therefore the middle point gets removed
         $simplified = $processor->simplify($polyline);
 
         $segments = $simplified->getSegments();
@@ -24,14 +25,13 @@ class SimplifyDouglasPeuckerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Line(new Coordinate(10.0, 10.0), new Coordinate(30.0, 10.0)), $segments[0]);
     }
 
-    public function testSimplifyThreePointsImpossible()
+    public function testSimplifyTwoPointsImpossible()
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(10.0, 10.0));
         $polyline->addPoint(new Coordinate(20.0, 20.0));
-        $polyline->addPoint(new Coordinate(30.0, 10.0));
 
-        $processor = new SimplifyDouglasPeucker(1000);
+        $processor = new SimplifyBearing(10);
 
         $simplified = $processor->simplify($polyline);
 

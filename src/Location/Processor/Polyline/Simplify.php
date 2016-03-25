@@ -22,7 +22,8 @@ use Location\Polyline;
 /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
- * @deprecated
+ * @deprecated This class is no longer supported. Please use
+ * the `SimplifyDouglasPeucker` oder `SimplifyBearing` classes.
  *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @license  https://opensource.org/licenses/GPL-3.0 GPL
