@@ -3,6 +3,19 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.3.0] - 2016-03-26
+
+### Added
+
+* A new `SimplifyInterface` was introduced and is implemented in two classes:
+  `SimplifyDouglasPeucker` and `SimplifyBearing`
+* Added documentation
+
+### Deprecated
+
+* The `Simplify` processor class is now deprecated and will be removed in the 
+  2.0 release.
+
 ## [1.2.1] - 2016-03-15
 
 ### Added
