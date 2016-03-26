@@ -11,6 +11,7 @@
 
 namespace Location;
 
+use Location\Bearing\BearingInterface;
 use Location\Distance\DistanceInterface;
 
 /**
@@ -95,6 +96,16 @@ class Line implements GeometryInterface
     public function getLength(DistanceInterface $calculator)
     {
         return $calculator->getDistance($this->point1, $this->point2);
+    }
+
+    /**
+     * @param \Location\Bearing\BearingInterface $bearingCalculator
+     *
+     * @return float
+     */
+    public function getBearing(BearingInterface $bearingCalculator)
+    {
+        return $bearingCalculator->calculateBearing($this->point1, $this->point2);
     }
 
     /**

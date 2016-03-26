@@ -108,6 +108,39 @@ The code above will produce the output below:
 The line has a length of 13013.849 meters
 ----
 
+#### Bearing
+
+The bearing of an instance can be calculated using the `getBearing()` method.
+An instance of `BearingInterface` must be provided as method argument.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Bearing\BearingEllipsoidal;
+use Location\Coordinate;
+use Location\Line;
+
+$line = new Line(
+    new Coordinate(52.5, 13.5),
+    new Coordinate(52.6, 13.4)
+);
+
+$bearing = $line->getBearing(new BearingEllipsoidal()); <1>
+
+printf("The line has a bearing of %.2f degrees\n", $bearing);
+----
+
+<1> `BearingEllipsoidal` is one of the currently two available classes for
+bearing calculation. The other one is named `BearingSpherical`.
+
+The code above will produce the output below:
+
+----
+The line has a bearing of 328.67 degrees
+----
+
 === Polyline
 
 A polyline consists of an ordered list of locations, i. e. instances of

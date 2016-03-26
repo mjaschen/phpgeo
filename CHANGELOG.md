@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.3.1] - 2016-03-26
+
+### Added
+
+* add method to calculate the bearing of a `Line` instance (point 1 -> point 2)
+
 ## [1.3.0] - 2016-03-26
 
 ### Added
