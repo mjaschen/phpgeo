@@ -15,9 +15,9 @@
 
 namespace Location\Processor\Polyline;
 
-use Location\Coordinate;
 use Location\Line;
 use Location\Polyline;
+use Location\Utility\PerpendicularDistance;
 
 /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
@@ -70,8 +70,10 @@ class SimplifyDouglasPeucker implements SimplifyInterface
 
         $lineSize = count($line);
 
+        $pdCalc = new PerpendicularDistance();
+
         for ($i = 1; $i <= ($lineSize - 1); $i ++) {
-            $distance = $this->getPerpendicularDistance($line[$i], new Line($line[0], $line[$lineSize - 1]));
+            $distance = $pdCalc->getPerpendicularDistance($line[$i], new Line($line[0], $line[$lineSize - 1]));
 
             if ($distance > $distanceMax) {
                 $index       = $i;
@@ -92,83 +94,5 @@ class SimplifyDouglasPeucker implements SimplifyInterface
         }
 
         return [$line[0], $line[$lineSize - 1]];
-    }
-
-    /**
-     * @param Coordinate $point
-     * @param Line $line
-     *
-     * @return number
-     */
-    protected function getPerpendicularDistance(Coordinate $point, Line $line)
-    {
-        $ellipsoid = $point->getEllipsoid();
-
-        $ellipsoidRadius = $ellipsoid->getArithmeticMeanRadius();
-
-        $firstLinePointLat = $this->deg2radLatitude($line->getPoint1()->getLat());
-        $firstLinePointLng = $this->deg2radLongitude($line->getPoint1()->getLng());
-
-        $firstLinePointX = $ellipsoidRadius * cos($firstLinePointLng) * sin($firstLinePointLat);
-        $firstLinePointY = $ellipsoidRadius * sin($firstLinePointLng) * sin($firstLinePointLat);
-        $firstLinePointZ = $ellipsoidRadius * cos($firstLinePointLat);
-
-        $secondLinePointLat = $this->deg2radLatitude($line->getPoint2()->getLat());
-        $secondLinePointLng = $this->deg2radLongitude($line->getPoint2()->getLng());
-
-        $secondLinePointX = $ellipsoidRadius * cos($secondLinePointLng) * sin($secondLinePointLat);
-        $secondLinePointY = $ellipsoidRadius * sin($secondLinePointLng) * sin($secondLinePointLat);
-        $secondLinePointZ = $ellipsoidRadius * cos($secondLinePointLat);
-
-        $pointLat = $this->deg2radLatitude($point->getLat());
-        $pointLng = $this->deg2radLongitude($point->getLng());
-
-        $pointX = $ellipsoidRadius * cos($pointLng) * sin($pointLat);
-        $pointY = $ellipsoidRadius * sin($pointLng) * sin($pointLat);
-        $pointZ = $ellipsoidRadius * cos($pointLat);
-
-        $normalizedX = $firstLinePointY * $secondLinePointZ - $firstLinePointZ * $secondLinePointY;
-        $normalizedY = $firstLinePointZ * $secondLinePointX - $firstLinePointX * $secondLinePointZ;
-        $normalizedZ = $firstLinePointX * $secondLinePointY - $firstLinePointY * $secondLinePointX;
-
-        $length = sqrt($normalizedX * $normalizedX + $normalizedY * $normalizedY + $normalizedZ * $normalizedZ);
-
-        $normalizedX /= $length;
-        $normalizedY /= $length;
-        $normalizedZ /= $length;
-
-        $thetaPoint = $normalizedX * $pointX + $normalizedY * $pointY + $normalizedZ * $pointZ;
-
-        $length = sqrt($pointX * $pointX + $pointY * $pointY + $pointZ * $pointZ);
-
-        $thetaPoint /= $length;
-
-        $distance = abs((M_PI / 2) - acos($thetaPoint));
-
-        return $distance * $ellipsoidRadius;
-    }
-
-    /**
-     * @param float $latitude
-     *
-     * @return float
-     */
-    protected function deg2radLatitude($latitude)
-    {
-        return deg2rad(90 - $latitude);
-    }
-
-    /**
-     * @param float $longitude
-     *
-     * @return float
-     */
-    protected function deg2radLongitude($longitude)
-    {
-        if ($longitude > 0) {
-            return deg2rad($longitude);
-        }
-
-        return deg2rad($longitude + 360);
     }
 }
