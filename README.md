@@ -9,14 +9,14 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 - [Requirements](#requirements)
 - [Documentation](#documentation)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Examples](#examples)
-  - [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincentys-formula)
+- [Features](#features)
+- [Examples/Usage](#examplesusage)
+  - [Distance between two coordinates \(Vincenty's Formula\)](#distance-between-two-coordinates-vincentys-formula)
   - [Simplifying a polyline](#simplifying-a-polyline)
-  - [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
+  - [Polygon contains a point \(e.g. "GPS geofence"\)](#polygon-contains-a-point-eg-gps-geofence)
   - [Formatted output of coordinates](#formatted-output-of-coordinates)
     - [Decimal Degrees](#decimal-degrees)
-    - [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
+    - [Degrees/Minutes/Seconds \(DMS\)](#degreesminutesseconds-dms)
     - [GeoJSON](#geojson)
 - [Credits](#credits)
 
@@ -38,7 +38,7 @@ Using [Composer](https://getcomposer.org), just add it to your `composer.json` b
 composer require mjaschen/phpgeo
 ```
 
-## Usage
+## Features
 
 **Info:** Please visit the [documentation site](https://phpgeo.marcusjaschen.de/) for complete and up-to-date documentation!
 
@@ -59,12 +59,13 @@ phpgeo provides the following features (follow the links for examples):
   (spherical or with Vincenty's formula)
 - calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/calculations/bearing/#destination-point-for-given-bearing-and-distance),
   bearing angle, and distance (spherical or with Vincenty's formula)
+- calculation of the [perpendicular distance between a point and a line](https://phpgeo.marcusjaschen.de/#_perpendicular_distance)
 - getting segments of a [polyline](https://phpgeo.marcusjaschen.de/geometry/polyline/#segments)
   /[polygon](https://phpgeo.marcusjaschen.de/geometry/polygon/#segments),
 - [reversing direction](https://phpgeo.marcusjaschen.de/geometry/polyline/#reverse-direction) 
   of polyline/polygon
 
-## Examples
+## Examples/Usage
 
 This list is incomplete, please visit the [documentation site](https://phpgeo.marcusjaschen.de/)
 for the full monty of documentation and examples!
