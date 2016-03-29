@@ -3,6 +3,13 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.3.2] - 2016-03-26
+
+### Added
+
+* add an utility class to calculate the perpendicular distance between a point
+  and a line; [documentation](https://phpgeo.marcusjaschen.de/#_perpendicular_distance)
+
 ## [1.3.1] - 2016-03-26
 
 ### Added
