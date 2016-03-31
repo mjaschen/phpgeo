@@ -34,25 +34,25 @@ class CoordinateFactory implements GeometryFactoryInterface
      */
     public static function fromString($string, Ellipsoid $ellipsoid = null)
     {
-        $result = static::parseDecimalMinutesWithoutCardinalLetters($string, $ellipsoid);
+        $result = self::parseDecimalMinutesWithoutCardinalLetters($string, $ellipsoid);
 
         if ($result instanceof Coordinate) {
             return $result;
         }
 
-        $result = static::parseDecimalMinutesWithCardinalLetters($string, $ellipsoid);
+        $result = self::parseDecimalMinutesWithCardinalLetters($string, $ellipsoid);
 
         if ($result instanceof Coordinate) {
             return $result;
         }
 
-        $result = static::parseDecimalDegreesWithoutCardinalLetters($string, $ellipsoid);
+        $result = self::parseDecimalDegreesWithoutCardinalLetters($string, $ellipsoid);
 
         if ($result instanceof Coordinate) {
             return $result;
         }
 
-        $result = static::parseDecimalDegreesWithCardinalLetters($string, $ellipsoid);
+        $result = self::parseDecimalDegreesWithCardinalLetters($string, $ellipsoid);
 
         if ($result instanceof Coordinate) {
             return $result;
