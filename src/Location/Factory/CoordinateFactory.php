@@ -61,6 +61,12 @@ class CoordinateFactory implements GeometryFactoryInterface
         throw new \InvalidArgumentException("Format of coordinates was not recognized");
     }
 
+    /**
+     * @param $string
+     * @param $ellipsoid
+     *
+     * @return \Location\Coordinate|null
+     */
     private static function parseDecimalMinutesWithoutCardinalLetters($string, $ellipsoid)
     {
         // Decimal minutes without cardinal letters, e. g. "52 12.345, 13 23.456",
@@ -76,6 +82,12 @@ class CoordinateFactory implements GeometryFactoryInterface
         return null;
     }
 
+    /**
+     * @param $string
+     * @param $ellipsoid
+     *
+     * @return \Location\Coordinate|null
+     */
     private static function parseDecimalMinutesWithCardinalLetters($string, $ellipsoid)
     {
         // Decimal minutes with cardinal letters, e. g. "52 12.345, 13 23.456",
@@ -97,6 +109,12 @@ class CoordinateFactory implements GeometryFactoryInterface
         return null;
     }
 
+    /**
+     * @param $string
+     * @param $ellipsoid
+     *
+     * @return \Location\Coordinate|null
+     */
     private static function parseDecimalDegreesWithoutCardinalLetters($string, $ellipsoid)
     {
         // The most simple format: decimal degrees without cardinal letters,
@@ -108,6 +126,12 @@ class CoordinateFactory implements GeometryFactoryInterface
         return null;
     }
 
+    /**
+     * @param $string
+     * @param $ellipsoid
+     *
+     * @return \Location\Coordinate|null
+     */
     private static function parseDecimalDegreesWithCardinalLetters($string, $ellipsoid)
     {
         // Decimal degrees with cardinal letters, e. g. "N52.5, E13.5",
