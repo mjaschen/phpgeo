@@ -34,6 +34,35 @@ class CoordinateFactory implements GeometryFactoryInterface
      */
     public static function fromString($string, Ellipsoid $ellipsoid = null)
     {
+        $result = static::parseDecimalMinutesWithoutCardinalLetters($string, $ellipsoid);
+
+        if ($result instanceof Coordinate) {
+            return $result;
+        }
+
+        $result = static::parseDecimalMinutesWithCardinalLetters($string, $ellipsoid);
+
+        if ($result instanceof Coordinate) {
+            return $result;
+        }
+
+        $result = static::parseDecimalDegreesWithoutCardinalLetters($string, $ellipsoid);
+
+        if ($result instanceof Coordinate) {
+            return $result;
+        }
+
+        $result = static::parseDecimalDegreesWithCardinalLetters($string, $ellipsoid);
+
+        if ($result instanceof Coordinate) {
+            return $result;
+        }
+
+        throw new \InvalidArgumentException("Format of coordinates was not recognized");
+    }
+
+    private static function parseDecimalMinutesWithoutCardinalLetters($string, $ellipsoid)
+    {
         // Decimal minutes without cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
         // "N52° 12.345′ E13° 23.456′"
@@ -44,6 +73,11 @@ class CoordinateFactory implements GeometryFactoryInterface
             return new Coordinate($latitude, $longitude, $ellipsoid);
         }
 
+        return null;
+    }
+
+    private static function parseDecimalMinutesWithCardinalLetters($string, $ellipsoid)
+    {
         // Decimal minutes with cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
         // "N52° 12.345′ E13° 23.456′"
@@ -60,12 +94,22 @@ class CoordinateFactory implements GeometryFactoryInterface
             return new Coordinate($latitude, $longitude, $ellipsoid);
         }
 
+        return null;
+    }
+
+    private static function parseDecimalDegreesWithoutCardinalLetters($string, $ellipsoid)
+    {
         // The most simple format: decimal degrees without cardinal letters,
         // e. g. "52.5, 13.5" or "53.25732 14.24984"
         if (preg_match('/(-?\d{1,2}\.?\d*)°?[, ]\s*(-?\d{1,3}\.?\d*)°?/u', $string, $match)) {
             return new Coordinate($match[1], $match[2], $ellipsoid);
         }
 
+        return null;
+    }
+
+    private static function parseDecimalDegreesWithCardinalLetters($string, $ellipsoid)
+    {
         // Decimal degrees with cardinal letters, e. g. "N52.5, E13.5",
         // "40.2S, 135.3485W", or "56.234°N, 157.245°W"
         if (preg_match('/([NS]?\s*)(\d{1,2}\.?\d*)°?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,3}\.?\d*)°?(\s*[EW]?)/ui', $string, $match)) {
@@ -81,6 +125,6 @@ class CoordinateFactory implements GeometryFactoryInterface
             return new Coordinate($latitude, $longitude, $ellipsoid);
         }
 
-        throw new \InvalidArgumentException("Format of coordinates was not recognized");
+        return null;
     }
 }
