@@ -58,9 +58,11 @@ class Coordinate implements GeometryInterface
 
         if ($ellipsoid !== null) {
             $this->ellipsoid = $ellipsoid;
-        } else {
-            $this->ellipsoid = Ellipsoid::createDefault();
+
+            return;
         }
+
+        $this->ellipsoid = Ellipsoid::createDefault();
     }
 
     /**

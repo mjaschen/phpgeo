@@ -181,9 +181,8 @@ class BearingEllipsoidal implements BearingInterface
             $sinα   = $cosU1 * $cosU2 * $sinλ / $sinσ;
             $cosSqα = 1 - $sinα * $sinα;
 
-            if ($cosSqα == 0.0) {
-                $cos2σM = 0;
-            } else {
+            $cos2σM = 0;
+            if ($cosSqα !== 0.0) {
                 $cos2σM = $cosσ - 2 * $sinU1 * $sinU2 / $cosSqα;
             }
 
