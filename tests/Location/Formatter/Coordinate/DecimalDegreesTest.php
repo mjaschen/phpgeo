@@ -51,4 +51,17 @@ class DecimalDegreesTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals("52.50000, 13.50000", $formatter->format($coordinate));
     }
+
+    /**
+     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
+     */
+    public function testIfSetSeparatorWorksAsExpected()
+    {
+        $coordinate = new Coordinate(52.5, 13.5);
+
+        $formatter = new DecimalDegrees();
+        $formatter->setSeparator("/");
+
+        $this->assertEquals("52.50000/13.50000", $formatter->format($coordinate));
+    }
 }
