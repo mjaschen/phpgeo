@@ -4,6 +4,7 @@
     <testsuites>
         <testsuite name="Location Test Suite">
             <directory>tests/Location/</directory>
+            <directory>tests/Regression/</directory>
         </testsuite>
     </testsuites>
 </phpunit>
