@@ -41,6 +41,10 @@ To install _phpgeo,_ simply "require" it using Composer:
 
 _phpgeo_ is now ready to be used in your project!
 
+== API Documentation
+
+Detailed https://phpgeo.marcusjaschen.de/api/[API documentation] is available.
+
 == Geometries
 
 _phpgeo_ provides several geometry classes:
