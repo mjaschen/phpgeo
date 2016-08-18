@@ -1,0 +1,7 @@
+source:
+    - ./src
+destination: ./docs/api
+deprecated: true
+todo: true
+tree: true
+title: "phpgeo - A Simple Geo Library for PHP"
