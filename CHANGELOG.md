@@ -3,6 +3,19 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.3.5] - 2016-08-19
+
+### Added
+
+* add method for calculating the final bearing for a `Line` object
+
+## [1.3.3] - 2016-08-16
+
+### Fixed
+
+* bugifx for a division-by-zero error which occurred when symplifying a polyline
+  with the Douglas-Peucker algorithm.
+
 ## [1.3.2] - 2016-03-26
 
 ### Added
