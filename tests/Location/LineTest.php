@@ -53,6 +53,18 @@ class LineTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(90.0, $line->getBearing($bearingCalculator));
     }
 
+    public function testIfGetFinalBearingWorksAsExpected()
+    {
+        $point1 = new Coordinate(0, 0);
+        $point2 = new Coordinate(0, 10);
+
+        $line = new Line($point1, $point2);
+
+        $bearingCalculator = new BearingEllipsoidal();
+
+        $this->assertEquals(90.0, $line->getFinalBearing($bearingCalculator));
+    }
+
     public function testIfGetBearingReversedWorksAsExpected()
     {
         $point1 = new Coordinate(0, 0);
@@ -63,5 +75,17 @@ class LineTest extends \PHPUnit_Framework_TestCase
         $bearingCalculator = new BearingEllipsoidal();
 
         $this->assertEquals(270.0, $line->getBearing($bearingCalculator));
+    }
+
+    public function testIfGetFinalBearingReversedWorksAsExpected()
+    {
+        $point1 = new Coordinate(0, 0);
+        $point2 = new Coordinate(0, 10);
+
+        $line = new Line($point2, $point1);
+
+        $bearingCalculator = new BearingEllipsoidal();
+
+        $this->assertEquals(270.0, $line->getFinalBearing($bearingCalculator));
     }
 }

@@ -112,7 +112,7 @@ The code above will produce the output below:
 The line has a length of 13013.849 meters
 ----
 
-#### Bearing
+==== Bearing
 
 The bearing of an instance can be calculated using the `getBearing()` method.
 An instance of `BearingInterface` must be provided as method argument.
@@ -121,7 +121,6 @@ An instance of `BearingInterface` must be provided as method argument.
 ----
 <?php
 
-use Location\Coordinate;
 use Location\Bearing\BearingEllipsoidal;
 use Location\Coordinate;
 use Location\Line;
@@ -144,6 +143,35 @@ The code above will produce the output below:
 ----
 The line has a bearing of 328.67 degrees
 ----
+
+This ist the so called _initial bearing._ There exist another bearing angle,
+called the _final bearing._ It can be calculated as well:
+
+[source,php]
+----
+<?php
+
+use Location\Bearing\BearingEllipsoidal;
+use Location\Coordinate;
+use Location\Line;
+
+$line = new Line(
+    new Coordinate(52.5, 13.5),
+    new Coordinate(52.6, 13.4)
+);
+
+$bearing = $line->getFinalBearing(new BearingEllipsoidal());
+
+printf("The line has a final bearing of %.2f degrees\n", $bearing);
+----
+
+The code above will produce the output below:
+
+----
+The line has a final bearing of 328.59 degrees
+----
+
+See <<Bearing between two points>> for more information about bearings.
 
 === Polyline
 
@@ -629,6 +657,7 @@ $bearingCalculator = new BearingSpherical();
 
 $startTime = microtime(true);
 var_dump($bearingCalculator->calculateBearing($berlin, $london));
+var_dump($bearingCalculator->calculateFinalBearing($berlin, $london));
 $endTime = microtime(true);
 printf("Time elapsed: %0.6f s\n", ($endTime - $startTime));
 ----
@@ -637,7 +666,8 @@ The code above will produce the following output:
 
 ----
 double(268.60722336693)
-Time elapsed: 0.000268 s
+double(257.85494586285)
+Time elapsed: 0.000285 s
 ----
 
 ===== Calculation with an ellipsoidal earth model
@@ -656,6 +686,7 @@ $bearingCalculator = new BearingEllipsoidal();
 
 $startTime = microtime(true);
 var_dump($bearingCalculator->calculateBearing($berlin, $london));
+var_dump($bearingCalculator->calculateFinalBearing($berlin, $london));
 $endTime = microtime(true);
 printf("Time elapsed: %0.6f s\n", ($endTime - $startTime));
 ----
@@ -664,7 +695,8 @@ The code above will produce the following output:
 
 ----
 double(268.62436347111)
-Time elapsed: 0.000282 s
+double(257.87203657292)
+Time elapsed: 0.000304 s
 ----
 
 Both calculations finish in roughly the same time. One would expect the

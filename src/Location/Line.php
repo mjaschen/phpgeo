@@ -109,6 +109,16 @@ class Line implements GeometryInterface
     }
 
     /**
+     * @param \Location\Bearing\BearingInterface $bearingCalculator
+     *
+     * @return float
+     */
+    public function getFinalBearing(BearingInterface $bearingCalculator)
+    {
+        return $bearingCalculator->calculateFinalBearing($this->point1, $this->point2);
+    }
+
+    /**
      * Create a new instance with reversed point order, i. e. reversed direction.
      *
      * @return Line
