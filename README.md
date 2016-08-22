@@ -1,7 +1,5 @@
 # phpgeo - A Simple Geo Library for PHP
 
-[![Build Status](https://img.shields.io/travis/mjaschen/phpgeo.svg?style=flat-square)](https://travis-ci.org/mjaschen/phpgeo) [![Latest Stable Version](https://img.shields.io/packagist/v/mjaschen/phpgeo.svg?style=flat-square)](https://packagist.org/packages/mjaschen/phpgeo) [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mjaschen/phpgeo.svg?style=flat-square)](https://scrutinizer-ci.com/g/mjaschen/phpgeo/?branch=master)
-
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
 
 <!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
@@ -30,6 +28,8 @@ Minimum required PHP version is 5.4. PHP 5.3 compatibility was dropped with rele
 
 The documentation is available at https://phpgeo.marcusjaschen.de/
 
+API documentation is available as well: https://phpgeo.marcusjaschen.de/api/
+
 ## Installation
 
 Using [Composer](https://getcomposer.org), just add it to your `composer.json` by running:
@@ -40,7 +40,7 @@ composer require mjaschen/phpgeo
 
 ## Features
 
-**Info:** Please visit the [documentation site](https://phpgeo.marcusjaschen.de/) for complete and up-to-date documentation!
+**Info:** Please visit the **[documentation site](https://phpgeo.marcusjaschen.de/)** for complete and up-to-date documentation!
 
 phpgeo provides the following features (follow the links for examples):
 
