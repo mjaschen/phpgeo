@@ -106,7 +106,7 @@ class Simplify
      * @param Coordinate $point
      * @param Line $line
      *
-     * @return number
+     * @return float
      */
     protected function getPerpendicularDistance(Coordinate $point, Line $line)
     {
