@@ -71,7 +71,7 @@ class Simplify
      *
      * @return array
      */
-    protected function douglasPeucker($line = [], $tolerance)
+    protected function douglasPeucker(array $line, $tolerance)
     {
         $distanceMax = 0;
         $index       = 0;
