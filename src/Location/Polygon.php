@@ -49,7 +49,7 @@ class Polygon implements GeometryInterface
     /**
      * Return all polygon point's latitudes.
      *
-     * @return float
+     * @return float[]
      */
     public function getLats()
     {
@@ -65,7 +65,7 @@ class Polygon implements GeometryInterface
     /**
      * Return all polygon point's longitudes.
      *
-     * @return float
+     * @return float[]
      */
     public function getLngs()
     {
