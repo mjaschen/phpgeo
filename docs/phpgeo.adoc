@@ -11,7 +11,7 @@ v1.3.5, 2016-08-19
 
 _phpgeo_ is a small PHP library which provides abstractions to geographical
 coordinates (including support for different ellipsoids), polylines
-("GPS Tracks"), polygons, bounds, and more. phpgeo allows you to perform
+("GPS Tracks"), polygons, bounds, and more. _phpgeo_ allows you to perform
 different calculations with these abstractions, as distances, track
 lengths, etc.
 
@@ -1130,4 +1130,3 @@ echo $point->format(new DecimalDegrees());
 The code above produces the output below:
 
     52.22830 20.97560
-
