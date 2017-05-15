@@ -43,7 +43,7 @@ Using [Composer](https://getcomposer.org), just add it to your `composer.json` b
         }
     ],
     "require": {
-        "lucmousinho/phpgeo"
+        "lucmousinho/phpgeo": "^1.3"
     }
 }
 ```
