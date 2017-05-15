@@ -1,5 +1,5 @@
 {
-    "name": "mjaschen/phpgeo",
+    "name": "lucmousinho/phpgeo",
     "description": "Simple Geo Library",
     "keywords": [
         "distance",
@@ -27,13 +27,13 @@
     "license": "GPL",
     "authors": [
         {
-            "name": "Marcus Jaschen",
-            "email": "mjaschen@gmail.com",
+            "name": "Marcus Jaschen, Lucas Mousinho",
+            "email": "mjaschen@gmail.com, lucmousinho@gmail.com",
             "homepage": "https://www.marcusjaschen.de/"
         }
     ],
     "support" : {
-        "email" : "mjaschen@gmail.com"
+        "email" : "lucmousinho@gmail.com"
     },
     "require": {
         "php": ">=5.4.0"
