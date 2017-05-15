@@ -35,7 +35,17 @@ API documentation is available as well: https://phpgeo.marcusjaschen.de/api/
 Using [Composer](https://getcomposer.org), just add it to your `composer.json` by running:
 
 ```
-composer require mjaschen/phpgeo
+{
+    "repositories": [
+        {
+            "url": "https://github.com/lucmousinho/phpgeo.git",
+            "type": "git"
+        }
+    ],
+    "require": {
+        "lucmousinho/phpgeo"
+    }
+}
 ```
 
 ## Features
