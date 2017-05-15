@@ -60,15 +60,18 @@ class PerpendicularDistance
 
         $length = sqrt($normalizedX * $normalizedX + $normalizedY * $normalizedY + $normalizedZ * $normalizedZ);
 
-        $normalizedX /= $length;
-        $normalizedY /= $length;
-        $normalizedZ /= $length;
+        if ($length > 0) {
+            $normalizedX /= $length;
+            $normalizedY /= $length;
+            $normalizedZ /= $length;
+        }
 
         $thetaPoint = $normalizedX * $pointX + $normalizedY * $pointY + $normalizedZ * $pointZ;
 
         $length = sqrt($pointX * $pointX + $pointY * $pointY + $pointZ * $pointZ);
 
-        $thetaPoint /= $length;
+        if ($length > 0)
+            $thetaPoint /= $length;
 
         $distance = abs((M_PI / 2) - acos($thetaPoint));
 
