@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.3.7] - 2017-07-01
+
+### Fixed
+
+* GeoJSON output for polygon is now compliant with RFC 7946. Thanks to @arsonik
+
 ## [1.3.5] - 2016-08-19
 
 ### Added
