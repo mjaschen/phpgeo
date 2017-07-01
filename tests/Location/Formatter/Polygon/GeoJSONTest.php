@@ -31,7 +31,7 @@ class GeoJSONTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
+     * @covers \Location\Formatter\Coordinate\DecimalDegrees::format
      */
     public function testFormatDefault()
     {
@@ -41,7 +41,7 @@ class GeoJSONTest extends \PHPUnit_Framework_TestCase
         $polygon->addPoint(new Coordinate(30, 40));
         $polygon->addPoint(new Coordinate(30, 20));
 
-        $json = '{ "type" : "Polygon" , "coordinates" : [ [ 20, 10 ], [ 40, 20 ], [ 40, 30 ], [ 20, 30] ] }';
+        $json = '{ "type" : "Polygon" , "coordinates" : [ [ [ 20, 10 ], [ 40, 20 ], [ 40, 30 ], [ 20, 30] ] ] }';
 
         $this->assertJsonStringEqualsJsonString($json, $this->formatter->format($polygon));
     }
