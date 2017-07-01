@@ -36,7 +36,7 @@ class GeoJSON implements FormatterInterface
         return json_encode(
             [
                 'type'        => 'Polygon',
-                'coordinates' => $points,
+                'coordinates' => [$points],
             ]
         );
     }
