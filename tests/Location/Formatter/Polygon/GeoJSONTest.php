@@ -45,4 +45,16 @@ class GeoJSONTest extends \PHPUnit_Framework_TestCase
 
         $this->assertJsonStringEqualsJsonString($json, $this->formatter->format($polygon));
     }
+
+    /**
+     * @expectedException \Location\Exception\InvalidPolygonException
+     */
+    public function testPolygonGeoJSONWithLessThanThreePointsThrowsInvalidPolygonException()
+    {
+        $polygon = new Polygon();
+        $polygon->addPoint(new Coordinate(0, 0));
+        $polygon->addPoint(new Coordinate(10, 10));
+
+        $this->formatter->format($polygon);
+    }
 }
