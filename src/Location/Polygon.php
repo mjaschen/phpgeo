@@ -210,25 +210,37 @@ class Polygon implements GeometryInterface
      * Calculates the polygon area.
      *
      * @return float
-     *
-     * @fixme This calculation gives wrong results, please don't use it!
      */
     public function getArea()
     {
-        $area = 0.0;
+        $area = 0;
 
-        $numberOfPoints = $this->getNumberOfPoints();
-        if ($numberOfPoints < 2) {
-            return $area;
-        }
+		$numberOfPoints = $this->getNumberOfPoints();
 
-        foreach ($this->points as $key => $point) {
-            $j = ($key + 1) % $numberOfPoints;
-            $area += ($this->points[$j]->getLng() * $point->getLat())
-                     - ($point->getLng() * $this->points[$j]->getLat());
-        }
+		if ($numberOfPoints > 2) {
 
-        return abs($area / 2) * $this->points[0]->getEllipsoid()->getA();
+			$referencePoint = $this->points[0];
+			$radius = $referencePoint->getEllipsoid()->getArithmeticMeanRadius();
+			$segments = $this->getSegments();
+
+			foreach ($segments as $segment) {
+				$point1 = $segment->getPoint1();
+				$point2 = $segment->getPoint2();
+
+				$x1 = deg2rad($point1->getLng() - $referencePoint->getLng()) * cos(deg2rad($point1->getLat()));
+				$y1 = deg2rad($point1->getLat() - $referencePoint->getLat());
+
+				$x2 = deg2rad($point2->getLng() - $referencePoint->getLng()) * cos(deg2rad($point2->getLat()));
+				$y2 = deg2rad($point2->getLat() - $referencePoint->getLat());
+
+				$area += ($x2 * $y1 - $x1 * $y2);
+			}
+
+			$area *= 0.5 * pow($radius, 2);
+			$area = abs($area);
+		}
+
+		return $area;
     }
 
     /**
