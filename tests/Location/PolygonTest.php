@@ -195,19 +195,17 @@ class PolygonTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(358367.809428, $polygon->getPerimeter(new Vincenty()), '', 0.01);
     }
 
-    /*
     public function testIfAreaCalculationWorksAsExpected()
     {
         $polygon = new Polygon();
-        $polygon->addPoint(new Coordinate(52, 13));
-        $polygon->addPoint(new Coordinate(53, 13));
-        $polygon->addPoint(new Coordinate(53, 12));
-        $polygon->addPoint(new Coordinate(52, 12));
+        $polygon->addPoint(new Coordinate(0.0000000000, 0.0000000000));
+        $polygon->addPoint(new Coordinate(0.0000000000, 0.0008983153));
+        $polygon->addPoint(new Coordinate(0.0009043695, 0.0008983153));
+        $polygon->addPoint(new Coordinate(0.0009043695, 0.0000000000));
 
-        // http://geographiclib.sourceforge.net/cgi-bin/Planimeter?type=polygon&rhumb=geodesic&input=52.00000000000000000+13.00000000000000000%0D%0A53.00000000000000000+13.00000000000000000%0D%0A53.00000000000000000+12.00000000000000000%0D%0A52.00000000000000000+12.00000000000000000&norm=decdegrees&option=Submit
-        $this->assertEquals(7556565706.2, $polygon->getArea(), 0.01);
+        // https://geographiclib.sourceforge.io/cgi-bin/Planimeter?type=polygon&rhumb=geodesic&input=0.0000000000+0.0000000000%0D%0A0.0000000000+0.0008983153%0D%0A0.0009043695+0.0008983153%0D%0A0.0009043695+0.0000000000&norm=decdegrees&option=Submit
+        //$this->assertEquals(10000.0, $polygon->getArea(), '', 1.0);
     }
-    */
 
     public function testIfPolygonContainsGeometryWithPolygonInsideWorksAsExpected()
     {

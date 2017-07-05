@@ -209,38 +209,43 @@ class Polygon implements GeometryInterface
     /**
      * Calculates the polygon area.
      *
+     * This algorithm gives inaccurate results as it ignores
+     * ellipsoid parameters other than to arithmetic mean radius.
+     * The error should be < 1 % for small areas.
+     *
      * @return float
      */
     public function getArea()
     {
         $area = 0;
 
-		$numberOfPoints = $this->getNumberOfPoints();
+        if ($this->getNumberOfPoints() <= 2) {
+            return $area;
+        }
 
-		if ($numberOfPoints > 2) {
+        $referencePoint = $this->points[0];
+        $radius = $referencePoint->getEllipsoid()->getArithmeticMeanRadius();
+        $segments = $this->getSegments();
 
-			$referencePoint = $this->points[0];
-			$radius = $referencePoint->getEllipsoid()->getArithmeticMeanRadius();
-			$segments = $this->getSegments();
+        foreach ($segments as $segment) {
+            /** @var Coordinate $point1 */
+            $point1 = $segment->getPoint1();
+            /** @var Coordinate $point2 */
+            $point2 = $segment->getPoint2();
 
-			foreach ($segments as $segment) {
-				$point1 = $segment->getPoint1();
-				$point2 = $segment->getPoint2();
+            $x1 = deg2rad($point1->getLng() - $referencePoint->getLng()) * cos(deg2rad($point1->getLat()));
+            $y1 = deg2rad($point1->getLat() - $referencePoint->getLat());
 
-				$x1 = deg2rad($point1->getLng() - $referencePoint->getLng()) * cos(deg2rad($point1->getLat()));
-				$y1 = deg2rad($point1->getLat() - $referencePoint->getLat());
+            $x2 = deg2rad($point2->getLng() - $referencePoint->getLng()) * cos(deg2rad($point2->getLat()));
+            $y2 = deg2rad($point2->getLat() - $referencePoint->getLat());
 
-				$x2 = deg2rad($point2->getLng() - $referencePoint->getLng()) * cos(deg2rad($point2->getLat()));
-				$y2 = deg2rad($point2->getLat() - $referencePoint->getLat());
+            $area += ($x2 * $y1 - $x1 * $y2);
+        }
 
-				$area += ($x2 * $y1 - $x1 * $y2);
-			}
+        $area *= 0.5 * pow($radius, 2);
+        $area = abs($area);
 
-			$area *= 0.5 * pow($radius, 2);
-			$area = abs($area);
-		}
-
-		return $area;
+        return $area;
     }
 
     /**
