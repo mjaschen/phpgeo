@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.3.8] - 2017-07-05
+
+### Fixed
+
+* Area calculation for polygons works now. Thanks to @felixveysseyre
+
 ## [1.3.7] - 2017-07-01
 
 ### Fixed
