@@ -3,6 +3,7 @@
     "description": "Simple Geo Library",
     "keywords": [
         "distance",
+        "area",
         "coordinate",
         "geo",
         "gis",
@@ -19,6 +20,7 @@
         "bearing",
         "projection",
         "gps",
+        "earth",
         "track",
         "point"
     ],

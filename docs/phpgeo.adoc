@@ -388,6 +388,41 @@ The code above will produce the output below:
 
 Length calculation is described in the <<Distance and Length>> section.
 
+==== Area
+
+It's possible to calculate the area of an polygon. The result is given in square meters (m²).
+
+WARNING: The calculation gives inaccurate results. For relatively small polygons the error should be less than 1 %.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+use Location\Polygon;
+
+$formatter = new \Location\Formatter\Coordinate\DecimalDegrees(' ', 10);
+
+$polygon = new Polygon();
+$polygon->addPoint(new Coordinate(0.0000000000, 0.0000000000));
+$polygon->addPoint(new Coordinate(0.0000000000, 0.0008983153));
+$polygon->addPoint(new Coordinate(0.0009043695, 0.0008983153));
+$polygon->addPoint(new Coordinate(0.0009043695, 0.0000000000));
+
+printf(
+    'Polygon Area = %f m², Perimeter = %f m%s',
+    $polygon->getArea(),
+    $polygon->getPerimeter(new \Location\Distance\Vincenty()),
+    PHP_EOL
+);
+----
+
+The code above produces the output below:
+
+----
+Polygon Area = 10044.905261 m², Perimeter = 400.000000 m
+----
+
 ==== Geofence
 
 It's possible to check if a geometry object (point, line, polyline,
