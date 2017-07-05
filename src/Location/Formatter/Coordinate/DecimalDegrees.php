@@ -26,11 +26,18 @@ class DecimalDegrees implements FormatterInterface
     protected $separator;
 
     /**
-     * @param string $separator
+     * @var int
      */
-    public function __construct($separator = " ")
+    protected $digits = 5;
+
+    /**
+     * @param string $separator
+     * @param int $digits
+     */
+    public function __construct($separator = ' ', $digits = 5)
     {
         $this->setSeparator($separator);
+        $this->digits = $digits;
     }
 
     /**
@@ -40,7 +47,7 @@ class DecimalDegrees implements FormatterInterface
      */
     public function format(Coordinate $coordinate)
     {
-        return sprintf("%.5f%s%.5f", $coordinate->getLat(), $this->separator, $coordinate->getLng());
+        return sprintf("%.{$this->digits}f%s%.{$this->digits}f", $coordinate->getLat(), $this->separator, $coordinate->getLng());
     }
 
     /**
