@@ -9,6 +9,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 * License: *phpgeo* is now distributed under the MIT license
 
+### Removed
+
+* deprecated class `Simplify` was removed; alternatives: `SimplifyBearing` or `SimplifyDouglasPeucker`
+
 ## [1.3.8] - 2017-07-05
 
 ### Fixed
