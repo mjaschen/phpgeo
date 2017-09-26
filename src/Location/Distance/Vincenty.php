@@ -3,7 +3,7 @@
  * Implementation of distance calculation with Vincenty Method
  *
  * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/mjaschen/phpgeo
  */
 
@@ -19,7 +19,7 @@ use Location\Exception\NotMatchingEllipsoidException;
  * @see      http://www.movable-type.co.uk/scripts/latlong-vincenty.html
  *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @license  https://opensource.org/licenses/MIT
  * @link     https://github.com/mjaschen/phpgeo
  */
 class Vincenty implements DistanceInterface

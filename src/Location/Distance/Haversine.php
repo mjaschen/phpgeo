@@ -3,7 +3,7 @@
  * Implementation of distance calculation with http://en.wikipedia.org/wiki/Law_of_haversines
  *
  * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/mjaschen/phpgeo
  */
 
@@ -19,7 +19,7 @@ use Location\Exception\NotMatchingEllipsoidException;
  * @see      http://en.wikipedia.org/wiki/Law_of_haversines
  *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @license  https://opensource.org/licenses/MIT
  * @link     https://github.com/mjaschen/phpgeo
  */
 class Haversine implements DistanceInterface

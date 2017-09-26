@@ -3,7 +3,7 @@
  * Interface for simplifying a polyline
  *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @license  https://opensource.org/licenses/MIT
  * @link     https://github.com/mjaschen/phpgeo
  */
 
@@ -15,7 +15,7 @@ use Location\Polyline;
  * Interface for simplifying a polyline
  *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @license  https://opensource.org/licenses/MIT
  * @link     https://github.com/mjaschen/phpgeo
  */
 interface SimplifyInterface

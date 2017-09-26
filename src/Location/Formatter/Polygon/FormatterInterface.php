@@ -4,7 +4,7 @@
  *
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @author    Richard Barnes <rbarnes@umn.edu>
- * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/mjaschen/phpgeo
  */
 
@@ -17,7 +17,7 @@ use Location\Polygon;
  *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
  * @author   Richard Barnes <rbarnes@umn.edu>
- * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @license  https://opensource.org/licenses/MIT
  * @link     https://github.com/mjaschen/phpgeo
  */
 interface FormatterInterface

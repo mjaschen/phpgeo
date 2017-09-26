@@ -6,7 +6,7 @@
  *
  * @author    Paul Vidal <paul.vidal.lujan@gmail.com>
  * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/mjaschen/phpgeo
  */
 
@@ -20,7 +20,7 @@ use Location\Formatter\Polygon\FormatterInterface;
  *
  * @author   Paul Vidal <paul.vidal.lujan@gmail.com>
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @license  https://opensource.org/licenses/MIT
  * @link     https://github.com/mjaschen/phpgeo
  */
 class Polygon implements GeometryInterface

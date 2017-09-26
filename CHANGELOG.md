@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.0.0]
+
+### Changed
+
+* License: *phpgeo* is now distributed under the MIT license
+
 ## [1.3.8] - 2017-07-05
 
 ### Fixed

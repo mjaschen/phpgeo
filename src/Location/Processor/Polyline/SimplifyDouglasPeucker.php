@@ -9,7 +9,7 @@
  * http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php
  *
  * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/GPL-3.0 GPL
+ * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/mjaschen/phpgeo
  */
 
@@ -23,7 +23,7 @@ use Location\Utility\PerpendicularDistance;
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
  * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/GPL-3.0 GPL
+ * @license  https://opensource.org/licenses/MIT
  * @link     https://github.com/mjaschen/phpgeo
  */
 class SimplifyDouglasPeucker implements SimplifyInterface
