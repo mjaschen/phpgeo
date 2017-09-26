@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Polyline Implementation
  *
@@ -39,7 +41,7 @@ class Polyline implements GeometryInterface
     /**
      * @return array
      */
-    public function getPoints()
+    public function getPoints(): array
     {
         return $this->points;
     }
@@ -47,7 +49,7 @@ class Polyline implements GeometryInterface
     /**
      * @return int
      */
-    public function getNumberOfPoints()
+    public function getNumberOfPoints(): int
     {
         return count($this->points);
     }
@@ -65,7 +67,7 @@ class Polyline implements GeometryInterface
     /**
      * @return array
      */
-    public function getSegments()
+    public function getSegments(): array
     {
         $segments = [];
 
@@ -90,7 +92,7 @@ class Polyline implements GeometryInterface
      *
      * @return float
      */
-    public function getLength(DistanceInterface $calculator)
+    public function getLength(DistanceInterface $calculator): float
     {
         $distance = 0.0;
 
@@ -111,7 +113,7 @@ class Polyline implements GeometryInterface
      *
      * @return Polyline
      */
-    public function getReverse()
+    public function getReverse(): Polyline
     {
         $reversed = new static();
 

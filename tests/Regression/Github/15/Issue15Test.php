@@ -2,6 +2,9 @@
 
 class Issue15Test extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @see https://github.com/mjaschen/phpgeo/issues/15
+     */
     public function testIfIssue15IsFixed()
     {
         $data = [
@@ -72,8 +75,8 @@ class Issue15Test extends \PHPUnit_Framework_TestCase
             $polyline->addPoint(new \Location\Coordinate($point[0], $point[1]));
         }
 
-        $processor  = new \Location\Processor\Polyline\Simplify($polyline);
-        $simplified = $processor->simplify(2);
+        $processor  = new \Location\Processor\Polyline\SimplifyDouglasPeucker(2);
+        $simplified = $processor->simplify($polyline);
 
         $firstPoint = new \Location\Coordinate(20.6579781231, -103.422906054);
         $lastPoint = new \Location\Coordinate(20.6610790881, -103.421889792);

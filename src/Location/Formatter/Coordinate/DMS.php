@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Coordinate Formatter "DMS"
  *
@@ -56,7 +58,7 @@ class DMS implements FormatterInterface
     /**
      * @param string $separator
      */
-    public function __construct($separator = " ")
+    public function __construct(string $separator = ' ')
     {
         $this->setSeparator($separator);
         $this->useCardinalLetters(false);
@@ -68,9 +70,9 @@ class DMS implements FormatterInterface
      *
      * @param $separator
      *
-     * @return $this
+     * @return DMS
      */
-    public function setSeparator($separator)
+    public function setSeparator(string $separator): DMS
     {
         $this->separator = $separator;
 
@@ -80,9 +82,9 @@ class DMS implements FormatterInterface
     /**
      * @param bool $value
      *
-     * @return $this
+     * @return DMS
      */
-    public function useCardinalLetters($value)
+    public function useCardinalLetters(bool $value): DMS
     {
         $this->useCardinalLetters = $value;
 
@@ -92,15 +94,18 @@ class DMS implements FormatterInterface
     /**
      * @param string $type
      *
+     * @return DMS
      * @throws \InvalidArgumentException
      */
-    public function setUnits($type)
+    public function setUnits(string $type): DMS
     {
         if (! array_key_exists($type, $this->units)) {
-            throw new \InvalidArgumentException("Invalid unit type");
+            throw new \InvalidArgumentException('Invalid unit type');
         }
 
         $this->unitType = $type;
+
+        return $this;
     }
 
     /**
@@ -108,29 +113,29 @@ class DMS implements FormatterInterface
      *
      * @return string
      */
-    public function format(Coordinate $coordinate)
+    public function format(Coordinate $coordinate): string
     {
         $lat = $coordinate->getLat();
         $lng = $coordinate->getLng();
 
         $latValue   = abs($lat);
-        $latDegrees = intval($latValue);
+        $latDegrees = (int)$latValue;
 
         $latMinutesDecimal = $latValue - $latDegrees;
-        $latMinutes        = intval(60 * $latMinutesDecimal);
+        $latMinutes        = (int)(60 * $latMinutesDecimal);
 
         $latSeconds = 60 * (60 * $latMinutesDecimal - $latMinutes);
 
         $lngValue   = abs($lng);
-        $lngDegrees = intval($lngValue);
+        $lngDegrees = (int)$lngValue;
 
         $lngMinutesDecimal = $lngValue - $lngDegrees;
-        $lngMinutes        = intval(60 * $lngMinutesDecimal);
+        $lngMinutes        = (int)(60 * $lngMinutesDecimal);
 
         $lngSeconds = 60 * (60 * $lngMinutesDecimal - $lngMinutes);
 
         return sprintf(
-            "%s%02d%s %02d%s %02d%s%s%s%s%03d%s %02d%s %02d%s%s",
+            '%s%02d%s %02d%s %02d%s%s%s%s%03d%s %02d%s %02d%s%s',
             $this->getLatPrefix($lat),
             abs($latDegrees),
             $this->units[$this->unitType]['deg'],
@@ -152,11 +157,11 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param $lat
+     * @param float $lat
      *
      * @return string
      */
-    protected function getLatPrefix($lat)
+    protected function getLatPrefix(float $lat): string
     {
         if ($this->useCardinalLetters || $lat >= 0) {
             return '';
@@ -166,11 +171,11 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param $lng
+     * @param float $lng
      *
      * @return string
      */
-    protected function getLngPrefix($lng)
+    protected function getLngPrefix(float $lng): string
     {
         if ($this->useCardinalLetters || $lng >= 0) {
             return '';
@@ -180,11 +185,11 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param $lat
+     * @param float $lat
      *
      * @return string
      */
-    protected function getLatSuffix($lat)
+    protected function getLatSuffix(float $lat): string
     {
         if (! $this->useCardinalLetters) {
             return '';
@@ -198,11 +203,11 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param $lng
+     * @param float $lng
      *
      * @return string
      */
-    protected function getLngSuffix($lng)
+    protected function getLngSuffix(float $lng): string
     {
         if (! $this->useCardinalLetters) {
             return '';

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Implementation of distance calculation with Vincenty Method
  *
@@ -33,10 +35,10 @@ class Vincenty implements DistanceInterface
      *
      * @return float
      */
-    public function getDistance(Coordinate $point1, Coordinate $point2)
+    public function getDistance(Coordinate $point1, Coordinate $point2): float
     {
         if ($point1->getEllipsoid() != $point2->getEllipsoid()) {
-            throw new NotMatchingEllipsoidException("The ellipsoids for both coordinates must match");
+            throw new NotMatchingEllipsoidException('The ellipsoids for both coordinates must match');
         }
 
         $lat1 = deg2rad($point1->getLat());
@@ -93,7 +95,7 @@ class Vincenty implements DistanceInterface
             $lambda = $L + (1 - $C) * $f * $sinAlpha * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM)));
         } while (abs($lambda - $lambdaP) > 1e-12 && -- $iterationLimit > 0);
 
-        if ($iterationLimit == 0) {
+        if ($iterationLimit === 0) {
             throw new NotConvergingException();
         }
 
@@ -103,6 +105,6 @@ class Vincenty implements DistanceInterface
         $deltaSigma = $B * $sinSigma * ($cos2SigmaM + $B / 4 * ($cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM) - $B / 6 * $cos2SigmaM * (- 3 + 4 * $sinSigma * $sinSigma) * (- 3 + 4 * $cos2SigmaM * $cos2SigmaM)));
         $s          = $b * $A * ($sigma - $deltaSigma);
 
-        return (round($s, 3));
+        return round($s, 3);
     }
 }

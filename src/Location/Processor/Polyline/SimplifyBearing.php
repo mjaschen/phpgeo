@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Simplify Polyline
  *
@@ -31,7 +33,7 @@ class SimplifyBearing implements SimplifyInterface
      *
      * @param float $bearingAngle
      */
-    public function __construct($bearingAngle)
+    public function __construct(float $bearingAngle)
     {
         $this->bearingAngle = $bearingAngle;
     }
@@ -49,7 +51,7 @@ class SimplifyBearing implements SimplifyInterface
      *
      * @return Polyline
      */
-    public function simplify(Polyline $polyline)
+    public function simplify(Polyline $polyline): Polyline
     {
         $counterPoints = $polyline->getNumberOfPoints();
 

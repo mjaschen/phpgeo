@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
@@ -36,7 +38,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     /**
      * @param float $tolerance the perpendicular distance threshold in meters
      */
-    public function __construct($tolerance)
+    public function __construct(float $tolerance)
     {
         $this->tolerance = $tolerance;
     }
@@ -46,7 +48,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
      *
      * @return \Location\Polyline
      */
-    public function simplify(Polyline $polyline)
+    public function simplify(Polyline $polyline): Polyline
     {
         $resultPolyline = new Polyline();
         $simplifiedLine = $this->douglasPeucker($polyline->getPoints());
@@ -63,7 +65,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
      *
      * @return array
      */
-    protected function douglasPeucker(array $line)
+    protected function douglasPeucker(array $line): array
     {
         $distanceMax = 0;
         $index       = 0;
@@ -72,7 +74,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
 
         $pdCalc = new PerpendicularDistance();
 
-        for ($i = 1; $i <= ($lineSize - 1); $i ++) {
+        for ($i = 1; $i <= ($lineSize - 1); $i++) {
             $distance = $pdCalc->getPerpendicularDistance($line[$i], new Line($line[0], $line[$lineSize - 1]));
 
             if ($distance > $distanceMax) {
@@ -85,7 +87,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
             $lineSplitFirst  = array_slice($line, 0, $index);
             $lineSplitSecond = array_slice($line, $index, $lineSize);
 
-            $resultsSplit1  = $this->douglasPeucker($lineSplitFirst);
+            $resultsSplit1 = $this->douglasPeucker($lineSplitFirst);
             $resultsSplit2 = $this->douglasPeucker($lineSplitSecond);
 
             array_pop($resultsSplit1);

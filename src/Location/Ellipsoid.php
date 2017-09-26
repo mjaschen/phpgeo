@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Ellipsoid
  *
@@ -56,11 +58,11 @@ class Ellipsoid
     ];
 
     /**
-     * @param $name
-     * @param $a
-     * @param $f
+     * @param string $name
+     * @param float $a
+     * @param float $f
      */
-    public function __construct($name, $a, $f)
+    public function __construct(string $name, float $a, float $f)
     {
         $this->name = $name;
         $this->a    = $a;
@@ -72,7 +74,7 @@ class Ellipsoid
      *
      * @return Ellipsoid
      */
-    public static function createDefault($name = 'WGS-84')
+    public static function createDefault($name = 'WGS-84'): Ellipsoid
     {
         return static::createFromArray(static::$configs[$name]);
     }
@@ -82,7 +84,7 @@ class Ellipsoid
      *
      * @return Ellipsoid
      */
-    public static function createFromArray($config)
+    public static function createFromArray($config): Ellipsoid
     {
         return new static($config['name'], $config['a'], $config['f']);
     }
@@ -90,7 +92,7 @@ class Ellipsoid
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -98,7 +100,7 @@ class Ellipsoid
     /**
      * @return float
      */
-    public function getA()
+    public function getA(): float
     {
         return $this->a;
     }
@@ -108,7 +110,7 @@ class Ellipsoid
      *
      * @return float
      */
-    public function getB()
+    public function getB(): float
     {
         return $this->a * (1 - 1 / $this->f);
     }
@@ -116,7 +118,7 @@ class Ellipsoid
     /**
      * @return float
      */
-    public function getF()
+    public function getF(): float
     {
         return $this->f;
     }
@@ -128,7 +130,7 @@ class Ellipsoid
      *
      * @return float
      */
-    public function getArithmeticMeanRadius()
+    public function getArithmeticMeanRadius(): float
     {
         return $this->a * (1 - 1 / $this->f / 3);
     }

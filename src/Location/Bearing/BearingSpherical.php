@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Calculation of bearing between two points using a
  * simple spherical model of the earth.
@@ -25,7 +27,7 @@ class BearingSpherical implements BearingInterface
     /**
      * Earth radius in meters.
      */
-    const EARTH_RADIUS = 6371009;
+    const EARTH_RADIUS = 6371009.0;
 
     /**
      * This method calculates the initial bearing between the
@@ -36,7 +38,7 @@ class BearingSpherical implements BearingInterface
      *
      * @return float Bearing Angle
      */
-    public function calculateBearing(Coordinate $point1, Coordinate $point2)
+    public function calculateBearing(Coordinate $point1, Coordinate $point2): float
     {
         $lat1 = deg2rad($point1->getLat());
         $lat2 = deg2rad($point2->getLat());
@@ -63,7 +65,7 @@ class BearingSpherical implements BearingInterface
      *
      * @return float
      */
-    public function calculateFinalBearing(Coordinate $point1, Coordinate $point2)
+    public function calculateFinalBearing(Coordinate $point1, Coordinate $point2): float
     {
         $initialBearing = $this->calculateBearing($point2, $point1);
 
@@ -79,8 +81,9 @@ class BearingSpherical implements BearingInterface
      * @param float $distance the distance to the destination point in meters
      *
      * @return Coordinate
+     * @throws \InvalidArgumentException
      */
-    public function calculateDestination(Coordinate $point, $bearing, $distance)
+    public function calculateDestination(Coordinate $point, float $bearing, float $distance): Coordinate
     {
         $D = $distance / static::EARTH_RADIUS;
         $B = deg2rad($bearing);

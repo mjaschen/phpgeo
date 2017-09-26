@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Coordinate Formatter Interface
  *
@@ -25,5 +27,5 @@ interface FormatterInterface
      *
      * @return mixed
      */
-    public function format(Coordinate $coordinate);
+    public function format(Coordinate $coordinate): string;
 }

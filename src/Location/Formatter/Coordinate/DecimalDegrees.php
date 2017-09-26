@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Coordinate Formatter "Decimal Degrees"
  *
@@ -34,7 +36,7 @@ class DecimalDegrees implements FormatterInterface
      * @param string $separator
      * @param int $digits
      */
-    public function __construct($separator = ' ', $digits = 5)
+    public function __construct(string $separator = ' ', int $digits = 5)
     {
         $this->setSeparator($separator);
         $this->digits = $digits;
@@ -45,9 +47,14 @@ class DecimalDegrees implements FormatterInterface
      *
      * @return string
      */
-    public function format(Coordinate $coordinate)
+    public function format(Coordinate $coordinate): string
     {
-        return sprintf("%.{$this->digits}f%s%.{$this->digits}f", $coordinate->getLat(), $this->separator, $coordinate->getLng());
+        return sprintf(
+            "%.{$this->digits}f%s%.{$this->digits}f",
+            $coordinate->getLat(),
+            $this->separator,
+            $coordinate->getLng()
+        );
     }
 
     /**
@@ -57,7 +64,7 @@ class DecimalDegrees implements FormatterInterface
      *
      * @return $this
      */
-    public function setSeparator($separator)
+    public function setSeparator(string $separator): DecimalDegrees
     {
         $this->separator = $separator;
 

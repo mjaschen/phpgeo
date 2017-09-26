@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Polygon Formatter Interface
  *
@@ -25,7 +27,7 @@ interface FormatterInterface
     /**
      * @param Polygon $polygon
      *
-     * @return mixed
+     * @return string
      */
-    public function format(Polygon $polygon);
+    public function format(Polygon $polygon): string;
 }

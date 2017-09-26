@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Coordinate Formatter "DecimalMinutes"
  *
@@ -67,7 +69,7 @@ class DecimalMinutes implements FormatterInterface
     /**
      * @param string $separator
      */
-    public function __construct($separator = " ")
+    public function __construct(string $separator = ' ')
     {
         $this->setSeparator($separator);
         $this->useCardinalLetters(false);
@@ -81,7 +83,7 @@ class DecimalMinutes implements FormatterInterface
      *
      * @return DecimalMinutes
      */
-    public function setSeparator($separator)
+    public function setSeparator(string $separator): DecimalMinutes
     {
         $this->separator = $separator;
 
@@ -93,7 +95,7 @@ class DecimalMinutes implements FormatterInterface
      *
      * @return DecimalMinutes
      */
-    public function useCardinalLetters($value)
+    public function useCardinalLetters(bool $value): DecimalMinutes
     {
         $this->useCardinalLetters = $value;
 
@@ -103,15 +105,18 @@ class DecimalMinutes implements FormatterInterface
     /**
      * @param string $type
      *
+     * @return DecimalMinutes
      * @throws \InvalidArgumentException
      */
-    public function setUnits($type)
+    public function setUnits(string $type): DecimalMinutes
     {
         if (! array_key_exists($type, $this->units)) {
-            throw new \InvalidArgumentException("Invalid unit type");
+            throw new \InvalidArgumentException('Invalid unit type');
         }
 
         $this->unitType = $type;
+
+        return $this;
     }
 
     /**
@@ -119,7 +124,7 @@ class DecimalMinutes implements FormatterInterface
      *
      * @return DecimalMinutes
      */
-    public function setDigits($digits)
+    public function setDigits(int $digits): DecimalMinutes
     {
         $this->digits = $digits;
 
@@ -131,7 +136,7 @@ class DecimalMinutes implements FormatterInterface
      *
      * @return DecimalMinutes
      */
-    public function setDecimalPoint($decimalPoint)
+    public function setDecimalPoint(string $decimalPoint): DecimalMinutes
     {
         $this->decimalPoint = $decimalPoint;
 
@@ -143,25 +148,25 @@ class DecimalMinutes implements FormatterInterface
      *
      * @return string
      */
-    public function format(Coordinate $coordinate)
+    public function format(Coordinate $coordinate): string
     {
         $lat = $coordinate->getLat();
         $lng = $coordinate->getLng();
 
         $latValue   = abs($lat);
-        $latDegrees = intval($latValue);
+        $latDegrees = (int)$latValue;
 
         $latMinutesDecimal = $latValue - $latDegrees;
         $latMinutes        = 60 * $latMinutesDecimal;
 
         $lngValue   = abs($lng);
-        $lngDegrees = intval($lngValue);
+        $lngDegrees = (int)$lngValue;
 
         $lngMinutesDecimal = $lngValue - $lngDegrees;
         $lngMinutes        = 60 * $lngMinutesDecimal;
 
         return sprintf(
-            "%s%02d%s %s%s%s%s%s%03d%s %s%s%s",
+            '%s%02d%s %s%s%s%s%s%03d%s %s%s%s',
             $this->getLatPrefix($lat),
             abs($latDegrees),
             $this->units[$this->unitType]['deg'],
@@ -179,11 +184,11 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param $lat
+     * @param float $lat
      *
      * @return string
      */
-    protected function getLatPrefix($lat)
+    protected function getLatPrefix(float $lat): string
     {
         if ($this->useCardinalLetters || $lat >= 0) {
             return '';
@@ -193,11 +198,11 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param $lng
+     * @param float $lng
      *
      * @return string
      */
-    protected function getLngPrefix($lng)
+    protected function getLngPrefix(float $lng): string
     {
         if ($this->useCardinalLetters || $lng >= 0) {
             return '';
@@ -207,11 +212,11 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param $lat
+     * @param float $lat
      *
      * @return string
      */
-    protected function getLatSuffix($lat)
+    protected function getLatSuffix(float $lat): string
     {
         if (! $this->useCardinalLetters) {
             return '';
@@ -225,11 +230,11 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param $lng
+     * @param float $lng
      *
      * @return string
      */
-    protected function getLngSuffix($lng)
+    protected function getLngSuffix(float $lng): string
     {
         if (! $this->useCardinalLetters) {
             return '';

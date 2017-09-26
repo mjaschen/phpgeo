@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Calculate the perpendicular distance between a Line and a Point
  *
@@ -27,7 +29,7 @@ class PerpendicularDistance
      *
      * @return float
      */
-    public function getPerpendicularDistance(Coordinate $point, Line $line)
+    public function getPerpendicularDistance(Coordinate $point, Line $line): float
     {
         $ellipsoid = $point->getEllipsoid();
 
@@ -60,6 +62,10 @@ class PerpendicularDistance
 
         $length = sqrt($normalizedX * $normalizedX + $normalizedY * $normalizedY + $normalizedZ * $normalizedZ);
 
+        if ($length == 0.0) {
+            return 0;
+        }
+
         $normalizedX /= $length;
         $normalizedY /= $length;
         $normalizedZ /= $length;
@@ -70,7 +76,7 @@ class PerpendicularDistance
 
         $thetaPoint /= $length;
 
-        $distance = abs((M_PI / 2) - acos($thetaPoint));
+        $distance = (float)abs((M_PI / 2) - acos($thetaPoint));
 
         return $distance * $ellipsoidRadius;
     }
@@ -80,7 +86,7 @@ class PerpendicularDistance
      *
      * @return float
      */
-    protected function deg2radLatitude($latitude)
+    protected function deg2radLatitude(float $latitude): float
     {
         return deg2rad(90 - $latitude);
     }
@@ -90,7 +96,7 @@ class PerpendicularDistance
      *
      * @return float
      */
-    protected function deg2radLongitude($longitude)
+    protected function deg2radLongitude(float $longitude): float
     {
         if ($longitude > 0) {
             return deg2rad($longitude);

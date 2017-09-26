@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Location\Bearing;
 
@@ -15,7 +16,7 @@ interface BearingInterface
      *
      * @return float Bearing Angle
      */
-    public function calculateBearing(Coordinate $point1, Coordinate $point2);
+    public function calculateBearing(Coordinate $point1, Coordinate $point2): float;
 
     /**
      * Calculates the final bearing between the two points.
@@ -25,7 +26,7 @@ interface BearingInterface
      *
      * @return float
      */
-    public function calculateFinalBearing(Coordinate $point1, Coordinate $point2);
+    public function calculateFinalBearing(Coordinate $point1, Coordinate $point2): float;
 
     /**
      * Calculates a destination point for the given point, bearing angle,
@@ -37,5 +38,5 @@ interface BearingInterface
      *
      * @return Coordinate
      */
-    public function calculateDestination(Coordinate $point, $bearing, $distance);
+    public function calculateDestination(Coordinate $point, float $bearing, float $distance): Coordinate;
 }

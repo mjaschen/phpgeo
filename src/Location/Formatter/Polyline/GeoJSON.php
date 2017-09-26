@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * GeoJSON Polyline Formatter
  *
@@ -25,7 +27,7 @@ class GeoJSON implements FormatterInterface
      *
      * @return string
      */
-    public function format(Polyline $polyline)
+    public function format(Polyline $polyline): string
     {
         $points = [];
 

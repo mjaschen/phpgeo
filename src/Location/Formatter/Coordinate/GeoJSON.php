@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * GeoJSON Coordinate Formatter
  *
@@ -25,7 +27,7 @@ class GeoJSON implements FormatterInterface
      *
      * @return string
      */
-    public function format(Coordinate $coordinate)
+    public function format(Coordinate $coordinate): string
     {
         return json_encode(
             [

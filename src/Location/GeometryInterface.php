@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Location;
 
@@ -9,5 +10,5 @@ interface GeometryInterface
      *
      * @return array
      */
-    public function getPoints();
+    public function getPoints(): array;
 }

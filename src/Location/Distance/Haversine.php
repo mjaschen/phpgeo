@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Implementation of distance calculation with http://en.wikipedia.org/wiki/Law_of_haversines
  *
@@ -32,10 +34,10 @@ class Haversine implements DistanceInterface
      *
      * @return float
      */
-    public function getDistance(Coordinate $point1, Coordinate $point2)
+    public function getDistance(Coordinate $point1, Coordinate $point2): float
     {
         if ($point1->getEllipsoid() != $point2->getEllipsoid()) {
-            throw new NotMatchingEllipsoidException("The ellipsoids for both coordinates must match");
+            throw new NotMatchingEllipsoidException('The ellipsoids for both coordinates must match');
         }
 
         $lat1 = deg2rad($point1->getLat());
@@ -50,8 +52,8 @@ class Haversine implements DistanceInterface
 
         $distance = 2 * $radius * asin(
             sqrt(
-                pow(sin($dLat / 2), 2)
-                + cos($lat1) * cos($lat2) * pow(sin($dLng / 2), 2)
+                (sin($dLat / 2) ** 2)
+                + cos($lat1) * cos($lat2) * (sin($dLng / 2) ** 2)
             )
         );
 

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * GeoJSON Polygon Formatter
  *
@@ -29,7 +31,7 @@ class GeoJSON implements FormatterInterface
      *
      * @throws \Location\Exception\InvalidPolygonException
      */
-    public function format(Polygon $polygon)
+    public function format(Polygon $polygon): string
     {
         if ($polygon->getNumberOfPoints() < 3) {
             throw new InvalidPolygonException();

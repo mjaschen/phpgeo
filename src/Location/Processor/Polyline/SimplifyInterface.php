@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Interface for simplifying a polyline
  *
@@ -27,5 +29,5 @@ interface SimplifyInterface
      *
      * @return Polyline
      */
-    public function simplify(Polyline $polyline);
+    public function simplify(Polyline $polyline): Polyline;
 }

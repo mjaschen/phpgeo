@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Coordinate Bounds Class
  *
@@ -45,7 +47,7 @@ class Bounds
      *
      * @return Coordinate
      */
-    public function getNorthWest()
+    public function getNorthWest(): Coordinate
     {
         return $this->northWest;
     }
@@ -55,7 +57,7 @@ class Bounds
      *
      * @return Coordinate
      */
-    public function getSouthEast()
+    public function getSouthEast(): Coordinate
     {
         return $this->southEast;
     }
@@ -63,7 +65,7 @@ class Bounds
     /**
      * @return float
      */
-    public function getNorth()
+    public function getNorth(): float
     {
         return $this->northWest->getLat();
     }
@@ -71,7 +73,7 @@ class Bounds
     /**
      * @return float
      */
-    public function getSouth()
+    public function getSouth(): float
     {
         return $this->southEast->getLat();
     }
@@ -79,7 +81,7 @@ class Bounds
     /**
      * @return float
      */
-    public function getWest()
+    public function getWest(): float
     {
         return $this->northWest->getLng();
     }
@@ -87,7 +89,7 @@ class Bounds
     /**
      * @return float
      */
-    public function getEast()
+    public function getEast(): float
     {
         return $this->southEast->getLng();
     }
@@ -97,8 +99,9 @@ class Bounds
      * Coordinate instance.
      *
      * @return Coordinate
+     * @throws \InvalidArgumentException
      */
-    public function getCenter()
+    public function getCenter(): Coordinate
     {
         $centerLat = ($this->getNorth() + $this->getSouth()) / 2;
 
@@ -108,22 +111,22 @@ class Bounds
     /**
      * @return float
      */
-    protected function getCenterLng()
+    protected function getCenterLng(): float
     {
         $centerLng = ($this->getEast() + $this->getWest()) / 2;
 
         $overlap = $this->getWest() > 0 && $this->getEast() < 0;
 
         if ($overlap && $centerLng > 0) {
-            return -180 + $centerLng;
+            return -180.0 + $centerLng;
         }
 
         if ($overlap && $centerLng < 0) {
-            return 180 + $centerLng;
+            return 180.0 + $centerLng;
         }
 
         if ($overlap && $centerLng == 0) {
-            return 180;
+            return 180.0;
         }
 
         return $centerLng;

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Geometry Factory Interface
  *
@@ -25,5 +27,5 @@ interface GeometryFactoryInterface
      *
      * @return GeometryInterface
      */
-    public static function fromString($string);
+    public static function fromString(string $string);
 }

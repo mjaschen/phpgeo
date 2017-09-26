@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Calculation of bearing between two points using a
  * ellipsoidal model of the earth
@@ -37,9 +39,9 @@ class BearingEllipsoidal implements BearingInterface
      *
      * @return float Bearing Angle
      */
-    public function calculateBearing(Coordinate $point1, Coordinate $point2)
+    public function calculateBearing(Coordinate $point1, Coordinate $point2): float
     {
-        return $this->inverseVincenty($point1, $point2)['bearing_initial'];
+        return $this->inverseVincenty($point1, $point2)->getBearingInitial();
     }
 
     /**
@@ -50,9 +52,9 @@ class BearingEllipsoidal implements BearingInterface
      *
      * @return float
      */
-    public function calculateFinalBearing(Coordinate $point1, Coordinate $point2)
+    public function calculateFinalBearing(Coordinate $point1, Coordinate $point2): float
     {
-        return $this->inverseVincenty($point1, $point2)['bearing_final'];
+        return $this->inverseVincenty($point1, $point2)->getBearingFinal();
     }
 
     /**
@@ -65,9 +67,9 @@ class BearingEllipsoidal implements BearingInterface
      *
      * @return Coordinate
      */
-    public function calculateDestination(Coordinate $point, $bearing, $distance)
+    public function calculateDestination(Coordinate $point, float $bearing, float $distance): Coordinate
     {
-        return $this->directVincenty($point, $bearing, $distance)['destination'];
+        return $this->directVincenty($point, $bearing, $distance)->getDestination();
     }
 
     /**
@@ -81,12 +83,12 @@ class BearingEllipsoidal implements BearingInterface
      *
      * @return float
      */
-    public function calculateDestinationFinalBearing(Coordinate $point, $bearing, $distance)
+    public function calculateDestinationFinalBearing(Coordinate $point, $bearing, $distance): float
     {
-        return $this->directVincenty($point, $bearing, $distance)['bearing_final'];
+        return $this->directVincenty($point, $bearing, $distance)->getBearingFinal();
     }
 
-    private function directVincenty(Coordinate $point, $bearing, $distance)
+    private function directVincenty(Coordinate $point, $bearing, $distance): DirectVincentyBearing
     {
         $φ1 = deg2rad($point->getLat());
         $λ1 = deg2rad($point->getLng());
@@ -106,8 +108,8 @@ class BearingEllipsoidal implements BearingInterface
         $sinα   = $cosU1 * $sinα1;
         $cosSqα = 1 - $sinα * $sinα;
         $uSq    = $cosSqα * ($a * $a - $b * $b) / ($b * $b);
-        $A      = 1 + $uSq / 16384 * (4096 + $uSq * (- 768 + $uSq * (320 - 175 * $uSq)));
-        $B      = $uSq / 1024 * (256 + $uSq * (- 128 + $uSq * (74 - 47 * $uSq)));
+        $A      = 1 + $uSq / 16384 * (4096 + $uSq * (-768 + $uSq * (320 - 175 * $uSq)));
+        $B      = $uSq / 1024 * (256 + $uSq * (-128 + $uSq * (74 - 47 * $uSq)));
 
         $σ          = $distance / ($b * $A);
         $iterations = 0;
@@ -116,10 +118,10 @@ class BearingEllipsoidal implements BearingInterface
             $cos2σm = cos(2 * $σ1 + $σ);
             $sinσ   = sin($σ);
             $cosσ   = cos($σ);
-            $Δσ     = $B * $sinσ * ($cos2σm + $B / 4 * ($cosσ * (- 1 + 2 * $cos2σm * $cos2σm) - $B / 6 * $cos2σm * (- 3 + 4 * $sinσ * $sinσ) * (- 3 + 4 * $cos2σm * $cos2σm)));
+            $Δσ     = $B * $sinσ * ($cos2σm + $B / 4 * ($cosσ * (-1 + 2 * $cos2σm * $cos2σm) - $B / 6 * $cos2σm * (-3 + 4 * $sinσ * $sinσ) * (-3 + 4 * $cos2σm * $cos2σm)));
             $σs     = $σ;
             $σ      = $distance / ($b * $A) + $Δσ;
-        } while (abs($σ - $σs) > 1e-12 && ++ $iterations < 200);
+        } while (abs($σ - $σs) > 1e-12 && ++$iterations < 200);
 
         if ($iterations >= 200) {
             throw new NotConvergingException('Inverse Vincenty Formula did not converge');
@@ -129,16 +131,16 @@ class BearingEllipsoidal implements BearingInterface
         $φ2  = atan2($sinU1 * $cosσ + $cosU1 * $sinσ * $cosα1, (1 - $f) * sqrt($sinα * $sinα + $tmp * $tmp));
         $λ   = atan2($sinσ * $sinα1, $cosU1 * $cosσ - $sinU1 * $sinσ * $cosα1);
         $C   = $f / 16 * $cosSqα * (4 + $f * (4 - 3 * $cosSqα));
-        $L   = $λ - (1 - $C) * $f * $sinα * ($σ + $C * $sinσ * ($cos2σm + $C * $cosσ * (- 1 + 2 * $cos2σm * $cos2σm)));
+        $L   = $λ - (1 - $C) * $f * $sinα * ($σ + $C * $sinσ * ($cos2σm + $C * $cosσ * (-1 + 2 * $cos2σm * $cos2σm)));
         $λ2  = fmod($λ1 + $L + 3 * M_PI, 2 * M_PI) - M_PI;
 
-        $α2 = atan2($sinα, - $tmp);
+        $α2 = atan2($sinα, -$tmp);
         $α2 = fmod($α2 + 2 * M_PI, 2 * M_PI);
 
-        return [
-            'destination'   => new Coordinate(rad2deg($φ2), rad2deg($λ2), $point->getEllipsoid()),
-            'bearing_final' => rad2deg($α2),
-        ];
+        return new DirectVincentyBearing(
+            new Coordinate(rad2deg($φ2), rad2deg($λ2), $point->getEllipsoid()),
+            rad2deg($α2)
+        );
     }
 
     private function inverseVincenty(Coordinate $point1, Coordinate $point2)
@@ -188,32 +190,28 @@ class BearingEllipsoidal implements BearingInterface
 
             $C  = $f / 16 * $cosSqα * (4 + $f * (4 - 3 * $cosSqα));
             $λp = $λ;
-            $λ  = $L + (1 - $C) * $f * $sinα * ($σ + $C * $sinσ * ($cos2σM + $C * $cosσ * (- 1 + 2 * $cos2σM * $cos2σM)));
-        } while (abs($λ - $λp) > 1e-12 && ++ $iterations < 200);
+            $λ  = $L + (1 - $C) * $f * $sinα * ($σ + $C * $sinσ * ($cos2σM + $C * $cosσ * (-1 + 2 * $cos2σM * $cos2σM)));
+        } while (abs($λ - $λp) > 1e-12 && ++$iterations < 200);
 
         if ($iterations >= 200) {
             throw new NotConvergingException('Inverse Vincenty Formula did not converge');
         }
 
         $uSq = $cosSqα * ($a * $a - $b * $b) / ($b * $b);
-        $A   = 1 + $uSq / 16384 * (4096 + $uSq * (- 768 + $uSq * (320 - 175 * $uSq)));
-        $B   = $uSq / 1024 * (256 + $uSq * (- 128 + $uSq * (74 - 47 * $uSq)));
-        $Δσ  = $B * $sinσ * ($cos2σM + $B / 4 * ($cosσ * (- 1 + 2 * $cos2σM * $cos2σM) - $B / 6 * $cos2σM * (- 3 + 4 * $sinσ * $sinσ) * (- 3 + 4 * $cos2σM * $cos2σM)));
+        $A   = 1 + $uSq / 16384 * (4096 + $uSq * (-768 + $uSq * (320 - 175 * $uSq)));
+        $B   = $uSq / 1024 * (256 + $uSq * (-128 + $uSq * (74 - 47 * $uSq)));
+        $Δσ  = $B * $sinσ * ($cos2σM + $B / 4 * ($cosσ * (-1 + 2 * $cos2σM * $cos2σM) - $B / 6 * $cos2σM * (-3 + 4 * $sinσ * $sinσ) * (-3 + 4 * $cos2σM * $cos2σM)));
 
         $s = $b * $A * ($σ - $Δσ);
 
         $α1 = atan2($cosU2 * $sinλ, $cosU1 * $sinU2 - $sinU1 * $cosU2 * $cosλ);
-        $α2 = atan2($cosU1 * $sinλ, - $sinU1 * $cosU2 + $cosU1 * $sinU2 * $cosλ);
+        $α2 = atan2($cosU1 * $sinλ, -$sinU1 * $cosU2 + $cosU1 * $sinU2 * $cosλ);
 
         $α1 = fmod($α1 + 2 * M_PI, 2 * M_PI);
         $α2 = fmod($α2 + 2 * M_PI, 2 * M_PI);
 
         $s = round($s, 3);
 
-        return [
-            'distance'        => $s,
-            'bearing_initial' => rad2deg($α1),
-            'bearing_final'   => rad2deg($α2),
-        ];
+        return new InverseVincentyBearing($s, rad2deg($α1), rad2deg($α2));
     }
 }

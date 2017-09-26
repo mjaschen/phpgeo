@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Polygon Implementation
  *
@@ -41,7 +43,7 @@ class Polygon implements GeometryInterface
     /**
      * @return array
      */
-    public function getPoints()
+    public function getPoints(): array
     {
         return $this->points;
     }
@@ -51,7 +53,7 @@ class Polygon implements GeometryInterface
      *
      * @return float[]
      */
-    public function getLats()
+    public function getLats(): array
     {
         $lats = [];
 
@@ -67,7 +69,7 @@ class Polygon implements GeometryInterface
      *
      * @return float[]
      */
-    public function getLngs()
+    public function getLngs(): array
     {
         $lngs = [];
 
@@ -81,7 +83,7 @@ class Polygon implements GeometryInterface
     /**
      * @return int
      */
-    public function getNumberOfPoints()
+    public function getNumberOfPoints(): int
     {
         return count($this->points);
     }
@@ -99,7 +101,7 @@ class Polygon implements GeometryInterface
     /**
      * @return array
      */
-    public function getSegments()
+    public function getSegments(): array
     {
         $segments = [];
 
@@ -134,7 +136,7 @@ class Polygon implements GeometryInterface
      *
      * @return boolean
      */
-    public function containsGeometry(GeometryInterface $geometry)
+    public function containsGeometry(GeometryInterface $geometry): bool
     {
         $geometryInPolygon = true;
 
@@ -161,7 +163,7 @@ class Polygon implements GeometryInterface
      *
      * @return boolean
      */
-    public function contains(Coordinate $point)
+    public function contains(Coordinate $point): bool
     {
         $numberOfPoints = $this->getNumberOfPoints();
         $polygonLats    = $this->getLats();
@@ -191,7 +193,7 @@ class Polygon implements GeometryInterface
      *
      * @return float
      */
-    public function getPerimeter(DistanceInterface $calculator)
+    public function getPerimeter(DistanceInterface $calculator): float
     {
         $perimeter = 0.0;
 
@@ -215,7 +217,7 @@ class Polygon implements GeometryInterface
      *
      * @return float
      */
-    public function getArea()
+    public function getArea(): float
     {
         $area = 0;
 
@@ -242,10 +244,9 @@ class Polygon implements GeometryInterface
             $area += ($x2 * $y1 - $x1 * $y2);
         }
 
-        $area *= 0.5 * pow($radius, 2);
-        $area = abs($area);
+        $area *= 0.5 * $radius ** 2;
 
-        return $area;
+        return (float) abs($area);
     }
 
     /**
@@ -254,7 +255,7 @@ class Polygon implements GeometryInterface
      *
      * @return Polygon
      */
-    public function getReverse()
+    public function getReverse(): Polygon
     {
         $reversed = new static();
 

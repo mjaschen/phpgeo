@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Interface for Distance Calculator Classes
  *
@@ -26,5 +28,5 @@ interface DistanceInterface
      *
      * @return float distance between the two coordinates in meters
      */
-    public function getDistance(Coordinate $point1, Coordinate $point2);
+    public function getDistance(Coordinate $point1, Coordinate $point2): float;
 }

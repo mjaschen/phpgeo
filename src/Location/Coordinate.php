@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Coordinate Implementation
  *
@@ -37,13 +39,13 @@ class Coordinate implements GeometryInterface
     protected $ellipsoid;
 
     /**
-     * @param float $lat           -90.0 .. +90.0
-     * @param float $lng           -180.0 .. +180.0
+     * @param float $lat -90.0 .. +90.0
+     * @param float $lng -180.0 .. +180.0
      * @param Ellipsoid $ellipsoid if omitted, WGS-84 is used
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct($lat, $lng, Ellipsoid $ellipsoid = null)
+    public function __construct(float $lat, float $lng, Ellipsoid $ellipsoid = null)
     {
         if (! $this->isValidLatitude($lat)) {
             throw new \InvalidArgumentException("Latitude value must be numeric -90.0 .. +90.0 (given: {$lat})");
@@ -53,8 +55,8 @@ class Coordinate implements GeometryInterface
             throw new \InvalidArgumentException("Longitude value must be numeric -180.0 .. +180.0 (given: {$lng})");
         }
 
-        $this->lat = doubleval($lat);
-        $this->lng = doubleval($lng);
+        $this->lat = (float)$lat;
+        $this->lng = (float)$lng;
 
         if ($ellipsoid !== null) {
             $this->ellipsoid = $ellipsoid;
@@ -68,7 +70,7 @@ class Coordinate implements GeometryInterface
     /**
      * @return float
      */
-    public function getLat()
+    public function getLat(): float
     {
         return $this->lat;
     }
@@ -76,7 +78,7 @@ class Coordinate implements GeometryInterface
     /**
      * @return float
      */
-    public function getLng()
+    public function getLng(): float
     {
         return $this->lng;
     }
@@ -86,7 +88,7 @@ class Coordinate implements GeometryInterface
      *
      * @return array
      */
-    public function getPoints()
+    public function getPoints(): array
     {
         return [$this];
     }
@@ -94,7 +96,7 @@ class Coordinate implements GeometryInterface
     /**
      * @return Ellipsoid
      */
-    public function getEllipsoid()
+    public function getEllipsoid(): Ellipsoid
     {
         return $this->ellipsoid;
     }
@@ -108,7 +110,7 @@ class Coordinate implements GeometryInterface
      *
      * @return float
      */
-    public function getDistance(Coordinate $coordinate, DistanceInterface $calculator)
+    public function getDistance(Coordinate $coordinate, DistanceInterface $calculator): float
     {
         return $calculator->getDistance($this, $coordinate);
     }
@@ -130,9 +132,9 @@ class Coordinate implements GeometryInterface
      *
      * @return bool
      */
-    protected function isValidLatitude($latitude)
+    protected function isValidLatitude(float $latitude): bool
     {
-        return $this->isNumericInBounds($latitude, - 90.0, 90.0);
+        return $this->isNumericInBounds($latitude, -90.0, 90.0);
     }
 
     /**
@@ -142,9 +144,9 @@ class Coordinate implements GeometryInterface
      *
      * @return bool
      */
-    protected function isValidLongitude($longitude)
+    protected function isValidLongitude(float $longitude): bool
     {
-        return $this->isNumericInBounds($longitude, - 180.0, 180.0);
+        return $this->isNumericInBounds($longitude, -180.0, 180.0);
     }
 
     /**
@@ -157,7 +159,7 @@ class Coordinate implements GeometryInterface
      *
      * @return bool
      */
-    protected function isNumericInBounds($value, $lower, $upper)
+    protected function isNumericInBounds(float $value, float $lower, float $upper): bool
     {
         if (! is_numeric($value)) {
             return false;

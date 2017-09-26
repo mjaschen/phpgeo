@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Line Implementation
  *
@@ -46,7 +48,7 @@ class Line implements GeometryInterface
     /**
      * @param \Location\Coordinate $point1
      */
-    public function setPoint1($point1)
+    public function setPoint1(Coordinate $point1)
     {
         $this->point1 = $point1;
     }
@@ -54,7 +56,7 @@ class Line implements GeometryInterface
     /**
      * @return \Location\Coordinate
      */
-    public function getPoint1()
+    public function getPoint1(): Coordinate
     {
         return $this->point1;
     }
@@ -62,7 +64,7 @@ class Line implements GeometryInterface
     /**
      * @param \Location\Coordinate $point2
      */
-    public function setPoint2($point2)
+    public function setPoint2(Coordinate $point2)
     {
         $this->point2 = $point2;
     }
@@ -70,7 +72,7 @@ class Line implements GeometryInterface
     /**
      * @return \Location\Coordinate
      */
-    public function getPoint2()
+    public function getPoint2(): Coordinate
     {
         return $this->point2;
     }
@@ -80,7 +82,7 @@ class Line implements GeometryInterface
      *
      * @return array
      */
-    public function getPoints()
+    public function getPoints(): array
     {
         return [$this->point1, $this->point2];
     }
@@ -93,7 +95,7 @@ class Line implements GeometryInterface
      *
      * @return float
      */
-    public function getLength(DistanceInterface $calculator)
+    public function getLength(DistanceInterface $calculator): float
     {
         return $calculator->getDistance($this->point1, $this->point2);
     }
@@ -103,7 +105,7 @@ class Line implements GeometryInterface
      *
      * @return float
      */
-    public function getBearing(BearingInterface $bearingCalculator)
+    public function getBearing(BearingInterface $bearingCalculator): float
     {
         return $bearingCalculator->calculateBearing($this->point1, $this->point2);
     }
@@ -113,7 +115,7 @@ class Line implements GeometryInterface
      *
      * @return float
      */
-    public function getFinalBearing(BearingInterface $bearingCalculator)
+    public function getFinalBearing(BearingInterface $bearingCalculator): float
     {
         return $bearingCalculator->calculateFinalBearing($this->point1, $this->point2);
     }
@@ -123,7 +125,7 @@ class Line implements GeometryInterface
      *
      * @return Line
      */
-    public function getReverse()
+    public function getReverse(): Line
     {
         return new static($this->point2, $this->point1);
     }
