@@ -42,6 +42,28 @@ To install _phpgeo,_ simply "require" it using Composer:
 
 _phpgeo_ is now ready to be used in your project!
 
+== Run Tests
+
+_phpgeo_ provides unit tests with a quite good coverage. The following command
+runs the tests:
+
+----
+php vendor/bin/phpunit
+----
+
+To test against another PHP version you can use Docker. The following command runs
+the tests using PHP 7.1:
+
+----
+docker run -it --rm --name phpgeo-phpunit -v "$PWD":/usr/src/phpgeo -w /usr/src/phpgeo php:7.1-cli php vendor/bin/phpunit
+----
+
+Or using PHP 7.2 Beta:
+
+----
+docker run -it --rm --name phpgeo-phpunit -v "$PWD":/usr/src/phpgeo -w /usr/src/phpgeo php:7.2-rc-cli php vendor/bin/phpunit
+----
+
 == API Documentation
 
 Detailed https://phpgeo.marcusjaschen.de/api/[API documentation] is available.
