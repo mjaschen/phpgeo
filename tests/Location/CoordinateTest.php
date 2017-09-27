@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Location;
 
@@ -7,7 +8,9 @@ use Location\Ellipsoid;
 use Location\Distance\Vincenty;
 use Location\Formatter\Coordinate\DecimalDegrees;
 
-class CoordinateTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class CoordinateTest extends TestCase
 {
     /**
      * @var Ellipsoid
@@ -72,6 +75,8 @@ class CoordinateTest extends \PHPUnit_Framework_TestCase
     public function testConstructorDefaultEllipsoid()
     {
         $c = new Coordinate(52.5, 13.5);
+
+        $this->assertInstanceOf(Ellipsoid::class, $c->getEllipsoid());
     }
 
     /**

@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
-class Issue18Test extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Issue18Test extends TestCase
 {
     public function testIfIssue18IsFixed()
     {

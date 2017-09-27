@@ -1,11 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace Location;
 
 use Location\Bearing\BearingEllipsoidal;
 use Location\Distance\Vincenty;
 
-class LineTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class LineTest extends TestCase
 {
     public function testCreateLine()
     {

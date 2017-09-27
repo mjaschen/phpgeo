@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Location\Bearing;
 
 use Location\Coordinate;
 
-class BearingSphericalTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class BearingSphericalTest extends TestCase
 {
     public function testIfCalculateBearingNorthernWorksAsExpected()
     {

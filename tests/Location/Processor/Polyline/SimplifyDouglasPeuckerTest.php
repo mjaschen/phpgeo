@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Location;
 
 use Location\Processor\Polyline\SimplifyDouglasPeucker;
 
-class SimplifyDouglasPeuckerTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class SimplifyDouglasPeuckerTest extends TestCase
 {
     public function testSimplifyThreePointsToTwoPoints()
     {

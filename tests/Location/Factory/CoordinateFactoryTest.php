@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
 
 use Location\Coordinate;
 use Location\Factory\CoordinateFactory;
 
-class CoordinateFactoryTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class CoordinateFactoryTest extends TestCase
 {
     public function testIfFromStringForDecimalDegreesWorksAsExpected()
     {

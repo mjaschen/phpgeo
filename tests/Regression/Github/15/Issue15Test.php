@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
-class Issue15Test extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Issue15Test extends TestCase
 {
     /**
      * @see https://github.com/mjaschen/phpgeo/issues/15

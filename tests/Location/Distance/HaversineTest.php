@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Location\Distance;
 
@@ -6,7 +7,9 @@ use Location\Distance\Haversine;
 use Location\Ellipsoid;
 use Location\Coordinate;
 
-class HaversineTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class HaversineTest extends TestCase
 {
     protected $calculator;
     protected $ellipsoid;

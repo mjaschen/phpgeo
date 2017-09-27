@@ -26,7 +26,7 @@
     ],
     "homepage": "https://phpgeo.marcusjaschen.de/",
     "type": "library",
-    "license": "GPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "Marcus Jaschen",
@@ -38,7 +38,7 @@
         "email" : "mjaschen@gmail.com"
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=7.0"
     },
     "autoload": {
         "psr-0": {
@@ -46,6 +46,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "~6.0",
+        "apigen/apigen": "~4.1"
     }
 }

@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Location;
 
 use Location\Processor\Polyline\SimplifyBearing;
 
-class SimplifyBearingTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class SimplifyBearingTest extends TestCase
 {
     public function testSimplifyThreePointsToTwoPoints()
     {

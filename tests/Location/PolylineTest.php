@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Location;
 
 use Location\Distance\Vincenty;
 
-class PolylineTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class PolylineTest extends TestCase
 {
     /**
      * @var \Location\Polyline

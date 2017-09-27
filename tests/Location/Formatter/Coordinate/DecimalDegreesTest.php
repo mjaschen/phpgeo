@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Location\Formatter\Coordinate;
 
 use Location\Coordinate;
 
-class DecimalDegreesTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class DecimalDegreesTest extends TestCase
 {
     /**
      * @var DecimalDegrees
