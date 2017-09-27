@@ -8,6 +8,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 - [Documentation](#documentation)
 - [Installation](#installation)
 - [Features](#features)
+- [License](#license)
 - [Examples/Usage](#examplesusage)
   - [Distance between two coordinates \(Vincenty's Formula\)](#distance-between-two-coordinates-vincentys-formula)
   - [Simplifying a polyline](#simplifying-a-polyline)
@@ -22,7 +23,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 ## Requirements
 
-Minimum required PHP version is 5.4. PHP 5.3 compatibility was dropped with release of version 0.4.
+Minimum required PHP version is 7.0.
 
 ## Documentation
 
@@ -37,6 +38,10 @@ Using [Composer](https://getcomposer.org), just add it to your `composer.json` b
 ```
 composer require mjaschen/phpgeo
 ```
+
+## License
+
+Starting with version 2.0.0 phpgeo is licensed under the MIT license. Older versions were GPL-licensed.
 
 ## Features
 
@@ -62,7 +67,7 @@ phpgeo provides the following features (follow the links for examples):
 - calculation of the [perpendicular distance between a point and a line](https://phpgeo.marcusjaschen.de/#_perpendicular_distance)
 - getting segments of a [polyline](https://phpgeo.marcusjaschen.de/geometry/polyline/#segments)
   /[polygon](https://phpgeo.marcusjaschen.de/geometry/polygon/#segments),
-- [reversing direction](https://phpgeo.marcusjaschen.de/geometry/polyline/#reverse-direction) 
+- [reversing direction](https://phpgeo.marcusjaschen.de/geometry/polyline/#reverse-direction)
   of polyline/polygon
 
 ## Examples/Usage

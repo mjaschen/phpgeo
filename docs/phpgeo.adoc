@@ -1,6 +1,6 @@
 = phpgeo
 Marcus Jaschen <mail@marcusjaschen.de>
-v1.3.8, 2017-07-05
+v2.0.0, 2017-09-26
 :toc: left
 :toclevels: 4
 :source-highlighter: coderay
@@ -18,8 +18,7 @@ lengths, etc.
 _phpgeo_ is developed by https://www.marcusjaschen.de/[Marcus Jaschen] and all
 https://github.com/mjaschen/phpgeo/graphs/contributors[contributors].
 
-_phpgeo_ is licensed under the GNU GENERAL PUBLIC LICENSE Version 3
-(https://opensource.org/licenses/gpl-3.0.html[GPL-3.0])
+_phpgeo_ is licensed under the https://opensource.org/licenses/MIT[MIT License].
 
 The project is hosted on Github:
 
@@ -28,7 +27,9 @@ The project is hosted on Github:
 
 == Requirements
 
-_phpgeo_ requires at least PHP 5.4.0.
+_phpgeo_ requires at least PHP 7.0.
+
+Older PHP versions are supported in releases up to _phpgeo_ 1.3.8.
 
 == Installation
 
