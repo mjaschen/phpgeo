@@ -3,15 +3,17 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [2.0.0]
+## [2.0.0] - 2017-09-27
 
 ### Changed
 
 * License: *phpgeo* is now distributed under the MIT license
+* phpgeo requires at least PHP 7.0
 
 ### Removed
 
 * deprecated class `Simplify` was removed; alternatives: `SimplifyBearing` or `SimplifyDouglasPeucker`
+* PHP versions 5.4, 5.5, and 5.6 are no longer supported
 
 ## [1.3.8] - 2017-07-05
 
@@ -61,7 +63,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Deprecated
 
-* The `Simplify` processor class is now deprecated and will be removed in the 
+* The `Simplify` processor class is now deprecated and will be removed in the
   2.0 release.
 
 ## [1.2.1] - 2016-03-15
