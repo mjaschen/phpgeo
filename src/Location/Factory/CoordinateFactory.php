@@ -37,6 +37,8 @@ class CoordinateFactory implements GeometryFactoryInterface
      */
     public static function fromString(string $string, Ellipsoid $ellipsoid = null): Coordinate
     {
+        $string = self::mergeSecondsToMinutes($string);
+
         $result = self::parseDecimalMinutesWithoutCardinalLetters($string, $ellipsoid);
 
         if ($result instanceof Coordinate) {
@@ -157,5 +159,16 @@ class CoordinateFactory implements GeometryFactoryInterface
         }
 
         return null;
+    }
+
+    /**
+     * @param string $string
+     * @return null|string|string[]
+     */
+    private static function mergeSecondsToMinutes(string $string)
+    {
+        return preg_replace_callback('/(\d+)(°|\s)\s*(\d+)(\'|′|\s)(\s*([0-9\.]*))("|\'\'|′′)?/', function (array $matches) {
+            return sprintf('%d %d.%s', $matches[1], $matches[3], substr(sprintf('%f', floatval($matches[6]) / 60), 2));
+        }, $string);
     }
 }

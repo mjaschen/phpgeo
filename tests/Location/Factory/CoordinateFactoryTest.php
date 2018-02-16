@@ -136,6 +136,37 @@ class CoordinateFactoryTest extends TestCase
     }
 
     /**
+     * @dataProvider dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected
+     * @param float $expectedLat
+     * @param float $expectedLng
+     * @param string $string
+     */
+    public function testIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected($expectedLat, $expectedLng, $string)
+    {
+        $coordinate = CoordinateFactory::fromString($string);
+        $this->assertEquals($expectedLat, $coordinate->getLat(), '', 0.0001);
+        $this->assertEquals($expectedLng, $coordinate->getLng(), '', 0.0001);
+    }
+
+    public function dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected()
+    {
+        $expected = new Coordinate(52.20575, 13.576116667);
+        $expectedLat = $expected->getLat();
+        $expectedLng = $expected->getLng();
+
+        foreach ([
+            '52 12 20.7, 13 34 34.02',
+            '52 12 20.7N, 13 34 34.02E',
+            '52 12 20.7 N, E13 34 34.02 E',
+            '52° 12\' 20.7" N, E13° 34\' 34.02" E',
+            '52° 12\' 20.7\'\' N, E13° 34\' 34.02\'\' E',
+            '52° 12′ 20.7′′ N, E13° 34′ 34.02′′ E',
+         ] as $string) {
+            yield $string => [$expectedLat, $expectedLng, $string];
+        }
+    }
+
+    /**
      * @expectedException \InvalidArgumentException
      */
     public function testIfInvalidFormatThrowsException()
