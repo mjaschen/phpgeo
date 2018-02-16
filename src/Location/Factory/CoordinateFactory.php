@@ -163,12 +163,17 @@ class CoordinateFactory implements GeometryFactoryInterface
 
     /**
      * @param string $string
-     * @return null|string|string[]
+     *
+     * @return string
      */
-    private static function mergeSecondsToMinutes(string $string)
+    private static function mergeSecondsToMinutes(string $string): string
     {
-        return preg_replace_callback('/(\d+)(°|\s)\s*(\d+)(\'|′|\s)(\s*([0-9\.]*))("|\'\'|′′)?/', function (array $matches) {
-            return sprintf('%d %d.%s', $matches[1], $matches[3], substr(sprintf('%f', floatval($matches[6]) / 60), 2));
-        }, $string);
+        return preg_replace_callback(
+            '/(\d+)(°|\s)\s*(\d+)(\'|′|\s)(\s*([0-9\.]*))("|\'\'|″|′′)?/u',
+            function (array $matches) {
+                return sprintf('%d %f', $matches[1], $matches[3] + $matches[6] / 60);
+            },
+            $string
+        );
     }
 }

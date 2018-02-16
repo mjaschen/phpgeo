@@ -148,6 +148,11 @@ class CoordinateFactoryTest extends TestCase
         $this->assertEquals($expectedLng, $coordinate->getLng(), '', 0.0001);
     }
 
+    /**
+     * Data provider for decimal seconds parser test.
+     *
+     * @return Generator
+     */
     public function dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected()
     {
         $expected = new Coordinate(52.20575, 13.576116667);
@@ -160,6 +165,7 @@ class CoordinateFactoryTest extends TestCase
             '52 12 20.7 N, E13 34 34.02 E',
             '52° 12\' 20.7" N, E13° 34\' 34.02" E',
             '52° 12\' 20.7\'\' N, E13° 34\' 34.02\'\' E',
+            '52° 12′ 20.7″ N, E13° 34′ 34.02″ E',
             '52° 12′ 20.7′′ N, E13° 34′ 34.02′′ E',
          ] as $string) {
             yield $string => [$expectedLat, $expectedLng, $string];
