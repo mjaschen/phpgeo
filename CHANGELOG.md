@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.0.1] - 2018-02-16
+
+### Added
+
+- new supported format for coordinates parser. Thanks to @petrknap
+
 ## [2.0.0] - 2017-09-27
 
 ### Changed
