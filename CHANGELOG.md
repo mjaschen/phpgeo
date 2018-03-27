@@ -3,6 +3,21 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.0.2] - 2018-03-27
+
+### Added
+
+- Information on how to run checks and tests for developers in the README.
+
+### Changed
+
+- Updated internal stuff like type and return hints after running a static analysis.
+- Updated some PHPDoc blocks after running a static analysis.
+
+### Fixed
+
+- Wrongly typed return value in `BearingEllipsoidal::inverseVincenty()`. 
+
 ## [2.0.1] - 2018-02-16
 
 ### Added
