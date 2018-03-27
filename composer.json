@@ -47,7 +47,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",
-        "apigen/apigen": "~4.1",
         "vimeo/psalm": "^1.0"
     },
     "scripts": {
