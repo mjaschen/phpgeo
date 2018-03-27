@@ -82,13 +82,24 @@ class BearingEllipsoidal implements BearingInterface
      * @param float $distance
      *
      * @return float
+     *
+     * @throws \Location\Exception\NotConvergingException
      */
-    public function calculateDestinationFinalBearing(Coordinate $point, $bearing, $distance): float
+    public function calculateDestinationFinalBearing(Coordinate $point, float $bearing, float $distance): float
     {
         return $this->directVincenty($point, $bearing, $distance)->getBearingFinal();
     }
 
-    private function directVincenty(Coordinate $point, $bearing, $distance): DirectVincentyBearing
+    /**
+     * @param Coordinate $point
+     * @param float $bearing
+     * @param float $distance
+     *
+     * @return DirectVincentyBearing
+     *
+     * @throws \InvalidArgumentException
+     */
+    private function directVincenty(Coordinate $point, float $bearing, float $distance): DirectVincentyBearing
     {
         $φ1 = deg2rad($point->getLat());
         $λ1 = deg2rad($point->getLng());
@@ -143,7 +154,15 @@ class BearingEllipsoidal implements BearingInterface
         );
     }
 
-    private function inverseVincenty(Coordinate $point1, Coordinate $point2)
+    /**
+     * @param Coordinate $point1
+     * @param Coordinate $point2
+     *
+     * @return InverseVincentyBearing
+     *
+     * @throws \Location\Exception\NotConvergingException
+     */
+    private function inverseVincenty(Coordinate $point1, Coordinate $point2): InverseVincentyBearing
     {
         $φ1 = deg2rad($point1->getLat());
         $φ2 = deg2rad($point2->getLat());
