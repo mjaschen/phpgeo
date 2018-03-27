@@ -49,5 +49,21 @@
         "phpunit/phpunit": "~6.0",
         "apigen/apigen": "~4.1",
         "vimeo/psalm": "^1.0"
+    },
+    "scripts": {
+        "ci:lint": "find config src tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+        "ci:psalm": "./vendor/bin/psalm",
+        "ci:tests": "./vendor/bin/phpunit tests/",
+        "ci:static": [
+            "@ci:lint",
+            "@ci:psalm"
+        ],
+        "ci:dynamic": [
+            "@ci:tests"
+        ],
+        "ci": [
+            "@ci:static",
+            "@ci:dynamic"
+        ]
     }
 }
