@@ -212,6 +212,31 @@ $coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
 echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" : [ -155.678268, 18.911306 ] }
 ```
 
+## Development
+
+### Run Tests
+
+Before submitting a pull request, please be sure to run all checks and tests and ensure everything is green.
+
+To run the checks and tests, it's the easiest to use the provided Composer scripts:
+
+- lint PHP files for syntax errors: `composer ci:lint`
+- run static analysis with [Psalm][] and report errors: `composer ci:psalm`
+- run unit tests with PHPUnit: `composer ci:tests`
+
+To run all checks and tests at once, just use `composer ci`.
+
+Of course, it's possible to use the test runners directly, e. g. for PHPUnit:
+
+```shell
+./vendor/bin/phpunit
+```
+
+Psalm:
+
+```shell
+./vendor/bin/psalm
+```
 
 ## Credits
 
@@ -222,3 +247,4 @@ echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" :
 * [Richard Barnes](https://github.com/r-barnes) Polyline GeoJSON Formatter
 * [Paul Vidal](https://github.com/paulvl) Polygon Implementation
 
+[Psalm]: https://github.com/vimeo/psalm
