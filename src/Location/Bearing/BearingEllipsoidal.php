@@ -97,60 +97,61 @@ class BearingEllipsoidal implements BearingInterface
      *
      * @return DirectVincentyBearing
      *
+     * @throws \Location\Exception\NotConvergingException
      * @throws \InvalidArgumentException
      */
     private function directVincenty(Coordinate $point, float $bearing, float $distance): DirectVincentyBearing
     {
-        $φ1 = deg2rad($point->getLat());
-        $λ1 = deg2rad($point->getLng());
-        $α1 = deg2rad($bearing);
+        $phi1 = deg2rad($point->getLat());
+        $lambda1 = deg2rad($point->getLng());
+        $alpha1 = deg2rad($bearing);
 
         $a = $point->getEllipsoid()->getA();
         $b = $point->getEllipsoid()->getB();
         $f = 1 / $point->getEllipsoid()->getF();
 
-        $sinα1 = sin($α1);
-        $cosα1 = cos($α1);
+        $sinAlpha1 = sin($alpha1);
+        $cosAlpha1 = cos($alpha1);
 
-        $tanU1  = (1 - $f) * tan($φ1);
+        $tanU1  = (1 - $f) * tan($phi1);
         $cosU1  = 1 / sqrt(1 + $tanU1 * $tanU1);
         $sinU1  = $tanU1 * $cosU1;
-        $σ1     = atan2($tanU1, $cosα1);
-        $sinα   = $cosU1 * $sinα1;
-        $cosSqα = 1 - $sinα * $sinα;
-        $uSq    = $cosSqα * ($a * $a - $b * $b) / ($b * $b);
+        $sigma1     = atan2($tanU1, $cosAlpha1);
+        $sinAlpha   = $cosU1 * $sinAlpha1;
+        $cosSquAlpha = 1 - $sinAlpha * $sinAlpha;
+        $uSq    = $cosSquAlpha * ($a * $a - $b * $b) / ($b * $b);
         $A      = 1 + $uSq / 16384 * (4096 + $uSq * (-768 + $uSq * (320 - 175 * $uSq)));
         $B      = $uSq / 1024 * (256 + $uSq * (-128 + $uSq * (74 - 47 * $uSq)));
 
-        $σ          = $distance / ($b * $A);
+        $sigma = $sigmaS = $distance / ($b * $A);
         $iterations = 0;
 
         do {
-            $cos2σm = cos(2 * $σ1 + $σ);
-            $sinσ   = sin($σ);
-            $cosσ   = cos($σ);
-            $Δσ     = $B * $sinσ * ($cos2σm + $B / 4 * ($cosσ * (-1 + 2 * $cos2σm * $cos2σm) - $B / 6 * $cos2σm * (-3 + 4 * $sinσ * $sinσ) * (-3 + 4 * $cos2σm * $cos2σm)));
-            $σs     = $σ;
-            $σ      = $distance / ($b * $A) + $Δσ;
-        } while (abs($σ - $σs) > 1e-12 && ++$iterations < 200);
+            $cos2SigmaM     = cos(2 * $sigma1 + $sigma);
+            $sinSigma       = sin($sigma);
+            $cosSigma       = cos($sigma);
+            $deltaSigma = $B * $sinSigma * ($cos2SigmaM + $B / 4 * ($cosSigma * (-1 + 2 * $cos2SigmaM * $cos2SigmaM) - $B / 6 * $cos2SigmaM * (-3 + 4 * $sinSigma * $sinSigma) * (-3 + 4 * $cos2SigmaM * $cos2SigmaM)));
+            $sigmaS     = $sigma;
+            $sigma      = $distance / ($b * $A) + $deltaSigma;
+        } while (abs($sigma - $sigmaS) > 1e-12 && ++$iterations < 200);
 
         if ($iterations >= 200) {
             throw new NotConvergingException('Inverse Vincenty Formula did not converge');
         }
 
-        $tmp = $sinU1 * $sinσ - $cosU1 * $cosσ * $cosα1;
-        $φ2  = atan2($sinU1 * $cosσ + $cosU1 * $sinσ * $cosα1, (1 - $f) * sqrt($sinα * $sinα + $tmp * $tmp));
-        $λ   = atan2($sinσ * $sinα1, $cosU1 * $cosσ - $sinU1 * $sinσ * $cosα1);
-        $C   = $f / 16 * $cosSqα * (4 + $f * (4 - 3 * $cosSqα));
-        $L   = $λ - (1 - $C) * $f * $sinα * ($σ + $C * $sinσ * ($cos2σm + $C * $cosσ * (-1 + 2 * $cos2σm * $cos2σm)));
-        $λ2  = fmod($λ1 + $L + 3 * M_PI, 2 * M_PI) - M_PI;
+        $tmp = $sinU1 * $sinSigma - $cosU1 * $cosSigma * $cosAlpha1;
+        $phi2  = atan2($sinU1 * $cosSigma + $cosU1 * $sinSigma * $cosAlpha1, (1 - $f) * sqrt($sinAlpha * $sinAlpha + $tmp * $tmp));
+        $lambda   = atan2($sinSigma * $sinAlpha1, $cosU1 * $cosSigma - $sinU1 * $sinSigma * $cosAlpha1);
+        $C   = $f / 16 * $cosSquAlpha * (4 + $f * (4 - 3 * $cosSquAlpha));
+        $L   = $lambda - (1 - $C) * $f * $sinAlpha * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (-1 + 2 * $cos2SigmaM * $cos2SigmaM)));
+        $lambda2  = fmod($lambda1 + $L + 3 * M_PI, 2 * M_PI) - M_PI;
 
-        $α2 = atan2($sinα, -$tmp);
-        $α2 = fmod($α2 + 2 * M_PI, 2 * M_PI);
+        $alpha2 = atan2($sinAlpha, -$tmp);
+        $alpha2 = fmod($alpha2 + 2 * M_PI, 2 * M_PI);
 
         return new DirectVincentyBearing(
-            new Coordinate(rad2deg($φ2), rad2deg($λ2), $point->getEllipsoid()),
-            rad2deg($α2)
+            new Coordinate(rad2deg($phi2), rad2deg($lambda2), $point->getEllipsoid()),
+            rad2deg($alpha2)
         );
     }
 
