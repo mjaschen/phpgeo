@@ -38,8 +38,8 @@ class DecimalDegrees implements FormatterInterface
      */
     public function __construct(string $separator = ' ', int $digits = 5)
     {
-        $this->setSeparator($separator);
-        $this->digits = $digits;
+        $this->separator = $separator;
+        $this->digits    = $digits;
     }
 
     /**

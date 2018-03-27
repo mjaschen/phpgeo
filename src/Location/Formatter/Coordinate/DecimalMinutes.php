@@ -39,6 +39,8 @@ class DecimalMinutes implements FormatterInterface
 
     /**
      * @var string
+     *
+     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $unitType;
 
@@ -71,8 +73,9 @@ class DecimalMinutes implements FormatterInterface
      */
     public function __construct(string $separator = ' ')
     {
-        $this->setSeparator($separator);
-        $this->useCardinalLetters(false);
+        $this->separator          = $separator;
+        $this->useCardinalLetters = false;
+
         $this->setUnits(static::UNITS_UTF8);
     }
 

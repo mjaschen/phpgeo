@@ -39,6 +39,8 @@ class DMS implements FormatterInterface
 
     /**
      * @var string
+     *
+     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $unitType;
 
@@ -60,11 +62,13 @@ class DMS implements FormatterInterface
 
     /**
      * @param string $separator
+     *
+     * @throws \InvalidArgumentException
      */
     public function __construct(string $separator = ' ')
     {
-        $this->setSeparator($separator);
-        $this->useCardinalLetters(false);
+        $this->separator = $separator;
+        $this->useCardinalLetters = false;
         $this->setUnits(static::UNITS_UTF8);
     }
 
