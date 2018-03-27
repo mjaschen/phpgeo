@@ -23,7 +23,7 @@ use Location\GeometryInterface;
 interface GeometryFactoryInterface
 {
     /**
-     * @param $string
+     * @param string $string
      *
      * @return GeometryInterface
      */

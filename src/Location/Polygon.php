@@ -58,6 +58,7 @@ class Polygon implements GeometryInterface
         $lats = [];
 
         foreach ($this->points as $point) {
+            /** @var Coordinate $point */
             $lats[] = $point->getLat();
         }
 
@@ -74,6 +75,7 @@ class Polygon implements GeometryInterface
         $lngs = [];
 
         foreach ($this->points as $point) {
+            /** @var Coordinate $point */
             $lngs[] = $point->getLng();
         }
 

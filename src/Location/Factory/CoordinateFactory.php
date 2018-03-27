@@ -67,8 +67,8 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param $string
-     * @param $ellipsoid
+     * @param string $string
+     * @param Ellipsoid $ellipsoid
      *
      * @return Coordinate|null
      * @throws \InvalidArgumentException
@@ -89,8 +89,8 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param $string
-     * @param $ellipsoid
+     * @param string $string
+     * @param Ellipsoid $ellipsoid
      *
      * @return Coordinate|null
      * @throws \InvalidArgumentException
@@ -117,8 +117,8 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param $string
-     * @param $ellipsoid
+     * @param string $string
+     * @param Ellipsoid $ellipsoid
      *
      * @return Coordinate|null
      * @throws \InvalidArgumentException
@@ -135,8 +135,8 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param $string
-     * @param $ellipsoid
+     * @param string $string
+     * @param Ellipsoid $ellipsoid
      *
      * @return Coordinate|null
      * @throws \InvalidArgumentException

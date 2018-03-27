@@ -128,7 +128,7 @@ class Coordinate implements GeometryInterface
     /**
      * Validates latitude
      *
-     * @param mixed $latitude
+     * @param float $latitude
      *
      * @return bool
      */
@@ -140,7 +140,7 @@ class Coordinate implements GeometryInterface
     /**
      * Validates longitude
      *
-     * @param mixed $longitude
+     * @param float $longitude
      *
      * @return bool
      */
@@ -161,10 +161,6 @@ class Coordinate implements GeometryInterface
      */
     protected function isNumericInBounds(float $value, float $lower, float $upper): bool
     {
-        if (! is_numeric($value)) {
-            return false;
-        }
-
         if ($value < $lower || $value > $upper) {
             return false;
         }

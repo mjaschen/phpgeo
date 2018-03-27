@@ -79,7 +79,7 @@ class DecimalMinutes implements FormatterInterface
     /**
      * Sets the separator between latitude and longitude values
      *
-     * @param $separator
+     * @param string $separator
      *
      * @return DecimalMinutes
      */
