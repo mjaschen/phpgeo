@@ -32,6 +32,8 @@ class Polyline implements GeometryInterface
 
     /**
      * @param Coordinate $point
+     *
+     * @return void
      */
     public function addPoint(Coordinate $point)
     {

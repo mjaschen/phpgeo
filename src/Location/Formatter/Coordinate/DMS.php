@@ -42,6 +42,9 @@ class DMS implements FormatterInterface
      */
     protected $unitType;
 
+    /**
+     * @var array
+     */
     protected $units = [
         'UTF-8' => [
             'deg' => '°',
