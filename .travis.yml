@@ -1,7 +1,54 @@
+sudo: false
+
 language: php
+
 php:
   - "7.2"
   - "7.1"
   - "7.0"
+
+cache:
+  directories:
+  - vendor
+  - $HOME/.composer/cache
+
+env:
+  matrix:
+  - DEPENDENCIES=latest
+  - DEPENDENCIES=oldest
+
+before_install:
+- phpenv config-rm xdebug.ini
+
 install:
-  - composer install
+- >
+  echo;
+  if [ "$DEPENDENCIES" = "latest" ]; then
+    echo "Installing the latest dependencies";
+    composer update --with-dependencies --prefer-stable --prefer-dist
+  else
+    echo "Installing the lowest dependencies";
+    composer update --with-dependencies --prefer-stable --prefer-dist --prefer-lowest
+  fi;
+  composer show;
+
+script:
+- >
+  echo;
+  echo "Validating the composer.json";
+  composer validate --no-check-all --no-check-lock --strict;
+
+- >
+  echo;
+  echo "Linting all PHP files";
+  composer ci:lint;
+
+- >
+  echo;
+  echo "Running the Psalm static analyzer";
+  composer ci:psalm;
+
+- >
+  echo;
+  echo "Running the PHPUnit tests";
+  composer ci:tests;
