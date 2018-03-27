@@ -194,7 +194,7 @@ class BearingEllipsoidal implements BearingInterface
             $sinσ   = sqrt($sinSqσ);
 
             if ($sinσ == 0) {
-                return 0;
+                new InverseVincentyBearing(0, 0, 0);
             }
 
             $cosσ   = $sinU1 * $sinU2 + $cosU1 * $cosU2 * $cosλ;
