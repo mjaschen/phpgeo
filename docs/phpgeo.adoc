@@ -1,6 +1,6 @@
 = phpgeo
 Marcus Jaschen <mail@marcusjaschen.de>
-v2.0.0, 2017-09-26
+v2.0.2, 2018-03-28
 :toc: left
 :toclevels: 4
 :source-highlighter: coderay
@@ -44,8 +44,14 @@ _phpgeo_ is now ready to be used in your project!
 
 == Run Tests
 
-_phpgeo_ provides unit tests with a quite good coverage. The following command
-runs the tests:
+_phpgeo_ provides unit tests with a quite good coverage. For an easy usage,
+the test command is wrapped as a Composer script:
+
+----
+composer ci:tests
+----
+
+Of course it's possible to run PHPUnit directly:
 
 ----
 php vendor/bin/phpunit
@@ -58,10 +64,29 @@ the tests using PHP 7.1:
 docker run -it --rm --name phpgeo-phpunit -v "$PWD":/usr/src/phpgeo -w /usr/src/phpgeo php:7.1-cli php vendor/bin/phpunit
 ----
 
-Or using PHP 7.2 Beta:
+Or using PHP 7.2:
 
 ----
-docker run -it --rm --name phpgeo-phpunit -v "$PWD":/usr/src/phpgeo -w /usr/src/phpgeo php:7.2-rc-cli php vendor/bin/phpunit
+docker run -it --rm --name phpgeo-phpunit -v "$PWD":/usr/src/phpgeo -w /usr/src/phpgeo php:7.2-cli php vendor/bin/phpunit
+----
+
+Besides the unit tests, static test runners are also provided. Run the lint
+command to ensure the sources don't contain any syntax error:
+
+----
+composer ci:lint
+----
+
+A static code analysis with https://getpsalm.org/[Psalm] is configured as well:
+
+----
+composer ci:psalm
+----
+
+It's possible to run all tests at once:
+
+----
+composer ci
 ----
 
 == API Documentation
