@@ -7,4 +7,9 @@
             <directory>tests/Regression/</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/Location</directory>
+        </whitelist>
+    </filter>
 </phpunit>
