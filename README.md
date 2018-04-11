@@ -238,6 +238,10 @@ Psalm:
 ./vendor/bin/psalm
 ```
 
+## Miscellaneous
+
+[@clemdesign](https://github.com/clemdesign) created a [TypeScript port](https://github.com/clemdesign/typescript-tsgeo) of phpgeo.
+
 ## Credits
 
 * Marcus Jaschen <mail@marcusjaschen.de>
