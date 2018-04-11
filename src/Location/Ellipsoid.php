@@ -80,7 +80,7 @@ class Ellipsoid
     }
 
     /**
-     * @param $config
+     * @param array $config
      *
      * @return Ellipsoid
      */

@@ -42,7 +42,9 @@ To install _phpgeo,_ simply "require" it using Composer:
 
 _phpgeo_ is now ready to be used in your project!
 
-== Run Tests
+== Development
+
+=== Run Tests
 
 _phpgeo_ provides unit tests with a quite good coverage. For an easy usage,
 the test command is wrapped as a Composer script:
@@ -89,7 +91,7 @@ It's possible to run all tests at once:
 composer ci
 ----
 
-== API Documentation
+=== API Documentation
 
 Detailed https://phpgeo.marcusjaschen.de/api/[API documentation] is available.
 
