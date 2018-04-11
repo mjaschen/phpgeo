@@ -84,7 +84,7 @@ class Ellipsoid
      *
      * @return Ellipsoid
      */
-    public static function createFromArray($config): Ellipsoid
+    public static function createFromArray(array $config): Ellipsoid
     {
         return new static($config['name'], $config['a'], $config['f']);
     }
