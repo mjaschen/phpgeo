@@ -77,11 +77,8 @@ class Polyline implements GeometryInterface
             return $segments;
         }
 
-        $previousPoint = reset($this->points);
-
-        while ($point = next($this->points)) {
-            $segments[]    = new Line($previousPoint, $point);
-            $previousPoint = $point;
+        for ($i = 1; $i < count($this->points); $i++) {
+            $segments[] = new Line($this->points[$i - 1], $this->points[$i]);
         }
 
         return $segments;

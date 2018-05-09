@@ -37,6 +37,14 @@ class PolylineTest extends TestCase
         $this->assertEquals(new Line(new Coordinate(40.7, - 74.0), new Coordinate(33.9, - 118.4)), $segments[2]);
     }
 
+    public function testGetSegmentsForOnlyOnePointInLineWorksAsExpected()
+    {
+        $polyline = new Polyline();
+        $polyline->addPoint(new Coordinate(52.5, 13.5));
+
+        $this->assertEquals([], $polyline->getSegments());
+    }
+
     public function testGetLength()
     {
         $this->assertEquals(10576798.9, $this->polyline->getLength(new Vincenty()), '', 0.1);
