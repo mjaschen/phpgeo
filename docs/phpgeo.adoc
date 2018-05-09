@@ -25,6 +25,11 @@ The project is hosted on Github:
 - https://github.com/mjaschen/phpgeo[Github Project Site]
 - https://github.com/mjaschen/phpgeo/issues[Issue Tracker]
 
+=== Privacy
+
+The privacy statement for this documentation site can be found here:
+https://www.marcusjaschen.de/datenschutzerklaerung/[Datenschutzerklärung]
+
 == Requirements
 
 _phpgeo_ requires at least PHP 7.0.
