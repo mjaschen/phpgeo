@@ -10,7 +10,9 @@ docs/phpgeo.html: docs/phpgeo.adoc docs/piwik.html
 	mv $@.tmp $@
 
 apidocs:
-	phpdoc run -d src -t docs/api
+	mkdir -p docs/api
+	mkdir -p docs/cache
+	sami update docs/sami.config.php
 
 clean:
 	rm -f docs/phpgeo.html
