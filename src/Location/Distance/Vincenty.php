@@ -92,7 +92,11 @@ class Vincenty implements DistanceInterface
 
             $lambdaP = $lambda;
 
-            $lambda = $L + (1 - $C) * $f * $sinAlpha * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM)));
+            $lambda = $L
+                + (1 - $C)
+                * $f
+                * $sinAlpha
+                * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM)));
         } while (abs($lambda - $lambdaP) > 1e-12 && -- $iterationLimit > 0);
 
         if ($iterationLimit === 0) {
@@ -102,7 +106,11 @@ class Vincenty implements DistanceInterface
         $uSq        = $cosSqAlpha * ($a * $a - $b * $b) / ($b * $b);
         $A          = 1 + $uSq / 16384 * (4096 + $uSq * (- 768 + $uSq * (320 - 175 * $uSq)));
         $B          = $uSq / 1024 * (256 + $uSq * (- 128 + $uSq * (74 - 47 * $uSq)));
-        $deltaSigma = $B * $sinSigma * ($cos2SigmaM + $B / 4 * ($cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM) - $B / 6 * $cos2SigmaM * (- 3 + 4 * $sinSigma * $sinSigma) * (- 3 + 4 * $cos2SigmaM * $cos2SigmaM)));
+        $deltaSigma = $B * $sinSigma * (
+            $cos2SigmaM
+            + $B / 4 * ($cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM)
+            - $B / 6 * $cos2SigmaM * (- 3 + 4 * $sinSigma * $sinSigma) * (- 3 + 4 * $cos2SigmaM * $cos2SigmaM))
+        );
         $s          = $b * $A * ($sigma - $deltaSigma);
 
         return round($s, 3);

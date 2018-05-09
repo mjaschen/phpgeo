@@ -71,13 +71,14 @@ class Polyline implements GeometryInterface
      */
     public function getSegments(): array
     {
+        $length   = count($this->points);
         $segments = [];
 
-        if (count($this->points) <= 1) {
+        if ($length <= 1) {
             return $segments;
         }
 
-        for ($i = 1; $i < count($this->points); $i++) {
+        for ($i = 1; $i < $length; $i++) {
             $segments[] = new Line($this->points[$i - 1], $this->points[$i]);
         }
 

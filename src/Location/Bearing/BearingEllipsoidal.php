@@ -102,9 +102,9 @@ class BearingEllipsoidal implements BearingInterface
      */
     private function directVincenty(Coordinate $point, float $bearing, float $distance): DirectVincentyBearing
     {
-        $phi1 = deg2rad($point->getLat());
+        $phi1    = deg2rad($point->getLat());
         $lambda1 = deg2rad($point->getLng());
-        $alpha1 = deg2rad($bearing);
+        $alpha1  = deg2rad($bearing);
 
         $a = $point->getEllipsoid()->getA();
         $b = $point->getEllipsoid()->getB();
@@ -113,23 +113,24 @@ class BearingEllipsoidal implements BearingInterface
         $sinAlpha1 = sin($alpha1);
         $cosAlpha1 = cos($alpha1);
 
-        $tanU1  = (1 - $f) * tan($phi1);
-        $cosU1  = 1 / sqrt(1 + $tanU1 * $tanU1);
-        $sinU1  = $tanU1 * $cosU1;
-        $sigma1     = atan2($tanU1, $cosAlpha1);
-        $sinAlpha   = $cosU1 * $sinAlpha1;
+        $tanU1       = (1 - $f) * tan($phi1);
+        $cosU1       = 1 / sqrt(1 + $tanU1 * $tanU1);
+        $sinU1       = $tanU1 * $cosU1;
+        $sigma1      = atan2($tanU1, $cosAlpha1);
+        $sinAlpha    = $cosU1 * $sinAlpha1;
         $cosSquAlpha = 1 - $sinAlpha * $sinAlpha;
-        $uSq    = $cosSquAlpha * ($a * $a - $b * $b) / ($b * $b);
-        $A      = 1 + $uSq / 16384 * (4096 + $uSq * (-768 + $uSq * (320 - 175 * $uSq)));
-        $B      = $uSq / 1024 * (256 + $uSq * (-128 + $uSq * (74 - 47 * $uSq)));
+        $uSq         = $cosSquAlpha * ($a * $a - $b * $b) / ($b * $b);
+        $A           = 1 + $uSq / 16384 * (4096 + $uSq * (-768 + $uSq * (320 - 175 * $uSq)));
+        $B           = $uSq / 1024 * (256 + $uSq * (-128 + $uSq * (74 - 47 * $uSq)));
 
-        $sigma = $sigmaS = $distance / ($b * $A);
+        $sigmaS     = $distance / ($b * $A);
+        $sigma      = $sigmaS;
         $iterations = 0;
 
         do {
-            $cos2SigmaM     = cos(2 * $sigma1 + $sigma);
-            $sinSigma       = sin($sigma);
-            $cosSigma       = cos($sigma);
+            $cos2SigmaM = cos(2 * $sigma1 + $sigma);
+            $sinSigma   = sin($sigma);
+            $cosSigma   = cos($sigma);
             $deltaSigma = $B * $sinSigma * ($cos2SigmaM + $B / 4 * ($cosSigma * (-1 + 2 * $cos2SigmaM * $cos2SigmaM) - $B / 6 * $cos2SigmaM * (-3 + 4 * $sinSigma * $sinSigma) * (-3 + 4 * $cos2SigmaM * $cos2SigmaM)));
             $sigmaS     = $sigma;
             $sigma      = $distance / ($b * $A) + $deltaSigma;
@@ -139,12 +140,12 @@ class BearingEllipsoidal implements BearingInterface
             throw new NotConvergingException('Inverse Vincenty Formula did not converge');
         }
 
-        $tmp = $sinU1 * $sinSigma - $cosU1 * $cosSigma * $cosAlpha1;
-        $phi2  = atan2($sinU1 * $cosSigma + $cosU1 * $sinSigma * $cosAlpha1, (1 - $f) * sqrt($sinAlpha * $sinAlpha + $tmp * $tmp));
-        $lambda   = atan2($sinSigma * $sinAlpha1, $cosU1 * $cosSigma - $sinU1 * $sinSigma * $cosAlpha1);
-        $C   = $f / 16 * $cosSquAlpha * (4 + $f * (4 - 3 * $cosSquAlpha));
-        $L   = $lambda - (1 - $C) * $f * $sinAlpha * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (-1 + 2 * $cos2SigmaM * $cos2SigmaM)));
-        $lambda2  = fmod($lambda1 + $L + 3 * M_PI, 2 * M_PI) - M_PI;
+        $tmp     = $sinU1 * $sinSigma - $cosU1 * $cosSigma * $cosAlpha1;
+        $phi2    = atan2($sinU1 * $cosSigma + $cosU1 * $sinSigma * $cosAlpha1, (1 - $f) * sqrt($sinAlpha * $sinAlpha + $tmp * $tmp));
+        $lambda  = atan2($sinSigma * $sinAlpha1, $cosU1 * $cosSigma - $sinU1 * $sinSigma * $cosAlpha1);
+        $C       = $f / 16 * $cosSquAlpha * (4 + $f * (4 - 3 * $cosSquAlpha));
+        $L       = $lambda - (1 - $C) * $f * $sinAlpha * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (-1 + 2 * $cos2SigmaM * $cos2SigmaM)));
+        $lambda2 = fmod($lambda1 + $L + 3 * M_PI, 2 * M_PI) - M_PI;
 
         $alpha2 = atan2($sinAlpha, -$tmp);
         $alpha2 = fmod($alpha2 + 2 * M_PI, 2 * M_PI);
