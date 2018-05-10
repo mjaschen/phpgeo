@@ -1,6 +1,8 @@
-.PHONY: docs
 .PHONY: apidocs
 .PHONY: clean
+.PHONY: docs
+.PHONY: upload_docs
+
 .PHONY: ci
 .PHONY: coding-standards
 .PHONY: composer-validate
@@ -8,6 +10,9 @@
 .PHONY: sniff
 .PHONY: static-analysis-psalm
 .PHONY: unit-tests
+
+UPLOAD_HOST=phpgeo.marcusjaschen.de
+UPLOAD_PATH=phpgeo.marcusjaschen.de
 
 docs: docs/phpgeo.html apidocs
 
@@ -26,9 +31,9 @@ clean:
 	rm -Rf docs/api
 
 upload_docs: docs
-	scp docs/phpgeo.html phpgeo.marcusjaschen.de:phpgeo.marcusjaschen.de/index.html
-	ssh phpgeo.marcusjaschen.de "mkdir -p phpgeo.marcusjaschen.de/api"
-	rsync --recursive --delete docs/api/ phpgeo.marcusjaschen.de:phpgeo.marcusjaschen.de/api/
+	scp docs/phpgeo.html $(UPLOAD_HOST):$(UPLOAD_PATH)/index.html
+	ssh $(UPLOAD_HOST) "mkdir -p $(UPLOAD_PATH)/api"
+	rsync --recursive --delete docs/api/ $(UPLOAD_HOST):$(UPLOAD_PATH)/api/
 
 ci: lint coding-standards composer-validate sniff static-analysis-psalm unit-tests
 
