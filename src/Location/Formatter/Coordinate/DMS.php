@@ -67,7 +67,7 @@ class DMS implements FormatterInterface
      */
     public function __construct(string $separator = ' ')
     {
-        $this->separator = $separator;
+        $this->separator          = $separator;
         $this->useCardinalLetters = false;
         $this->setUnits(static::UNITS_UTF8);
     }

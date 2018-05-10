@@ -107,22 +107,20 @@ class Polygon implements GeometryInterface
      */
     public function getSegments(): array
     {
+        $length   = count($this->points);
         $segments = [];
 
-        if (count($this->points) <= 1) {
+        if ($length <= 1) {
             return $segments;
         }
 
-        $previousPoint = reset($this->points);
-
-        while ($point = next($this->points)) {
-            $segments[]    = new Line($previousPoint, $point);
-            $previousPoint = $point;
+        for ($i = 1; $i < $length; $i++) {
+            $segments[] = new Line($this->points[$i - 1], $this->points[$i]);
         }
 
         // to close the polygon we have to add the final segment between
         // the last point and the first point
-        $segments[] = new Line(end($this->points), reset($this->points));
+        $segments[] = new Line($this->points[$i - 1], $this->points[0]);
 
         return $segments;
     }
@@ -165,7 +163,7 @@ class Polygon implements GeometryInterface
      *
      * @param Coordinate $point
      *
-     * @return boolean
+     * @return bool
      */
     public function contains(Coordinate $point): bool
     {
@@ -175,14 +173,15 @@ class Polygon implements GeometryInterface
 
         $polygonContainsPoint = false;
 
-        for ($node = 0, $altNode = ($numberOfPoints - 1); $node < $numberOfPoints; $altNode = $node ++) {
-            if (($polygonLngs[$node] > $point->getLng() != ($polygonLngs[$altNode] > $point->getLng()))
-                && ($point->getLat() < ($polygonLats[$altNode] - $polygonLats[$node])
-                                       * ($point->getLng() - $polygonLngs[$node])
-                                       / ($polygonLngs[$altNode] - $polygonLngs[$node])
-                                       + $polygonLats[$node]
-                )
-            ) {
+        for ($node = 0, $altNode = ($numberOfPoints - 1); $node < $numberOfPoints; $altNode = $node++) {
+            $containCondition1 = $polygonLngs[$node] > $point->getLng() !== ($polygonLngs[$altNode] > $point->getLng());
+            $containCondition2
+                = $point->getLat() <
+                ($polygonLats[$altNode] - $polygonLats[$node])
+                * ($point->getLng() - $polygonLngs[$node])
+                / ($polygonLngs[$altNode] - $polygonLngs[$node])
+                + $polygonLats[$node];
+            if ($containCondition1 && $containCondition2) {
                 $polygonContainsPoint = ! $polygonContainsPoint;
             }
         }
@@ -230,8 +229,8 @@ class Polygon implements GeometryInterface
         }
 
         $referencePoint = $this->points[0];
-        $radius = $referencePoint->getEllipsoid()->getArithmeticMeanRadius();
-        $segments = $this->getSegments();
+        $radius         = $referencePoint->getEllipsoid()->getArithmeticMeanRadius();
+        $segments       = $this->getSegments();
 
         foreach ($segments as $segment) {
             /** @var Coordinate $point1 */
@@ -250,7 +249,7 @@ class Polygon implements GeometryInterface
 
         $area *= 0.5 * $radius ** 2;
 
-        return (float) abs($area);
+        return (float)abs($area);
     }
 
     /**

@@ -78,8 +78,13 @@ class CoordinateFactory implements GeometryFactoryInterface
         // Decimal minutes without cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
         // "N52° 12.345′ E13° 23.456′"
-        if (preg_match('/(-?\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?[, ]\s*(-?\d{1,3})°?\s+(\d{1,2}\.?\d*)[\'′]?/ui', $string, $match)) {
-            $latitude = $match[1] >= 0 ? $match[1] + $match[2] / 60 : $match[1] - $match[2] / 60;
+        if (preg_match(
+            '/(-?\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?[, ]\s*(-?\d{1,3})°?\s+(\d{1,2}\.?\d*)[\'′]?/ui',
+            $string,
+            $match
+        )
+        ) {
+            $latitude  = $match[1] >= 0 ? $match[1] + $match[2] / 60 : $match[1] - $match[2] / 60;
             $longitude = $match[3] >= 0 ? $match[3] + $match[4] / 60 : $match[3] - $match[4] / 60;
 
             return new Coordinate((float)$latitude, (float)$longitude, $ellipsoid);
@@ -100,7 +105,12 @@ class CoordinateFactory implements GeometryFactoryInterface
         // Decimal minutes with cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
         // "N52° 12.345′ E13° 23.456′"
-        if (preg_match('/([NS]?\s*)(\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,3})°?\s+(\d{1,2}\.?\d*)[\'′]?(\s*[EW]?)/ui', $string, $match)) {
+        if (preg_match(
+            '/([NS]?\s*)(\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,3})°?\s+(\d{1,2}\.?\d*)[\'′]?(\s*[EW]?)/ui',
+            $string,
+            $match
+        )
+        ) {
             $latitude = $match[2] + $match[3] / 60;
             if (strtoupper(trim($match[1])) === 'S' || strtoupper(trim($match[4])) === 'S') {
                 $latitude = - $latitude;
@@ -145,7 +155,12 @@ class CoordinateFactory implements GeometryFactoryInterface
     {
         // Decimal degrees with cardinal letters, e. g. "N52.5, E13.5",
         // "40.2S, 135.3485W", or "56.234°N, 157.245°W"
-        if (preg_match('/([NS]?\s*)(\d{1,2}\.?\d*)°?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,3}\.?\d*)°?(\s*[EW]?)/ui', $string, $match)) {
+        if (preg_match(
+            '/([NS]?\s*)(\d{1,2}\.?\d*)°?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,3}\.?\d*)°?(\s*[EW]?)/ui',
+            $string,
+            $match
+        )
+        ) {
             $latitude = $match[2];
             if (strtoupper(trim($match[1])) === 'S' || strtoupper(trim($match[3])) === 'S') {
                 $latitude = - $latitude;
