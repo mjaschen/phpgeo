@@ -53,12 +53,16 @@
         "phpmd/phpmd": "^2.6"
     },
     "scripts": {
-        "ci:lint": "find config src tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+        "ci:lint": "./vendor/bin/parallel-lint src",
         "ci:psalm": "./vendor/bin/psalm",
+        "ci:sniff": "./vendor/bin/phpcs --standard=codesniffer_rules.xml src || true",
+        "ci:coding-standards": "./vendor/bin/phpmd src text cleancode,codesize,design,naming,unusedcode || true",
         "ci:tests": "./vendor/bin/phpunit tests/",
         "ci:static": [
             "@ci:lint",
-            "@ci:psalm"
+            "@ci:psalm",
+            "@ci:sniff",
+            "@ci:coding-standards"
         ],
         "ci:dynamic": [
             "@ci:tests"
