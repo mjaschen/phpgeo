@@ -1,6 +1,6 @@
 = phpgeo
 Marcus Jaschen <mail@marcusjaschen.de>
-v2.0.2, 2018-03-28
+v2.0.2, 2018-05-10
 :toc: left
 :toclevels: 4
 :source-highlighter: coderay
