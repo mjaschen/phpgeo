@@ -37,7 +37,7 @@ class Vincenty implements DistanceInterface
      */
     public function getDistance(Coordinate $point1, Coordinate $point2): float
     {
-        if ($point1->getEllipsoid() != $point2->getEllipsoid()) {
+        if ($point1->getEllipsoid()->getName() !== $point2->getEllipsoid()->getName()) {
             throw new NotMatchingEllipsoidException('The ellipsoids for both coordinates must match');
         }
 
