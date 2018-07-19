@@ -29,7 +29,7 @@ Minimum required PHP version is 7.0.
 
 The documentation is available at https://phpgeo.marcusjaschen.de/
 
-API documentation is available as well: https://phpgeo.marcusjaschen.de/api/
+API documentation is available as well: https://phpgeo.marcusjaschen.de/api/master
 
 ## Installation
 
@@ -49,25 +49,25 @@ Starting with version 2.0.0 phpgeo is licensed under the MIT license. Older vers
 
 phpgeo provides the following features (follow the links for examples):
 
-- abstractions of several geometry objects ([coordinate/point](https://phpgeo.marcusjaschen.de/geometry/coordinate/),
-  [line](https://phpgeo.marcusjaschen.de/geometry/line/),
-  [polyline/GPS track](https://phpgeo.marcusjaschen.de/geometry/polyline/),
-  [polygon](https://phpgeo.marcusjaschen.de/geometry/polygon/)
-- support for different [ellipsoids](https://phpgeo.marcusjaschen.de/geometry/ellipsoid/), e. g. WGS-84
-- [length/distance/perimeter calculations](https://phpgeo.marcusjaschen.de/calculations/distance/)
+- abstractions of several geometry objects ([coordinate/point](https://phpgeo.marcusjaschen.de/#_coordinate),
+  [line](https://phpgeo.marcusjaschen.de/#_line),
+  [polyline/GPS track](https://phpgeo.marcusjaschen.de/#_polyline),
+  [polygon](https://phpgeo.marcusjaschen.de/#_polygon)
+- support for different [ellipsoids](https://phpgeo.marcusjaschen.de/#_ellipsoid), e. g. WGS-84
+- [length/distance/perimeter calculations](https://phpgeo.marcusjaschen.de/#_distance_and_length)
   with different implementations (Haversine, Vincenty)
-- [Geofence](https://phpgeo.marcusjaschen.de/calculations/geofence/) calculation,
+- [Geofence](https://phpgeo.marcusjaschen.de/#_geofence_2) calculation,
   i. e. answering the question "Is this point contained in that area/polygon?"
-- [formatting and output](https://phpgeo.marcusjaschen.de/formatting/) of geometry objects
+- [formatting and output](https://phpgeo.marcusjaschen.de/#_formatting_and_output) of geometry objects
   (GeoJSON, nice strings, e. g. `18° 54′ 41″ -155° 40′ 42″`)
-- calculation of [bearing angle between two points](https://phpgeo.marcusjaschen.de/calculations/bearing/#bearing-between-two-points)
+- calculation of [bearing angle between two points](https://phpgeo.marcusjaschen.de/#_bearing_between_two_points)
   (spherical or with Vincenty's formula)
-- calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/calculations/bearing/#destination-point-for-given-bearing-and-distance),
+- calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/#_distance_between_two_coordinates_vincentys_formula),
   bearing angle, and distance (spherical or with Vincenty's formula)
 - calculation of the [perpendicular distance between a point and a line](https://phpgeo.marcusjaschen.de/#_perpendicular_distance)
-- getting segments of a [polyline](https://phpgeo.marcusjaschen.de/geometry/polyline/#segments)
-  /[polygon](https://phpgeo.marcusjaschen.de/geometry/polygon/#segments),
-- [reversing direction](https://phpgeo.marcusjaschen.de/geometry/polyline/#reverse-direction)
+- getting segments of a [polyline](https://phpgeo.marcusjaschen.de/#_segments)
+  /[polygon](https://phpgeo.marcusjaschen.de/#_segments_2),
+- [reversing direction](https://phpgeo.marcusjaschen.de/#_reverse_direction_2)
   of polyline/polygon
 
 ## Examples/Usage
