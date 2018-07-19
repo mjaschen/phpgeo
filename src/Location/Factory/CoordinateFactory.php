@@ -84,8 +84,8 @@ class CoordinateFactory implements GeometryFactoryInterface
             $match
         )
         ) {
-            $latitude  = $match[1] >= 0 ? $match[1] + $match[2] / 60 : $match[1] - $match[2] / 60;
-            $longitude = $match[3] >= 0 ? $match[3] + $match[4] / 60 : $match[3] - $match[4] / 60;
+            $latitude  = (int)$match[1] >= 0 ? (int)$match[1] + (float)$match[2] / 60 : (int)$match[1] - (float)$match[2] / 60;
+            $longitude = (int)$match[3] >= 0 ? (int)$match[3] + (float)$match[4] / 60 : (int)$match[3] - (float)$match[4] / 60;
 
             return new Coordinate((float)$latitude, (float)$longitude, $ellipsoid);
         }
@@ -111,11 +111,11 @@ class CoordinateFactory implements GeometryFactoryInterface
             $match
         )
         ) {
-            $latitude = $match[2] + $match[3] / 60;
+            $latitude = (int)$match[2] + (float)$match[3] / 60;
             if (strtoupper(trim($match[1])) === 'S' || strtoupper(trim($match[4])) === 'S') {
                 $latitude = - $latitude;
             }
-            $longitude = $match[6] + $match[7] / 60;
+            $longitude = (int)$match[6] + (float)$match[7] / 60;
             if (strtoupper(trim($match[5])) === 'W' || strtoupper(trim($match[8])) === 'W') {
                 $longitude = - $longitude;
             }
