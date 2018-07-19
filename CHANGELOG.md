@@ -3,6 +3,18 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.0.3] - 2018-07-19
+
+### Fixed
+
+- Links to documentation in README. Thanks @JonathanMH
+
+### Changed
+
+- better floating point number comparisons in `Vincenty`
+- add exception message in `Vincenty`
+- type-cast regexp matches before doing calculations in `CoordinateFactory`
+
 ## [2.0.2] - 2018-03-27
 
 ### Added
