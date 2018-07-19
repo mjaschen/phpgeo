@@ -100,7 +100,7 @@ class Vincenty implements DistanceInterface
         } while (abs($lambda - $lambdaP) > 1e-12 && -- $iterationLimit > 0);
 
         if ($iterationLimit === 0) {
-            throw new NotConvergingException();
+            throw new NotConvergingException('Vincenty calculation does not converge');
         }
 
         $uSq        = $cosSqAlpha * ($a * $a - $b * $b) / ($b * $b);
