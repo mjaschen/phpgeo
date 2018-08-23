@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * Polyline Implementation
  *
- * PHP version 5
+ * PHP version 7
  *
  * @author    Marcus Jaschen <mjaschen@gmail.com>
  * @license   https://opensource.org/licenses/MIT
@@ -38,6 +38,22 @@ class Polyline implements GeometryInterface
     public function addPoint(Coordinate $point)
     {
         $this->points[] = $point;
+    }
+
+  /**
+   * Add single point
+   *
+   * @param Coordinate $pointToAdd
+   */
+    public function addSinglePoint(Coordinate $pointToAdd) {
+      foreach($this->points as $point){
+        /* @var $point Coordinate */
+        if(($point->getLat() == $pointToAdd->getLat()) && ($point->getLng() == $pointToAdd->getLng())) {
+          return;
+        }
+      }
+
+      $this->points[] = $pointToAdd;
     }
 
     /**
@@ -122,5 +138,30 @@ class Polyline implements GeometryInterface
         }
 
         return $reversed;
+    }
+
+  /**
+   * RGet the middle point of Polyline
+   * @return Coordinate
+   */
+    public function getMiddlePoint(): Coordinate {
+      $lat = 0.0;
+      $lng = 0.0;
+      $numberOfPoints = count($this->points);
+
+      if($numberOfPoints < 1) {
+        return null;
+      }
+
+      foreach($this->points as $point){
+        /* @var $point Coordinate */
+        $lat += $point->getLat();
+        $lng += $point->getLng();
+      }
+
+      $lat /= $numberOfPoints;
+      $lng /= $numberOfPoints;
+
+      return new Coordinate($lat, $lng);
     }
 }

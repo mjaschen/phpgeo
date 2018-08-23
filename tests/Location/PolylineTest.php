@@ -69,4 +69,21 @@ class PolylineTest extends TestCase
 
         $this->assertEquals($this->polyline, $doubleReversed);
     }
+
+    public function testAddSinglePointWorksAsExpeted() {
+      $expected = $this->polyline;
+
+      $expected->addSinglePoint(new Coordinate(52.5, 13.5));
+      $expected->addSinglePoint(new Coordinate(64.1, - 21.9));
+      $expected->addSinglePoint(new Coordinate(40.7, - 74.0));
+      $expected->addSinglePoint(new Coordinate(33.9, - 118.4));
+
+      $this->assertEquals($this->polyline, $expected);
+    }
+
+    public function testgetMiddlePointWorksAsExpected() {
+      $middle = $this->polyline->getMiddlePoint();
+
+      $this->assertEquals($middle, new Coordinate(47.8, -50.2));
+    }
 }
