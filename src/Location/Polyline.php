@@ -141,10 +141,10 @@ class Polyline implements GeometryInterface
     }
 
   /**
-   * RGet the middle point of Polyline
-   * @return Coordinate
+   * Get the middle point of Polyline
+   * @return Coordinate|null
    */
-    public function getMiddlePoint(): Coordinate {
+    public function getMiddlePoint() {
       $lat = 0.0;
       $lng = 0.0;
       $numberOfPoints = count($this->points);
