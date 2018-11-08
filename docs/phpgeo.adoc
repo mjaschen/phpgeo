@@ -1144,6 +1144,8 @@ The code above produces the output below:
 {"type":"Point","coordinates":[-155.678268,18.911306]}
 ----
 
+NOTE: Float values processed by `json_encode()` are affected by the ini-setting https://secure.php.net/manual/en/ini.core.php#ini.serialize-precision[`serialize_precision`]. You can change the number of decimal places in the JSON output by changing that ini-option, e. g. with `ini_set('serialize_precision', 8)`.
+
 === Polylines
 
 You can format a polyline in different styles.
@@ -1173,6 +1175,8 @@ The code above produces the output below:
 ----
 {"type":"LineString","coordinates":[[13.5,52.5],[14.5,62.5]]}
 ----
+
+NOTE: Float values processed by `json_encode()` are affected by the ini-setting https://secure.php.net/manual/en/ini.core.php#ini.serialize-precision[`serialize_precision`]. You can change the number of decimal places in the JSON output by changing that ini-option, e. g. with `ini_set('serialize_precision', 8)`.
 
 === Polygons
 
@@ -1205,6 +1209,8 @@ The code above produces the output below:
 ----
 {"type":"Polygon","coordinates":[[20,10],[40,20],[40,30],[20,30]]}
 ----
+
+NOTE: Float values processed by `json_encode()` are affected by the ini-setting https://secure.php.net/manual/en/ini.core.php#ini.serialize-precision[`serialize_precision`]. You can change the number of decimal places in the JSON output by changing that ini-option, e. g. with `ini_set('serialize_precision', 8)`.
 
 == Parsing and Input
 
