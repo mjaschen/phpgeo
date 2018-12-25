@@ -71,7 +71,7 @@ class Vincenty implements DistanceInterface
                 ($cosU1 * $sinU2 - $sinU1 * $cosU2 * $cosLambda) * ($cosU1 * $sinU2 - $sinU1 * $cosU2 * $cosLambda)
             );
 
-            if (abs($sinSigma) < 0.000001) {
+            if (abs($sinSigma) < 1E-12) {
                 return 0.0;
             }
 
@@ -84,7 +84,7 @@ class Vincenty implements DistanceInterface
             $cosSqAlpha = 1 - $sinAlpha * $sinAlpha;
 
             $cos2SigmaM = 0;
-            if (abs($cosSqAlpha) > 0.000001) {
+            if (abs($cosSqAlpha) > 1E-12) {
                 $cos2SigmaM = $cosSigma - 2 * $sinU1 * $sinU2 / $cosSqAlpha;
             }
 
