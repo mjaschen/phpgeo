@@ -25,7 +25,7 @@ interface FormatterInterface
     /**
      * @param Polyline $polyline
      *
-     * @return mixed
+     * @return string
      */
     public function format(Polyline $polyline): string;
 }

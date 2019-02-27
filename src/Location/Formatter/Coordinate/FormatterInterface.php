@@ -25,7 +25,7 @@ interface FormatterInterface
     /**
      * @param Coordinate $coordinate
      *
-     * @return mixed
+     * @return string
      */
     public function format(Coordinate $coordinate): string;
 }
