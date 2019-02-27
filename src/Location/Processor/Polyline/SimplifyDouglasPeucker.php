@@ -74,7 +74,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
 
         $pdCalc = new PerpendicularDistance();
 
-        for ($i = 1; $i <= ($lineSize - 1); $i++) {
+        for ($i = 1; $i <= ($lineSize - 2); $i++) {
             $distance = $pdCalc->getPerpendicularDistance($line[$i], new Line($line[0], $line[$lineSize - 1]));
 
             if ($distance > $distanceMax) {
@@ -84,11 +84,21 @@ class SimplifyDouglasPeucker implements SimplifyInterface
         }
 
         if ($distanceMax > $this->tolerance) {
-            $lineSplitFirst  = array_slice($line, 0, $index);
-            $lineSplitSecond = array_slice($line, $index, $lineSize);
+            $lineSplitFirst  = array_slice($line, 0, $index+1);
+            $lineSplitSecond = array_slice($line, $index, $lineSize-$index);
 
-            $resultsSplit1 = $this->douglasPeucker($lineSplitFirst);
-            $resultsSplit2 = $this->douglasPeucker($lineSplitSecond);
+            if (count($lineSplitFirst) > 2) {
+                $resultsSplit1 = $this->douglasPeucker($lineSplitFirst);
+            }
+            else {
+                $resultsSplit1 = $lineSplitFirst;
+            }
+            if (count($lineSplitSecond) > 2) {
+                $resultsSplit2 = $this->douglasPeucker($lineSplitSecond);
+            }
+            else {
+                $resultsSplit2 = $lineSplitSecond;
+            }
 
             array_pop($resultsSplit1);
 
