@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.0.5] - 2019-02-27
+
+### Changed
+
+- improvements to the Douglas-Peucker processor. Thanks @iamskey!
+
 ## [2.0.3] - 2018-07-19
 
 ### Fixed
