@@ -41,8 +41,8 @@
         "php": ">=7.0"
     },
     "autoload": {
-        "psr-0": {
-            "Location": "src/"
+        "psr-4": {
+            "Location\\": "src/"
         }
     },
     "require-dev": {
