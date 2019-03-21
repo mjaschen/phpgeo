@@ -7,11 +7,11 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
-- The bounds for a `Polyline` can now be retrieved in form of a `Bound` object.  
+- The bounds for a `Polyline` can now be retrieved in form of a `Bound` object.
 
 ### Changed
 
-- The auto-loader is now PSR-4 compatible; directory structure was flattened by one level. 
+- The auto-loader is now PSR-4 compatible; directory structure was flattened by one level.
 
 ## [2.0.5] - 2019-02-27
 
