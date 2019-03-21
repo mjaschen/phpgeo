@@ -1,17 +1,7 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Coordinate Bounds Class
- *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location;
-
-use Location\Coordinate;
 
 /**
  * Coordinate Bounds Class

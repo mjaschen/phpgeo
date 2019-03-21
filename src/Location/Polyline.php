@@ -26,7 +26,7 @@ use Location\Formatter\Polyline\FormatterInterface;
 class Polyline implements GeometryInterface
 {
     /**
-     * @var array
+     * @var Coordinate[]
      */
     protected $points = [];
 
@@ -41,7 +41,7 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @return array
+     * @return Coordinate[]
      */
     public function getPoints(): array
     {
@@ -67,11 +67,11 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @return array
+     * @return Line[]
      */
     public function getSegments(): array
     {
-        $length   = count($this->points);
+        $length = count($this->points);
         $segments = [];
 
         if ($length <= 1) {
