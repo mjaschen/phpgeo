@@ -88,7 +88,6 @@ class BearingEllipsoidal implements BearingInterface
      * @return DirectVincentyBearing
      *
      * @throws NotConvergingException
-     * @throws InvalidArgumentException
      */
     private function directVincenty(Coordinate $point, float $bearing, float $distance): DirectVincentyBearing
     {

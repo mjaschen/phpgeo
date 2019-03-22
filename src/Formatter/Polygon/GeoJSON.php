@@ -15,11 +15,11 @@ use Location\Polygon;
 class GeoJSON implements FormatterInterface
 {
     /**
-     * @param \Location\Polygon $polygon
+     * @param Polygon $polygon
      *
      * @return string
      *
-     * @throws \Location\Exception\InvalidPolygonException
+     * @throws InvalidPolygonException
      */
     public function format(Polygon $polygon): string
     {
