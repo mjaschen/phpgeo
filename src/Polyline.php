@@ -1,16 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Polyline Implementation
- *
- * PHP version 5
- *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location;
 
 use Location\Distance\DistanceInterface;
@@ -19,9 +9,7 @@ use Location\Formatter\Polyline\FormatterInterface;
 /**
  * Polyline Implementation
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Polyline implements GeometryInterface
 {

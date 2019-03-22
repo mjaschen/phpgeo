@@ -1,26 +1,16 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Calculation of bearing between two points using a
- * simple spherical model of the earth.
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Bearing;
 
+use InvalidArgumentException;
 use Location\Coordinate;
 
 /**
  * Calculation of bearing between two points using a
  * simple spherical model of the earth.
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class BearingSpherical implements BearingInterface
 {
@@ -33,8 +23,8 @@ class BearingSpherical implements BearingInterface
      * This method calculates the initial bearing between the
      * two points.
      *
-     * @param \Location\Coordinate $point1
-     * @param \Location\Coordinate $point2
+     * @param Coordinate $point1
+     * @param Coordinate $point2
      *
      * @return float Bearing Angle
      */
@@ -60,8 +50,8 @@ class BearingSpherical implements BearingInterface
     /**
      * Calculates the final bearing between the two points.
      *
-     * @param \Location\Coordinate $point1
-     * @param \Location\Coordinate $point2
+     * @param Coordinate $point1
+     * @param Coordinate $point2
      *
      * @return float
      */
@@ -76,12 +66,12 @@ class BearingSpherical implements BearingInterface
      * Calculates a destination point for the given point, bearing angle,
      * and distance.
      *
-     * @param \Location\Coordinate $point
+     * @param Coordinate $point
      * @param float $bearing the bearing angle between 0 and 360 degrees
      * @param float $distance the distance to the destination point in meters
      *
      * @return Coordinate
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function calculateDestination(Coordinate $point, float $bearing, float $distance): Coordinate
     {

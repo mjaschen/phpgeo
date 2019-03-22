@@ -1,25 +1,15 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Simplify Polyline
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Processor\Polyline;
 
 use Location\Bearing\BearingEllipsoidal;
 use Location\Polyline;
 
 /**
- * Simplify Polyline
+ * Simplify Polyline.
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class SimplifyBearing implements SimplifyInterface
 {

@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Calculate the perpendicular distance between a Line and a Point
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Utility;
 
 use Location\Coordinate;
@@ -17,9 +9,7 @@ use Location\Line;
 /**
  * Calculate the perpendicular distance between a Line and a Point
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class PerpendicularDistance
 {

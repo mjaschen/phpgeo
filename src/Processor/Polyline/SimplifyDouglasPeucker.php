@@ -1,6 +1,13 @@
 <?php
 declare(strict_types=1);
 
+namespace Location\Processor\Polyline;
+
+use Location\Line;
+use Location\Polyline;
+use Location\Utility\PerpendicularDistance;
+
+/**
 /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
@@ -10,23 +17,7 @@ declare(strict_types=1);
  * The formula for the Perpendicular Distance is described here:
  * http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php
  *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
-namespace Location\Processor\Polyline;
-
-use Location\Line;
-use Location\Polyline;
-use Location\Utility\PerpendicularDistance;
-
-/**
- * Simplify Polyline with the Douglas-Peucker-Algorithm
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class SimplifyDouglasPeucker implements SimplifyInterface
 {
@@ -44,9 +35,9 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     }
 
     /**
-     * @param \Location\Polyline $polyline
+     * @param Polyline $polyline
      *
-     * @return \Location\Polyline
+     * @return Polyline
      */
     public function simplify(Polyline $polyline): Polyline
     {

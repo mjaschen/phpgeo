@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Coordinate Factory
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Factory;
 
 use Location\Coordinate;
@@ -17,9 +9,7 @@ use Location\Ellipsoid;
 /**
  * Coordinate Factory
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class CoordinateFactory implements GeometryFactoryInterface
 {

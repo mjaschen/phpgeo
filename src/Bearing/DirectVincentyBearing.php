@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Value object for a "Direct Vincenty" bearing calculation result.
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Bearing;
 
 use Location\Coordinate;
@@ -16,9 +8,7 @@ use Location\Coordinate;
 /**
  * Value object for a "Direct Vincenty" bearing calculation result.
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class DirectVincentyBearing
 {

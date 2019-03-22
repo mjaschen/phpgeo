@@ -1,32 +1,22 @@
 <?php
 declare(strict_types=1);
 
+namespace Location\Bearing;
+
+use InvalidArgumentException;
+use Location\Coordinate;
+use Location\Exception\NotConvergingException;
+
 /**
  * Calculation of bearing between two points using a
- * ellipsoidal model of the earth
+ * ellipsoidal model of the earth.
  *
  * This class is based on the awesome work Chris Veness
  * has done. For more information visit the following URL.
  *
  * @see http://www.movable-type.co.uk/scripts/latlong-vincenty.html
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
- */
-
-namespace Location\Bearing;
-
-use Location\Coordinate;
-use Location\Exception\NotConvergingException;
-
-/**
- * Calculation of bearing between two points using a
- * ellipsoidal model of the earth
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class BearingEllipsoidal implements BearingInterface
 {
@@ -34,8 +24,8 @@ class BearingEllipsoidal implements BearingInterface
      * This method calculates the initial bearing between the
      * two points.
      *
-     * @param \Location\Coordinate $point1
-     * @param \Location\Coordinate $point2
+     * @param Coordinate $point1
+     * @param Coordinate $point2
      *
      * @return float Bearing Angle
      */
@@ -47,8 +37,8 @@ class BearingEllipsoidal implements BearingInterface
     /**
      * Calculates the final bearing between the two points.
      *
-     * @param \Location\Coordinate $point1
-     * @param \Location\Coordinate $point2
+     * @param Coordinate $point1
+     * @param Coordinate $point2
      *
      * @return float
      */
@@ -61,7 +51,7 @@ class BearingEllipsoidal implements BearingInterface
      * Calculates a destination point for the given point, bearing angle,
      * and distance.
      *
-     * @param \Location\Coordinate $point
+     * @param Coordinate $point
      * @param float $bearing the bearing angle between 0 and 360 degrees
      * @param float $distance the distance to the destination point in meters
      *
@@ -77,13 +67,13 @@ class BearingEllipsoidal implements BearingInterface
      * The method expects a starting point point, the bearing angle,
      * and the distance to destination.
      *
-     * @param \Location\Coordinate $point
+     * @param Coordinate $point
      * @param float $bearing
      * @param float $distance
      *
      * @return float
      *
-     * @throws \Location\Exception\NotConvergingException
+     * @throws NotConvergingException
      */
     public function calculateDestinationFinalBearing(Coordinate $point, float $bearing, float $distance): float
     {
@@ -97,8 +87,8 @@ class BearingEllipsoidal implements BearingInterface
      *
      * @return DirectVincentyBearing
      *
-     * @throws \Location\Exception\NotConvergingException
-     * @throws \InvalidArgumentException
+     * @throws NotConvergingException
+     * @throws InvalidArgumentException
      */
     private function directVincenty(Coordinate $point, float $bearing, float $distance): DirectVincentyBearing
     {
@@ -162,7 +152,7 @@ class BearingEllipsoidal implements BearingInterface
      *
      * @return InverseVincentyBearing
      *
-     * @throws \Location\Exception\NotConvergingException
+     * @throws NotConvergingException
      */
     private function inverseVincenty(Coordinate $point1, Coordinate $point2): InverseVincentyBearing
     {

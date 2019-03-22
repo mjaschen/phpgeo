@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Interface for simplifying a polyline
- *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Processor\Polyline;
 
 use Location\Polyline;
@@ -16,16 +8,14 @@ use Location\Polyline;
 /**
  * Interface for simplifying a polyline
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 interface SimplifyInterface
 {
     /**
      * Simplifies the given polyline
      *
-     * @param \Location\Polyline $polyline
+     * @param Polyline $polyline
      *
      * @return Polyline
      */

@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Implementation of distance calculation with Vincenty Method
- *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Distance;
 
 use Location\Coordinate;
@@ -18,11 +10,9 @@ use Location\Exception\NotMatchingEllipsoidException;
 /**
  * Implementation of distance calculation with Vincenty Method
  *
- * @see      http://www.movable-type.co.uk/scripts/latlong-vincenty.html
+ * @see http://www.movable-type.co.uk/scripts/latlong-vincenty.html
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Vincenty implements DistanceInterface
 {
