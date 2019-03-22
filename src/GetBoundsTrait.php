@@ -13,6 +13,11 @@ namespace Location;
 trait GetBoundsTrait
 {
     /**
+     * @return Coordinate[]
+     */
+    abstract public function getPoints(): array;
+
+    /**
      * @return Bounds
      */
     public function getBounds(): Bounds
@@ -22,7 +27,6 @@ trait GetBoundsTrait
         $lngMin = 180.0;
         $lngMax = -180.0;
 
-        /** @var Coordinate $point */
         foreach ($this->getPoints() as $point) {
             $latMin = min($point->getLat(), $latMin);
             $lngMin = min($point->getLng(), $lngMin);
