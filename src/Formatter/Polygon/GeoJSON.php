@@ -24,8 +24,9 @@ class GeoJSON implements FormatterInterface
     public function format(Polygon $polygon): string
     {
         if ($polygon->getNumberOfPoints() < 3) {
-            throw new InvalidPolygonException();
+            throw new InvalidPolygonException('A polygon must consist of at least three points.');
         }
+
         $points = [];
 
         /** @var Coordinate $point */
@@ -35,7 +36,7 @@ class GeoJSON implements FormatterInterface
 
         return json_encode(
             [
-                'type'        => 'Polygon',
+                'type' => 'Polygon',
                 'coordinates' => [$points],
             ]
         );
