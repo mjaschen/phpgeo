@@ -48,7 +48,7 @@ class Coordinate implements GeometryInterface
         $this->lat = $lat;
         $this->lng = $lng;
 
-        if ($ellipsoid !== null) {
+        if ($ellipsoid instanceof Ellipsoid) {
             $this->ellipsoid = $ellipsoid;
 
             return;
