@@ -45,8 +45,8 @@ class Coordinate implements GeometryInterface
             throw new \InvalidArgumentException("Longitude value must be numeric -180.0 .. +180.0 (given: {$lng})");
         }
 
-        $this->lat = (float)$lat;
-        $this->lng = (float)$lng;
+        $this->lat = $lat;
+        $this->lng = $lng;
 
         if ($ellipsoid !== null) {
             $this->ellipsoid = $ellipsoid;
