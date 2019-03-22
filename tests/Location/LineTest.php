@@ -91,4 +91,16 @@ class LineTest extends TestCase
 
         $this->assertEquals(270.0, $line->getFinalBearing($bearingCalculator));
     }
+
+    public function testIfGetBoundsWorksAsExpected()
+    {
+        $point1 = new Coordinate(-10.0, 20.0);
+        $point2 = new Coordinate(3.0, 10.0);
+
+        $line = new Line($point2, $point1);
+
+        $expected = new Bounds(new Coordinate(3.0, 10.0), new Coordinate(-10.0, 20.0));
+
+        $this->assertEquals($expected, $line->getBounds());
+    }
 }

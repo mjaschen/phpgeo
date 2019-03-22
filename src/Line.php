@@ -13,6 +13,8 @@ use Location\Distance\DistanceInterface;
  */
 class Line implements GeometryInterface
 {
+    use GetBoundsTrait;
+
     /**
      * @var Coordinate
      */

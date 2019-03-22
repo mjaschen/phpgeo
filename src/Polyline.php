@@ -13,6 +13,8 @@ use Location\Formatter\Polyline\FormatterInterface;
  */
 class Polyline implements GeometryInterface
 {
+    use GetBoundsTrait;
+
     /**
      * @var Coordinate[]
      */
@@ -110,28 +112,5 @@ class Polyline implements GeometryInterface
         }
 
         return $reversed;
-    }
-
-    /**
-     * @return Bounds
-     */
-    public function getBounds(): Bounds
-    {
-        $latMin = 90.0;
-        $latMax = -90.0;
-        $lngMin = 180.0;
-        $lngMax = -180.0;
-
-        foreach ($this->points as $point) {
-            $latMin = min($point->getLat(), $latMin);
-            $lngMin = min($point->getLng(), $lngMin);
-            $latMax = max($point->getLat(), $latMax);
-            $lngMax = max($point->getLng(), $lngMax);
-        }
-
-        return new Bounds(
-            new Coordinate($latMax, $lngMin),
-            new Coordinate($latMin, $lngMax)
-        );
     }
 }
