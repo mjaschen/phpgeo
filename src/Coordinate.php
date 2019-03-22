@@ -151,10 +151,6 @@ class Coordinate implements GeometryInterface
      */
     protected function isNumericInBounds(float $value, float $lower, float $upper): bool
     {
-        if ($value < $lower || $value > $upper) {
-            return false;
-        }
-
-        return true;
+        return !($value < $lower || $value > $upper);
     }
 }
