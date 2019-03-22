@@ -8,7 +8,7 @@ interface GeometryInterface
     /**
      * Returns an array containing all assigned points.
      *
-     * @return array
+     * @return Coordinate[]
      */
     public function getPoints(): array;
 }

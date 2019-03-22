@@ -49,9 +49,9 @@ class Polyline implements GeometryInterface
     /**
      * @param FormatterInterface $formatter
      *
-     * @return mixed
+     * @return string
      */
-    public function format(FormatterInterface $formatter)
+    public function format(FormatterInterface $formatter): string
     {
         return $formatter->format($this);
     }

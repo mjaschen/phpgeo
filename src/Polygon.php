@@ -17,7 +17,7 @@ class Polygon implements GeometryInterface
     use GetBoundsTrait;
 
     /**
-     * @var array
+     * @var Coordinate[]
      */
     protected $points = [];
 
@@ -32,7 +32,7 @@ class Polygon implements GeometryInterface
     }
 
     /**
-     * @return array
+     * @return Coordinate[]
      */
     public function getPoints(): array
     {
@@ -84,15 +84,15 @@ class Polygon implements GeometryInterface
     /**
      * @param FormatterInterface $formatter
      *
-     * @return mixed
+     * @return string
      */
-    public function format(FormatterInterface $formatter)
+    public function format(FormatterInterface $formatter): string
     {
         return $formatter->format($this);
     }
 
     /**
-     * @return array
+     * @return Line[]
      */
     public function getSegments(): array
     {
@@ -131,7 +131,6 @@ class Polygon implements GeometryInterface
     {
         $geometryInPolygon = true;
 
-        /** @var Coordinate $point */
         foreach ($geometry->getPoints() as $point) {
             $geometryInPolygon = $geometryInPolygon && $this->contains($point);
         }

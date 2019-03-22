@@ -74,7 +74,7 @@ class Line implements GeometryInterface
     /**
      * Returns an array containing the two points.
      *
-     * @return array
+     * @return Coordinate[]
      */
     public function getPoints(): array
     {
