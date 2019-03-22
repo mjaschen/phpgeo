@@ -21,7 +21,7 @@ class GeoJSONTest extends TestCase
      */
     protected function setUp()
     {
-        $this->formatter = new GeoJSON;
+        $this->formatter = new GeoJSON();
     }
 
     /**
@@ -33,9 +33,6 @@ class GeoJSONTest extends TestCase
         unset($this->formatter);
     }
 
-    /**
-     * @covers \Location\Formatter\Coordinate\DecimalDegrees::format
-     */
     public function testFormatDefault()
     {
         $polygon = new Polygon();

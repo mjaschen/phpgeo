@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Location\Coordinate;
-use Location\Factory\CoordinateFactory;
+namespace Location\Factory;
 
+use Location\Coordinate;
 use PHPUnit\Framework\TestCase;
 
 class CoordinateFactoryTest extends TestCase
@@ -18,14 +18,14 @@ class CoordinateFactoryTest extends TestCase
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString('52.5°, 13.5°'));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString('52.5° 13.5°'));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString('52.5° 013.5°'));
-        $this->assertEquals(new Coordinate(- 52.5, 13.5), CoordinateFactory::fromString('-52.5, 13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, 13.5), CoordinateFactory::fromString('-52.5 13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, 13.5), CoordinateFactory::fromString('-52.5 013.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('-52.5, -13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('-52.5 -13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('-52.5 -013.5'));
-        $this->assertEquals(new Coordinate(52.5, - 13.5), CoordinateFactory::fromString('52.5, -13.5'));
-        $this->assertEquals(new Coordinate(52.5, - 13.5), CoordinateFactory::fromString('52.5 -13.5'));
+        $this->assertEquals(new Coordinate(-52.5, 13.5), CoordinateFactory::fromString('-52.5, 13.5'));
+        $this->assertEquals(new Coordinate(-52.5, 13.5), CoordinateFactory::fromString('-52.5 13.5'));
+        $this->assertEquals(new Coordinate(-52.5, 13.5), CoordinateFactory::fromString('-52.5 013.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('-52.5, -13.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('-52.5 -13.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('-52.5 -013.5'));
+        $this->assertEquals(new Coordinate(52.5, -13.5), CoordinateFactory::fromString('52.5, -13.5'));
+        $this->assertEquals(new Coordinate(52.5, -13.5), CoordinateFactory::fromString('52.5 -13.5'));
     }
 
     public function testIfFromStringForDecimalDegreesWithCardinalLettersWorksAsExpected()
@@ -47,17 +47,17 @@ class CoordinateFactoryTest extends TestCase
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString('52.5° N, 13.5° E'));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString('52.5° N 13.5° E'));
         $this->assertEquals(new Coordinate(52.5, 13.5), CoordinateFactory::fromString('52.5° N 013.5° E'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('S52.5, W13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('S52.5 W13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('52.5S, 13.5W'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('52.5S 13.5W'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('52.5S 013.5W'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('S 52.5, W 13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('S 52.5 W 13.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('S 52.5 W 013.5'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('52.5 S, 13.5 W'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('52.5 S 13.5 W'));
-        $this->assertEquals(new Coordinate(- 52.5, - 13.5), CoordinateFactory::fromString('52.5 S 013.5 W'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('S52.5, W13.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('S52.5 W13.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('52.5S, 13.5W'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('52.5S 13.5W'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('52.5S 013.5W'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('S 52.5, W 13.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('S 52.5 W 13.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('S 52.5 W 013.5'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('52.5 S, 13.5 W'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('52.5 S 13.5 W'));
+        $this->assertEquals(new Coordinate(-52.5, -13.5), CoordinateFactory::fromString('52.5 S 013.5 W'));
     }
 
     public function testIfFromStringWithDecimalMinutesWorksAsExpected()
@@ -66,83 +66,310 @@ class CoordinateFactoryTest extends TestCase
         $expectedLat = $expected->getLat();
         $expectedLng = $expected->getLng();
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52 12.345, 13 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('52 12.345, 13 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52 12.345, 13 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('52 12.345, 13 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals(-$expectedLat, CoordinateFactory::fromString('-52 12.345, 13 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('-52 12.345, 13 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            -$expectedLat,
+            CoordinateFactory::fromString('-52 12.345, 13 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('-52 12.345, 13 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals(-$expectedLat, CoordinateFactory::fromString('-52 12.345, -13 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals(-$expectedLng, CoordinateFactory::fromString('-52 12.345, -13 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            -$expectedLat,
+            CoordinateFactory::fromString('-52 12.345, -13 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            -$expectedLng,
+            CoordinateFactory::fromString('-52 12.345, -13 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52 12.345, -13 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals(-$expectedLng, CoordinateFactory::fromString('52 12.345, -13 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52 12.345, -13 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            -$expectedLng,
+            CoordinateFactory::fromString('52 12.345, -13 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52° 12.345, 13° 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('52° 12.345, 13° 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52° 12.345, 13° 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('52° 12.345, 13° 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals(-$expectedLat, CoordinateFactory::fromString('-52° 12.345, 13° 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('-52° 12.345, 13° 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            -$expectedLat,
+            CoordinateFactory::fromString('-52° 12.345, 13° 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('-52° 12.345, 13° 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals(-$expectedLat, CoordinateFactory::fromString('-52° 12.345, -13° 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals(-$expectedLng, CoordinateFactory::fromString('-52° 12.345, -13° 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            -$expectedLat,
+            CoordinateFactory::fromString('-52° 12.345, -13° 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            -$expectedLng,
+            CoordinateFactory::fromString('-52° 12.345, -13° 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52° 12.345, -13° 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals(-$expectedLng, CoordinateFactory::fromString('52° 12.345, -13° 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52° 12.345, -13° 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            -$expectedLng,
+            CoordinateFactory::fromString('52° 12.345, -13° 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('N52 12.345, E13 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('N52 12.345, E13 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('N52 12.345, E13 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('N52 12.345, E13 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('N 52 12.345, E 13 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('N 52 12.345, E 13 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('N 52 12.345, E 13 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('N 52 12.345, E 13 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52 12.345N, E13 34.567E')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('52 12.345N, E13 34.567E')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52 12.345N, E13 34.567E')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('52 12.345N, E13 34.567E')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52 12.345 N, E13 34.567 E')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('52 12.345 N, E13 34.567 E')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52 12.345 N, E13 34.567 E')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('52 12.345 N, E13 34.567 E')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('N52° 12.345, E13° 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('N52° 12.345, E13° 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('N52° 12.345, E13° 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('N52° 12.345, E13° 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('N 52° 12.345, E 13° 34.567')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('N 52° 12.345, E 13° 34.567')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('N 52° 12.345, E 13° 34.567')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('N 52° 12.345, E 13° 34.567')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52° 12.345N, E13° 34.567E')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('52° 12.345N, E13° 34.567E')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52° 12.345N, E13° 34.567E')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('52° 12.345N, E13° 34.567E')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52° 12.345 N, E13° 34.567 E')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('52° 12.345 N, E13° 34.567 E')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52° 12.345 N, E13° 34.567 E')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('52° 12.345 N, E13° 34.567 E')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString("N52° 12.345', E13° 34.567'")->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString("N52° 12.345', E13° 34.567'")->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString("N52° 12.345', E13° 34.567'")->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString("N52° 12.345', E13° 34.567'")->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString("N 52° 12.345', E 13° 34.567'")->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString("N 52° 12.345', E 13° 34.567'")->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString("N 52° 12.345', E 13° 34.567'")->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString("N 52° 12.345', E 13° 34.567'")->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString("52° 12.345' N, E13° 34.567' E")->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString("52° 12.345' N, E13° 34.567' E")->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString("52° 12.345' N, E13° 34.567' E")->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString("52° 12.345' N, E13° 34.567' E")->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('N52° 12.345′, E13° 34.567′')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('N52° 12.345′, E13° 34.567′')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('N52° 12.345′, E13° 34.567′')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('N52° 12.345′, E13° 34.567′')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('N 52° 12.345′, E 13° 34.567′')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('N 52° 12.345′, E 13° 34.567′')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('N 52° 12.345′, E 13° 34.567′')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('N 52° 12.345′, E 13° 34.567′')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals($expectedLat, CoordinateFactory::fromString('52° 12.345′ N, E13° 34.567′ E')->getLat(), '', 0.0001);
-        $this->assertEquals($expectedLng, CoordinateFactory::fromString('52° 12.345′ N, E13° 34.567′ E')->getLng(), '', 0.0001);
+        $this->assertEquals(
+            $expectedLat,
+            CoordinateFactory::fromString('52° 12.345′ N, E13° 34.567′ E')->getLat(),
+            '',
+            0.0001
+        );
+        $this->assertEquals(
+            $expectedLng,
+            CoordinateFactory::fromString('52° 12.345′ N, E13° 34.567′ E')->getLng(),
+            '',
+            0.0001
+        );
 
-        $this->assertEquals(new Coordinate(52.2333, 20.9756), CoordinateFactory::fromString('52° 13.998′ 020° 58.536′'));
+        $this->assertEquals(
+            new Coordinate(52.2333, 20.9756),
+            CoordinateFactory::fromString('52° 13.998′ 020° 58.536′')
+        );
     }
 
     /**
      * @dataProvider dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected
+     *
      * @param float $expectedLat
      * @param float $expectedLng
      * @param string $string
      */
-    public function testIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected($expectedLat, $expectedLng, $string)
-    {
+    public function testIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected(
+        $expectedLat,
+        $expectedLng,
+        $string
+    ) {
         $coordinate = CoordinateFactory::fromString($string);
         $this->assertEquals($expectedLat, $coordinate->getLat(), '', 0.0001);
         $this->assertEquals($expectedLng, $coordinate->getLng(), '', 0.0001);
@@ -150,8 +377,6 @@ class CoordinateFactoryTest extends TestCase
 
     /**
      * Data provider for decimal seconds parser test.
-     *
-     * @return Generator
      */
     public function dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected()
     {
@@ -159,7 +384,7 @@ class CoordinateFactoryTest extends TestCase
         $expectedLat = $expected->getLat();
         $expectedLng = $expected->getLng();
 
-        foreach ([
+        $testData = [
             '52 12 20.7, 13 34 34.02',
             '52 12 20.7N, 13 34 34.02E',
             '52 12 20.7 N, E13 34 34.02 E',
@@ -167,7 +392,9 @@ class CoordinateFactoryTest extends TestCase
             '52° 12\' 20.7\'\' N, E13° 34\' 34.02\'\' E',
             '52° 12′ 20.7″ N, E13° 34′ 34.02″ E',
             '52° 12′ 20.7′′ N, E13° 34′ 34.02′′ E',
-         ] as $string) {
+        ];
+
+        foreach ($testData as $string) {
             yield $string => [$expectedLat, $expectedLng, $string];
         }
     }

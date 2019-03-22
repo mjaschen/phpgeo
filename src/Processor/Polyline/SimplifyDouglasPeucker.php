@@ -8,7 +8,7 @@ use Location\Polyline;
 use Location\Utility\PerpendicularDistance;
 
 /**
-/**
+ * /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
  * The Algorithm is described here:
@@ -59,7 +59,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     protected function douglasPeucker(array $line): array
     {
         $distanceMax = 0;
-        $index       = 0;
+        $index = 0;
 
         $lineSize = count($line);
 
@@ -69,14 +69,14 @@ class SimplifyDouglasPeucker implements SimplifyInterface
             $distance = $pdCalc->getPerpendicularDistance($line[$i], new Line($line[0], $line[$lineSize - 1]));
 
             if ($distance > $distanceMax) {
-                $index       = $i;
+                $index = $i;
                 $distanceMax = $distance;
             }
         }
 
         if ($distanceMax > $this->tolerance) {
-            $lineSplitFirst  = array_slice($line, 0, $index+1);
-            $lineSplitSecond = array_slice($line, $index, $lineSize-$index);
+            $lineSplitFirst = array_slice($line, 0, $index + 1);
+            $lineSplitSecond = array_slice($line, $index, $lineSize - $index);
 
             if (count($lineSplitFirst) > 2) {
                 $resultsSplit1 = $this->douglasPeucker($lineSplitFirst);

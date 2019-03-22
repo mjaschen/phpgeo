@@ -76,7 +76,7 @@ class Coordinate implements GeometryInterface
     /**
      * Returns an array containing the point
      *
-     * @return array
+     * @return Coordinate[]
      */
     public function getPoints(): array
     {

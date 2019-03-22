@@ -55,7 +55,7 @@
     "scripts": {
         "ci:lint": "./vendor/bin/parallel-lint src",
         "ci:psalm": "./vendor/bin/psalm",
-        "ci:sniff": "./vendor/bin/phpcs --standard=codesniffer_rules.xml src || true",
+        "ci:sniff": "./vendor/bin/phpcs src tests",
         "ci:coding-standards": "./vendor/bin/phpmd src text cleancode,codesize,design,naming,unusedcode || true",
         "ci:tests": "./vendor/bin/phpunit tests/",
         "ci:static": [

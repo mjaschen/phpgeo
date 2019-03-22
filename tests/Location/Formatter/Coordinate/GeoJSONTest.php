@@ -20,7 +20,7 @@ class GeoJSONTest extends TestCase
      */
     protected function setUp()
     {
-        $this->formatter = new GeoJSON;
+        $this->formatter = new GeoJSON();
     }
 
     /**
@@ -32,9 +32,6 @@ class GeoJSONTest extends TestCase
         unset($this->formatter);
     }
 
-    /**
-     * @covers Location\Formatter\Coordinate\GeoJSON::format
-     */
     public function testFormatDefault()
     {
         $coordinate = new Coordinate(52.5, 13.5);
@@ -44,9 +41,6 @@ class GeoJSONTest extends TestCase
         $this->assertJsonStringEqualsJsonString($json, $this->formatter->format($coordinate));
     }
 
-    /**
-     * @covers Location\Formatter\Coordinate\GeoJSON::format
-     */
     public function testFormatPrecision()
     {
         $coordinate = new Coordinate(52.123456789012345, 13.123456789012345);
