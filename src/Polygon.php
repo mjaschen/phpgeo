@@ -1,17 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Polygon Implementation
- *
- * PHP version 5
- *
- * @author    Paul Vidal <paul.vidal.lujan@gmail.com>
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location;
 
 use Location\Distance\DistanceInterface;
@@ -20,10 +9,8 @@ use Location\Formatter\Polygon\FormatterInterface;
 /**
  * Polygon Implementation
  *
- * @author   Paul Vidal <paul.vidal.lujan@gmail.com>
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Paul Vidal <paul.vidal.lujan@gmail.com>
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Polygon implements GeometryInterface
 {

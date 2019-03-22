@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Coordinate Implementation
- *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location;
 
 use Location\Distance\DistanceInterface;
@@ -17,9 +9,7 @@ use Location\Formatter\Coordinate\FormatterInterface;
 /**
  * Coordinate Implementation
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Coordinate implements GeometryInterface
 {

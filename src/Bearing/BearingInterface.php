@@ -5,14 +5,19 @@ namespace Location\Bearing;
 
 use Location\Coordinate;
 
+/**
+ * Interface BearingInterface
+ *
+ * @author Marcus Jaschen <mjaschen@gmail.com>
+ */
 interface BearingInterface
 {
     /**
      * This method calculates the initial bearing between the
      * two points.
      *
-     * @param \Location\Coordinate $point1
-     * @param \Location\Coordinate $point2
+     * @param Coordinate $point1
+     * @param Coordinate $point2
      *
      * @return float Bearing Angle
      */
@@ -21,8 +26,8 @@ interface BearingInterface
     /**
      * Calculates the final bearing between the two points.
      *
-     * @param \Location\Coordinate $point1
-     * @param \Location\Coordinate $point2
+     * @param Coordinate $point1
+     * @param Coordinate $point2
      *
      * @return float
      */
@@ -32,7 +37,7 @@ interface BearingInterface
      * Calculates a destination point for the given point, bearing angle,
      * and distance.
      *
-     * @param \Location\Coordinate $point
+     * @param Coordinate $point
      * @param float $bearing the bearing angle between 0 and 360 degrees
      * @param float $distance the distance to the destination point in meters
      *

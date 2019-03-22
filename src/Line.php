@@ -1,16 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Line Implementation
- *
- * PHP version 5
- *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location;
 
 use Location\Bearing\BearingInterface;
@@ -19,19 +9,17 @@ use Location\Distance\DistanceInterface;
 /**
  * Line Implementation
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Line implements GeometryInterface
 {
     /**
-     * @var \Location\Coordinate
+     * @var Coordinate
      */
     protected $point1;
 
     /**
-     * @var \Location\Coordinate
+     * @var Coordinate
      */
     protected $point2;
 
@@ -46,7 +34,7 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param \Location\Coordinate $point1
+     * @param Coordinate $point1
      *
      * @return void
      */
@@ -56,7 +44,7 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @return \Location\Coordinate
+     * @return Coordinate
      */
     public function getPoint1(): Coordinate
     {
@@ -64,7 +52,7 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param \Location\Coordinate $point2
+     * @param Coordinate $point2
      *
      * @return void
      */
@@ -74,7 +62,7 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @return \Location\Coordinate
+     * @return Coordinate
      */
     public function getPoint2(): Coordinate
     {
@@ -105,7 +93,7 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param \Location\Bearing\BearingInterface $bearingCalculator
+     * @param BearingInterface $bearingCalculator
      *
      * @return float
      */
@@ -115,7 +103,7 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param \Location\Bearing\BearingInterface $bearingCalculator
+     * @param BearingInterface $bearingCalculator
      *
      * @return float
      */

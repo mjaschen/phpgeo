@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Implementation of distance calculation with http://en.wikipedia.org/wiki/Law_of_haversines
- *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Distance;
 
 use Location\Coordinate;
@@ -18,11 +10,9 @@ use Location\Exception\NotMatchingEllipsoidException;
 /**
  * Implementation of distance calculation with http://en.wikipedia.org/wiki/Law_of_haversines
  *
- * @see      http://en.wikipedia.org/wiki/Law_of_haversines
+ * @see http://en.wikipedia.org/wiki/Law_of_haversines
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Haversine implements DistanceInterface
 {
@@ -36,7 +26,7 @@ class Haversine implements DistanceInterface
      */
     public function getDistance(Coordinate $point1, Coordinate $point2): float
     {
-        if ($point1->getEllipsoid() != $point2->getEllipsoid()) {
+        if ($point1->getEllipsoid()->getName() !== $point2->getEllipsoid()->getName()) {
             throw new NotMatchingEllipsoidException('The ellipsoids for both coordinates must match');
         }
 

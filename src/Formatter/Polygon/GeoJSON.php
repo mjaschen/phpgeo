@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * GeoJSON Polygon Formatter
- *
- * @author    Richard Barnes <rbarnes@umn.edu>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Formatter\Polygon;
 
 use Location\Coordinate;
@@ -18,9 +10,7 @@ use Location\Polygon;
 /**
  * GeoJSON Polygon Formatter
  *
- * @author   Richard Barnes <rbarnes@umn.edu>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Richard Barnes <rbarnes@umn.edu>
  */
 class GeoJSON implements FormatterInterface
 {

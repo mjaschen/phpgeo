@@ -1,14 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Coordinate Formatter "Decimal Degrees"
- *
- * @author    Marcus Jaschen <mjaschen@gmail.com>
- * @license   https://opensource.org/licenses/MIT
- * @link      https://github.com/mjaschen/phpgeo
- */
-
 namespace Location\Formatter\Coordinate;
 
 use Location\Coordinate;
@@ -16,9 +8,7 @@ use Location\Coordinate;
 /**
  * Coordinate Formatter "Decimal Degrees"
  *
- * @author   Marcus Jaschen <mjaschen@gmail.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     https://github.com/mjaschen/phpgeo
+ * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class DecimalDegrees implements FormatterInterface
 {
