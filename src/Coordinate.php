@@ -45,10 +45,10 @@ class Coordinate implements GeometryInterface
             throw new \InvalidArgumentException("Longitude value must be numeric -180.0 .. +180.0 (given: {$lng})");
         }
 
-        $this->lat = (float)$lat;
-        $this->lng = (float)$lng;
+        $this->lat = $lat;
+        $this->lng = $lng;
 
-        if ($ellipsoid !== null) {
+        if ($ellipsoid instanceof Ellipsoid) {
             $this->ellipsoid = $ellipsoid;
 
             return;
@@ -151,10 +151,6 @@ class Coordinate implements GeometryInterface
      */
     protected function isNumericInBounds(float $value, float $lower, float $upper): bool
     {
-        if ($value < $lower || $value > $upper) {
-            return false;
-        }
-
-        return true;
+        return !($value < $lower || $value > $upper);
     }
 }
