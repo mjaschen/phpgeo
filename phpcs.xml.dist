@@ -25,7 +25,7 @@
     <rule ref="Squiz.Classes.SelfMemberReference"/>
 
     <!-- Code analysis -->
-    <!--<rule ref="Generic.CodeAnalysis.AssignmentInCondition"/>-->
+    <rule ref="Generic.CodeAnalysis.AssignmentInCondition"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
     <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall"/>
@@ -41,7 +41,7 @@
     <rule ref="Squiz.Commenting.DocCommentAlignment"/>
     <rule ref="Squiz.Commenting.EmptyCatchComment"/>
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
-    <!--<rule ref="Squiz.Commenting.PostStatementComment"/>-->
+    <rule ref="Squiz.Commenting.PostStatementComment"/>
 
     <!-- Control structures -->
     <rule ref="PEAR.ControlStructures.ControlSignature"/>
@@ -65,7 +65,7 @@
     <rule ref="Squiz.Functions.GlobalFunction"/>
 
     <!-- Metrics -->
-    <!--<rule ref="Generic.Metrics.CyclomaticComplexity"/>-->
+    <rule ref="Generic.Metrics.CyclomaticComplexity"/>
     <rule ref="Generic.Metrics.NestingLevel"/>
 
     <!-- Naming conventions -->
@@ -107,7 +107,7 @@
     <rule ref="Squiz.Scope.StaticThisUsage"/>
 
     <!-- Strings -->
-    <!--<rule ref="Squiz.Strings.DoubleQuoteUsage"/>-->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
 
     <!-- Whitespace -->
     <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>

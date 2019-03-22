@@ -40,7 +40,7 @@ class DecimalDegrees implements FormatterInterface
     public function format(Coordinate $coordinate): string
     {
         return sprintf(
-            "%.{$this->digits}f%s%.{$this->digits}f",
+            '%.' . $this->digits . 'f%s%.' . $this->digits . 'f',
             $coordinate->getLat(),
             $this->separator,
             $coordinate->getLng()

@@ -38,11 +38,13 @@ class Coordinate implements GeometryInterface
     public function __construct(float $lat, float $lng, Ellipsoid $ellipsoid = null)
     {
         if (! $this->isValidLatitude($lat)) {
-            throw new \InvalidArgumentException("Latitude value must be numeric -90.0 .. +90.0 (given: {$lat})");
+            throw new \InvalidArgumentException('Latitude value must be numeric -90.0 .. +90.0 (given: ' . $lat . ')');
         }
 
         if (! $this->isValidLongitude($lng)) {
-            throw new \InvalidArgumentException("Longitude value must be numeric -180.0 .. +180.0 (given: {$lng})");
+            throw new \InvalidArgumentException(
+                'Longitude value must be numeric -180.0 .. +180.0 (given: ' . $lng . ')'
+            );
         }
 
         $this->lat = $lat;
