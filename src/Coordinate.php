@@ -155,4 +155,15 @@ class Coordinate implements GeometryInterface
     {
         return !($value < $lower || $value > $upper);
     }
+    
+    /**
+     * Returns the request in latitude and longitude strintring
+     *
+     * @return string
+     */    
+    public function __toString() {
+        $string = $this->lat . "," . $this->lng;
+        
+        return $string;
+    }    
 }
