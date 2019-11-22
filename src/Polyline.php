@@ -31,13 +31,15 @@ class Polyline implements GeometryInterface
     }
 
     /**
-   * Add unique point
-   *
-   * @param Coordinate $pointToAdd
-   */
+     * Add unique point
+     *
+     * @param Coordinate $pointToAdd
+     *
+     * @return void
+     */
     public function addUniquePoint(Coordinate $pointToAdd)
     {
-        foreach($this->points as $point){
+        foreach($this->points as $point) {
             /* @var $point Coordinate */
             if(($pointToAdd->getLat() == $point->getLat()) && ($pointToAdd->getLng() == $point->getLng())) {
                 return;
@@ -48,7 +50,7 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @return array
+     * @return Coordinate[]
      */
     public function getPoints(): array
     {
@@ -134,7 +136,7 @@ class Polyline implements GeometryInterface
     /**
      * @return Coordinate|null
      */
-    public function getMiddlePoint() 
+    public function getMiddlePoint(): ?Coordinate
     {
         $lat = 0.0;
         $lng = 0.0;
@@ -144,7 +146,7 @@ class Polyline implements GeometryInterface
             return null;
         }
 
-        foreach($this->points as $point){
+        foreach($this->points as $point) {
             /* @var $point Coordinate */
             $lat += $point->getLat();
             $lng += $point->getLng();
