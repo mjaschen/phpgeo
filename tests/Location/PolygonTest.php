@@ -548,4 +548,22 @@ class PolygonTest extends TestCase
 
         $this->assertEquals($polygon, $doubleReversed);
     }
+
+    public function testIfGetBoundsWorksAsExpected()
+    {
+        $polygon = new Polygon();
+
+        $point1 = new Coordinate(10.0, -20.0);
+        $point2 = new Coordinate(-10.0, 40.0);
+        $point3 = new Coordinate(30.0, 50.0);
+        $point4 = new Coordinate(40.0, 20.0);
+        $polygon->addPoint($point1);
+        $polygon->addPoint($point2);
+        $polygon->addPoint($point3);
+        $polygon->addPoint($point4);
+
+        $expected = new Bounds(new Coordinate(40.0, -20.0), new Coordinate(-10.0, 50.0));
+
+        $this->assertEquals($expected, $polygon->getBounds());
+    }
 }

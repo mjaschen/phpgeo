@@ -23,8 +23,45 @@ class SimplifyDouglasPeuckerTest extends TestCase
 
         $segments = $simplified->getSegments();
 
-        $this->assertEquals(1, count($segments));
+        $this->assertCount(1, $segments);
         $this->assertEquals(new Line(new Coordinate(10.0, 10.0), new Coordinate(30.0, 10.0)), $segments[0]);
+    }
+
+    public function testSimplifyFourPointsToTwoPoints()
+    {
+        $polyline = new Polyline();
+        $polyline->addPoint(new Coordinate(50.0, 10.0));
+        $polyline->addPoint(new Coordinate(40.0, 20.0));
+        $polyline->addPoint(new Coordinate(30.0, 10.0));
+        $polyline->addPoint(new Coordinate(20.0, 30.0));
+
+        $processor = new SimplifyDouglasPeucker(1500000);
+
+        $simplified = $processor->simplify($polyline);
+
+        $segments = $simplified->getSegments();
+
+        $this->assertCount(1, $segments);
+        $this->assertEquals(new Line(new Coordinate(50.0, 10.0), new Coordinate(20.0, 30.0)), $segments[0]);
+    }
+
+    public function testSimplifyFourPointsToThreePoints()
+    {
+        $polyline = new Polyline();
+        $polyline->addPoint(new Coordinate(50.0, 10.0));
+        $polyline->addPoint(new Coordinate(40.0, 20.0));
+        $polyline->addPoint(new Coordinate(30.0, 10.0));
+        $polyline->addPoint(new Coordinate(20.0, 30.0));
+
+        $processor = new SimplifyDouglasPeucker(1200000);
+
+        $simplified = $processor->simplify($polyline);
+
+        $segments = $simplified->getSegments();
+
+        $this->assertCount(2, $segments);
+        $this->assertEquals(new Line(new Coordinate(50.0, 10.0), new Coordinate(30.0, 10.0)), $segments[0]);
+        $this->assertEquals(new Line(new Coordinate(30.0, 10.0), new Coordinate(20.0, 30.0)), $segments[1]);
     }
 
     public function testSimplifyThreePointsImpossible()

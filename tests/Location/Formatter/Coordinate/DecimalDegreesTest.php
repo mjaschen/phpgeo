@@ -14,13 +14,9 @@ class DecimalDegreesTest extends TestCase
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
-        $this->object = new DecimalDegrees;
+        $this->object = new DecimalDegrees();
     }
 
     /**
@@ -31,40 +27,31 @@ class DecimalDegreesTest extends TestCase
     {
     }
 
-    /**
-     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
-     */
     public function testFormatDefaultSeparator()
     {
         $coordinate = new Coordinate(52.5, 13.5);
 
         $formatter = new DecimalDegrees();
 
-        $this->assertEquals("52.50000 13.50000", $formatter->format($coordinate));
+        $this->assertEquals('52.50000 13.50000', $formatter->format($coordinate));
     }
 
-    /**
-     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
-     */
     public function testFormatCustomSeparator()
     {
         $coordinate = new Coordinate(52.5, 13.5);
 
-        $formatter = new DecimalDegrees(", ");
+        $formatter = new DecimalDegrees(', ');
 
-        $this->assertEquals("52.50000, 13.50000", $formatter->format($coordinate));
+        $this->assertEquals('52.50000, 13.50000', $formatter->format($coordinate));
     }
 
-    /**
-     * @covers Location\Formatter\Coordinate\DecimalDegrees::format
-     */
     public function testIfSetSeparatorWorksAsExpected()
     {
         $coordinate = new Coordinate(52.5, 13.5);
 
         $formatter = new DecimalDegrees();
-        $formatter->setSeparator("/");
+        $formatter->setSeparator('/');
 
-        $this->assertEquals("52.50000/13.50000", $formatter->format($coordinate));
+        $this->assertEquals('52.50000/13.50000', $formatter->format($coordinate));
     }
 }

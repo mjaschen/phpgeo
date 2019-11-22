@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Location;
+
 use PHPUnit\Framework\TestCase;
 
 class Issue15Test extends TestCase
