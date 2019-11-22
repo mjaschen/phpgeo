@@ -79,13 +79,21 @@ class PolylineTest extends TestCase
     public function testAddUniquePointWorksAsExpeted()
     {
         $expected = $this->polyline;
+        $unique = new Polyline();
 
-        $expected->addUniquePoint(new Coordinate(52.5, 13.5));
-        $expected->addUniquePoint(new Coordinate(64.1, -21.9));
-        $expected->addUniquePoint(new Coordinate(40.7, -74.0));
-        $expected->addUniquePoint(new Coordinate(33.9, -118.4));
+        // Pass 1
+        $unique->addUniquePoint(new Coordinate(52.5, 13.5));
+        $unique->addUniquePoint(new Coordinate(64.1, -21.9));
+        $unique->addUniquePoint(new Coordinate(40.7, -74.0));
+        $unique->addUniquePoint(new Coordinate(33.9, -118.4));
 
-        $this->assertEquals($this->polyline, $expected);
+        // Pass 2
+        $unique->addUniquePoint(new Coordinate(52.5, 13.5));
+        $unique->addUniquePoint(new Coordinate(64.1, -21.9));
+        $unique->addUniquePoint(new Coordinate(40.7, -74.0));
+        $unique->addUniquePoint(new Coordinate(33.9, -118.4));
+
+        $this->assertEquals($unique, $expected);
     }
 
     public function testGetMiddlePointWorksAsExpected()

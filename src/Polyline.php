@@ -33,18 +33,18 @@ class Polyline implements GeometryInterface
     /**
    * Add unique point
    *
-   * @param Coordinate $point
+   * @param Coordinate $pointToAdd
    */
-    public function addUniquePoint(Coordinate $point)
+    public function addUniquePoint(Coordinate $pointToAdd)
     {
         foreach($this->points as $point){
             /* @var $point Coordinate */
-            if(($point->getLat() == $point->getLat()) && ($point->getLng() == $point->getLng())) {
+            if(($pointToAdd->getLat() == $point->getLat()) && ($pointToAdd->getLng() == $point->getLng())) {
                 return;
             }
         }
 
-        $this->points[] = $point;
+        $this->points[] = $pointToAdd;
     }
 
     /**
