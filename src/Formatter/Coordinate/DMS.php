@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Location\Formatter\Coordinate;
 
+use InvalidArgumentException;
 use Location\Coordinate;
 
 /**
@@ -98,7 +99,7 @@ class DMS implements FormatterInterface
     public function setUnits(string $type): DMS
     {
         if (! array_key_exists($type, $this->units)) {
-            throw new \InvalidArgumentException('Invalid unit type');
+            throw new InvalidArgumentException('Invalid unit type');
         }
 
         $this->unitType = $type;
