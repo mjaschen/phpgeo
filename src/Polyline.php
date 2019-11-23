@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Location;
 
 use Location\Distance\DistanceInterface;
+use Location\Exception\InvalidGeometryException;
 use Location\Formatter\Polyline\FormatterInterface;
 
 /**
@@ -152,27 +153,35 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @return Coordinate|null
+     * Returns the point which is defined by the avarages of all
+     * latitude/longitude values.
+     *
+     * This currently only works for polylines which don't cross the dateline at
+     * 180/-180 degrees longitude.
+     *
+     * @return Coordinate
+     *
+     * @throws InvalidGeometryException when the polyline doesn't contain any points.
      */
-    public function getMiddlePoint(): ?Coordinate
+    public function getAveragePoint(): Coordinate
     {
-        $lat = 0.0;
-        $lng = 0.0;
+        $latitude = 0.0;
+        $longitude = 0.0;
         $numberOfPoints = count($this->points);
 
-        if($numberOfPoints < 1) {
-            return null;
+        if($this->getNumberOfPoints() === 0) {
+            throw new InvalidGeometryException('Polyline doesn\'t contain points', 9464188927);
         }
 
         foreach($this->points as $point) {
             /* @var $point Coordinate */
-            $lat += $point->getLat();
-            $lng += $point->getLng();
+            $latitude += $point->getLat();
+            $longitude += $point->getLng();
         }
 
-        $lat /= $numberOfPoints;
-        $lng /= $numberOfPoints;
+        $latitude /= $numberOfPoints;
+        $longitude /= $numberOfPoints;
 
-        return new Coordinate($lat, $lng);
+        return new Coordinate($latitude, $longitude);
     }
 }

@@ -291,6 +291,12 @@ Segment length: 169.21 kilometers
 
 Length calculation is described in the <<Distance and Length>> section.
 
+==== Average Point
+
+The `getAveragePoint()` method returns a point which latitude and longitude is the average of latitude/longitude values from all polyline points.
+
+CAUTION: This method currently returns wrong values if the polyline crosses the date line at 180/-180 degrees longitude.
+
 ==== Reverse Direction
 
 It's possible to get a new instance with reversed direction while the
@@ -582,14 +588,17 @@ WGS-84: a=6378137.000000; b=6356752.314245; 1/f=298.257224
 GRS-80: a=6378137.000000; b=6356752.314133; 1/f=298.257222
 ----
 
-Please take a look into the https://github.com/mjaschen/phpgeo/blob/master/src/Location/Ellipsoid.php#L45[`Ellipsoid` source file]
+Please take a look into the https://github.com/mjaschen/phpgeo/blob/master/src/Ellipsoid.php[`Ellipsoid` source file]
 for a list of pre-defined ellipsoids.
 
 == Comparisons
 
 === Same Point Comparison
 
-It's possible to check if two points describe the same location – and optionally allow an error margin.
+It's possible to check if two points describe the same location – and
+optionally allow an error margin. The default error margin allows two
+points to be a maximum of 0.001 m (1 millimeter) apart to be treated as the
+same location.
 
 [source,php]
 ----
@@ -610,7 +619,7 @@ $coordinate2 = new Coordinate(19.82365, -155.46905); // Gemini North Telescope
 
 echo $coordinate1->isSame($coordinate2, 1000)
     ? 'Mauna Kea and the Gemini North Telescope are located within a 1 km-radius'
-    : 'Mauna Kea and the Gemini North Telescope are located more than 1 km apart.';
+    : 'Mauna Kea and the Gemini North Telescope are located more than 1 km apart';
 echo PHP_EOL;
 ----
 
