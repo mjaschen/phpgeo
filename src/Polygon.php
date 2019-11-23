@@ -144,7 +144,7 @@ class Polygon implements GeometryInterface
      * algorithm by W. Randolph Franklin. Therfore some edge cases may not give the
      * expected results, e. g. if the point resides on the polygon boundary.
      *
-     * @see http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+     * @see https://wrf.ecse.rpi.edu/Research/Short_Notes/pnpoly.html
      *
      * For special cases this calculation leads to wrong results:
      *
