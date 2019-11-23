@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location\Distance;
@@ -87,7 +88,7 @@ class Vincenty implements DistanceInterface
                 * $f
                 * $sinAlpha
                 * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM)));
-        } while (abs($lambda - $lambdaP) > 1e-12 && -- $iterationLimit > 0);
+        } while (abs($lambda - $lambdaP) > 1e-12 && --$iterationLimit > 0);
 
         if ($iterationLimit === 0) {
             throw new NotConvergingException('Vincenty calculation does not converge');

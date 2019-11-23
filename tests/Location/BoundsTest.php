@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location;
 
 use Location\Coordinate;
 use Location\Bounds;
-
 use PHPUnit\Framework\TestCase;
 
 class BoundsTest extends TestCase

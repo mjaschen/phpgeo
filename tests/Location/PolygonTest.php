@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location;
 
 use Location\Distance\Vincenty;
-
 use PHPUnit\Framework\TestCase;
 
 class PolygonTest extends TestCase

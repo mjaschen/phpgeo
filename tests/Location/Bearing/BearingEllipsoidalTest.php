@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location\Bearing;
 
 use Location\Coordinate;
-
 use PHPUnit\Framework\TestCase;
 
 class BearingEllipsoidalTest extends TestCase

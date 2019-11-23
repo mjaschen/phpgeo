@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location\Formatter\Coordinate;
 
 use Location\Coordinate;
-
 use PHPUnit\Framework\TestCase;
 
 class DMSTest extends TestCase

@@ -169,11 +169,11 @@ class Polyline implements GeometryInterface
         $longitude = 0.0;
         $numberOfPoints = count($this->points);
 
-        if($this->getNumberOfPoints() === 0) {
+        if ($this->getNumberOfPoints() === 0) {
             throw new InvalidGeometryException('Polyline doesn\'t contain points', 9464188927);
         }
 
-        foreach($this->points as $point) {
+        foreach ($this->points as $point) {
             /* @var $point Coordinate */
             $latitude += $point->getLat();
             $longitude += $point->getLng();

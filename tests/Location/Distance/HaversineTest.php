@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location\Distance;
 
 use Location\Ellipsoid;
 use Location\Coordinate;
-
 use PHPUnit\Framework\TestCase;
 
 class HaversineTest extends TestCase

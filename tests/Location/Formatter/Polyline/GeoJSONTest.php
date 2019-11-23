@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location\Formatter\Polyline;
 
 use Location\Coordinate;
 use Location\Polyline;
-
 use PHPUnit\Framework\TestCase;
 
 class GeoJSONTest extends TestCase

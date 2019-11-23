@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location;
@@ -161,8 +162,9 @@ class Polygon implements GeometryInterface
 
         $polygonContainsPoint = false;
 
-        for ($node = 0, $altNode = ($numberOfPoints - 1); $node < $numberOfPoints; $altNode = $node ++) {
-            if (($polygonLngs[$node] > $point->getLng() !== ($polygonLngs[$altNode] > $point->getLng()))
+        for ($node = 0, $altNode = ($numberOfPoints - 1); $node < $numberOfPoints; $altNode = $node++) {
+            if (
+                ($polygonLngs[$node] > $point->getLng() !== ($polygonLngs[$altNode] > $point->getLng()))
                 && ($point->getLat() < ($polygonLats[$altNode] - $polygonLats[$node])
                                        * ($point->getLng() - $polygonLngs[$node])
                                        / ($polygonLngs[$altNode] - $polygonLngs[$node])

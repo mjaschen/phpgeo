@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location;
 
 use Location\Processor\Polyline\SimplifyBearing;
-
 use PHPUnit\Framework\TestCase;
 
 class SimplifyBearingTest extends TestCase
