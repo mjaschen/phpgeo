@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location;
@@ -31,22 +32,22 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * Add unique point
+     * Adds an unique point to the polyline. A maximum allowed distance for
+     * same point comparison can be provided. Default allowed distance
+     * deviation is 0.001 meters (1 millimeter).
      *
-     * @param Coordinate $pointToAdd
+     * @param Coordinate $point
+     * @param float $allowedDistance
      *
      * @return void
      */
-    public function addUniquePoint(Coordinate $pointToAdd)
+    public function addUniquePoint(Coordinate $point, float $allowedDistance = .001)
     {
-        foreach($this->points as $point) {
-            /* @var $point Coordinate */
-            if(($pointToAdd->getLat() == $point->getLat()) && ($pointToAdd->getLng() == $point->getLng())) {
-                return;
-            }
+        if ($this->containsPoint($point, $allowedDistance)) {
+            return;
         }
 
-        $this->points[] = $pointToAdd;
+        $this->addPoint($point);
     }
 
     /**
@@ -63,6 +64,23 @@ class Polyline implements GeometryInterface
     public function getNumberOfPoints(): int
     {
         return count($this->points);
+    }
+
+    /**
+     * @param Coordinate $point
+     * @param float $allowedDistance
+     *
+     * @return bool
+     */
+    public function containsPoint(Coordinate $point, float $allowedDistance = .001): bool
+    {
+        foreach ($this->points as $existingPoint) {
+            if ($existingPoint->isSame($point, $allowedDistance)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

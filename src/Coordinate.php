@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Location;
 
 use Location\Distance\DistanceInterface;
+use Location\Distance\Haversine;
 use Location\Formatter\Coordinate\FormatterInterface;
 
 /**
@@ -105,6 +107,24 @@ class Coordinate implements GeometryInterface
     public function getDistance(Coordinate $coordinate, DistanceInterface $calculator): float
     {
         return $calculator->getDistance($this, $coordinate);
+    }
+
+    /**
+     * Checks if two points describe the same location within an allowed distance.
+     *
+     * Uses the Haversine distance calculator for distance calculation as it's
+     * precise enough for short-distance calculations.
+     *
+     * @param Coordinate $coordinate
+     * @param float $allowedDistance the default value is one millimeter.
+     *
+     * @return bool
+     *
+     * @see Haversine
+     */
+    public function isSame(Coordinate $coordinate, float $allowedDistance = .001): bool
+    {
+        return $this->getDistance($coordinate, new Haversine()) <= $allowedDistance;
     }
 
     /**

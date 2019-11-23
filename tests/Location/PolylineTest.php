@@ -75,7 +75,7 @@ class PolylineTest extends TestCase
 
         $this->assertEquals($expected, $this->polyline->getBounds());
     }
-    
+
     public function testAddUniquePointWorksAsExpeted()
     {
         $expected = $this->polyline;
@@ -94,6 +94,38 @@ class PolylineTest extends TestCase
         $unique->addUniquePoint(new Coordinate(33.9, -118.4));
 
         $this->assertEquals($unique, $expected);
+    }
+
+    public function testAddUniquePointWithAllowedDistanceZero()
+    {
+        $expected = $this->polyline;
+        $actual   = clone $expected;
+
+        $actual->addUniquePoint(new Coordinate(33.9, -118.4), .0);
+
+        $this->assertEquals($expected, $actual);
+
+        $expected->addPoint(new Coordinate(33.90001, -118.40001));
+        $actual->addUniquePoint(new Coordinate(33.90001, -118.40001), .0);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testAddUniquePointWithAllowedDistance()
+    {
+        $expected = $this->polyline;
+        $actual = clone $expected;
+
+        $actual->addUniquePoint(new Coordinate(33.90000001, -118.40000001), .001);
+
+        $this->assertEquals($expected, $actual);
+
+        $expected = $this->polyline;
+        $actual = clone $expected;
+
+        $actual->addUniquePoint(new Coordinate(33.900001, -118.400001), 1);
+
+        $this->assertEquals($expected, $actual);
     }
 
     public function testGetMiddlePointWorksAsExpected()
