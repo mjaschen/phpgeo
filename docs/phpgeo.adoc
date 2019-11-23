@@ -1,6 +1,6 @@
 = phpgeo
 Marcus Jaschen <mail@marcusjaschen.de>
-v2.0.2, 2018-05-10
+v2.2.0, 2019-11-23
 :toc: left
 :toclevels: 4
 :source-highlighter: coderay
@@ -251,7 +251,9 @@ $polyline->addPoint(new Coordinate(55.5, 14.5));
 ?>
 ----
 
-It's possible to add points to the end of the polyline at every time.
+It's possible to add points to the end of the polyline at every time with the `addPoint()` method.
+
+Use `addUniquePoint()` to add unique points, i.e. points which doesn't exist already in the polyline.
 
 ==== Segments
 
@@ -582,6 +584,42 @@ GRS-80: a=6378137.000000; b=6356752.314133; 1/f=298.257222
 
 Please take a look into the https://github.com/mjaschen/phpgeo/blob/master/src/Location/Ellipsoid.php#L45[`Ellipsoid` source file]
 for a list of pre-defined ellipsoids.
+
+== Comparisons
+
+=== Same Point Comparison
+
+It's possible to check if two points describe the same location – and optionally allow an error margin.
+
+[source,php]
+----
+<?php
+
+use Location\Coordinate;
+
+$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
+
+echo $coordinate1->isSame($coordinate2)
+    ? 'Mauna Kea and Haleakala share the same location'
+    : 'Mauna Kea and Haleakala have different locations';
+echo PHP_EOL;
+
+$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate2 = new Coordinate(19.82365, -155.46905); // Gemini North Telescope
+
+echo $coordinate1->isSame($coordinate2, 1000)
+    ? 'Mauna Kea and the Gemini North Telescope are located within a 1 km-radius'
+    : 'Mauna Kea and the Gemini North Telescope are located more than 1 km apart.';
+echo PHP_EOL;
+----
+
+The code above will produce the output below:
+
+----
+Mauna Kea and Haleakala have different locations
+Mauna Kea and the Gemini North Telescope are located within a 1 km-radius
+----
 
 == Calculations
 
