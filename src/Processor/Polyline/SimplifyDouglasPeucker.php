@@ -79,17 +79,13 @@ class SimplifyDouglasPeucker implements SimplifyInterface
             $lineSplitFirst = array_slice($line, 0, $index + 1);
             $lineSplitSecond = array_slice($line, $index, $lineSize - $index);
 
-            if (count($lineSplitFirst) > 2) {
-                $resultsSplit1 = $this->douglasPeucker($lineSplitFirst);
-            } else {
-                $resultsSplit1 = $lineSplitFirst;
-            }
+            $resultsSplit1 = count($lineSplitFirst) > 2
+                ? $this->douglasPeucker($lineSplitFirst)
+                : $lineSplitFirst;
 
-            if (count($lineSplitSecond) > 2) {
-                $resultsSplit2 = $this->douglasPeucker($lineSplitSecond);
-            } else {
-                $resultsSplit2 = $lineSplitSecond;
-            }
+            $resultsSplit2 = count($lineSplitSecond) > 2
+                ? $this->douglasPeucker($lineSplitSecond)
+                : $lineSplitSecond;
 
             array_pop($resultsSplit1);
 
