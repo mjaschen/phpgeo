@@ -11,7 +11,7 @@
     <rule ref="PSR2"/>
 
     <!--The complete PSR-12 rule set-->
-    <rule ref="PSR12"/>
+    <!--<rule ref="PSR12"/>-->
 
     <!-- Arrays -->
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
