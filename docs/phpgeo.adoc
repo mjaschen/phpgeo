@@ -98,7 +98,7 @@ composer ci
 
 === API Documentation
 
-Detailed https://phpgeo.marcusjaschen.de/api/master/[API documentation] is available.
+Detailed https://phpgeo.marcusjaschen.de/api/[API documentation] is available.
 
 == Geometries
 
