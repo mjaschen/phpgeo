@@ -3,6 +3,18 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.2.0] - 2019-11-25
+
+### Added
+
+- `hasSameLocation()` checks if two points share the same location (optionally within a distance which defaults to 0.001 m = 1 mm)
+- `addUniquePoint` adds unique points to a polyline (i.e., points that doesn't already exist in that polyline)
+- `getAveragePoint()` returns the average value of latitude and longitude values for a polyline
+
+### Fixed
+
+- wrongly placed parenthesis in `Polygon::contains()`
+
 ## [2.1.0] - 2019-03-22
 
 ### Added
@@ -44,7 +56,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Fixed
 
-- Wrongly typed return value in `BearingEllipsoidal::inverseVincenty()`. 
+- Wrongly typed return value in `BearingEllipsoidal::inverseVincenty()`.
 
 ## [2.0.1] - 2018-02-16
 
