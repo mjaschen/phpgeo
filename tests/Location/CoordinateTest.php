@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Location;
 
+use Location\Distance\Haversine;
 use Location\Distance\Vincenty;
 use Location\Formatter\Coordinate\DecimalDegrees;
 use PHPUnit\Framework\TestCase;
@@ -84,5 +85,28 @@ class CoordinateTest extends TestCase
     public function testFormat()
     {
         $this->assertEquals('52.50000 13.50000', $this->coordinate->format(new DecimalDegrees()));
+    }
+
+    public function testHasSameLocation()
+    {
+        $point1 = new Coordinate(0.0, 0.0);
+        $point2 = new Coordinate(0.0, 0.0);
+
+        self::assertTrue($point1->hasSameLocation($point1, 0.0));
+        self::assertTrue($point1->hasSameLocation($point1, 0.1));
+
+        self::assertTrue($point1->hasSameLocation($point2, 0.0));
+        self::assertTrue($point1->hasSameLocation($point2, 0.1));
+
+        self::assertTrue($point2->hasSameLocation($point1, 0.0));
+        self::assertTrue($point2->hasSameLocation($point1, 0.1));
+
+        $point2 = new Coordinate(0, 0.0002777778); // 1 arc second
+
+        self::assertFalse($point1->hasSameLocation($point2, 0.0));
+
+        // a longitude difference of 1 arc second is about ~30.9 meters on the equator line
+        self::assertFalse($point1->hasSameLocation($point2, 30.85));
+        self::assertTrue($point1->hasSameLocation($point2, 30.95));
     }
 }

@@ -76,7 +76,7 @@ class Polyline implements GeometryInterface
     public function containsPoint(Coordinate $point, float $allowedDistance = .001): bool
     {
         foreach ($this->points as $existingPoint) {
-            if ($existingPoint->isSame($point, $allowedDistance)) {
+            if ($existingPoint->hasSameLocation($point, $allowedDistance)) {
                 return true;
             }
         }

@@ -123,7 +123,7 @@ class Coordinate implements GeometryInterface
      *
      * @see Haversine
      */
-    public function isSame(Coordinate $coordinate, float $allowedDistance = .001): bool
+    public function hasSameLocation(Coordinate $coordinate, float $allowedDistance = .001): bool
     {
         return $this->getDistance($coordinate, new Haversine()) <= $allowedDistance;
     }
