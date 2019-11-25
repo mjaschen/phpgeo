@@ -25,6 +25,17 @@ before_install:
 install:
 - >
   echo;
+  echo "Installing Phive";
+  wget -O phive.phar https://phar.io/releases/phive.phar;
+  wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc;
+  gpg --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79;
+  gpg --verify phive.phar.asc phive.phar;
+  chmod +x phive.phar;
+  sudo mv phive.phar /usr/bin/phive;
+  echo "Installing Phive Tools";
+  /usr/bin/phive install;
+  /usr/bin/phive status;
+  echo;
   if [ "$DEPENDENCIES" = "latest" ]; then
     echo "Installing the latest dependencies";
     composer update --with-dependencies --prefer-stable --prefer-dist
@@ -38,7 +49,7 @@ script:
 - >
   echo;
   echo "Validating the composer.json";
-  composer validate --no-check-all --no-check-lock --strict;
+  composer ci:composer-validate;
 
 - >
   echo;

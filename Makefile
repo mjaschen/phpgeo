@@ -22,13 +22,23 @@ docs/phpgeo.html: docs/phpgeo.adoc docs/piwik.html
 	mv $@.tmp $@
 
 apidocs:
-	mkdir -p docs/api
-	mkdir -p docs/cache
-	sami update docs/sami.config.php
+	mkdir -p build
+	mkdir -p build/coverage
+	mkdir -p docs/coverage
+	mkdir -p docs/phpdox
+	./tools/phploc --log-xml=build/phploc.xml src tests
+	./tools/phpcs --report-xml=build/phpcs.xml src
+	./tools/phpunit --coverage-xml build/coverage --coverage-html docs/coverage
+	./tools/phpdox -f docs/phpdox.xml
 
 clean:
 	rm -f docs/phpgeo.html
-	rm -Rf docs/api
+	rm -Rf docs/coverage
+	rm -Rf docs/phpdox
+	rm -Rf build/coverage
+	rm -Rf build/phpdox
+	rm -Rf build/phpcs.xml
+	rm -Rf build/phploc.xml
 
 upload_docs: docs
 	scp docs/phpgeo.html $(UPLOAD_HOST):$(UPLOAD_PATH)/index.html
@@ -38,7 +48,6 @@ upload_docs: docs
 ci: lint coding-standards composer-validate sniff static-analysis-psalm unit-tests
 
 coding-standards: sniff
-	-./vendor/bin/phpmd src text cleancode,codesize,design,naming,unusedcode
 
 composer-validate:
 	composer validate --no-check-publish
@@ -47,10 +56,10 @@ lint:
 	./vendor/bin/parallel-lint src
 
 sniff:
-	-./vendor/bin/phpcs --standard=codesniffer_rules.xml src
+	-./tools/phpcs --standard=codesniffer_rules.xml src
 
 static-analysis-psalm:
-	./vendor/bin/psalm
+	./tools/psalm
 
 unit-tests:
-	./vendor/bin/phpunit
+	./tools/phpunit

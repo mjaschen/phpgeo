@@ -4,20 +4,24 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 <!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
 
-- [Requirements](#requirements)
-- [Documentation](#documentation)
-- [Installation](#installation)
-- [Features](#features)
-- [License](#license)
-- [Examples/Usage](#examplesusage)
-  - [Distance between two coordinates \(Vincenty's Formula\)](#distance-between-two-coordinates-vincentys-formula)
-  - [Simplifying a polyline](#simplifying-a-polyline)
-  - [Polygon contains a point \(e.g. "GPS geofence"\)](#polygon-contains-a-point-eg-gps-geofence)
-  - [Formatted output of coordinates](#formatted-output-of-coordinates)
-    - [Decimal Degrees](#decimal-degrees)
-    - [Degrees/Minutes/Seconds \(DMS\)](#degreesminutesseconds-dms)
-    - [GeoJSON](#geojson)
-- [Credits](#credits)
+- [phpgeo - A Simple Geo Library for PHP](#phpgeo---a-simple-geo-library-for-php)
+  - [Requirements](#requirements)
+  - [Documentation](#documentation)
+  - [Installation](#installation)
+  - [License](#license)
+  - [Features](#features)
+  - [Examples/Usage](#examplesusage)
+    - [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincentys-formula)
+    - [Simplifying a polyline](#simplifying-a-polyline)
+    - [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-%22gps-geofence%22)
+    - [Formatted output of coordinates](#formatted-output-of-coordinates)
+      - [Decimal Degrees](#decimal-degrees)
+      - [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
+      - [GeoJSON](#geojson)
+  - [Development](#development)
+    - [Run Tests](#run-tests)
+  - [Miscellaneous](#miscellaneous)
+  - [Credits](#credits)
 
 <!-- /MarkdownTOC -->
 
@@ -220,6 +224,7 @@ Before submitting a pull request, please be sure to run all checks and tests and
 
 To run the checks and tests, it's the easiest to use the provided Composer scripts:
 
+- install development tools with [Phive](https://phar.io/): `phive install`
 - lint PHP files for syntax errors: `composer ci:lint`
 - run static analysis with [Psalm][] and report errors: `composer ci:psalm`
 - run unit tests with PHPUnit: `composer ci:tests`
@@ -229,7 +234,7 @@ To run all checks and tests at once, just use `composer ci`.
 Of course, it's possible to use the test runners directly, e. g. for PHPUnit:
 
 ```shell
-./vendor/bin/phpunit
+./tools/phpunit
 ```
 
 Psalm:

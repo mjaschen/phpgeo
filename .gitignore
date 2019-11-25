@@ -3,5 +3,6 @@
 /composer.lock
 /vendor/
 /docs/phpgeo.html
-/docs/api/
-/docs/cache/
+/docs/coverage/
+/docs/phpdox/
+/tools/
