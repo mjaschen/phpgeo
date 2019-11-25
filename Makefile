@@ -43,7 +43,7 @@ clean:
 upload_docs: docs
 	scp docs/phpgeo.html $(UPLOAD_HOST):$(UPLOAD_PATH)/index.html
 	ssh $(UPLOAD_HOST) "mkdir -p $(UPLOAD_PATH)/api"
-	rsync --recursive --delete docs/api/ $(UPLOAD_HOST):$(UPLOAD_PATH)/api/
+	rsync --recursive --delete docs/phpdox/ $(UPLOAD_HOST):$(UPLOAD_PATH)/api/
 
 ci: lint coding-standards composer-validate sniff static-analysis-psalm unit-tests
 
