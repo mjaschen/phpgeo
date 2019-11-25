@@ -33,7 +33,7 @@ install:
   chmod +x phive.phar;
   sudo mv phive.phar /usr/bin/phive;
   echo "Installing Phive Tools";
-  /usr/bin/phive install;
+  /usr/bin/phive install --trust-gpg-keys;
   /usr/bin/phive status;
   echo;
   if [ "$DEPENDENCIES" = "latest" ]; then
