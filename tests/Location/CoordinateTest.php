@@ -101,7 +101,8 @@ class CoordinateTest extends TestCase
         self::assertTrue($point2->hasSameLocation($point1, 0.0));
         self::assertTrue($point2->hasSameLocation($point1, 0.1));
 
-        $point2 = new Coordinate(0, 0.0002777778); // 1 arc second
+        // distance: 1 arc second
+        $point2 = new Coordinate(0, 0.0002777778);
 
         self::assertFalse($point1->hasSameLocation($point2, 0.0));
 
