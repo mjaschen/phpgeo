@@ -49,29 +49,29 @@ Starting with version 2.0.0 phpgeo is licensed under the MIT license. Older vers
 
 ## Features
 
-**Info:** Please visit the **[documentation site](https://phpgeo.marcusjaschen.de/)** for complete and up-to-date documentation!
+**Info:** Please visit the **[documentation site](https://phpgeo.marcusjaschen.de/)** for complete and up-to-date documentation with many examples!
 
 phpgeo provides the following features (follow the links for examples):
 
-- abstractions of several geometry objects ([coordinate/point](https://phpgeo.marcusjaschen.de/#_coordinate),
-  [line](https://phpgeo.marcusjaschen.de/#_line),
-  [polyline/GPS track](https://phpgeo.marcusjaschen.de/#_polyline),
-  [polygon](https://phpgeo.marcusjaschen.de/#_polygon)
-- support for different [ellipsoids](https://phpgeo.marcusjaschen.de/#_ellipsoid), e. g. WGS-84
-- [length/distance/perimeter calculations](https://phpgeo.marcusjaschen.de/#_distance_and_length)
+- abstractions of several geometry objects ([coordinate/point](https://phpgeo.marcusjaschen.de/Geometries/Coordinate.html),
+  [line](https://phpgeo.marcusjaschen.de/Geometries/Line.html),
+  [polyline/GPS track](https://phpgeo.marcusjaschen.de/Geometries/Polyline.html),
+  [polygon](https://phpgeo.marcusjaschen.de/Geometries/Polygon.html)
+- support for different [ellipsoids](https://phpgeo.marcusjaschen.de/Geometries/Ellipsoid.html), e.g. WGS-84
+- [length/distance/perimeter calculations](https://phpgeo.marcusjaschen.de/Calculations/Distance_and_Length.html)
   with different implementations (Haversine, Vincenty)
-- [Geofence](https://phpgeo.marcusjaschen.de/#_geofence_2) calculation,
+- [Geofence](https://phpgeo.marcusjaschen.de/Calculations/Geofence.html) calculation,
   i. e. answering the question "Is this point contained in that area/polygon?"
-- [formatting and output](https://phpgeo.marcusjaschen.de/#_formatting_and_output) of geometry objects
+- [formatting and output](https://phpgeo.marcusjaschen.de/Formatting_and_Output/index.html) of geometry objects
   (GeoJSON, nice strings, e. g. `18° 54′ 41″ -155° 40′ 42″`)
-- calculation of [bearing angle between two points](https://phpgeo.marcusjaschen.de/#_bearing_between_two_points)
+- calculation of [bearing angle between two points](https://phpgeo.marcusjaschen.de/Calculations/Bearing_and_Destination.html#page_Bearing-between-two-points)
   (spherical or with Vincenty's formula)
-- calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/#_distance_between_two_coordinates_vincentys_formula),
+- calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/Calculations/Bearing_and_Destination.html#page_Destination-point-for-given-bearing-and-distance),
   bearing angle, and distance (spherical or with Vincenty's formula)
-- calculation of the [perpendicular distance between a point and a line](https://phpgeo.marcusjaschen.de/#_perpendicular_distance)
-- getting segments of a [polyline](https://phpgeo.marcusjaschen.de/#_segments)
-  /[polygon](https://phpgeo.marcusjaschen.de/#_segments_2),
-- [reversing direction](https://phpgeo.marcusjaschen.de/#_reverse_direction_2)
+- calculation of the [perpendicular distance between a point and a line](https://phpgeo.marcusjaschen.de/Calculations/Perpendicular_Distance.html)
+- getting segments of a [polyline](https://phpgeo.marcusjaschen.de/Geometries/Polyline.html#page_Segments)
+  /[polygon](https://phpgeo.marcusjaschen.de/Geometries/Polygon.html#page_Segments),
+- [reversing direction](https://phpgeo.marcusjaschen.de/Geometries/Polygon.html#page_Reverse-Direction)
   of polyline/polygon
 
 ## Examples/Usage
