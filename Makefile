@@ -36,7 +36,7 @@ clean:
 upload_docs: docs
 	rsync --recursive --delete build/daux/ $(UPLOAD_HOST):$(UPLOAD_PATH)/
 	ssh $(UPLOAD_HOST) "mkdir -p $(UPLOAD_PATH)/api"
-	rsync --recursive --delete docs/phpdox/html/ $(UPLOAD_HOST):$(UPLOAD_PATH)/api/
+	rsync --recursive --delete build/apidocs/html/ $(UPLOAD_HOST):$(UPLOAD_PATH)/api/
 
 ci: lint coding-standards composer-validate sniff static-analysis-psalm unit-tests
 
