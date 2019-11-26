@@ -33,7 +33,7 @@ Minimum required PHP version is 7.0.
 
 The documentation is available at https://phpgeo.marcusjaschen.de/
 
-API documentation is available as well: https://phpgeo.marcusjaschen.de/api/master
+API documentation is available as well: https://phpgeo.marcusjaschen.de/api/
 
 ## Installation
 
