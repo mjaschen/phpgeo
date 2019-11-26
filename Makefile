@@ -1,6 +1,7 @@
 .PHONY: apidocs
 .PHONY: clean
 .PHONY: docs
+.PHONY: daux
 .PHONY: upload_docs
 
 .PHONY: ci
@@ -14,34 +15,26 @@
 UPLOAD_HOST=phpgeo.marcusjaschen.de
 UPLOAD_PATH=phpgeo.marcusjaschen.de
 
-docs: docs/phpgeo.html apidocs
+docs: daux apidocs
 
-docs/phpgeo.html: docs/phpgeo.adoc docs/piwik.html
-	asciidoctor $< || { rm $@ ; exit 1 ; }
-	awk '/<\/body>/ { system("cat docs/piwik.html") }; {print} ' $@ > $@.tmp
-	mv $@.tmp $@
+daux:
+	rm -Rf build/daux
+	mkdir -p build/daux
+	daux generate -d build/daux
 
 apidocs:
 	mkdir -p build
 	mkdir -p build/coverage
-	mkdir -p docs/coverage
-	mkdir -p docs/phpdox
 	./tools/phploc --log-xml=build/phploc.xml src tests
 	./tools/phpcs --report-xml=build/phpcs.xml src
-	./tools/phpunit --coverage-xml build/coverage --coverage-html docs/coverage
-	./tools/phpdox -f docs/phpdox.xml
+	./tools/phpunit --coverage-xml build/coverage --coverage-html build/coverage
+	./tools/phpdox
 
 clean:
-	rm -f docs/phpgeo.html
-	rm -Rf docs/coverage
-	rm -Rf docs/phpdox
-	rm -Rf build/coverage
-	rm -Rf build/phpdox
-	rm -Rf build/phpcs.xml
-	rm -Rf build/phploc.xml
+	rm -Rf build
 
 upload_docs: docs
-	scp docs/phpgeo.html $(UPLOAD_HOST):$(UPLOAD_PATH)/index.html
+	rsync --recursive --delete build/daux/ $(UPLOAD_HOST):$(UPLOAD_PATH)/
 	ssh $(UPLOAD_HOST) "mkdir -p $(UPLOAD_PATH)/api"
 	rsync --recursive --delete docs/phpdox/html/ $(UPLOAD_HOST):$(UPLOAD_PATH)/api/
 

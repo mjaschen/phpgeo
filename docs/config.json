@@ -1,0 +1,25 @@
+{
+    "title": "phpgeo",
+    "tagline": "A Simple Yet Powerful Geo Library for PHP",
+    "author": "Marcus Jaschen",
+    "format": "html",
+    "timezone": "Europe/Berlin",
+    "html": {
+        "theme": "daux-red",
+        "breadcrumbs": true,
+        "breadcrumb_separator": "Chevrons",
+        "toggle_code": true,
+        "date_modified": true,
+        "inherit_index": true,
+        "search": true,
+        "repo": "mjaschen/phpgeo",
+        "edit_on_github": "mjaschen/phpgeo/blob/master/docs",
+        "piwik_analytics": "metrics.m11n.de",
+        "piwik_analytics_id": "15",
+        "links": {
+            "Download": "https://github.com/mjaschen/phpgeo/archive/master.zip",
+            "GitHub Repo": "https://github.com/mjaschen/phpgeo",
+            "Help/Support/Bugs": "https://github.com/mjaschen/phpgeo/issues"
+        }
+    }
+}

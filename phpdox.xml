@@ -9,7 +9,7 @@
     <bootstrap/>
 
     <!-- A phpDox project to process, you can have multiple projects in one config file -->
-    <project name="phpdox" source="${basedir}/../src" workdir="${basedir}/../build/phpdox/xml">
+    <project name="phpdox" source="${basedir}/src" workdir="${basedir}/build/phpdox/xml">
         <!--  @name    - The name of the project -->
         <!--  @source  - The source directory of the application to process -->
         <!--  @workdir - The directory to store the xml data files in -->
@@ -57,12 +57,12 @@
         </collector>
 
         <!--  Configuration of generation process -->
-        <generator output="${basedir}/phpdox">
+        <generator output="${basedir}/build/apidocs">
             <!-- @output - (Base-)Directory to store output data in -->
 
             <!-- A generation process consists of one or more build tasks and of (optional) enrich sources -->
 
-            <enrich base="${basedir}/../build">
+            <enrich base="${basedir}/build">
                 <!-- @base - (Base-)Directory of datafiles used for enrich process -->
 
                 <!--<source type="...">-->
