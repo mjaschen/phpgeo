@@ -15,20 +15,22 @@
 UPLOAD_HOST=phpgeo.marcusjaschen.de
 UPLOAD_PATH=phpgeo.marcusjaschen.de
 
+PHP ?= php
+
 docs: daux apidocs
 
 daux:
 	rm -Rf build/daux
 	mkdir -p build/daux
-	daux generate -d build/daux
+	$(PHP) vendor/bin/daux generate -d build/daux
 
 apidocs:
 	mkdir -p build
 	mkdir -p build/coverage
-	./tools/phploc --log-xml=build/phploc.xml src tests
-	./tools/phpcs --report-xml=build/phpcs.xml src
-	./tools/phpunit --coverage-xml build/coverage --coverage-html build/coverage
-	./tools/phpdox
+	$(PHP) ./tools/phploc --log-xml=build/phploc.xml src tests
+	$(PHP) ./tools/phpcs --report-xml=build/phpcs.xml src
+	$(PHP) ./tools/phpunit --coverage-xml build/coverage --coverage-html build/coverage
+	$(PHP) ./tools/phpdox
 
 clean:
 	rm -Rf build
@@ -46,13 +48,14 @@ composer-validate:
 	composer validate --no-check-publish
 
 lint:
-	./vendor/bin/parallel-lint src
+	$(PHP) ./vendor/bin/parallel-lint src
 
 sniff:
-	-./tools/phpcs --standard=codesniffer_rules.xml src
+	# the `-` prefix ignores the exit status of the command
+	-$(PHP) ./tools/phpcs --standard=codesniffer_rules.xml src
 
 static-analysis-psalm:
-	./tools/psalm
+	$(PHP) ./tools/psalm
 
 unit-tests:
-	./tools/phpunit
+	$(PHP) ./tools/phpunit
