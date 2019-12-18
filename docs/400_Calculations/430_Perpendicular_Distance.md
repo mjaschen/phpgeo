@@ -1,13 +1,19 @@
 # Perpendicular Distance
 
 The _perpendicular distance_ is defined as the shortest distance between a point
-and a line (in the two-dimensional plane) respectively between a point and a
+a line (in the two-dimensional plane) respectively between a point and a
 [great circle](https://en.wikipedia.org/wiki/Great_circle) on a spherical surface.
 
 With _phpgeo_ it is possible to calculate the perpendicular distance between a
-point (instance of the [`Coordinate`](../Geometries/Coordinate) class) and a line (instance of the
-[`Line`](../Geometries/Line) class). A line is defined by a pair of coordinates, exactly as a great
-circle -- both are interchangeable in this case.
+point (instance of the [`Coordinate`](../Geometries/Coordinate) class) and a
+Great Circle - which is defined by a [`Line`](../Geometries/Line). A line is
+defined by a pair of coordinates.
+
+The distance between points *P* and *X* is the perpendicular distance in the following sketch:
+
+![perpendicular_distance](perpendicular-distance.png)
+
+## Example
 
 ``` php
 <?php
