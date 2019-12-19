@@ -8,7 +8,7 @@ use Location\Coordinate;
 use Location\Line;
 
 /**
- * Calculate the perpendicular distance between a Line and a Point
+ * Calculate the perpendicular distance between a Line and a Point.
  *
  * @author Marcus Jaschen <mjaschen@gmail.com>
  */

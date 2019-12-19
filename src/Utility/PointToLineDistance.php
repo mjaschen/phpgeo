@@ -8,6 +8,11 @@ use Location\Coordinate;
 use Location\Distance\DistanceInterface;
 use Location\Line;
 
+/**
+ * Calculate the distance between a Line and a Point.
+ *
+ * @author Marcus Jaschen <mjaschen@gmail.com>
+ */
 class PointToLineDistance
 {
     /**
