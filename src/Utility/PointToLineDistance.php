@@ -47,7 +47,8 @@ class PointToLineDistance
         $deltal2l1Lat = $l2Lat - $l1Lat;
         $deltal2l1Lng = $l2Lng - $l1Lng;
 
-        $u = (($pLat - $l1Lat) * $deltal2l1Lat + ($pLng - $l1Lng) * $deltal2l1Lng) / ($deltal2l1Lat ** 2 + $deltal2l1Lng ** 2);
+        $u = (($pLat - $l1Lat) * $deltal2l1Lat + ($pLng - $l1Lng) * $deltal2l1Lng) /
+            ($deltal2l1Lat ** 2 + $deltal2l1Lng ** 2);
 
         if ($u <= 0) {
             return $this->distanceCalculator->getDistance($point, $line->getPoint1());
