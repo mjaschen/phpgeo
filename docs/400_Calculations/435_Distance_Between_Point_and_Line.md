@@ -6,6 +6,14 @@ and [`Polygon`](../Geometries/Polygon) are also built upon the `Line` class
 it's also possible to calculate distances from a point the polyline/polygon
 by iterating over their segments.
 
+The following image explains how the distance is calcualated: *P* and *R* are
+located in such a way that the nearest distance to the line is the distance between
+*P*, *R* and the line end points. Point *Q* is nearer to the actual line than to
+any of the end points, so the actual distance is the perpendicular distance between *Q*
+and the line.
+
+![Point to Line Distance](point-to-line-distance.png)
+
 ## Example
 
 ``` php
