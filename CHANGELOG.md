@@ -3,6 +3,18 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.3.1] - 2019-12-21
+
+### Fixed
+
+- improve precision in `PointToLineDistance`
+
+## [2.3.0] - 2019-12-19
+
+### Added
+
+- `PointToLineDistance` calculates the smallest distance between a point and a line
+
 ## [2.2.0] - 2019-11-25
 
 ### Added
