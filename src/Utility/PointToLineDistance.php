@@ -63,15 +63,6 @@ class PointToLineDistance
             return $this->distanceCalculator->getDistance($point, $line->getPoint2());
         }
 
-        $tmpPoint1 = new Coordinate(
-            $point->getLat() - $line->getPoint1()->getLat(),
-            $point->getLng() - $line->getPoint1()->getLng()
-        );
-        $tmpPoint2 = new Coordinate(
-            $u * ($line->getPoint2()->getLat() - $line->getPoint1()->getLat()),
-            $u * ($line->getPoint2()->getLng() - $line->getPoint1()->getLng())
-        );
-
-        return $this->distanceCalculator->getDistance($tmpPoint1, $tmpPoint2);
+        return (new PerpendicularDistance())->getPerpendicularDistance($point, $line);
     }
 }

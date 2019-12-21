@@ -81,4 +81,20 @@ class PointToLineDistanceTest extends TestCase
         $this->assertLessThan($pl1Distance, $plDistance);
         $this->assertLessThan($pl2Distance, $plDistance);
     }
+
+    public function testDistanceMatchesPerpendicularDistance()
+    {
+        $point = new Coordinate(52.04, 13.01);
+
+        $linePoint1 = new Coordinate(52.0, 13.0);
+        $linePoint2 = new Coordinate(52.07, 13.02);
+        $line = new Line($linePoint1, $linePoint2);
+
+        $pdCalculator = new PerpendicularDistance();
+
+        $perpendicularDistance = $pdCalculator->getPerpendicularDistance($point, $line);
+        $pointToLineDistance = $this->pointToLineDistance->getDistance($point, $line);
+
+        $this->assertEquals($pointToLineDistance, $perpendicularDistance);
+    }
 }
