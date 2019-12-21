@@ -1,6 +1,6 @@
 {
     "name": "mjaschen/phpgeo",
-    "description": "Simple Geo Library",
+    "description": "Simple Yet Powerful Geo Library",
     "keywords": [
         "distance",
         "area",
@@ -22,7 +22,8 @@
         "gps",
         "earth",
         "track",
-        "point"
+        "point",
+        "perpendicular"
     ],
     "homepage": "https://phpgeo.marcusjaschen.de/",
     "type": "library",
