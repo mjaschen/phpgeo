@@ -52,3 +52,18 @@ It's possible to run all tests at once:
 ``` shell
 composer ci
 ```
+
+## Creating the documentation
+
+*phpgeo's* documentation is generated with [Daux](https://daux.io/) from Markdown files.
+The `Makefile` provides a helper target for generating the complete documentation:
+
+``` shell
+make docs
+```
+
+As of version 0.12.0 Daux throws lots of deprecation warnings with PHP 7.4. Using PHP 7.3 is a workaround:
+
+``` shell
+PHP=/usr/local/opt/php@7.3/bin/php make docs
+```
