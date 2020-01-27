@@ -27,7 +27,11 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 ## Requirements
 
-Minimum required PHP version is 7.0.
+Minimum required PHP version is 7.2.
+
+The 2.x releases require PHP >= 7.0 but don't get feature updates any longer.
+
+The 1.x release line has support for PHP >= 5.4.
 
 ## Documentation
 

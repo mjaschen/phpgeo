@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phive xmlns="https://phar.io/phive">
   <phar name="phpdox" version="^0.12.0" installed="0.12.0" location="./tools/phpdox" copy="false"/>
-  <phar name="phpunit" version="~6.0" installed="6.5.14" location="./tools/phpunit" copy="false"/>
-  <phar name="phpcs" version="^3.2" installed="3.5.3" location="./tools/phpcs" copy="false"/>
-  <phar name="psalm" version="~3.0" installed="3.7.2" location="./tools/psalm" copy="false"/>
+  <phar name="phpunit" version="^8.0" installed="8.5.2" location="./tools/phpunit" copy="false"/>
+  <phar name="phpcs" version="^3.5" installed="3.5.3" location="./tools/phpcs" copy="false"/>
+  <phar name="psalm" version="^3.0" installed="3.7.2" location="./tools/psalm" copy="false"/>
   <phar name="phploc" version="^5.0" installed="5.0.0" location="./tools/phploc" copy="false"/>
 </phive>

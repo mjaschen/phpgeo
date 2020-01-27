@@ -39,7 +39,7 @@
         "email" : "mjaschen@gmail.com"
     },
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.2"
     },
     "autoload": {
         "psr-4": {
@@ -47,12 +47,11 @@
         }
     },
     "require-dev": {
-        "jakub-onderka/php-parallel-lint": "^1.0",
         "daux/daux.io": "^0.11.1"
     },
     "scripts": {
         "ci:composer-validate": "composer validate --no-check-all --no-check-lock --strict",
-        "ci:lint": "./vendor/bin/parallel-lint src",
+        "ci:lint": "find config src tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
         "ci:psalm": "./tools/psalm",
         "ci:sniff": "./tools/phpcs src tests",
         "ci:tests": "./tools/phpunit tests/",
