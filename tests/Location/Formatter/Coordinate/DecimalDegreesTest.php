@@ -14,7 +14,7 @@ class DecimalDegreesTest extends TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new DecimalDegrees();
     }
@@ -23,11 +23,11 @@ class DecimalDegreesTest extends TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
-    public function testFormatDefaultSeparator()
+    public function testFormatDefaultSeparator(): void
     {
         $coordinate = new Coordinate(52.5, 13.5);
 
@@ -36,7 +36,7 @@ class DecimalDegreesTest extends TestCase
         $this->assertEquals('52.50000 13.50000', $formatter->format($coordinate));
     }
 
-    public function testFormatCustomSeparator()
+    public function testFormatCustomSeparator(): void
     {
         $coordinate = new Coordinate(52.5, 13.5);
 
@@ -45,7 +45,7 @@ class DecimalDegreesTest extends TestCase
         $this->assertEquals('52.50000, 13.50000', $formatter->format($coordinate));
     }
 
-    public function testIfSetSeparatorWorksAsExpected()
+    public function testIfSetSeparatorWorksAsExpected(): void
     {
         $coordinate = new Coordinate(52.5, 13.5);
 

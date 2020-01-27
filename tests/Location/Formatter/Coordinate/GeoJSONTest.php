@@ -18,7 +18,7 @@ class GeoJSONTest extends TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->formatter = new GeoJSON();
     }
@@ -27,12 +27,12 @@ class GeoJSONTest extends TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->formatter);
     }
 
-    public function testFormatDefault()
+    public function testFormatDefault(): void
     {
         $coordinate = new Coordinate(52.5, 13.5);
 
@@ -41,7 +41,7 @@ class GeoJSONTest extends TestCase
         $this->assertJsonStringEqualsJsonString($json, $this->formatter->format($coordinate));
     }
 
-    public function testFormatPrecision()
+    public function testFormatPrecision(): void
     {
         $coordinate = new Coordinate(52.123456789012345, 13.123456789012345);
 

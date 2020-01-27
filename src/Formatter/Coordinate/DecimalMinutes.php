@@ -14,8 +14,8 @@ use Location\Coordinate;
  */
 class DecimalMinutes implements FormatterInterface
 {
-    const UNITS_UTF8  = 'UTF-8';
-    const UNITS_ASCII = 'ASCII';
+    public const UNITS_UTF8  = 'UTF-8';
+    public const UNITS_ASCII = 'ASCII';
 
     /**
      * @var string Separator string between latitude and longitude
@@ -112,6 +112,14 @@ class DecimalMinutes implements FormatterInterface
         $this->unitType = $type;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnitType(): string
+    {
+        return $this->unitType;
     }
 
     /**

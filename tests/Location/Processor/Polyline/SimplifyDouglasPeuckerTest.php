@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class SimplifyDouglasPeuckerTest extends TestCase
 {
-    public function testSimplifyThreePointsToTwoPoints()
+    public function testSimplifyThreePointsToTwoPoints(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(10.0, 10.0));
@@ -27,7 +27,7 @@ class SimplifyDouglasPeuckerTest extends TestCase
         $this->assertEquals(new Line(new Coordinate(10.0, 10.0), new Coordinate(30.0, 10.0)), $segments[0]);
     }
 
-    public function testSimplifyFourPointsToTwoPoints()
+    public function testSimplifyFourPointsToTwoPoints(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(50.0, 10.0));
@@ -45,7 +45,7 @@ class SimplifyDouglasPeuckerTest extends TestCase
         $this->assertEquals(new Line(new Coordinate(50.0, 10.0), new Coordinate(20.0, 30.0)), $segments[0]);
     }
 
-    public function testSimplifyFourPointsToThreePoints()
+    public function testSimplifyFourPointsToThreePoints(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(50.0, 10.0));
@@ -64,7 +64,7 @@ class SimplifyDouglasPeuckerTest extends TestCase
         $this->assertEquals(new Line(new Coordinate(30.0, 10.0), new Coordinate(20.0, 30.0)), $segments[1]);
     }
 
-    public function testSimplifyThreePointsImpossible()
+    public function testSimplifyThreePointsImpossible(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(10.0, 10.0));

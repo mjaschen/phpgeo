@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class LineTest extends TestCase
 {
-    public function testCreateLine()
+    public function testCreateLine(): void
     {
         $point1 = new Coordinate(52.5, 13.5);
         $point2 = new Coordinate(64.1, - 21.9);
@@ -21,17 +21,17 @@ class LineTest extends TestCase
         $this->assertEquals($point2, $line->getPoint2());
     }
 
-    public function testCalculateLength()
+    public function testCalculateLength(): void
     {
         $point1 = new Coordinate(52.5, 13.5);
         $point2 = new Coordinate(64.1, - 21.9);
 
         $line = new Line($point1, $point2);
 
-        $this->assertEquals(2397867.8, $line->getLength(new Vincenty()), '', 0.01);
+        $this->assertEqualsWithDelta(2397867.8, $line->getLength(new Vincenty()), 0.01, '');
     }
 
-    public function testGetReverseWorksAsExpected()
+    public function testGetReverseWorksAsExpected(): void
     {
         $point1 = new Coordinate(52.5, 13.5);
         $point2 = new Coordinate(64.1, - 21.9);
@@ -44,7 +44,7 @@ class LineTest extends TestCase
         $this->assertEquals($expected, $reversedLine);
     }
 
-    public function testIfGetBearingWorksAsExpected()
+    public function testIfGetBearingWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, 10);
@@ -56,7 +56,7 @@ class LineTest extends TestCase
         $this->assertEquals(90.0, $line->getBearing($bearingCalculator));
     }
 
-    public function testIfGetFinalBearingWorksAsExpected()
+    public function testIfGetFinalBearingWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, 10);
@@ -68,7 +68,7 @@ class LineTest extends TestCase
         $this->assertEquals(90.0, $line->getFinalBearing($bearingCalculator));
     }
 
-    public function testIfGetBearingReversedWorksAsExpected()
+    public function testIfGetBearingReversedWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, 10);
@@ -80,7 +80,7 @@ class LineTest extends TestCase
         $this->assertEquals(270.0, $line->getBearing($bearingCalculator));
     }
 
-    public function testIfGetFinalBearingReversedWorksAsExpected()
+    public function testIfGetFinalBearingReversedWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, 10);
@@ -92,7 +92,7 @@ class LineTest extends TestCase
         $this->assertEquals(270.0, $line->getFinalBearing($bearingCalculator));
     }
 
-    public function testIfGetBoundsWorksAsExpected()
+    public function testIfGetBoundsWorksAsExpected(): void
     {
         $point1 = new Coordinate(-10.0, 20.0);
         $point2 = new Coordinate(3.0, 10.0);

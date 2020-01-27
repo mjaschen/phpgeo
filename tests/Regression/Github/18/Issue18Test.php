@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class Issue18Test extends TestCase
 {
-    public function testIfIssue18IsFixed()
+    public function testIfIssue18IsFixed(): void
     {
         $vincenty = new Vincenty();
 
@@ -18,6 +18,6 @@ class Issue18Test extends TestCase
             new Coordinate(0, 0.1)
         );
 
-        $this->assertInternalType('float', $distance);
+        $this->assertIsFloat($distance);
     }
 }

@@ -11,7 +11,7 @@ class Issue15Test extends TestCase
     /**
      * @see https://github.com/mjaschen/phpgeo/issues/15
      */
-    public function testIfIssue15IsFixed()
+    public function testIfIssue15IsFixed(): void
     {
         $data = [
             [20.6579781231, -103.422906054],

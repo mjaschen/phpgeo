@@ -21,7 +21,7 @@ class PointToLineDistanceTest extends TestCase
      */
     private $vincenty;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -29,7 +29,7 @@ class PointToLineDistanceTest extends TestCase
         $this->pointToLineDistance = new PointToLineDistance($this->vincenty);
     }
 
-    public function testLineHasTheSameStartAndEndPoint()
+    public function testLineHasTheSameStartAndEndPoint(): void
     {
         $point = new Coordinate(52.5, 13.5);
 
@@ -38,7 +38,7 @@ class PointToLineDistanceTest extends TestCase
         $this->assertEquals(27164.059, $this->pointToLineDistance->getDistance($point, $line));
     }
 
-    public function testLinePoint1IsNearer()
+    public function testLinePoint1IsNearer(): void
     {
         $point = new Coordinate(52.45, 13.05);
 
@@ -52,7 +52,7 @@ class PointToLineDistanceTest extends TestCase
         );
     }
 
-    public function testLinePoint2IsNearer()
+    public function testLinePoint2IsNearer(): void
     {
         $point = new Coordinate(52.6001, 13.1201);
 
@@ -66,7 +66,7 @@ class PointToLineDistanceTest extends TestCase
         );
     }
 
-    public function testDistanceIsCalculatedToSomewhereOnLine()
+    public function testDistanceIsCalculatedToSomewhereOnLine(): void
     {
         $point = new Coordinate(52.04, 13.01);
 
@@ -82,7 +82,7 @@ class PointToLineDistanceTest extends TestCase
         $this->assertLessThan($pl2Distance, $plDistance);
     }
 
-    public function testDistanceMatchesPerpendicularDistance()
+    public function testDistanceMatchesPerpendicularDistance(): void
     {
         $point = new Coordinate(52.04, 13.01);
 

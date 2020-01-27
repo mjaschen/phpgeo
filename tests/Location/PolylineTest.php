@@ -15,7 +15,7 @@ class PolylineTest extends TestCase
      */
     protected $polyline;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->polyline = new Polyline();
         $this->polyline->addPoint(new Coordinate(52.5, 13.5));
@@ -24,12 +24,12 @@ class PolylineTest extends TestCase
         $this->polyline->addPoint(new Coordinate(33.9, -118.4));
     }
 
-    public function testCreatePolyline()
+    public function testCreatePolyline(): void
     {
         static::assertCount(4, $this->polyline->getPoints());
     }
 
-    public function testGetSegments()
+    public function testGetSegments(): void
     {
         $segments = $this->polyline->getSegments();
 
@@ -38,7 +38,7 @@ class PolylineTest extends TestCase
         static::assertEquals(new Line(new Coordinate(40.7, -74.0), new Coordinate(33.9, -118.4)), $segments[2]);
     }
 
-    public function testGetSegmentsForOnlyOnePointInLineWorksAsExpected()
+    public function testGetSegmentsForOnlyOnePointInLineWorksAsExpected(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(52.5, 13.5));
@@ -46,12 +46,12 @@ class PolylineTest extends TestCase
         static::assertEquals([], $polyline->getSegments());
     }
 
-    public function testGetLength()
+    public function testGetLength(): void
     {
-        static::assertEquals(10576798.9, $this->polyline->getLength(new Vincenty()), '', 0.1);
+        static::assertEqualsWithDelta(10576798.9, $this->polyline->getLength(new Vincenty()), 0.1, '');
     }
 
-    public function testGetReverseWorksAsExpected()
+    public function testGetReverseWorksAsExpected(): void
     {
         $reversed = $this->polyline->getReverse();
 
@@ -64,21 +64,21 @@ class PolylineTest extends TestCase
         static::assertEquals($expected, $reversed);
     }
 
-    public function testReverseTwiceWorksAsExpected()
+    public function testReverseTwiceWorksAsExpected(): void
     {
         $doubleReversed = $this->polyline->getReverse()->getReverse();
 
         static::assertEquals($this->polyline, $doubleReversed);
     }
 
-    public function testGetBoundsWorksAsExpected()
+    public function testGetBoundsWorksAsExpected(): void
     {
         $expected = new Bounds(new Coordinate(64.1, -118.4), new Coordinate(33.9, 13.5));
 
         static::assertEquals($expected, $this->polyline->getBounds());
     }
 
-    public function testAddUniquePointWorksAsExpeted()
+    public function testAddUniquePointWorksAsExpeted(): void
     {
         $expected = $this->polyline;
         $unique = new Polyline();
@@ -98,7 +98,7 @@ class PolylineTest extends TestCase
         static::assertEquals($unique, $expected);
     }
 
-    public function testAddUniquePointWithAllowedDistanceZero()
+    public function testAddUniquePointWithAllowedDistanceZero(): void
     {
         $expected = $this->polyline;
         $actual = clone $expected;
@@ -113,7 +113,7 @@ class PolylineTest extends TestCase
         static::assertEquals($expected, $actual);
     }
 
-    public function testAddUniquePointWithAllowedDistance()
+    public function testAddUniquePointWithAllowedDistance(): void
     {
         $expected = $this->polyline;
         $actual = clone $expected;
@@ -130,14 +130,14 @@ class PolylineTest extends TestCase
         static::assertEquals($expected, $actual);
     }
 
-    public function testGetAveragePointWorksAsExpected()
+    public function testGetAveragePointWorksAsExpected(): void
     {
         $middle = $this->polyline->getAveragePoint();
 
         self::assertEquals($middle, new Coordinate(47.8, -50.2));
     }
 
-    public function testGetAveragePointCrossingDateLine()
+    public function testGetAveragePointCrossingDateLine(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(80.0, 179.0));
@@ -146,7 +146,7 @@ class PolylineTest extends TestCase
         static::markTestSkipped('Polyline crossing dateline');
     }
 
-    public function testGetAveragePointWithNoPoints()
+    public function testGetAveragePointWithNoPoints(): void
     {
         $polyline = new Polyline();
 

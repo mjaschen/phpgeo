@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class PolygonTest extends TestCase
 {
-    public function testIfAddPointsWorksAsExpected()
+    public function testIfAddPointsWorksAsExpected(): void
     {
         $polygon = new Polygon();
 
@@ -26,7 +26,7 @@ class PolygonTest extends TestCase
         $this->assertEquals([$point1, $point2], $polygon->getPoints());
     }
 
-    public function testIfGetNumberOfPointsWorksAsExpected()
+    public function testIfGetNumberOfPointsWorksAsExpected(): void
     {
         $polygon = new Polygon();
 
@@ -41,7 +41,7 @@ class PolygonTest extends TestCase
         $this->assertEquals(2, $polygon->getNumberOfPoints());
     }
 
-    public function testIfGetSegmentsWorksAsExpected()
+    public function testIfGetSegmentsWorksAsExpected(): void
     {
         $polygon = new Polygon();
 
@@ -64,7 +64,7 @@ class PolygonTest extends TestCase
         $this->assertEquals($expected, $polygon->getSegments());
     }
 
-    public function testIfGetLatsWorksAsExpected()
+    public function testIfGetLatsWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(10, 20));
@@ -77,7 +77,7 @@ class PolygonTest extends TestCase
         $this->assertEquals($expected, $polygon->getLats());
     }
 
-    public function testIfGetLngsWorksAsExpected()
+    public function testIfGetLngsWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(10, 20));
@@ -90,7 +90,7 @@ class PolygonTest extends TestCase
         $this->assertEquals($expected, $polygon->getLngs());
     }
 
-    public function testIfContainsPointCheckWorksAsExpected()
+    public function testIfContainsPointCheckWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(10, 20));
@@ -103,7 +103,7 @@ class PolygonTest extends TestCase
         $this->assertTrue($polygon->contains($point));
     }
 
-    public function testIfContainsPointCheckWithLatitudeSignSwitchWorksAsExpected()
+    public function testIfContainsPointCheckWithLatitudeSignSwitchWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(- 30, 20));
@@ -121,7 +121,7 @@ class PolygonTest extends TestCase
         $this->assertTrue($polygon->contains($point));
     }
 
-    public function testIfContainsPointCheckWithLongitudeSignSwitchWorksAsExpected()
+    public function testIfContainsPointCheckWithLongitudeSignSwitchWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(10, - 20));
@@ -139,7 +139,7 @@ class PolygonTest extends TestCase
         $this->assertTrue($polygon->contains($point));
     }
 
-    public function testIfNotContainsPointCheckWithWorksAsExpected()
+    public function testIfNotContainsPointCheckWithWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(10, 20));
@@ -177,7 +177,7 @@ class PolygonTest extends TestCase
     }
     */
 
-    public function testIfPerimeterCalculationWorksAsExpected()
+    public function testIfPerimeterCalculationWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(10, 10));
@@ -186,7 +186,7 @@ class PolygonTest extends TestCase
         $polygon->addPoint(new Coordinate(20, 10));
 
         // http://geographiclib.sourceforge.net/cgi-bin/Planimeter?type=polygon&rhumb=geodesic&input=10+10%0D%0A10+20%0D%0A20+20%0D%0A20+10&norm=decdegrees&option=Submit
-        $this->assertEquals(4355689.472548, $polygon->getPerimeter(new Vincenty()), '', 0.01);
+        $this->assertEqualsWithDelta(4355689.472548, $polygon->getPerimeter(new Vincenty()), 0.01, '');
 
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52, 13));
@@ -195,10 +195,10 @@ class PolygonTest extends TestCase
         $polygon->addPoint(new Coordinate(52, 12));
 
         // http://geographiclib.sourceforge.net/cgi-bin/Planimeter?type=polygon&rhumb=geodesic&input=52+13%0D%0A53+13%0D%0A53+12%0D%0A52+12&norm=decdegrees&option=Submit
-        $this->assertEquals(358367.809428, $polygon->getPerimeter(new Vincenty()), '', 0.01);
+        $this->assertEqualsWithDelta(358367.809428, $polygon->getPerimeter(new Vincenty()), 0.01, '');
     }
 
-    public function testIfAreaCalculationWorksAsExpected()
+    public function testIfAreaCalculationWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(0.0000000000, 0.0000000000));
@@ -210,7 +210,7 @@ class PolygonTest extends TestCase
         //$this->assertEquals(10000.0, $polygon->getArea(), '', 1.0);
     }
 
-    public function testIfPolygonContainsGeometryWithPolygonInsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPolygonInsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -240,7 +240,7 @@ class PolygonTest extends TestCase
         $this->assertTrue($polygon->containsGeometry($insidePolygon));
     }
 
-    public function testIfPolygonContainsGeometryWithPolygonInsideAndOutsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPolygonInsideAndOutsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -274,7 +274,7 @@ class PolygonTest extends TestCase
         $this->assertFalse($polygon->containsGeometry($inAndOutSidePolygon));
     }
 
-    public function testIfPolygonContainsGeometryWithPolygonOutsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPolygonOutsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -301,7 +301,7 @@ class PolygonTest extends TestCase
         $this->assertFalse($polygon->containsGeometry($outsidePolygon));
     }
 
-    public function testIfPolygonContainsGeometryWithPolylineInsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPolylineInsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -331,7 +331,7 @@ class PolygonTest extends TestCase
         $this->assertTrue($polygon->containsGeometry($insidePolyline));
     }
 
-    public function testIfPolygonContainsGeometryWithPolylineInsideAndOutsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPolylineInsideAndOutsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -365,7 +365,7 @@ class PolygonTest extends TestCase
         $this->assertFalse($polygon->containsGeometry($inAndOutSidePolyline));
     }
 
-    public function testIfPolygonContainsGeometryWithPolylineOutsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPolylineOutsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -392,7 +392,7 @@ class PolygonTest extends TestCase
         $this->assertFalse($polygon->containsGeometry($outsidePolyline));
     }
 
-    public function testIfPolygonContainsGeometryWithLineInsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithLineInsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -419,7 +419,7 @@ class PolygonTest extends TestCase
         $this->assertTrue($polygon->containsGeometry($insideLine));
     }
 
-    public function testIfPolygonContainsGeometryWithLineInsideAndOutsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithLineInsideAndOutsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -446,7 +446,7 @@ class PolygonTest extends TestCase
         $this->assertFalse($polygon->containsGeometry($inAndOutSidePolyline));
     }
 
-    public function testIfPolygonContainsGeometryWithLineOutsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithLineOutsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -473,7 +473,7 @@ class PolygonTest extends TestCase
         $this->assertFalse($polygon->containsGeometry($outsidePolyline));
     }
 
-    public function testIfPolygonContainsGeometryWithPointInsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPointInsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -495,7 +495,7 @@ class PolygonTest extends TestCase
         $this->assertTrue($polygon->containsGeometry(new Coordinate(52.206110581755638, 13.674710914492607)));
     }
 
-    public function testIfPolygonContainsGeometryWithPointOutsideWorksAsExpected()
+    public function testIfPolygonContainsGeometryWithPointOutsideWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.221651719883084, 13.661613101139665));
@@ -517,7 +517,7 @@ class PolygonTest extends TestCase
         $this->assertFalse($polygon->containsGeometry(new Coordinate(52.2123983502388, 13.677485324442387)));
     }
 
-    public function testGetReverseWorksAsExpected()
+    public function testGetReverseWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.5, 13.5));
@@ -536,7 +536,7 @@ class PolygonTest extends TestCase
         $this->assertEquals($expected, $reversed);
     }
 
-    public function testReverseTwiceWorksAsExpected()
+    public function testReverseTwiceWorksAsExpected(): void
     {
         $polygon = new Polygon();
         $polygon->addPoint(new Coordinate(52.5, 13.5));
@@ -549,7 +549,7 @@ class PolygonTest extends TestCase
         $this->assertEquals($polygon, $doubleReversed);
     }
 
-    public function testIfGetBoundsWorksAsExpected()
+    public function testIfGetBoundsWorksAsExpected(): void
     {
         $polygon = new Polygon();
 

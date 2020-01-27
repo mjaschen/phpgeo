@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class Issue42Test extends TestCase
 {
-    public function testIfIssue42IsFixed()
+    public function testIfIssue42IsFixed(): void
     {
         $vincenty = new Vincenty();
 

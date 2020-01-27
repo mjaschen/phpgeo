@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class BearingSphericalTest extends TestCase
 {
-    public function testIfCalculateBearingNorthernWorksAsExpected()
+    public function testIfCalculateBearingNorthernWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(10, 0);
@@ -19,7 +19,7 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(0.0, $bearingCalculator->calculateBearing($point1, $point2));
     }
 
-    public function testIfCalculateBearingSouthernWorksAsExpected()
+    public function testIfCalculateBearingSouthernWorksAsExpected(): void
     {
         $point1 = new Coordinate(10, 0);
         $point2 = new Coordinate(0, 0);
@@ -29,7 +29,7 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(180.0, $bearingCalculator->calculateBearing($point1, $point2));
     }
 
-    public function testIfCalculateBearingEasternWorksAsExpected()
+    public function testIfCalculateBearingEasternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, 10);
@@ -39,7 +39,7 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(90.0, $bearingCalculator->calculateBearing($point1, $point2));
     }
 
-    public function testIfCalculateBearingWesternWorksAsExpected()
+    public function testIfCalculateBearingWesternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, - 10);
@@ -49,47 +49,47 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(270.0, $bearingCalculator->calculateBearing($point1, $point2));
     }
 
-    public function testIfCalculateBearingNorthEasternWorksAsExpected()
+    public function testIfCalculateBearingNorthEasternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0.1, 0.1);
 
         $bearingCalculator = new BearingSpherical();
 
-        $this->assertEquals(45.0, $bearingCalculator->calculateBearing($point1, $point2), '', 0.1);
+        $this->assertEqualsWithDelta(45.0, $bearingCalculator->calculateBearing($point1, $point2), 0.1, '');
     }
 
-    public function testIfCalculateBearingNorthWesternWorksAsExpected()
+    public function testIfCalculateBearingNorthWesternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0.1, - 0.1);
 
         $bearingCalculator = new BearingSpherical();
 
-        $this->assertEquals(315.0, $bearingCalculator->calculateBearing($point1, $point2), '', 0.1);
+        $this->assertEqualsWithDelta(315.0, $bearingCalculator->calculateBearing($point1, $point2), 0.1, '');
     }
 
-    public function testIfCalculateBearingSouthEasternWorksAsExpected()
+    public function testIfCalculateBearingSouthEasternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(- 0.1, 0.1);
 
         $bearingCalculator = new BearingSpherical();
 
-        $this->assertEquals(135.0, $bearingCalculator->calculateBearing($point1, $point2), '', 0.1);
+        $this->assertEqualsWithDelta(135.0, $bearingCalculator->calculateBearing($point1, $point2), 0.1, '');
     }
 
-    public function testIfCalculateBearingSouthWesternWorksAsExpected()
+    public function testIfCalculateBearingSouthWesternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(- 0.1, - 0.1);
 
         $bearingCalculator = new BearingSpherical();
 
-        $this->assertEquals(225.0, $bearingCalculator->calculateBearing($point1, $point2), '', 0.1);
+        $this->assertEqualsWithDelta(225.0, $bearingCalculator->calculateBearing($point1, $point2), 0.1, '');
     }
 
-    public function testIfCalculateFinalBearingNorthernWorksAsExpected()
+    public function testIfCalculateFinalBearingNorthernWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(10, 0);
@@ -99,7 +99,7 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(0.0, $bearingCalculator->calculateFinalBearing($point1, $point2));
     }
 
-    public function testIfCalculateFinalBearingSouthernWorksAsExpected()
+    public function testIfCalculateFinalBearingSouthernWorksAsExpected(): void
     {
         $point1 = new Coordinate(10, 0);
         $point2 = new Coordinate(0, 0);
@@ -109,7 +109,7 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(180.0, $bearingCalculator->calculateFinalBearing($point1, $point2));
     }
 
-    public function testIfCalculateFinalBearingEasternWorksAsExpected()
+    public function testIfCalculateFinalBearingEasternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, 10);
@@ -119,7 +119,7 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(90.0, $bearingCalculator->calculateFinalBearing($point1, $point2));
     }
 
-    public function testIfCalculateFinalBearingWesternWorksAsExpected()
+    public function testIfCalculateFinalBearingWesternWorksAsExpected(): void
     {
         $point1 = new Coordinate(0, 0);
         $point2 = new Coordinate(0, - 10);
@@ -129,7 +129,7 @@ class BearingSphericalTest extends TestCase
         $this->assertEquals(270.0, $bearingCalculator->calculateFinalBearing($point1, $point2));
     }
 
-    public function testIfCalculateDestinationEasternWorksAsExpected()
+    public function testIfCalculateDestinationEasternWorksAsExpected(): void
     {
         $bearingCalculator = new BearingSpherical();
 
@@ -141,11 +141,11 @@ class BearingSphericalTest extends TestCase
         // so we expect a latitude of 0 degrees and a longitude
         // of 1 degree:
 
-        $this->assertEquals(0.0, $destination->getLat(), '', 0.0001);
-        $this->assertEquals(1.0, $destination->getLng(), '', 0.0001);
+        $this->assertEqualsWithDelta(0.0, $destination->getLat(), 0.0001, '');
+        $this->assertEqualsWithDelta(1.0, $destination->getLng(), 0.0001, '');
     }
 
-    public function testIfCalculateDestinationWesternWorksAsExpected()
+    public function testIfCalculateDestinationWesternWorksAsExpected(): void
     {
         $bearingCalculator = new BearingSpherical();
 
@@ -155,11 +155,11 @@ class BearingSphericalTest extends TestCase
         // 1 degree in longitude at the equator:
         // 2πr/360 = 40030230.1407 meters/360 = 111195.0837 meters
 
-        $this->assertEquals(0.0, $destination->getLat(), '', 0.0001);
-        $this->assertEquals(-1.0, $destination->getLng(), '', 0.0001);
+        $this->assertEqualsWithDelta(0.0, $destination->getLat(), 0.0001, '');
+        $this->assertEqualsWithDelta(-1.0, $destination->getLng(), 0.0001, '');
     }
 
-    public function testIfCalculateDestinationNorthernWorksAsExpected()
+    public function testIfCalculateDestinationNorthernWorksAsExpected(): void
     {
         $bearingCalculator = new BearingSpherical();
 
@@ -169,11 +169,11 @@ class BearingSphericalTest extends TestCase
         // 1 degree in longitude at the equator:
         // 2πr/360 = 40030230.1407 meters/360 = 111195.0837 meters
 
-        $this->assertEquals(1.0, $destination->getLat(), '', 0.0001);
-        $this->assertEquals(0.0, $destination->getLng(), '', 0.0001);
+        $this->assertEqualsWithDelta(1.0, $destination->getLat(), 0.0001, '');
+        $this->assertEqualsWithDelta(0.0, $destination->getLng(), 0.0001, '');
     }
 
-    public function testIfCalculateDestinationNorthern360WorksAsExpected()
+    public function testIfCalculateDestinationNorthern360WorksAsExpected(): void
     {
         $bearingCalculator = new BearingSpherical();
 
@@ -183,11 +183,11 @@ class BearingSphericalTest extends TestCase
         // 1 degree in longitude at the equator:
         // 2πr/360 = 40030230.1407 meters/360 = 111195.0837 meters
 
-        $this->assertEquals(1.0, $destination->getLat(), '', 0.0001);
-        $this->assertEquals(0.0, $destination->getLng(), '', 0.0001);
+        $this->assertEqualsWithDelta(1.0, $destination->getLat(), 0.0001, '');
+        $this->assertEqualsWithDelta(0.0, $destination->getLng(), 0.0001, '');
     }
 
-    public function testIfCalculateDestinationSouthernWorksAsExpected()
+    public function testIfCalculateDestinationSouthernWorksAsExpected(): void
     {
         $bearingCalculator = new BearingSpherical();
 
@@ -197,7 +197,7 @@ class BearingSphericalTest extends TestCase
         // 1 degree in longitude at the equator:
         // 2πr/360 = 40030230.1407 meters/360 = 111195.0837 meters
 
-        $this->assertEquals(-1.0, $destination->getLat(), '', 0.0001);
-        $this->assertEquals(0.0, $destination->getLng(), '', 0.0001);
+        $this->assertEqualsWithDelta(-1.0, $destination->getLat(), 0.0001, '');
+        $this->assertEqualsWithDelta(0.0, $destination->getLng(), 0.0001, '');
     }
 }

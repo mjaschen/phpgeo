@@ -19,7 +19,7 @@ class BoundsTest extends TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new Bounds(
             new Coordinate(50, 10),
@@ -31,7 +31,7 @@ class BoundsTest extends TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->object);
     }
@@ -39,7 +39,7 @@ class BoundsTest extends TestCase
     /**
      * @covers Location\Bounds::getNorthWest
      */
-    public function testGetNortWest()
+    public function testGetNortWest(): void
     {
         $c = new Coordinate(50, 10);
 
@@ -49,7 +49,7 @@ class BoundsTest extends TestCase
     /**
      * @covers Location\Bounds::getSouthEast
      */
-    public function testGetSouthEast()
+    public function testGetSouthEast(): void
     {
         $c = new Coordinate(30, 30);
 
@@ -59,7 +59,7 @@ class BoundsTest extends TestCase
     /**
      * @covers Location\Bounds::getNorth
      */
-    public function testGetNorth()
+    public function testGetNorth(): void
     {
         $this->assertEquals(50, $this->object->getNorth());
     }
@@ -67,7 +67,7 @@ class BoundsTest extends TestCase
     /**
      * @covers Location\Bounds::getSouth
      */
-    public function testGetSouth()
+    public function testGetSouth(): void
     {
         $this->assertEquals(30, $this->object->getSouth());
     }
@@ -75,7 +75,7 @@ class BoundsTest extends TestCase
     /**
      * @covers Location\Bounds::getWest
      */
-    public function testGetWest()
+    public function testGetWest(): void
     {
         $this->assertEquals(10, $this->object->getWest());
     }
@@ -83,7 +83,7 @@ class BoundsTest extends TestCase
     /**
      * @covers Location\Bounds::getEast
      */
-    public function testGetEast()
+    public function testGetEast(): void
     {
         $this->assertEquals(30, $this->object->getEast());
     }
@@ -91,7 +91,7 @@ class BoundsTest extends TestCase
     /**
      * @covers Location\Bounds::getCenter
      */
-    public function testGetCenter()
+    public function testGetCenter(): void
     {
         $testBounds = [
             ['nw' => new Coordinate(50, 10), 'se' => new Coordinate(30, 30), 'c' => new Coordinate(40, 20)],

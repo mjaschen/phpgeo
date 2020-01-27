@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class SimplifyBearingTest extends TestCase
 {
-    public function testSimplifyThreePointsToTwoPoints()
+    public function testSimplifyThreePointsToTwoPoints(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(10.0, 10.0));
@@ -28,7 +28,7 @@ class SimplifyBearingTest extends TestCase
         $this->assertEquals(new Line(new Coordinate(10.0, 10.0), new Coordinate(30.0, 10.0)), $segments[0]);
     }
 
-    public function testSimplifyTwoPointsImpossible()
+    public function testSimplifyTwoPointsImpossible(): void
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(10.0, 10.0));

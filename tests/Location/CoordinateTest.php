@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Location;
 
-use Location\Distance\Haversine;
+use InvalidArgumentException;
 use Location\Distance\Vincenty;
 use Location\Formatter\Coordinate\DecimalDegrees;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,7 @@ class CoordinateTest extends TestCase
      */
     protected $coordinate;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $ellipsoidConfig = [
             'name' => 'WGS-84',
@@ -34,47 +34,45 @@ class CoordinateTest extends TestCase
         $this->coordinate = new Coordinate(52.5, 13.5, $this->ellipsoid);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Latitude value must be numeric -90.0 .. +90.0 (given: 91)
-     */
-    public function testConstructorInvalidLatitudeOutOfBoundsWorksAsExpected()
+    public function testConstructorInvalidLatitudeOutOfBoundsWorksAsExpected(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Latitude value must be numeric -90.0 .. +90.0 (given: 91)');
+
         $c = new Coordinate(91.0, 13.5, $this->ellipsoid);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Longitude value must be numeric -180.0 .. +180.0 (given: 190)
-     */
-    public function testConstructorInvalidLongitudeOutOfBoundsWorksAsExpected()
+    public function testConstructorInvalidLongitudeOutOfBoundsWorksAsExpected(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Longitude value must be numeric -180.0 .. +180.0 (given: 190)');
+
         $c = new Coordinate(52.2, 190.0, $this->ellipsoid);
     }
 
-    public function testConstructorDefaultEllipsoid()
+    public function testConstructorDefaultEllipsoid(): void
     {
         $c = new Coordinate(52.5, 13.5);
 
         $this->assertInstanceOf(Ellipsoid::class, $c->getEllipsoid());
     }
 
-    public function testGetLat()
+    public function testGetLat(): void
     {
         $this->assertEquals(52.5, $this->coordinate->getLat());
     }
 
-    public function testGetLng()
+    public function testGetLng(): void
     {
         $this->assertEquals(13.5, $this->coordinate->getLng());
     }
 
-    public function testGetEllipsoid()
+    public function testGetEllipsoid(): void
     {
         $this->assertEquals($this->ellipsoid, $this->coordinate->getEllipsoid());
     }
 
-    public function testGetdistance()
+    public function testGetdistance(): void
     {
         $coordinate1 = new Coordinate(19.820664, -155.468066, $this->ellipsoid);
         $coordinate2 = new Coordinate(20.709722, -156.253333, $this->ellipsoid);
@@ -82,12 +80,12 @@ class CoordinateTest extends TestCase
         $this->assertEquals(128130.850, $coordinate1->getDistance($coordinate2, new Vincenty()));
     }
 
-    public function testFormat()
+    public function testFormat(): void
     {
         $this->assertEquals('52.50000 13.50000', $this->coordinate->format(new DecimalDegrees()));
     }
 
-    public function testHasSameLocation()
+    public function testHasSameLocation(): void
     {
         $point1 = new Coordinate(0.0, 0.0);
         $point2 = new Coordinate(0.0, 0.0);
