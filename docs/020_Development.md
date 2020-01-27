@@ -34,6 +34,15 @@ docker run -it --rm --name phpgeo-phpunit \
     php tools/phpunit
 ```
 
+Or PHP 7.3:
+
+``` shell
+docker run -it --rm --name phpgeo-phpunit \
+    -v "$PWD":/usr/src/phpgeo \
+    -w /usr/src/phpgeo php:7.3-cli \
+    php tools/phpunit
+```
+
 Besides the unit tests, static test runners are also provided. Run the lint
 command to ensure the sources don't contain any syntax error:
 

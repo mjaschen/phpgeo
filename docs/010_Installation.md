@@ -2,9 +2,11 @@
 
 ## Requirements
 
-_phpgeo_ requires at least PHP 7.0.
+_phpgeo_ requires at least PHP 7.2.
 
-Older PHP versions are supported in releases up to _phpgeo_ 1.3.8.
+The 2.x releases require PHP >= 7.0 but don't get feature updates any longer.
+
+The 1.x release line has support for PHP >= 5.4.
 
 ## Installation
 
@@ -23,4 +25,4 @@ _phpgeo_ is now ready to be used in your project!
 
 Most of the development dependencies are managed with [Phive](https://phar.io/).
 
-For that you have to install Phive first. Now a simple `phive install` fetches all required Phar archives and installs them into the `tools` directory.
+For that you have to install Phive first. Now a simple `phive install -c` fetches all required Phar archives and installs them into the `tools` directory.
