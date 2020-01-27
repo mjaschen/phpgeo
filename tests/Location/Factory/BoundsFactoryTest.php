@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Location\Factory;
 
+use InvalidArgumentException;
 use Location\Bearing\BearingEllipsoidal;
 use Location\Bearing\BearingSpherical;
 use Location\Bounds;
@@ -66,11 +67,10 @@ class BoundsFactoryTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testIfExpandFromCenterCoordinateThrowsExceptionOn180meridianWithBearingSpherical()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $startCenter = new Coordinate(52, 179.999);
         $this->assertEquals(
             new Bounds(
