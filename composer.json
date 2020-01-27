@@ -48,7 +48,7 @@
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^1.0",
-        "daux/daux.io": "^0.12.0"
+        "daux/daux.io": "^0.11.0"
     },
     "scripts": {
         "ci:composer-validate": "composer validate --no-check-all --no-check-lock --strict",
