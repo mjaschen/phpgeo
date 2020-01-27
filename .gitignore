@@ -7,3 +7,4 @@
 /docs/phpdox/
 /tools/
 /build/
+.phpunit.result.cache
