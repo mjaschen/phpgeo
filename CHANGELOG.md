@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.4.0] - 2020-01-27
+
+### Added
+
+- `BoundsFactory` to create a bounds instance for a center point and a given distance to the bounds' corners. Thanks @sdennler!
+
 ## [2.3.1] - 2019-12-21
 
 ### Fixed
