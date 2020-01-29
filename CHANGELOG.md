@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.4.1] - 2020-01-29
+
+### Changed
+
+- access modifier for the `tolerance` attribute is now protected (`SimplifyDouglasPeucker`)
+
 ## [2.4.0] - 2020-01-27
 
 ### Added
