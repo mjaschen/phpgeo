@@ -70,6 +70,13 @@ printf(
 );
 ```
 
+The code above produces the output below:
+
+``` plaintext
+The midpoint of the line is located at 44.719 degrees latitude and 90.000 degrees longitude.
+Its distance from the first point is 3935890.0 meters, its distance from the second point is 3935890.0 meters.
+```
+
 ## Bearing
 
 The bearing of an instance can be calculated using the `getBearing()` method.
