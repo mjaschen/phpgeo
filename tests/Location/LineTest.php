@@ -28,7 +28,7 @@ class LineTest extends TestCase
 
         $line = new Line($point1, $point2);
 
-        $this->assertEquals(2397867.8, $line->getLength(new Vincenty()), '', 0.01);
+        $this->assertEqualsWithDelta(2397867.8, $line->getLength(new Vincenty()), 0.01, '');
     }
 
     public function testGetReverseWorksAsExpected()
