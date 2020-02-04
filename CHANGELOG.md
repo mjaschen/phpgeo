@@ -3,6 +3,13 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.5.0] - 2020-02-04
+
+### Added
+
+- method `getMidpoint()` to the `Line` class which calculates the midpoint of a line by following the Great Circle between the two line ends and dividing the line into two halves.
+- utility class `Cartesian` which abstracts three-dimensional cartesian coordinates *x*, *y*, and *z*
+
 ## [2.4.1] - 2020-01-29
 
 ### Changed
