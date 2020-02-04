@@ -103,4 +103,16 @@ class LineTest extends TestCase
 
         $this->assertEquals($expected, $line->getBounds());
     }
+
+    public function testIfGetMidpointWorksAsExpected()
+    {
+        $point1 = new Coordinate(0, 0);
+        $point2 = new Coordinate(10, 20);
+
+        $line = new Line($point1, $point2);
+
+        $expected = new Coordinate(5, 10);
+
+        $this->assertEquals($expected, $line->getMidpoint());
+    }
 }

@@ -124,4 +124,17 @@ class Line implements GeometryInterface
     {
         return new static($this->point2, $this->point1);
     }
+
+    /**
+     * Get the midpoint of a Line segment
+     *
+     * @return Coordinate
+     */
+    public function getMidpoint() : Coordinate
+    {
+        return new Coordinate(
+            (float) ($this->getPoint1()->getLat() + $this->getPoint2()->getLat()) / 2,
+            (float) ($this->getPoint1()->getLng() + $this->getPoint2()->getLng()) / 2,
+        );
+    }
 }
