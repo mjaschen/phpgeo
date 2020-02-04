@@ -6,6 +6,7 @@ namespace Location;
 
 use Location\Bearing\BearingInterface;
 use Location\Distance\DistanceInterface;
+use Location\Utility\Cartesian;
 
 /**
  * Line Implementation
@@ -128,13 +129,25 @@ class Line implements GeometryInterface
     /**
      * Get the midpoint of a Line segment
      *
+     * @see http://www.movable-type.co.uk/scripts/latlong.html#midpoint
+     *
      * @return Coordinate
      */
     public function getMidpoint() : Coordinate
     {
-        return new Coordinate(
-            (float) ($this->getPoint1()->getLat() + $this->getPoint2()->getLat()) / 2,
-            (float) ($this->getPoint1()->getLng() + $this->getPoint2()->getLng()) / 2,
-        );
+        $lat1 = deg2rad($this->point1->getLat());
+        $lng1 = deg2rad($this->point1->getLng());
+        $lat2 = deg2rad($this->point2->getLat());
+        $lng2 = deg2rad($this->point2->getLng());
+        $deltaLng = $lng2 - $lng1;
+
+        $A = new Cartesian(cos($lat1), 0, sin($lat1));
+        $B = new Cartesian(cos($lat2) * cos($deltaLng), cos($lat2) * sin($deltaLng), sin($lat2));
+        $C = $A->add($B);
+
+        $latMid = atan2($C->getZ(), sqrt($C->getX() ** 2 + $C->getY() ** 2));
+        $lngMid = $lng1 + atan2($C->getY(), $C->getX());
+
+        return new Coordinate(rad2deg($latMid), rad2deg($lngMid));
     }
 }

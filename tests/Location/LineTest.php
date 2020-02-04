@@ -106,13 +106,28 @@ class LineTest extends TestCase
 
     public function testIfGetMidpointWorksAsExpected()
     {
-        $point1 = new Coordinate(0, 0);
-        $point2 = new Coordinate(10, 20);
+        $line = new Line(new Coordinate(0, 0), new Coordinate(10, 20));
 
-        $line = new Line($point1, $point2);
+        $this->assertEquals(5.07672, $line->getMidpoint()->getLat(), '', 0.0001);
+        $this->assertEquals(9.92267, $line->getMidpoint()->getLng(), '', 0.0001);
 
-        $expected = new Coordinate(5, 10);
+        $line = new Line(new Coordinate(1, 1), new Coordinate(-2, -2));
 
-        $this->assertEquals($expected, $line->getMidpoint());
+        $this->assertEquals(-0.5, $line->getMidpoint()->getLat(), '', 0.001);
+        $this->assertEquals(-0.5, $line->getMidpoint()->getLng(), '', 0.001);
+
+        $line = new Line(new Coordinate(35, -90), new Coordinate(35.2, -90.4));
+
+        $this->assertEquals(35.1, $line->getMidpoint()->getLat(), '', 0.001);
+        $this->assertEquals(-90.2, $line->getMidpoint()->getLng(), '', 0.001);
+    }
+
+    public function testIfGetMidpointAcrossLongitudeBorderWorksAsExpected()
+    {
+        $line = new Line(new Coordinate(0.0, -179.0), new Coordinate(0.0, 179.0));
+        $this->assertEquals(new Coordinate(0.0, -180.0), $line->getMidpoint());
+
+        $line = new Line(new Coordinate(0.0, -178.0), new Coordinate(0.0, 179.0));
+        $this->assertEquals(new Coordinate(0.0, -179.5), $line->getMidpoint());
     }
 }
