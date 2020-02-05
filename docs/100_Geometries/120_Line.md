@@ -77,6 +77,39 @@ The midpoint of the line is located at 44.719 degrees latitude and 90.000 degree
 Its distance from the first point is 3935890.0 meters, its distance from the second point is 3935890.0 meters.
 ```
 
+## Intermediate Point
+
+Similar to the midpoint calculation but divides the line at the given fraction (between 0.0 … 1.0; but values outside that range work as well).
+
+``` php
+<?php
+
+declare(strict_types=1);
+
+use Location\Coordinate;
+use Location\Formatter\Coordinate\DecimalMinutes;
+use Location\Line;
+
+$line = new Line(
+    new Coordinate(0, 0),
+    new Coordinate(1, 1)
+);
+
+$result = $line->getIntermediatePoint(0.25);
+
+printf(
+    'The first quarter of the line ends at %s%s',
+    $result->format(new DecimalMinutes(' ')),
+    PHP_EOL
+);
+```
+
+The code above produces the output below:
+
+``` plaintext
+The first quarter of the line ends at 00° 15.001′ 000° 14.999′
+```
+
 ## Bearing
 
 The bearing of an instance can be calculated using the `getBearing()` method.
