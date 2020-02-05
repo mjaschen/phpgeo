@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.6.0] - 2020-02-05
+
+### Added
+
+- method `getIntermediatePoint()` to the `Line` class which calculates an intermediate point on a line by following the Great Circle between the two line ends and dividing the line by the given fraction (0.0 ... 1.0)
+
 ## [2.5.0] - 2020-02-04
 
 ### Added
