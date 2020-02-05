@@ -7,6 +7,7 @@ namespace Location;
 use Location\Bearing\BearingInterface;
 use Location\Distance\DistanceInterface;
 use Location\Utility\Cartesian;
+use RuntimeException;
 
 /**
  * Line Implementation
@@ -149,5 +150,50 @@ class Line implements GeometryInterface
         $lngMid = $lng1 + atan2($C->getY(), $C->getX());
 
         return new Coordinate(rad2deg($latMid), rad2deg($lngMid));
+    }
+
+    /**
+     * Returns the point which is located on the line at the
+     * given fraction (starting at point 1).
+     *
+     * @see http://www.movable-type.co.uk/scripts/latlong.html#intermediate-point
+     * @see http://www.edwilliams.org/avform.htm#Intermediate
+     *
+     * @param float $fraction 0.0 ... 1.0 (smaller or larger values work too)
+     *
+     * @return Coordinate
+     *
+     * @throws RuntimeException
+     */
+    public function getIntermediatePoint(float $fraction): Coordinate
+    {
+        $lat1 = deg2rad($this->point1->getLat());
+        $lng1 = deg2rad($this->point1->getLng());
+        $lat2 = deg2rad($this->point2->getLat());
+        $lng2 = deg2rad($this->point2->getLng());
+        $deltaLat = $lat2 - $lat1;
+        $deltaLng = $lng2 - $lng1;
+
+        if ($lat1 + $lat2 == 0.0 && abs($lng1 - $lng2) == M_PI) {
+            throw new RuntimeException(
+                'Start and end points are antipodes, route is therefore undefined.',
+                5382449689
+            );
+        }
+
+        $a = sin($deltaLat / 2) ** 2 + cos($lat1) * cos($lat2) * sin($deltaLng / 2) ** 2;
+        $delta = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+        $A = sin((1 - $fraction) * $delta) / sin($delta);
+        $B = sin($fraction * $delta) / sin($delta);
+
+        $x = $A * cos($lat1) * cos($lng1) + $B * cos($lat2) * cos($lng2);
+        $y = $A * cos($lat1) * sin($lng1) + $B * cos($lat2) * sin($lng2);
+        $z = $A * sin($lat1) + $B * sin($lat2);
+
+        $lat = atan2($z, sqrt($x ** 2 + $y ** 2));
+        $lng = atan2($y, $x);
+
+        return new Coordinate(rad2deg($lat), rad2deg($lng));
     }
 }

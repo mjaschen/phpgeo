@@ -13,7 +13,7 @@ class LineTest extends TestCase
     public function testCreateLine()
     {
         $point1 = new Coordinate(52.5, 13.5);
-        $point2 = new Coordinate(64.1, - 21.9);
+        $point2 = new Coordinate(64.1, -21.9);
 
         $line = new Line($point1, $point2);
 
@@ -24,7 +24,7 @@ class LineTest extends TestCase
     public function testCalculateLength()
     {
         $point1 = new Coordinate(52.5, 13.5);
-        $point2 = new Coordinate(64.1, - 21.9);
+        $point2 = new Coordinate(64.1, -21.9);
 
         $line = new Line($point1, $point2);
 
@@ -34,7 +34,7 @@ class LineTest extends TestCase
     public function testGetReverseWorksAsExpected()
     {
         $point1 = new Coordinate(52.5, 13.5);
-        $point2 = new Coordinate(64.1, - 21.9);
+        $point2 = new Coordinate(64.1, -21.9);
 
         $line = new Line($point1, $point2);
         $reversedLine = $line->getReverse();
@@ -129,5 +129,24 @@ class LineTest extends TestCase
 
         $line = new Line(new Coordinate(0.0, -178.0), new Coordinate(0.0, 179.0));
         $this->assertEquals(new Coordinate(0.0, -179.5), $line->getMidpoint());
+    }
+
+    public function testIfGetIntermediatePointWorksAsExpected()
+    {
+        $line = new Line(new Coordinate(0, 0), new Coordinate(0, 1));
+        $this->assertEquals(new Coordinate(0, 0), $line->getIntermediatePoint(0.));
+        $line = new Line(new Coordinate(0, 0), new Coordinate(0, 1));
+        $this->assertEquals(new Coordinate(0, .5), $line->getIntermediatePoint(.5));
+        $line = new Line(new Coordinate(0, 0), new Coordinate(0, 1));
+        $this->assertEquals(new Coordinate(0, 1), $line->getIntermediatePoint(1.));
+    }
+
+    public function testIfGetIntermediatePointThrowsExceptionForAntipodes()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionCode(5382449689);
+
+        $line = new Line(new Coordinate(45, -45), new Coordinate(-45, 135));
+        $line->getIntermediatePoint(.5);
     }
 }
