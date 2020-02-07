@@ -20,7 +20,7 @@ env:
 before_install:
 - >
   echo "Disabling xdebug";
-  if [[ "$TRAVIS_PHP_VERSION" != "7.4snapshot" ]]; then
+  if [[ ! "$TRAVIS_PHP_VERSION" =~ "7.4snapshot" ]]; then
     phpenv config-rm xdebug.ini;
   fi;
 
