@@ -45,7 +45,7 @@ class Vincenty implements DistanceInterface
         $U1 = atan((1 - $f) * tan($lat1));
         $U2 = atan((1 - $f) * tan($lat2));
 
-        $iterationLimit = 100;
+        $iterationsLeft = 100;
         $lambda         = $L;
 
         $sinU1 = sin($U1);
@@ -88,9 +88,11 @@ class Vincenty implements DistanceInterface
                 * $f
                 * $sinAlpha
                 * ($sigma + $C * $sinSigma * ($cos2SigmaM + $C * $cosSigma * (- 1 + 2 * $cos2SigmaM * $cos2SigmaM)));
-        } while (abs($lambda - $lambdaP) > 1e-12 && --$iterationLimit > 0);
 
-        if ($iterationLimit === 0) {
+            $iterationsLeft--;
+        } while (abs($lambda - $lambdaP) > 1e-12 && $iterationsLeft > 0);
+
+        if ($iterationsLeft === 0) {
             throw new NotConvergingException('Vincenty calculation does not converge');
         }
 
