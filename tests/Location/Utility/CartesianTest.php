@@ -10,27 +10,27 @@ class CartesianTest extends TestCase
 {
     private $point;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->point = new Cartesian(1.0, 2.0, 3.0);
     }
 
-    public function testGetX()
+    public function testGetX(): void
     {
         $this->assertEquals(1.0, $this->point->getX());
     }
 
-    public function testGetZ()
+    public function testGetZ(): void
     {
         $this->assertEquals(3.0, $this->point->getZ());
     }
 
-    public function testGetY()
+    public function testGetY(): void
     {
         $this->assertEquals(2.0, $this->point->getY());
     }
 
-    public function testAdd()
+    public function testAdd(): void
     {
         $expected = new Cartesian(4.0, 5.0, 6.0);
 
