@@ -134,7 +134,7 @@ class Line implements GeometryInterface
      *
      * @return Coordinate
      */
-    public function getMidpoint() : Coordinate
+    public function getMidpoint(): Coordinate
     {
         $lat1 = deg2rad($this->point1->getLat());
         $lng1 = deg2rad($this->point1->getLng());
