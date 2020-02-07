@@ -37,7 +37,7 @@ class Ellipsoid
      */
     protected static $configs = [
         'WGS-84' => [
-            'name' => 'World Geodetic System  1984',
+            'name' => 'World Geodetic System 1984',
             'a'    => 6378137.0,
             'f'    => 298.257223563,
         ],
