@@ -18,7 +18,7 @@ class BearingSpherical implements BearingInterface
     /**
      * Earth radius in meters.
      */
-    const EARTH_RADIUS = 6371009.0;
+    private const EARTH_RADIUS = 6371009.0;
 
     /**
      * This method calculates the initial bearing between the
@@ -76,7 +76,7 @@ class BearingSpherical implements BearingInterface
      */
     public function calculateDestination(Coordinate $point, float $bearing, float $distance): Coordinate
     {
-        $D = $distance / static::EARTH_RADIUS;
+        $D = $distance / self::EARTH_RADIUS;
         $B = deg2rad($bearing);
         $φ = deg2rad($point->getLat());
         $λ = deg2rad($point->getLng());
