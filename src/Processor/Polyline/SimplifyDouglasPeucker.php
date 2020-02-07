@@ -25,7 +25,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     /**
      * @var float
      */
-    private $tolerance;
+    protected $tolerance;
 
     /**
      * @param float $tolerance the perpendicular distance threshold in meters

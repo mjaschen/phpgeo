@@ -3,6 +3,25 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.6.0] - 2020-02-05
+
+### Added
+
+- method `getIntermediatePoint()` to the `Line` class which calculates an intermediate point on a line by following the Great Circle between the two line ends and dividing the line by the given fraction (0.0 ... 1.0)
+
+## [2.5.0] - 2020-02-04
+
+### Added
+
+- method `getMidpoint()` to the `Line` class which calculates the midpoint of a line by following the Great Circle between the two line ends and dividing the line into two halves.
+- utility class `Cartesian` which abstracts three-dimensional cartesian coordinates *x*, *y*, and *z*
+
+## [2.4.1] - 2020-01-29
+
+### Changed
+
+- access modifier for the `tolerance` attribute is now protected (`SimplifyDouglasPeucker`)
+
 ## [2.4.0] - 2020-01-27
 
 ### Added
