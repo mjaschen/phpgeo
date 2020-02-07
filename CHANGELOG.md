@@ -3,6 +3,22 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.0.0] - 2020-02-07
+
+### Changed
+
+- *phpgeo* requires PHP >= 7.2 now
+- **backwards compatibility breaking:** fix double space in Ellipsoid Name `World␣Geodetic␣System␣␣1984` → `World␣Geodetic␣System␣1984` (#49)
+- updated tests for PHPUnit 8
+
+### Added
+
+- class constant visibiliy modifiers
+
+### Removed
+
+- support for PHP 7.0 and PHP 7.1 from Travis CI config
+
 ## [2.6.0] - 2020-02-05
 
 ### Added
