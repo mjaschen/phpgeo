@@ -35,7 +35,10 @@
             "homepage": "https://www.marcusjaschen.de/"
         }
     ],
+    "readme": "README.md",
     "support" : {
+        "issues" : "https://github.com/mjaschen/phpgeo/issues",
+        "docs": "https://phpgeo.marcusjaschen.de/Installation.html",
         "email" : "mjaschen@gmail.com"
     },
     "require": {
