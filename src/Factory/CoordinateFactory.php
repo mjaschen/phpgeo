@@ -173,8 +173,8 @@ class CoordinateFactory implements GeometryFactoryInterface
     {
         return preg_replace_callback(
             '/(\d+)(°|\s)\s*(\d+)(\'|′|\s)(\s*([0-9\.]*))("|\'\'|″|′′)?/u',
-            function (array $matches): string {
-                return sprintf('%d %f', $matches[1], $matches[3] + $matches[6] / 60);
+            static function (array $matches): string {
+                return sprintf('%d %f', $matches[1], $matches[3] + (float)$matches[6] / 60);
             },
             $string
         );
