@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.0.1] - 2020-05-18
+
+### Fixed
+
+- \#68 `CoordinateFactory` emitted a warning if a coordindates string without arc seconds was passed to the `fromString()` method
+
 ## [3.0.0] - 2020-02-07
 
 ### Changed
