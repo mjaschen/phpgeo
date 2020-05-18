@@ -16,16 +16,7 @@ Of course it's possible to run PHPUnit directly:
 ```
 
 To test against another PHP version you can use Docker. The following command runs
-the tests using PHP 7.1:
-
-``` shell
-docker run -it --rm --name phpgeo-phpunit \
-    -v "$PWD":/usr/src/phpgeo \
-    -w /usr/src/phpgeo php:7.1-cli \
-    php tools/phpunit
-```
-
-Or using PHP 7.2:
+the tests using PHP 7.2:
 
 ``` shell
 docker run -it --rm --name phpgeo-phpunit \
@@ -34,12 +25,21 @@ docker run -it --rm --name phpgeo-phpunit \
     php tools/phpunit
 ```
 
-Or PHP 7.3:
+Or using PHP 7.3:
 
 ``` shell
 docker run -it --rm --name phpgeo-phpunit \
     -v "$PWD":/usr/src/phpgeo \
     -w /usr/src/phpgeo php:7.3-cli \
+    php tools/phpunit
+```
+
+Or PHP 7.4:
+
+``` shell
+docker run -it --rm --name phpgeo-phpunit \
+    -v "$PWD":/usr/src/phpgeo \
+    -w /usr/src/phpgeo php:7.4-cli \
     php tools/phpunit
 ```
 
