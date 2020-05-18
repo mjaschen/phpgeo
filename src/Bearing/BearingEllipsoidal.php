@@ -213,7 +213,8 @@ class BearingEllipsoidal implements BearingInterface
 
             $C = $f / 16 * $cosSqα * (4 + $f * (4 - 3 * $cosSqα));
             $λp = $λ;
-            $λ = $L + (1 - $C) * $f * $sinα * ($σ + $C * $sinσ * ($cos2σM + $C * $cosσ * (-1 + 2 * $cos2σM * $cos2σM)));
+            $λ = $L + (1 - $C) * $f * $sinα
+                * ($σ + $C * $sinσ * ($cos2σM + $C * $cosσ * (-1 + 2 * $cos2σM * $cos2σM)));
         } while (abs($λ - $λp) > 1e-12 && ++$iterations < 200);
 
         if ($iterations >= 200) {
