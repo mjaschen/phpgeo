@@ -50,6 +50,29 @@ class CoordinateTest extends TestCase
         $c = new Coordinate(52.2, 190.0, $this->ellipsoid);
     }
 
+    public function testConstructorBoundChecksWorkAsExpected(): void
+    {
+        $c = new Coordinate(90.0, 180.0, $this->ellipsoid);
+
+        $this->assertEquals(90.0, $c->getLat());
+        $this->assertEquals(180.0, $c->getLng());
+
+        $c = new Coordinate(-90.0, -180.0, $this->ellipsoid);
+
+        $this->assertEquals(-90.0, $c->getLat());
+        $this->assertEquals(-180.0, $c->getLng());
+
+        $c = new Coordinate(-90, 180, $this->ellipsoid);
+
+        $this->assertEquals(-90.0, $c->getLat());
+        $this->assertEquals(180.0, $c->getLng());
+
+        $c = new Coordinate(90, -180, $this->ellipsoid);
+
+        $this->assertEquals(90.0, $c->getLat());
+        $this->assertEquals(-180.0, $c->getLng());
+    }
+
     public function testConstructorDefaultEllipsoid(): void
     {
         $c = new Coordinate(52.5, 13.5);
