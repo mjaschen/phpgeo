@@ -2,6 +2,11 @@
 
 phpgeo provides abstractions to geographical coordinates (including support for different ellipsoids) and allows you to calculate geographical distances between coordinates with high precision.
 
+- [phpgeo on Travis CI]
+- [phpgeo on Packagist]
+
+## Table of Contents
+
 <!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
 
 - [phpgeo - A Simple Geo Library for PHP](#phpgeo---a-simple-geo-library-for-php)
@@ -261,3 +266,5 @@ Psalm:
 * [Paul Vidal](https://github.com/paulvl) Polygon Implementation
 
 [Psalm]: https://github.com/vimeo/psalm
+[phpgeo on TravisCI]: https://travis-ci.org/mjaschen/phpgeo
+[phpgeo on Packagist]: https://packagist.org/packages/mjaschen/phpgeo
