@@ -1,5 +1,5 @@
-sudo: false
-
+os: linux
+dist: xenial
 language: php
 
 php:
@@ -13,7 +13,7 @@ cache:
   - $HOME/.composer/cache
 
 env:
-  matrix:
+  jobs:
   - DEPENDENCIES=latest
   - DEPENDENCIES=oldest
 
