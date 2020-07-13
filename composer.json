@@ -50,14 +50,18 @@
         }
     },
     "require-dev": {
-        "daux/daux.io": "^0.12.0"
+        "daux/daux.io": "^0.14.0",
+        "phpunit/phpunit": "^8.0",
+        "vimeo/psalm": "^3.12",
+        "theseer/phpdox": "^0.12.0",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "scripts": {
         "ci:composer-validate": "composer validate --no-check-all --no-check-lock --strict",
         "ci:lint": "find config src tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
-        "ci:psalm": "./tools/psalm",
-        "ci:sniff": "./tools/phpcs src tests",
-        "ci:tests": "./tools/phpunit tests/",
+        "ci:psalm": "./vendor/bin/psalm",
+        "ci:sniff": "./vendor/bin/phpcs src tests",
+        "ci:tests": "./vendor/bin/phpunit tests/",
         "ci:static": [
             "@ci:composer-validate",
             "@ci:lint",

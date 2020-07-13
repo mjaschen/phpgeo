@@ -1,5 +1,5 @@
-sudo: false
-
+os: linux
+dist: xenial
 language: php
 
 php:
@@ -13,31 +13,12 @@ cache:
   - $HOME/.composer/cache
 
 env:
-  matrix:
+  jobs:
   - DEPENDENCIES=latest
   - DEPENDENCIES=oldest
 
-before_install:
-- >
-  echo "Disabling xdebug";
-  if [[ ! "$TRAVIS_PHP_VERSION" =~ "7.4snapshot" ]]; then
-    phpenv config-rm xdebug.ini;
-  fi;
-
 install:
 - >
-  echo;
-  echo "Installing Phive";
-  wget -O phive.phar https://phar.io/releases/phive.phar;
-  wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc;
-  gpg --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79;
-  gpg --verify phive.phar.asc phive.phar;
-  chmod +x phive.phar;
-  sudo mv phive.phar /usr/bin/phive;
-  echo "Installing Phive Tools";
-  /usr/bin/phive install --trust-gpg-keys 2A8299CE842DD38C,4AA394086372C20A,31C7E470E2138192,8A03EA3B385DBAA1,4AA394086372C20A;
-  /usr/bin/phive status;
-  echo;
   if [ "$DEPENDENCIES" = "latest" ]; then
     echo "Installing the latest dependencies";
     composer update --with-dependencies --prefer-stable --prefer-dist
