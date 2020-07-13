@@ -20,7 +20,8 @@ jobs:
           - "7.3"
           - "7.4"
           - "8.0"
-      name: PHP ${{ matrix.php-versions }} Tests
+
+    name: "phpgeo build - PHP ${{ matrix.php-versions }}"
 
     steps:
       - uses: actions/checkout@v2
