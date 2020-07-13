@@ -10,6 +10,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 <!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
 
 - [phpgeo - A Simple Geo Library for PHP](#phpgeo---a-simple-geo-library-for-php)
+  - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
   - [Documentation](#documentation)
   - [Installation](#installation)
@@ -18,7 +19,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
   - [Examples/Usage](#examplesusage)
     - [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincentys-formula)
     - [Simplifying a polyline](#simplifying-a-polyline)
-    - [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-%22gps-geofence%22)
+    - [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
     - [Formatted output of coordinates](#formatted-output-of-coordinates)
       - [Decimal Degrees](#decimal-degrees)
       - [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
@@ -266,5 +267,5 @@ Psalm:
 * [Paul Vidal](https://github.com/paulvl) Polygon Implementation
 
 [Psalm]: https://github.com/vimeo/psalm
-[phpgeo on TravisCI]: https://travis-ci.org/mjaschen/phpgeo
+[phpgeo on Travis CI]: https://travis-ci.org/mjaschen/phpgeo
 [phpgeo on Packagist]: https://packagist.org/packages/mjaschen/phpgeo
