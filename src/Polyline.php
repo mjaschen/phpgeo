@@ -42,7 +42,7 @@ class Polyline implements GeometryInterface
      *
      * @return void
      */
-    public function addUniquePoint(Coordinate $point, float $allowedDistance = .001)
+    public function addUniquePoint(Coordinate $point, float $allowedDistance = .001): void
     {
         if ($this->containsPoint($point, $allowedDistance)) {
             return;
