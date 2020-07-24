@@ -16,10 +16,10 @@ daux:
 apidocs:
 	mkdir -p build
 	mkdir -p build/coverage
-	$(PHP) ./tools/phploc --log-xml=build/phploc.xml src tests
-	$(PHP) ./tools/phpcs --report-xml=build/phpcs.xml src
-	$(PHP) ./tools/phpunit --coverage-xml build/coverage --coverage-html build/coverage
-	$(PHP) ./tools/phpdox
+	$(PHP) ./vendor/bin/phploc --log-xml=build/phploc.xml src tests
+	$(PHP) ./vendor/bin/phpcs --report-xml=build/phpcs.xml src
+	$(PHP) ./vendor/bin/phpunit --coverage-xml build/coverage --coverage-html build/coverage
+	$(PHP) ./vendor/bin/phpdox
 
 .PHONY: clean
 clean:
@@ -48,12 +48,12 @@ lint:
 .PHONY: sniff
 sniff:
 	# the `-` prefix ignores the exit status of the command
-	-$(PHP) ./tools/phpcs --standard=codesniffer_rules.xml src
+	-$(PHP) ./vendor/bin/phpcs --standard=codesniffer_rules.xml src
 
 .PHONY: static-analysis-psalm
 static-analysis-psalm:
-	$(PHP) ./tools/psalm
+	$(PHP) ./vendor/bin/psalm
 
 .PHONY: unit-tests
 unit-tests:
-	$(PHP) ./tools/phpunit
+	$(PHP) ./vendor/bin/phpunit

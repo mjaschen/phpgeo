@@ -232,19 +232,16 @@ echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" :
 
 Before submitting a pull request, please be sure to run all checks and tests and ensure everything is green.
 
-To run the checks and tests, it's the easiest to use the provided Composer scripts:
-
-- install development tools with [Phive](https://phar.io/): `phive install`
 - lint PHP files for syntax errors: `composer ci:lint`
 - run static analysis with [Psalm][] and report errors: `composer ci:psalm`
 - run unit tests with PHPUnit: `composer ci:tests`
 
 To run all checks and tests at once, just use `composer ci`.
 
-Of course, it's possible to use the test runners directly, e. g. for PHPUnit:
+Of course, it's possible to use the test runners directly, e.g. for PHPUnit:
 
 ```shell
-./tools/phpunit
+./vendor/bin/phpunit
 ```
 
 Psalm:
