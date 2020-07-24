@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Location\Processor\Polyline;
 
+use Location\Coordinate;
+use Location\GeometryInterface;
 use Location\Line;
+use Location\Polygon;
 use Location\Polyline;
 use Location\Utility\PerpendicularDistance;
 
@@ -39,17 +42,52 @@ class SimplifyDouglasPeucker implements SimplifyInterface
      * @param Polyline $polyline
      *
      * @return Polyline
+     * @throws \RuntimeException
      */
     public function simplify(Polyline $polyline): Polyline
     {
-        $resultPolyline = new Polyline();
-        $simplifiedLine = $this->douglasPeucker($polyline->getPoints());
+        $result = $this->simplifyGeometry($polyline);
 
-        foreach ($simplifiedLine as $point) {
-            $resultPolyline->addPoint($point);
+        if (!($result instanceof Polyline)) {
+            throw new \RuntimeException('Result is no Polyline', 9737647468);
         }
 
-        return $resultPolyline;
+        return $result;
+    }
+
+    /**
+     * This method is a workaround to allow simplifying polygons too. It'll be
+     * merged with `simplify()` in the next major release.
+     *
+     * @param GeometryInterface $geometry
+     *
+     * @return GeometryInterface
+     */
+    public function simplifyGeometry(GeometryInterface $geometry): GeometryInterface
+    {
+        if (!($geometry instanceof Polyline) && !($geometry instanceof Polygon)) {
+            return $geometry;
+        }
+
+        $counterPoints = $geometry->getNumberOfPoints();
+
+        if ($geometry instanceof Polygon) {
+            if ($counterPoints <= 3) {
+                return clone $geometry;
+            }
+            $result = new Polygon();
+        } else {
+            if ($counterPoints < 3) {
+                return clone $geometry;
+            }
+            $result = new Polyline();
+        }
+
+        $simplifiedLine = $this->douglasPeucker($geometry->getPoints());
+
+        $result->addPoints($simplifiedLine);
+
+        return $result;
     }
 
     /**

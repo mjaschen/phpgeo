@@ -1,14 +1,14 @@
-# Simplifying a polyline
+# Simplifying a polyline/polygon
 
 [TOC]
 
-Polylines can be simplified to save storage space or bandwidth.
+Polylines and polygons can be simplified to save storage space or bandwidth.
 
-_phpgeo_ provides two implementations for simplifying a polyline.
+_phpgeo_ provides two implementations for simplifying polyline/polygons.
 
 The first implementation uses the [_Ramer–Douglas–Peucker algorithm_](https://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm)
 (also known as _Douglas-Peucker algorithm_). The other implementation examines
-the bearings of the polyline segments and removes a segment when its bearing
+the bearings of the segments and removes a segment when its bearing
 angle is similar to the bearing angle of its predecessor segment. I named it
 the _Delta-Bearing algorithm_.
 

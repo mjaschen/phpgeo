@@ -5,7 +5,12 @@ declare(strict_types=1);
 namespace Location\Processor\Polyline;
 
 use Location\Bearing\BearingEllipsoidal;
+use Location\GeometryInterface;
+use Location\Polygon;
 use Location\Polyline;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Monolog\Processor\IntrospectionProcessor;
 
 /**
  * Simplify Polyline.
@@ -30,6 +35,23 @@ class SimplifyBearing implements SimplifyInterface
     }
 
     /**
+     * @param Polyline $polyline
+     *
+     * @return Polyline
+     * @throws \RuntimeException
+     */
+    public function simplify(Polyline $polyline): Polyline
+    {
+        $result = $this->simplifyGeometry($polyline);
+
+        if (!($result instanceof Polyline)) {
+            throw new \RuntimeException('Result is no Polyline', 4231694400);
+        }
+
+        return $result;
+    }
+
+    /**
      * Simplifies the given polyline
      *
      * 1. calculate the bearing angle between the first two points p1 and p2: b1
@@ -38,22 +60,35 @@ class SimplifyBearing implements SimplifyInterface
      *    smaller than the threshold angle, remove the middle point p2
      * 4. start again at (1.) as long as the polyline contains more points
      *
-     * @param Polyline $polyline
+     * This method will be merged with `simplify()` in the next major release.
      *
-     * @return Polyline
+     * @param GeometryInterface $geometry
+     *
+     * @return GeometryInterface
      */
-    public function simplify(Polyline $polyline): Polyline
+    public function simplifyGeometry(GeometryInterface $geometry): GeometryInterface
     {
-        $counterPoints = $polyline->getNumberOfPoints();
-
-        if ($counterPoints < 3) {
-            return clone $polyline;
+        if (!($geometry instanceof Polyline) && !($geometry instanceof Polygon)) {
+            return $geometry;
         }
 
-        $result      = new Polyline();
+        $counterPoints = $geometry->getNumberOfPoints();
+
+        if ($geometry instanceof Polygon) {
+            if ($counterPoints <= 3) {
+                return clone $geometry;
+            }
+            $result = new Polygon();
+        } else {
+            if ($counterPoints < 3) {
+                return clone $geometry;
+            }
+            $result = new Polyline();
+        }
+
         $bearingCalc = new BearingEllipsoidal();
 
-        $points = $polyline->getPoints();
+        $points = $geometry->getPoints();
 
         $index = 0;
 

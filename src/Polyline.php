@@ -27,9 +27,19 @@ class Polyline implements GeometryInterface
      *
      * @return void
      */
-    public function addPoint(Coordinate $point)
+    public function addPoint(Coordinate $point): void
     {
         $this->points[] = $point;
+    }
+
+    /**
+     * @param array $points
+     */
+    public function addPoints(array $points): void
+    {
+        foreach ($points as $point) {
+            $this->addPoint($point);
+        }
     }
 
     /**
