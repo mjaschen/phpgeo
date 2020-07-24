@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.1.0] - 2020-07-24
+
+### Added
+
+- Simplifying polygons is now supported as well, see `simplifyGeometry()` methods in `SimplifyBearing` and `SimplifyDouglasPeucker` classes (fixes #69).
+
 ## [3.0.1] - 2020-05-18
 
 ### Fixed
