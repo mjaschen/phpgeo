@@ -124,7 +124,7 @@ class Line implements GeometryInterface
      */
     public function getReverse(): Line
     {
-        return new static($this->point2, $this->point1);
+        return new self($this->point2, $this->point1);
     }
 
     /**

@@ -257,7 +257,7 @@ class Polygon implements GeometryInterface
      */
     public function getReverse(): Polygon
     {
-        $reversed = new static();
+        $reversed = new self();
 
         foreach (array_reverse($this->points) as $point) {
             $reversed->addPoint($point);

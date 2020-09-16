@@ -153,7 +153,7 @@ class Polyline implements GeometryInterface
      */
     public function getReverse(): Polyline
     {
-        $reversed = new static();
+        $reversed = new self();
 
         foreach (array_reverse($this->points) as $point) {
             $reversed->addPoint($point);
