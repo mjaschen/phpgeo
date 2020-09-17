@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [unreleased]
+
+### Changed
+
+- change `static` to `self` to prevent accidentally calling the constructor with wrong arguments in child classes (`Ellipsoid`, `Line`, `Polygon`, `Polyline`)
+
 ## [3.1.0] - 2020-07-24
 
 ### Added
