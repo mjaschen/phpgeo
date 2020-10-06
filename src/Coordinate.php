@@ -121,9 +121,12 @@ class Coordinate implements GeometryInterface
      *
      * @return CardinalDirectionDistances
      */
-    public function getCardinalDirectionDistances(Coordinate $coordinate, DistanceInterface $calculator): CardinalDirectionDistances
-    {
-        return (new CardinalDirectionDistancesCalculator())->getCardinalDirectionDistances($this, $coordinate, $calculator);
+    public function getCardinalDirectionDistances(
+        Coordinate $coordinate,
+        DistanceInterface $calculator
+    ): CardinalDirectionDistances {
+        return (new CardinalDirectionDistancesCalculator())
+            ->getCardinalDirectionDistances($this, $coordinate, $calculator);
     }
 
     /**
