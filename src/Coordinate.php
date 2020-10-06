@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Location;
 
 use InvalidArgumentException;
+use Location\CardinalDirection\CardinalDirectionDistances;
+use Location\CardinalDirection\CardinalDirectionDistancesCalculator;
 use Location\Distance\DistanceInterface;
 use Location\Distance\Haversine;
 use Location\Formatter\Coordinate\FormatterInterface;
@@ -108,6 +110,20 @@ class Coordinate implements GeometryInterface
     public function getDistance(Coordinate $coordinate, DistanceInterface $calculator): float
     {
         return $calculator->getDistance($this, $coordinate);
+    }
+
+    /**
+     * Calculates the cardinal direction distances from this coordinate
+     * to given coordinate.
+     *
+     * @param Coordinate $coordinate
+     * @param DistanceInterface $calculator instance of distance calculation class
+     *
+     * @return CardinalDirectionDistances
+     */
+    public function getCardinalDirectionDistances(Coordinate $coordinate, DistanceInterface $calculator): CardinalDirectionDistances
+    {
+        return (new CardinalDirectionDistancesCalculator())->getCardinalDirectionDistances($this, $coordinate, $calculator);
     }
 
     /**
