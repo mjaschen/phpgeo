@@ -27,7 +27,7 @@ class CardinalDirection
         if (!$north && !$south) {
             if ($west) {
                 return self::CARDINAL_DIRECTION_WEST;
-            } else if ($east) {
+            } elseif ($east) {
                 return self::CARDINAL_DIRECTION_EAST;
             }
         }
@@ -35,7 +35,7 @@ class CardinalDirection
         if (!$west && !$east) {
             if ($south) {
                 return self::CARDINAL_DIRECTION_SOUTH;
-            } else if ($north) {
+            } elseif ($north) {
                 return self::CARDINAL_DIRECTION_NORTH;
             }
         }
@@ -43,7 +43,7 @@ class CardinalDirection
         if ($south) {
             if ($west) {
                 return self::CARDINAL_DIRECTION_SOUTHWEST;
-            } else if ($east) {
+            } elseif ($east) {
                 return self::CARDINAL_DIRECTION_SOUTHEAST;
             }
         }
@@ -51,7 +51,7 @@ class CardinalDirection
         if ($north) {
             if ($west) {
                 return self::CARDINAL_DIRECTION_NORTHWEST;
-            } else if ($east) {
+            } elseif ($east) {
                 return self::CARDINAL_DIRECTION_NORTHEAST;
             }
         }

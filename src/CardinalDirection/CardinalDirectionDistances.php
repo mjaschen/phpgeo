@@ -97,6 +97,8 @@ class CardinalDirectionDistances
     /**
      * @psalm-pure
      * @psalm-mutation-free
+     *
+     * @throws InvalidDistanceException
      */
     private function validatePositive(float $value): void
     {
