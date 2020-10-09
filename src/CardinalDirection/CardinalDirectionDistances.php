@@ -127,7 +127,7 @@ class CardinalDirectionDistances
     private function validatePositive(float $value): void
     {
         if ($value < 0) {
-            throw new InvalidDistanceException('Negative distance is invalid.');
+            throw new InvalidDistanceException('Negative distance is invalid.', 1857757416);
         }
     }
 }
