@@ -9,16 +9,24 @@ use Location\Exception\InvalidDistanceException;
 /** @psalm-immutable */
 class CardinalDirectionDistances
 {
-    /** @var float */
+    /**
+     * @var float
+     */
     private $north;
 
-    /** @var float */
+    /**
+     * @var float
+     */
     private $east;
 
-    /** @var float */
+    /**
+     * @var float
+     */
     private $south;
 
-    /** @var float */
+    /**
+     * @var float
+     */
     private $west;
 
     private function __construct(float $north, float $east, float $south, float $west)
@@ -38,7 +46,9 @@ class CardinalDirectionDistances
         return new self(0, 0, 0, 0);
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function setNorth(float $north): self
     {
         $this->validatePositive($north);
@@ -46,7 +56,9 @@ class CardinalDirectionDistances
         return new self($north, $this->east, $this->south, $this->west);
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function setEast(float $east): self
     {
         $this->validatePositive($east);
@@ -54,7 +66,9 @@ class CardinalDirectionDistances
         return new self($this->north, $east, $this->south, $this->west);
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function setSouth(float $south): self
     {
         $this->validatePositive($south);
@@ -62,7 +76,9 @@ class CardinalDirectionDistances
         return new self($this->north, $this->east, $south, $this->west);
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function setWest(float $west): self
     {
         $this->validatePositive($west);
@@ -70,25 +86,33 @@ class CardinalDirectionDistances
         return new self($this->north, $this->east, $this->south, $west);
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function getNorth(): float
     {
         return $this->north;
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function getEast(): float
     {
         return $this->east;
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function getSouth(): float
     {
         return $this->south;
     }
 
-    /** @psalm-mutation-free */
+    /**
+     * @psalm-mutation-free
+     */
     public function getWest(): float
     {
         return $this->west;
