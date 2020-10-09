@@ -59,7 +59,7 @@
     },
     "scripts": {
         "ci:composer-validate": "composer validate --no-check-all --no-check-lock --strict",
-        "ci:lint": "find config src tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+        "ci:lint": "find src tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
         "ci:psalm": "./vendor/bin/psalm",
         "ci:sniff": "./vendor/bin/phpcs src tests",
         "ci:tests": "./vendor/bin/phpunit tests/",
