@@ -82,7 +82,7 @@ phpgeo provides the following features (follow the links for examples):
 - calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/Calculations/Bearing_and_Destination.html#page_Destination-point-for-given-bearing-and-distance),
   bearing angle, and distance (spherical or with Vincenty's formula)
 - calculation of the [perpendicular distance between a point and a line](https://phpgeo.marcusjaschen.de/Calculations/Perpendicular_Distance.html)
-- calculation of the [Cardinal Distances between two points](https://phpgeo.marcusjaschen.de/Calculations/425_Cardinal_Distance.md)
+- calculation of the [Cardinal Distances between two points](https://phpgeo.marcusjaschen.de/Calculations/Cardinal_Distance.html)
 - getting segments of a [polyline](https://phpgeo.marcusjaschen.de/Geometries/Polyline.html#page_Segments)
   /[polygon](https://phpgeo.marcusjaschen.de/Geometries/Polygon.html#page_Segments),
 - [reversing direction](https://phpgeo.marcusjaschen.de/Geometries/Polygon.html#page_Reverse-Direction)

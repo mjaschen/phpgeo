@@ -7,7 +7,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 
-- Calculation of [Cardinal Distances](https://phpgeo.marcusjaschen.de/Calculations/425_Cardinal_Distance.md) between two points. Thanks @LeoVie!
+- Calculation of [Cardinal Distances](https://phpgeo.marcusjaschen.de/Calculations/Cardinal_Distance.html) between two points. Thanks @LeoVie!
 
 ### Changed
 
