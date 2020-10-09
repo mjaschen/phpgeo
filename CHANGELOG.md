@@ -3,7 +3,11 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [unreleased]
+## [3.2.0] - 2020-10-09
+
+### Added
+
+- Calculation of [Cardinal Distances](https://phpgeo.marcusjaschen.de/Calculations/425_Cardinal_Distance.md) between two points. Thanks @LeoVie!
 
 ### Changed
 
