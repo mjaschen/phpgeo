@@ -82,6 +82,7 @@ phpgeo provides the following features (follow the links for examples):
 - calculation of a [destination point for a given starting point](https://phpgeo.marcusjaschen.de/Calculations/Bearing_and_Destination.html#page_Destination-point-for-given-bearing-and-distance),
   bearing angle, and distance (spherical or with Vincenty's formula)
 - calculation of the [perpendicular distance between a point and a line](https://phpgeo.marcusjaschen.de/Calculations/Perpendicular_Distance.html)
+- calculation of the [Cardinal Distances between two points](https://phpgeo.marcusjaschen.de/Calculations/425_Cardinal_Distance.md)
 - getting segments of a [polyline](https://phpgeo.marcusjaschen.de/Geometries/Polyline.html#page_Segments)
   /[polygon](https://phpgeo.marcusjaschen.de/Geometries/Polygon.html#page_Segments),
 - [reversing direction](https://phpgeo.marcusjaschen.de/Geometries/Polygon.html#page_Reverse-Direction)
@@ -176,43 +177,6 @@ $insidePoint = new Coordinate(-12.092542, -77.021540);
 
 var_dump($geofence->contains($outsidePoint)); // returns bool(false) the point is outside the polygon
 var_dump($geofence->contains($insidePoint)); // returns bool(true) the point is inside the polygon
-```
-
-### Cardinal direction distances between two coordinates
-
-Calculates how far you have to go to one cardinal direction an eventually to another
-to reach the second coordinate from the first one.
-
-```php
-<?php
-
-use Location\Coordinate;
-use Location\Distance\Vincenty;
-use Location\CardinalDirection\CardinalDirectionDistancesCalculator;
-
-$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
-$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
-
-$calculator = new Vincenty();
-$cardinalDirectionDistancesCalculator = new CardinalDirectionDistancesCalculator();
-
-$cardinalDirectionDistancesCalculator->getCardinalDirectionDistances($coordinate1, $coordinate2, $calculator); 
-// returns instance of CardinalDirectionDistances with north = 98425.507 km and west = 82268.492 km
-```
-
-or call the `getCardinalDirectionDistances()` method of a Coordinate object by injecting a calculator object:
-
-```php
-<?php
-
-use Location\Coordinate;
-use Location\Distance\Vincenty;
-
-$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
-$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
-
-$coordinate1->getCardinalDirectionDistances($coordinate2, new Vincenty());
-// returns instance of CardinalDirectionDistances with north = 98425.507 km and west = 82268.492 km
 ```
 
 ### Formatted output of coordinates
