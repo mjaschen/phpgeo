@@ -48,8 +48,8 @@ class CardinalDirection
             },
         ];
 
-        foreach ($directionFunctionMapping as $direction => $function) {
-            if (call_user_func($function, $point1, $point2)) {
+        foreach ($directionFunctionMapping as $direction => $checkFunction) {
+            if ($checkFunction($point1, $point2)) {
                 return $direction;
             }
         }
