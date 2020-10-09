@@ -51,7 +51,7 @@ class CardinalDirectionDistances
      */
     public function setNorth(float $north): self
     {
-        $this->validatePositive($north);
+        $this->assertPositiveFloat($north);
 
         return new self($north, $this->east, $this->south, $this->west);
     }
@@ -61,7 +61,7 @@ class CardinalDirectionDistances
      */
     public function setEast(float $east): self
     {
-        $this->validatePositive($east);
+        $this->assertPositiveFloat($east);
 
         return new self($this->north, $east, $this->south, $this->west);
     }
@@ -71,7 +71,7 @@ class CardinalDirectionDistances
      */
     public function setSouth(float $south): self
     {
-        $this->validatePositive($south);
+        $this->assertPositiveFloat($south);
 
         return new self($this->north, $this->east, $south, $this->west);
     }
@@ -81,7 +81,7 @@ class CardinalDirectionDistances
      */
     public function setWest(float $west): self
     {
-        $this->validatePositive($west);
+        $this->assertPositiveFloat($west);
 
         return new self($this->north, $this->east, $this->south, $west);
     }
@@ -124,7 +124,7 @@ class CardinalDirectionDistances
      *
      * @throws InvalidDistanceException
      */
-    private function validatePositive(float $value): void
+    private function assertPositiveFloat(float $value): void
     {
         if ($value < 0) {
             throw new InvalidDistanceException('Negative distance is invalid.', 1857757416);
