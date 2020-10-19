@@ -12,7 +12,7 @@ composer ci:tests
 Of course it's possible to run PHPUnit directly:
 
 ``` shell
-./tools/phpunit
+./vendor/bin/phpunit
 ```
 
 To test against another PHP version you can use Docker. The following command runs
@@ -22,7 +22,7 @@ the tests using PHP 7.2:
 docker run -it --rm --name phpgeo-phpunit \
     -v "$PWD":/usr/src/phpgeo \
     -w /usr/src/phpgeo php:7.2-cli \
-    php tools/phpunit
+    php vendor/bin/phpunit
 ```
 
 Or using PHP 7.3:
@@ -31,7 +31,7 @@ Or using PHP 7.3:
 docker run -it --rm --name phpgeo-phpunit \
     -v "$PWD":/usr/src/phpgeo \
     -w /usr/src/phpgeo php:7.3-cli \
-    php tools/phpunit
+    php vendor/bin/phpunit
 ```
 
 Or PHP 7.4:
@@ -40,7 +40,7 @@ Or PHP 7.4:
 docker run -it --rm --name phpgeo-phpunit \
     -v "$PWD":/usr/src/phpgeo \
     -w /usr/src/phpgeo php:7.4-cli \
-    php tools/phpunit
+    php vendor/bin/phpunit
 ```
 
 Besides the unit tests, static test runners are also provided. Run the lint
