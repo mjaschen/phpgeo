@@ -43,6 +43,15 @@ docker run -it --rm --name phpgeo-phpunit \
     php vendor/bin/phpunit
 ```
 
+PHP 8.0 RC:
+
+``` shell
+docker run -it --rm --name phpgeo-phpunit \
+    -v "$PWD":/usr/src/phpgeo \
+    -w /usr/src/phpgeo php:8.0-rc-cli \
+    php vendor/bin/phpunit
+```
+
 Besides the unit tests, static test runners are also provided. Run the lint
 command to ensure the sources don't contain any syntax error:
 
