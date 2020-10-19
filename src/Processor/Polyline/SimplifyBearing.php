@@ -8,9 +8,7 @@ use Location\Bearing\BearingEllipsoidal;
 use Location\GeometryInterface;
 use Location\Polygon;
 use Location\Polyline;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-use Monolog\Processor\IntrospectionProcessor;
+use RuntimeException;
 
 /**
  * Simplify Polyline.
@@ -38,14 +36,14 @@ class SimplifyBearing implements SimplifyInterface
      * @param Polyline $polyline
      *
      * @return Polyline
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function simplify(Polyline $polyline): Polyline
     {
         $result = $this->simplifyGeometry($polyline);
 
         if (!($result instanceof Polyline)) {
-            throw new \RuntimeException('Result is no Polyline', 4231694400);
+            throw new RuntimeException('Result is no Polyline', 4231694400);
         }
 
         return $result;

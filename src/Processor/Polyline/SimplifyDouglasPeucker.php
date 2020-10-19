@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Location\Processor\Polyline;
 
-use Location\Coordinate;
 use Location\GeometryInterface;
 use Location\Line;
 use Location\Polygon;
 use Location\Polyline;
 use Location\Utility\PerpendicularDistance;
+use RuntimeException;
 
 /**
  * /**
@@ -42,14 +42,14 @@ class SimplifyDouglasPeucker implements SimplifyInterface
      * @param Polyline $polyline
      *
      * @return Polyline
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     public function simplify(Polyline $polyline): Polyline
     {
         $result = $this->simplifyGeometry($polyline);
 
         if (!($result instanceof Polyline)) {
-            throw new \RuntimeException('Result is no Polyline', 9737647468);
+            throw new RuntimeException('Result is no Polyline', 9737647468);
         }
 
         return $result;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Location\Factory;
 
+use Generator;
 use InvalidArgumentException;
 use Location\Coordinate;
 use PHPUnit\Framework\TestCase;
@@ -380,7 +381,7 @@ class CoordinateFactoryTest extends TestCase
     /**
      * Data provider for decimal seconds parser test.
      */
-    public function dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected(): ?\Generator
+    public function dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected(): ?Generator
     {
         $expected = new Coordinate(52.20575, 13.576116667);
         $expectedLat = $expected->getLat();

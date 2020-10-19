@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Location;
 
+use Location\Processor\Polyline\SimplifyDouglasPeucker;
 use PHPUnit\Framework\TestCase;
 
 class Issue15Test extends TestCase
@@ -76,16 +77,16 @@ class Issue15Test extends TestCase
             [20.6610790881, -103.421889792],
         ];
 
-        $polyline = new \Location\Polyline();
+        $polyline = new Polyline();
         foreach ($data as $point) {
-            $polyline->addPoint(new \Location\Coordinate($point[0], $point[1]));
+            $polyline->addPoint(new Coordinate($point[0], $point[1]));
         }
 
-        $processor  = new \Location\Processor\Polyline\SimplifyDouglasPeucker(2);
+        $processor  = new SimplifyDouglasPeucker(2);
         $simplified = $processor->simplify($polyline);
 
-        $firstPoint = new \Location\Coordinate(20.6579781231, -103.422906054);
-        $lastPoint = new \Location\Coordinate(20.6610790881, -103.421889792);
+        $firstPoint = new Coordinate(20.6579781231, -103.422906054);
+        $lastPoint = new Coordinate(20.6610790881, -103.421889792);
 
         $this->assertEquals($firstPoint, $simplified->getPoints()[0]);
         $this->assertEquals($lastPoint, $simplified->getPoints()[$simplified->getNumberOfPoints() - 1]);
