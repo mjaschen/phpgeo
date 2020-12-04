@@ -43,12 +43,12 @@ docker run -it --rm --name phpgeo-phpunit \
     php vendor/bin/phpunit
 ```
 
-PHP 8.0 RC:
+PHP 8.0:
 
 ``` shell
 docker run -it --rm --name phpgeo-phpunit \
     -v "$PWD":/usr/src/phpgeo \
-    -w /usr/src/phpgeo php:8.0-rc-cli \
+    -w /usr/src/phpgeo php:8.0-cli \
     php vendor/bin/phpunit
 ```
 
@@ -78,4 +78,18 @@ The `Makefile` provides a helper target for generating the complete documentatio
 
 ``` shell
 make docs
+```
+
+*Daux* can also be run from its official Docker image:
+
+``` shell
+docker run --rm -it -v "$(pwd)":/phpgeo -w /phpgeo daux/daux.io daux generate -d build/daux
+```
+
+### API Documentation
+
+*phpgeo's* API documentation is generated with *[phpdox](http://phpdox.de/):*
+
+```shell
+make apidocs
 ```
