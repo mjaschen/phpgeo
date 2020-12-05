@@ -24,12 +24,12 @@ $outsidePoint = new Coordinate(-12.075452, -76.985079);
 $insidePoint = new Coordinate(-12.092542, -77.021540);
 
 echo $geofence->contains($outsidePoint)
-    ? 'Point 1 is located outside the polygon' . PHP_EOL
-    : 'Point 1 is located inside the polygon' . PHP_EOL;
+    ? 'Point 1 is located inside the polygon' . PHP_EOL
+    : 'Point 1 is located outside the polygon' . PHP_EOL;
 
 echo $geofence->contains($insidePoint)
-    ? 'Point 2 is located outside the polygon' . PHP_EOL
-    : 'Point 2 is located inside the polygon' . PHP_EOL;
+    ? 'Point 2 is located inside the polygon' . PHP_EOL
+    : 'Point 2 is located outside the polygon' . PHP_EOL;
 ```
 
 The code above will produce the output below:
