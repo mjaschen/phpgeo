@@ -113,22 +113,22 @@ class CoordinateTest extends TestCase
         $point1 = new Coordinate(0.0, 0.0);
         $point2 = new Coordinate(0.0, 0.0);
 
-        self::assertTrue($point1->hasSameLocation($point1, 0.0));
-        self::assertTrue($point1->hasSameLocation($point1, 0.1));
+        $this->assertTrue($point1->hasSameLocation($point1, 0.0));
+        $this->assertTrue($point1->hasSameLocation($point1, 0.1));
 
-        self::assertTrue($point1->hasSameLocation($point2, 0.0));
-        self::assertTrue($point1->hasSameLocation($point2, 0.1));
+        $this->assertTrue($point1->hasSameLocation($point2, 0.0));
+        $this->assertTrue($point1->hasSameLocation($point2, 0.1));
 
-        self::assertTrue($point2->hasSameLocation($point1, 0.0));
-        self::assertTrue($point2->hasSameLocation($point1, 0.1));
+        $this->assertTrue($point2->hasSameLocation($point1, 0.0));
+        $this->assertTrue($point2->hasSameLocation($point1, 0.1));
 
         // distance: 1 arc second
         $point2 = new Coordinate(0, 0.0002777778);
 
-        self::assertFalse($point1->hasSameLocation($point2, 0.0));
+        $this->assertFalse($point1->hasSameLocation($point2, 0.0));
 
         // a longitude difference of 1 arc second is about ~30.9 meters on the equator line
-        self::assertFalse($point1->hasSameLocation($point2, 30.85));
-        self::assertTrue($point1->hasSameLocation($point2, 30.95));
+        $this->assertFalse($point1->hasSameLocation($point2, 30.85));
+        $this->assertTrue($point1->hasSameLocation($point2, 30.95));
     }
 }

@@ -134,7 +134,7 @@ class PolylineTest extends TestCase
     {
         $middle = $this->polyline->getAveragePoint();
 
-        self::assertEquals($middle, new Coordinate(47.8, -50.2));
+        $this->assertEquals($middle, new Coordinate(47.8, -50.2));
     }
 
     public function testGetAveragePointCrossingDateLine(): void

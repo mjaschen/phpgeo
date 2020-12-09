@@ -13,7 +13,7 @@ class CardinalDirectionTest extends TestCase
     /** @dataProvider getCardinalDirectionProvider */
     public function testGetCardinalDirection(Coordinate $point1, Coordinate $point2, string $expected): void
     {
-        self::assertSame(
+        $this->assertSame(
             $expected,
             (new CardinalDirection())->getCardinalDirection($point1, $point2)
         );
