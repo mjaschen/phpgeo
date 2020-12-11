@@ -77,13 +77,13 @@ class HaversineTest extends TestCase
         $this->assertEquals(4952349.639, $distance);
     }
 
-    public function testNotMatchingEllispoids(): void
+    public function testNotMatchingEllipsoids(): void
     {
         $this->expectException(NotMatchingEllipsoidException::class);
 
         $coordinate1 = new Coordinate(19.820664, - 155.468066, $this->ellipsoid);
         $coordinate2 = new Coordinate(20.709722, - 156.253333, new Ellipsoid('AnotherEllipsoid', 6378140.0, 299.2));
 
-        $distance = $this->calculator->getDistance($coordinate1, $coordinate2);
+        $this->calculator->getDistance($coordinate1, $coordinate2);
     }
 }

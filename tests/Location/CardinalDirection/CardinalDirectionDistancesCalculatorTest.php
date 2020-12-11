@@ -19,7 +19,7 @@ class CardinalDirectionDistancesCalculatorTest extends TestCase
     ): void {
         $cardinalDirectionDistancesCalculator = new CardinalDirectionDistancesCalculator();
 
-        self::assertEquals(
+        $this->assertEquals(
             $expected,
             $cardinalDirectionDistancesCalculator->getCardinalDirectionDistances($point1, $point2, new Vincenty())
         );

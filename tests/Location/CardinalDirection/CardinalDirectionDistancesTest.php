@@ -12,7 +12,7 @@ class CardinalDirectionDistancesTest extends TestCase
     public function testSetNorth(): void
     {
         $north = 2500.0;
-        self::assertSame($north, CardinalDirectionDistances::create()->setNorth($north)->getNorth());
+        $this->assertSame($north, CardinalDirectionDistances::create()->setNorth($north)->getNorth());
     }
 
     public function testSetNorthThrows(): void
@@ -24,7 +24,7 @@ class CardinalDirectionDistancesTest extends TestCase
     public function testSetEast(): void
     {
         $east = 2500.0;
-        self::assertSame($east, CardinalDirectionDistances::create()->setEast($east)->getEast());
+        $this->assertSame($east, CardinalDirectionDistances::create()->setEast($east)->getEast());
     }
 
     public function testSetEastThrows(): void
@@ -36,7 +36,7 @@ class CardinalDirectionDistancesTest extends TestCase
     public function testSetSouth(): void
     {
         $south = 2500.0;
-        self::assertSame($south, CardinalDirectionDistances::create()->setSouth($south)->getSouth());
+        $this->assertSame($south, CardinalDirectionDistances::create()->setSouth($south)->getSouth());
     }
 
     public function testSetSouthThrows(): void
@@ -48,7 +48,7 @@ class CardinalDirectionDistancesTest extends TestCase
     public function testSetWest(): void
     {
         $west = 2500.0;
-        self::assertSame($west, CardinalDirectionDistances::create()->setWest($west)->getWest());
+        $this->assertSame($west, CardinalDirectionDistances::create()->setWest($west)->getWest());
     }
 
     public function testSetWestThrows(): void
@@ -69,9 +69,9 @@ class CardinalDirectionDistancesTest extends TestCase
             ->setSouth($south)
             ->setWest($west);
 
-        self::assertSame($north, $cardinalDirectionDistances->getNorth());
-        self::assertSame($east, $cardinalDirectionDistances->getEast());
-        self::assertSame($south, $cardinalDirectionDistances->getSouth());
-        self::assertSame($west, $cardinalDirectionDistances->getWest());
+        $this->assertSame($north, $cardinalDirectionDistances->getNorth());
+        $this->assertSame($east, $cardinalDirectionDistances->getEast());
+        $this->assertSame($south, $cardinalDirectionDistances->getSouth());
+        $this->assertSame($west, $cardinalDirectionDistances->getWest());
     }
 }
