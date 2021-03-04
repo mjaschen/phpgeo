@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.2.1] - 2021-03-04
+
+### Fixed
+
+- Division by zero in `SimplifyBearing` if two consecutive points share the same location, fixes #79.
+
 ## [3.2.0] - 2020-10-09
 
 ### Added

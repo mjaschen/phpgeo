@@ -200,4 +200,13 @@ class BearingEllipsoidalTest extends TestCase
         $this->assertEqualsWithDelta(-1.0, $destination->getLat(), 0.0001, '');
         $this->assertEqualsWithDelta(0.0, $destination->getLng(), 0.0001, '');
     }
+
+    public function testIfBearingForTheSamePointIsZero(): void
+    {
+        $bearingCalculator = new BearingEllipsoidal();
+        $point1 = new Coordinate(50.12345, 10.23456);
+        $point2 = new Coordinate(50.12345, 10.23456);
+
+        $this->assertEquals(0.0, $bearingCalculator->calculateBearing($point1, $point2));
+    }
 }

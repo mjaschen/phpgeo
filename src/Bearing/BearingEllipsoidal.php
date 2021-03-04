@@ -25,6 +25,9 @@ class BearingEllipsoidal implements BearingInterface
      * This method calculates the initial bearing between the
      * two points.
      *
+     * If the two points share the same location, the bearing
+     * value will be 0.0.
+     *
      * @param Coordinate $point1
      * @param Coordinate $point2
      *
@@ -32,6 +35,10 @@ class BearingEllipsoidal implements BearingInterface
      */
     public function calculateBearing(Coordinate $point1, Coordinate $point2): float
     {
+        if ($point1->hasSameLocation($point2)) {
+            return 0.0;
+        }
+
         return $this->inverseVincenty($point1, $point2)->getBearingInitial();
     }
 
