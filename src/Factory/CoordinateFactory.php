@@ -80,7 +80,7 @@ class CoordinateFactory implements GeometryFactoryInterface
                 ? (int)$match[3] + (float)$match[4] / 60
                 : (int)$match[3] - (float)$match[4] / 60;
 
-            return new Coordinate((float)$latitude, (float)$longitude, $ellipsoid);
+            return new Coordinate($latitude, $longitude, $ellipsoid);
         }
 
         return null;
@@ -111,7 +111,7 @@ class CoordinateFactory implements GeometryFactoryInterface
                 $longitude = - $longitude;
             }
 
-            return new Coordinate((float)$latitude, (float)$longitude, $ellipsoid);
+            return new Coordinate($latitude, $longitude, $ellipsoid);
         }
 
         return null;
