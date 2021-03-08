@@ -4,7 +4,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 [![Latest Stable Version](https://poser.pugx.org/mjaschen/phpgeo/v)](//packagist.org/packages/mjaschen/phpgeo)
 [![Total Downloads](https://poser.pugx.org/mjaschen/phpgeo/downloads)](//packagist.org/packages/mjaschen/phpgeo)
-[![Build Status](https://scrutinizer-ci.com/g/mjaschen/phpgeo/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mjaschen/phpgeo/build-status/master)
+[![phpgeo Tests](https://github.com/mjaschen/phpgeo/actions/workflows/php.yml/badge.svg)](https://github.com/mjaschen/phpgeo/actions/workflows/php.yml)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mjaschen/phpgeo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mjaschen/phpgeo/?branch=master)
 [![License](https://poser.pugx.org/mjaschen/phpgeo/license)](//packagist.org/packages/mjaschen/phpgeo)
 
