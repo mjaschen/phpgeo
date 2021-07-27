@@ -68,7 +68,7 @@ class DecimalMinutes implements FormatterInterface
         $this->separator          = $separator;
         $this->useCardinalLetters = false;
 
-        $this->setUnits(static::UNITS_UTF8);
+        $this->setUnits(self::UNITS_UTF8);
     }
 
     /**
