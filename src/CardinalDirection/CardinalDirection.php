@@ -59,82 +59,66 @@ class CardinalDirection
 
     private function isOnlyNorth(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            !$this->isEastFrom($point1, $point2)
+        return !$this->isEastFrom($point1, $point2)
             && !$this->isSouthFrom($point1, $point2)
             && !$this->isWestFrom($point1, $point2)
-            && $this->isNorthFrom($point1, $point2)
-        );
+            && $this->isNorthFrom($point1, $point2);
     }
 
     private function isOnlyEast(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            $this->isEastFrom($point1, $point2)
+        return $this->isEastFrom($point1, $point2)
             && !$this->isSouthFrom($point1, $point2)
             && !$this->isWestFrom($point1, $point2)
-            && !$this->isNorthFrom($point1, $point2)
-        );
+            && !$this->isNorthFrom($point1, $point2);
     }
 
     private function isOnlySouth(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            !$this->isEastFrom($point1, $point2)
+        return !$this->isEastFrom($point1, $point2)
             && $this->isSouthFrom($point1, $point2)
             && !$this->isWestFrom($point1, $point2)
-            && !$this->isNorthFrom($point1, $point2)
-        );
+            && !$this->isNorthFrom($point1, $point2);
     }
 
     private function isOnlyWest(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            !$this->isEastFrom($point1, $point2)
+        return !$this->isEastFrom($point1, $point2)
             && !$this->isSouthFrom($point1, $point2)
             && $this->isWestFrom($point1, $point2)
-            && !$this->isNorthFrom($point1, $point2)
-        );
+            && !$this->isNorthFrom($point1, $point2);
     }
 
     private function isNorthEast(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            $this->isEastFrom($point1, $point2)
+        return $this->isEastFrom($point1, $point2)
             && !$this->isSouthFrom($point1, $point2)
             && !$this->isWestFrom($point1, $point2)
-            && $this->isNorthFrom($point1, $point2)
-        );
+            && $this->isNorthFrom($point1, $point2);
     }
 
     private function isSouthEast(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            $this->isEastFrom($point1, $point2)
+        return $this->isEastFrom($point1, $point2)
             && $this->isSouthFrom($point1, $point2)
             && !$this->isWestFrom($point1, $point2)
-            && !$this->isNorthFrom($point1, $point2)
-        );
+            && !$this->isNorthFrom($point1, $point2);
     }
 
     private function isSouthWest(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            !$this->isEastFrom($point1, $point2)
+        return !$this->isEastFrom($point1, $point2)
             && $this->isSouthFrom($point1, $point2)
             && $this->isWestFrom($point1, $point2)
-            && !$this->isNorthFrom($point1, $point2)
-        );
+            && !$this->isNorthFrom($point1, $point2);
     }
 
     private function isNorthWest(Coordinate $point1, Coordinate $point2): bool
     {
-        return (
-            !$this->isEastFrom($point1, $point2)
+        return !$this->isEastFrom($point1, $point2)
             && !$this->isSouthFrom($point1, $point2)
             && $this->isWestFrom($point1, $point2)
-            && $this->isNorthFrom($point1, $point2)
-        );
+            && $this->isNorthFrom($point1, $point2);
     }
 
     private function isNorthFrom(Coordinate $point1, Coordinate $point2): bool
