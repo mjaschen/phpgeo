@@ -138,7 +138,8 @@ class BearingEllipsoidal implements BearingInterface
                 );
             $sigmaS = $sigma;
             $sigma = $distance / ($b * $A) + $deltaSigma;
-        } while (abs($sigma - $sigmaS) > 1e-12 && ++$iterations < 200);
+            $iterations++;
+        } while (abs($sigma - $sigmaS) > 1e-12 && $iterations < 200);
 
         if ($iterations >= 200) {
             throw new NotConvergingException('Inverse Vincenty Formula did not converge');
@@ -222,7 +223,8 @@ class BearingEllipsoidal implements BearingInterface
             $λp = $λ;
             $λ = $L + (1 - $C) * $f * $sinα
                 * ($σ + $C * $sinσ * ($cos2σM + $C * $cosσ * (-1 + 2 * $cos2σM * $cos2σM)));
-        } while (abs($λ - $λp) > 1e-12 && ++$iterations < 200);
+            $iterations++;
+        } while (abs($λ - $λp) > 1e-12 && $iterations < 200);
 
         if ($iterations >= 200) {
             throw new NotConvergingException('Inverse Vincenty Formula did not converge');
