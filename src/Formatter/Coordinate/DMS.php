@@ -14,7 +14,7 @@ use Location\Coordinate;
  */
 class DMS implements FormatterInterface
 {
-    public const UNITS_UTF8  = 'UTF-8';
+    public const UNITS_UTF8 = 'UTF-8';
     public const UNITS_ASCII = 'ASCII';
 
     /**
@@ -55,11 +55,14 @@ class DMS implements FormatterInterface
     /**
      * @throws InvalidArgumentException
      */
-    public function __construct(string $separator = ' ')
-    {
+    public function __construct(
+        string $separator = ' ',
+        bool $useCardinalLetters = false,
+        string $unitType = self::UNITS_UTF8
+    ) {
         $this->separator = $separator;
-        $this->useCardinalLetters = false;
-        $this->unitType = self::UNITS_UTF8;
+        $this->useCardinalLetters = $useCardinalLetters;
+        $this->unitType = $unitType;
     }
 
     /**
@@ -102,7 +105,7 @@ class DMS implements FormatterInterface
      */
     public function setUnits(string $type): DMS
     {
-        if (! array_key_exists($type, $this->units)) {
+        if (!array_key_exists($type, $this->units)) {
             throw new InvalidArgumentException('Invalid unit type');
         }
 
@@ -129,19 +132,19 @@ class DMS implements FormatterInterface
         $lat = $coordinate->getLat();
         $lng = $coordinate->getLng();
 
-        $latValue   = abs($lat);
+        $latValue = abs($lat);
         $latDegrees = (int)$latValue;
 
         $latMinutesDecimal = $latValue - $latDegrees;
-        $latMinutes        = (int)(60 * $latMinutesDecimal);
+        $latMinutes = (int)(60 * $latMinutesDecimal);
 
         $latSeconds = 60 * (60 * $latMinutesDecimal - $latMinutes);
 
-        $lngValue   = abs($lng);
+        $lngValue = abs($lng);
         $lngDegrees = (int)$lngValue;
 
         $lngMinutesDecimal = $lngValue - $lngDegrees;
-        $lngMinutes        = (int)(60 * $lngMinutesDecimal);
+        $lngMinutes = (int)(60 * $lngMinutesDecimal);
 
         $lngSeconds = 60 * (60 * $lngMinutesDecimal - $lngMinutes);
 
@@ -187,7 +190,7 @@ class DMS implements FormatterInterface
 
     protected function getLatSuffix(float $lat): string
     {
-        if (! $this->useCardinalLetters) {
+        if (!$this->useCardinalLetters) {
             return '';
         }
 
@@ -200,7 +203,7 @@ class DMS implements FormatterInterface
 
     protected function getLngSuffix(float $lng): string
     {
-        if (! $this->useCardinalLetters) {
+        if (!$this->useCardinalLetters) {
             return '';
         }
 
