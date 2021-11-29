@@ -10,7 +10,7 @@ docs: daux apidocs
 daux:
 	rm -Rf build/daux
 	mkdir -p build/daux
-	$(PHP) vendor/bin/daux generate -d build/daux
+	docker run --rm -v "$(PWD)":/src -w /src daux/daux.io daux generate -d build/daux
 
 .PHONY: apidocs
 apidocs:
