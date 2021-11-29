@@ -1,5 +1,23 @@
 # Upgrading phpgeo
 
+## Update from phpgeo 3.x to phpgeo 4.x
+
+### Requirements
+
+- _phpgeo_ 4.x requires at least PHP 7.3 and fully supports PHP 8
+
+### Update phpgeo
+
+- run `composer require mjaschen/phpgeo:^4.0` or
+- update the version constraint in your `composer.json` to `^4.0` and run `composer update`
+
+### Update Your Code
+
+- Setters in `DMS` and `Line` classes are deprecated and will be removed
+  with the next release. Use constructor arguments instead.
+
+No breaking changes were introduced with *phpgeo* 3.0.
+
 ## Update from phpgeo 2.x to phpgeo 3.x
 
 ### Requirements

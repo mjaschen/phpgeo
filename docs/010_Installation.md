@@ -2,9 +2,11 @@
 
 ## Requirements
 
-_phpgeo_ requires at least PHP 7.2. _phpgeo_ fully supports PHP 8.0.
+_phpgeo_ requires at least PHP 7.3. _phpgeo_ fully supports PHP 8.
 
-The 2.x releases require PHP >= 7.0 but don't get feature updates any longer. Bugfixes will be backported.
+The 3.x releases require PHP >= 7.2 but don't get feature updates any longer. Bugfixes will be backported.
+
+The 2.x releases require PHP >= 7.0 but don't get feature updates any longer. Bugfixes won't be backported.
 
 The 1.x release line has support for PHP >= 5.4. Bugfixes won't be backported.
 
