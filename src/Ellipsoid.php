@@ -33,7 +33,7 @@ class Ellipsoid
     /**
      * Some often used ellipsoids
      *
-     * @var array
+     * @var array<string, array{name: string, a: float, f: float}>
      */
     protected static $configs = [
         'WGS-84' => [
@@ -65,7 +65,7 @@ class Ellipsoid
      *
      * @return Ellipsoid
      */
-    public static function createDefault($name = 'WGS-84'): Ellipsoid
+    public static function createDefault(string $name = 'WGS-84'): Ellipsoid
     {
         return static::createFromArray(static::$configs[$name]);
     }

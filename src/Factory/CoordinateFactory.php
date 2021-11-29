@@ -22,12 +22,10 @@ class CoordinateFactory implements GeometryFactoryInterface
      * format of geographical coordinates.
      *
      * @param string $string formatted geographical coordinate
-     * @param Ellipsoid $ellipsoid
      *
-     * @return Coordinate
      * @throws InvalidArgumentException
      */
-    public static function fromString(string $string, Ellipsoid $ellipsoid = null): Coordinate
+    public static function fromString(string $string, ?Ellipsoid $ellipsoid = null): Coordinate
     {
         $string = self::mergeSecondsToMinutes($string);
 
@@ -59,13 +57,10 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param string $string
-     * @param Ellipsoid $ellipsoid
-     *
      * @return Coordinate|null
      * @throws InvalidArgumentException
      */
-    private static function parseDecimalMinutesWithoutCardinalLetters(string $string, Ellipsoid $ellipsoid = null)
+    private static function parseDecimalMinutesWithoutCardinalLetters(string $string, ?Ellipsoid $ellipsoid = null)
     {
         // Decimal minutes without cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
@@ -87,13 +82,10 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param string $string
-     * @param Ellipsoid $ellipsoid
-     *
-     * @return Coordinate|null
+     * @return ?Coordinate
      * @throws InvalidArgumentException
      */
-    private static function parseDecimalMinutesWithCardinalLetters(string $string, Ellipsoid $ellipsoid = null)
+    private static function parseDecimalMinutesWithCardinalLetters(string $string, ?Ellipsoid $ellipsoid = null)
     {
         // Decimal minutes with cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
@@ -118,13 +110,10 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param string $string
-     * @param Ellipsoid $ellipsoid
-     *
      * @return Coordinate|null
      * @throws InvalidArgumentException
      */
-    private static function parseDecimalDegreesWithoutCardinalLetters(string $string, Ellipsoid $ellipsoid = null)
+    private static function parseDecimalDegreesWithoutCardinalLetters(string $string, ?Ellipsoid $ellipsoid = null)
     {
         // The most simple format: decimal degrees without cardinal letters,
         // e. g. "52.5, 13.5" or "53.25732 14.24984"
@@ -136,13 +125,10 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @param string $string
-     * @param Ellipsoid $ellipsoid
-     *
      * @return Coordinate|null
      * @throws InvalidArgumentException
      */
-    private static function parseDecimalDegreesWithCardinalLetters(string $string, Ellipsoid $ellipsoid = null)
+    private static function parseDecimalDegreesWithCardinalLetters(string $string, ?Ellipsoid $ellipsoid = null)
     {
         // Decimal degrees with cardinal letters, e. g. "N52.5, E13.5",
         // "40.2S, 135.3485W", or "56.234°N, 157.245°W"
@@ -164,11 +150,6 @@ class CoordinateFactory implements GeometryFactoryInterface
         return null;
     }
 
-    /**
-     * @param string $string
-     *
-     * @return string
-     */
     private static function mergeSecondsToMinutes(string $string): string
     {
         return preg_replace_callback(

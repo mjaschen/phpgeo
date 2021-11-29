@@ -9,12 +9,12 @@ namespace Location;
  *
  * @package Location
  *
- * @property Coordinate[] $points
+ * @property array<Coordinate> $points
  */
 trait GetBoundsTrait
 {
     /**
-     * @return Coordinate[]
+     * @return array<Coordinate>
      */
     abstract public function getPoints(): array;
 

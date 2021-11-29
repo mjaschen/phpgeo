@@ -20,21 +20,11 @@ class PointToLineDistance
      */
     private $distanceCalculator;
 
-    /**
-     * PointToLineDistance constructor.
-     * @param DistanceInterface $distanceCalculator
-     */
     public function __construct(DistanceInterface $distanceCalculator)
     {
         $this->distanceCalculator = $distanceCalculator;
     }
 
-    /**
-     * @param Coordinate $point
-     * @param Line $line
-     *
-     * @return float
-     */
     public function getDistance(Coordinate $point, Line $line): float
     {
         if ($line->getPoint1()->hasSameLocation($line->getPoint2())) {

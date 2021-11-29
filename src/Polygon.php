@@ -18,7 +18,7 @@ class Polygon implements GeometryInterface
     use GetBoundsTrait;
 
     /**
-     * @var Coordinate[]
+     * @var array<Coordinate>
      */
     protected $points = [];
 
@@ -33,7 +33,7 @@ class Polygon implements GeometryInterface
     }
 
     /**
-     * @param array $points
+     * @param array<Coordinate> $points
      */
     public function addPoints(array $points): void
     {
@@ -43,7 +43,7 @@ class Polygon implements GeometryInterface
     }
 
     /**
-     * @return Coordinate[]
+     * @return array<Coordinate>
      */
     public function getPoints(): array
     {
@@ -53,7 +53,7 @@ class Polygon implements GeometryInterface
     /**
      * Return all polygon point's latitudes.
      *
-     * @return float[]
+     * @return array<float>
      */
     public function getLats(): array
     {
@@ -70,7 +70,7 @@ class Polygon implements GeometryInterface
     /**
      * Return all polygon point's longitudes.
      *
-     * @return float[]
+     * @return array<float>
      */
     public function getLngs(): array
     {
@@ -103,7 +103,7 @@ class Polygon implements GeometryInterface
     }
 
     /**
-     * @return Line[]
+     * @return array<Line>
      */
     public function getSegments(): array
     {
@@ -136,7 +136,7 @@ class Polygon implements GeometryInterface
      *
      * @param GeometryInterface $geometry
      *
-     * @return boolean
+     * @return bool
      */
     public function containsGeometry(GeometryInterface $geometry): bool
     {
@@ -152,7 +152,7 @@ class Polygon implements GeometryInterface
     /**
      * Determine if given point is contained inside the polygon. Uses the PNPOLY
      * algorithm by W. Randolph Franklin. Therfore some edge cases may not give the
-     * expected results, e. g. if the point resides on the polygon boundary.
+     * expected results, e.g. if the point resides on the polygon boundary.
      *
      * @see https://wrf.ecse.rpi.edu/Research/Short_Notes/pnpoly.html
      *
@@ -230,9 +230,7 @@ class Polygon implements GeometryInterface
         $segments       = $this->getSegments();
 
         foreach ($segments as $segment) {
-            /** @var Coordinate $point1 */
             $point1 = $segment->getPoint1();
-            /** @var Coordinate $point2 */
             $point2 = $segment->getPoint2();
 
             $x1 = deg2rad($point1->getLng() - $referencePoint->getLng()) * cos(deg2rad($point1->getLat()));

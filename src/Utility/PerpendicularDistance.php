@@ -14,12 +14,6 @@ use Location\Line;
  */
 class PerpendicularDistance
 {
-    /**
-     * @param Coordinate $point
-     * @param Line $line
-     *
-     * @return float
-     */
     public function getPerpendicularDistance(Coordinate $point, Line $line): float
     {
         $ellipsoid = $point->getEllipsoid();
@@ -72,21 +66,11 @@ class PerpendicularDistance
         return $distance * $ellipsoidRadius;
     }
 
-    /**
-     * @param float $latitude
-     *
-     * @return float
-     */
     protected function deg2radLatitude(float $latitude): float
     {
         return deg2rad(90 - $latitude);
     }
 
-    /**
-     * @param float $longitude
-     *
-     * @return float
-     */
     protected function deg2radLongitude(float $longitude): float
     {
         if ($longitude > 0) {

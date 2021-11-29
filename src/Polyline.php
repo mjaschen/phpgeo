@@ -18,7 +18,7 @@ class Polyline implements GeometryInterface
     use GetBoundsTrait;
 
     /**
-     * @var Coordinate[]
+     * @var array<Coordinate>
      */
     protected $points = [];
 
@@ -33,7 +33,7 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @param array $points
+     * @param array<Coordinate> $points
      */
     public function addPoints(array $points): void
     {
@@ -62,7 +62,7 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @return Coordinate[]
+     * @return array<Coordinate>
      */
     public function getPoints(): array
     {
@@ -105,7 +105,7 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @return Line[]
+     * @return array<Line>
      */
     public function getSegments(): array
     {
@@ -184,7 +184,7 @@ class Polyline implements GeometryInterface
         }
 
         foreach ($this->points as $point) {
-            /* @var $point Coordinate */
+            // @var Coordinate $point
             $latitude += $point->getLat();
             $longitude += $point->getLng();
         }

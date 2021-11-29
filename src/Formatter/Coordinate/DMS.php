@@ -37,7 +37,7 @@ class DMS implements FormatterInterface
     protected $unitType;
 
     /**
-     * @var array
+     * @var array<string, array{deg: string, min: string, sec: string}>
      */
     protected $units = [
         'UTF-8' => [
@@ -53,8 +53,6 @@ class DMS implements FormatterInterface
     ];
 
     /**
-     * @param string $separator
-     *
      * @throws InvalidArgumentException
      */
     public function __construct(string $separator = ' ')
@@ -163,11 +161,6 @@ class DMS implements FormatterInterface
         );
     }
 
-    /**
-     * @param float $lat
-     *
-     * @return string
-     */
     protected function getLatPrefix(float $lat): string
     {
         if ($this->useCardinalLetters || $lat >= 0) {
@@ -177,11 +170,6 @@ class DMS implements FormatterInterface
         return '-';
     }
 
-    /**
-     * @param float $lng
-     *
-     * @return string
-     */
     protected function getLngPrefix(float $lng): string
     {
         if ($this->useCardinalLetters || $lng >= 0) {
@@ -191,11 +179,6 @@ class DMS implements FormatterInterface
         return '-';
     }
 
-    /**
-     * @param float $lat
-     *
-     * @return string
-     */
     protected function getLatSuffix(float $lat): string
     {
         if (! $this->useCardinalLetters) {
@@ -209,11 +192,6 @@ class DMS implements FormatterInterface
         return ' S';
     }
 
-    /**
-     * @param float $lng
-     *
-     * @return string
-     */
     protected function getLngSuffix(float $lng): string
     {
         if (! $this->useCardinalLetters) {
