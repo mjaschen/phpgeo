@@ -172,7 +172,7 @@ class Polygon implements GeometryInterface
 
         $polygonContainsPoint = false;
 
-        for ($node = 0, $altNode = ($numberOfPoints - 1); $node < $numberOfPoints; $altNode = $node++) {
+        for ($node = 0, $altNode = $numberOfPoints - 1; $node < $numberOfPoints; $altNode = $node++) {
             $condition = ($polygonLngs[$node] > $point->getLng()) !== ($polygonLngs[$altNode] > $point->getLng())
                 && ($point->getLat() < ($polygonLats[$altNode] - $polygonLats[$node])
                     * ($point->getLng() - $polygonLngs[$node])

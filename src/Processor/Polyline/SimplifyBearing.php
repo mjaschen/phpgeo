@@ -97,7 +97,7 @@ class SimplifyBearing implements SimplifyInterface
             $index++;
 
             // preserve the last point of the original polyline
-            if ($index === ($counterPoints - 1)) {
+            if ($index === $counterPoints - 1) {
                 $result->addPoint($points[$index]);
                 break;
             }

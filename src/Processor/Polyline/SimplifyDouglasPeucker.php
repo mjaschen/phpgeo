@@ -104,7 +104,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
 
         $pdCalc = new PerpendicularDistance();
 
-        for ($i = 1; $i <= ($lineSize - 2); $i++) {
+        for ($i = 1; $i <= $lineSize - 2; $i++) {
             $distance = $pdCalc->getPerpendicularDistance($line[$i], new Line($line[0], $line[$lineSize - 1]));
 
             if ($distance > $distanceMax) {
