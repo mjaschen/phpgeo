@@ -3,7 +3,7 @@ name: phpgeo Tests
 on:
   push:
     branches:
-      - master
+      - "**"
   pull_request:
     branches:
       - master
@@ -20,6 +20,7 @@ jobs:
           - "7.3"
           - "7.4"
           - "8.0"
+          - "8.1"
 
     name: "phpgeo build - PHP ${{ matrix.php-versions }}"
 
