@@ -26,10 +26,13 @@ clean:
 	rm -Rf build
 
 .PHONY: upload_docs
-upload_docs: docs
-	rsync --recursive --delete build/daux/ $(UPLOAD_HOST):$(UPLOAD_PATH)/
+upload_docs: docs upload_doc_site
 	ssh $(UPLOAD_HOST) "mkdir -p $(UPLOAD_PATH)/api"
 	rsync --recursive --delete build/apidocs/html/ $(UPLOAD_HOST):$(UPLOAD_PATH)/api/
+
+.PHONY: upload_doc_site
+upload_doc_site: daux
+	rsync --recursive --delete build/daux/ $(UPLOAD_HOST):$(UPLOAD_PATH)/
 
 .PHONY: ci
 ci: lint coding-standards composer-validate sniff static-analysis-psalm unit-tests
