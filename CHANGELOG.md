@@ -3,13 +3,13 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## Not Released
+## [4.0.0] - 2021-11-29
 
 ### Changed
 
-- add support for PHP 8.1
 - drop support for PHP 7.2 **breaking change**
-- add deprecations for setters in `DMS` and `Line` classes
+- add support for PHP 8.1
+- add deprecations for setter methods in `DMS` and `Line` classes
 
 ## [3.2.1] - 2021-03-04
 
