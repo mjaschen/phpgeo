@@ -61,7 +61,7 @@ class PerpendicularDistance
 
         $thetaPoint /= $length;
 
-        $distance = (float)abs((M_PI / 2) - acos($thetaPoint));
+        $distance = abs((M_PI / 2) - acos($thetaPoint));
 
         return $distance * $ellipsoidRadius;
     }

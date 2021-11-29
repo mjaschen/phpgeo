@@ -244,7 +244,7 @@ class Polygon implements GeometryInterface
 
         $area *= 0.5 * $radius ** 2;
 
-        return (float)abs($area);
+        return abs($area);
     }
 
     /**
