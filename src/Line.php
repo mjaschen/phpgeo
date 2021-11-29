@@ -42,6 +42,8 @@ class Line implements GeometryInterface
      * @param Coordinate $point1
      *
      * @return void
+     *
+     * @deprecated
      */
     public function setPoint1(Coordinate $point1)
     {
@@ -60,6 +62,8 @@ class Line implements GeometryInterface
      * @param Coordinate $point2
      *
      * @return void
+     *
+     * @deprecated
      */
     public function setPoint2(Coordinate $point2)
     {

@@ -57,9 +57,9 @@ class DMS implements FormatterInterface
      */
     public function __construct(string $separator = ' ')
     {
-        $this->separator          = $separator;
+        $this->separator = $separator;
         $this->useCardinalLetters = false;
-        $this->setUnits(self::UNITS_UTF8);
+        $this->unitType = self::UNITS_UTF8;
     }
 
     /**
@@ -68,6 +68,8 @@ class DMS implements FormatterInterface
      * @param string $separator
      *
      * @return DMS
+     *
+     * @deprecated
      */
     public function setSeparator(string $separator): DMS
     {
@@ -80,6 +82,8 @@ class DMS implements FormatterInterface
      * @param bool $value
      *
      * @return DMS
+     *
+     * @deprecated
      */
     public function useCardinalLetters(bool $value): DMS
     {
@@ -93,6 +97,8 @@ class DMS implements FormatterInterface
      *
      * @return DMS
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     public function setUnits(string $type): DMS
     {
