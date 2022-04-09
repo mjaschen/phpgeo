@@ -19,15 +19,15 @@ and the line.
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Distance\Vincenty;
 use Location\Line;
 use Location\Utility\PointToLineDistance;
 
-$point = new Coordinate(52.5, 13.5);
+$point = new Point(52.5, 13.5);
 $line = new Line(
-    new Coordinate(52.5, 13.1),
-    new Coordinate(52.5, 13.1)
+    new Point(52.5, 13.1),
+    new Point(52.5, 13.1)
 );
 
 $pointToLineDistanceCalculator = new PointToLineDistance(new Vincenty());

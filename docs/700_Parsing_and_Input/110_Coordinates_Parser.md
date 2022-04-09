@@ -2,7 +2,7 @@
 
 _phpgeo_ comes with a parser for several types of coordinate formats.
 The parser works as a factory which creates an instance of the
-`Coordinate` class.
+`Point` class.
 
 ## Supported Formats
 
@@ -30,18 +30,18 @@ Examples of supported formats:
 - 5, 013 34.567
 - 45, -013 34.567
 
-The [unit test](https://github.com/mjaschen/phpgeo/blob/master/tests/Location/Factory/CoordinateFactoryTest.php)
+The [unit test](https://github.com/mjaschen/phpgeo/blob/master/tests/Location/Factory/PointFactoryTest.php)
 shows some more examples.
 
 ## Example
 
  ```php
-use Location\Factory\CoordinateFactory;
+use Location\Factory\PointFactory;
 use Location\Formatter\Coordinate\DecimalDegrees;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$point = CoordinateFactory::fromString('52° 13.698′ 020° 58.536′');
+$point = PointFactory::fromString('52° 13.698′ 020° 58.536′');
 
 echo $point->format(new DecimalDegrees());
 ```

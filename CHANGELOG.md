@@ -3,6 +3,18 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [Unreleased]
+
+### Added
+
+- add class `Point` (successor for `Coordinate`)
+- add class `PointFactory` (successor for `CoordinateFactory`)
+
+### Deprecated
+
+- `Coordinate` class is now deprecated and will be removed in the release after the next
+- `CoordinateFactory` class is now deprecated and will be removed in the release after the next
+
 ## [4.0.0] - 2021-11-29
 
 ### Changed

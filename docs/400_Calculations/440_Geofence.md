@@ -10,18 +10,18 @@ the 180/-180 degrees meridian.
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Polygon;
 
 $geofence = new Polygon();
 
-$geofence->addPoint(new Coordinate(-12.085870,-77.016261));
-$geofence->addPoint(new Coordinate(-12.086373,-77.033813));
-$geofence->addPoint(new Coordinate(-12.102823,-77.030938));
-$geofence->addPoint(new Coordinate(-12.098669,-77.006476));
+$geofence->addPoint(new Point(-12.085870,-77.016261));
+$geofence->addPoint(new Point(-12.086373,-77.033813));
+$geofence->addPoint(new Point(-12.102823,-77.030938));
+$geofence->addPoint(new Point(-12.098669,-77.006476));
 
-$outsidePoint = new Coordinate(-12.075452, -76.985079);
-$insidePoint = new Coordinate(-12.092542, -77.021540);
+$outsidePoint = new Point(-12.075452, -76.985079);
+$insidePoint = new Point(-12.092542, -77.021540);
 
 echo $geofence->contains($outsidePoint)
     ? 'Point 1 is located inside the polygon' . PHP_EOL

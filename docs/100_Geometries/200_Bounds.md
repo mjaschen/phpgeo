@@ -12,10 +12,10 @@ The `Bounds` class has a method to calculate the center point of the bounds obje
 <?php
 
 use Location\Factory\BoundsFactory;
-use Location\Coordinate;
+use Location\Point;
 
 $bounds = BoundsFactory::expandFromCenterCoordinate(
-    new Coordinate(52, 13),
+    new Point(52, 13),
     1000,
     new BearingSpherical()
 );

@@ -14,7 +14,11 @@ use Location\Formatter\Coordinate\FormatterInterface;
 /**
  * Coordinate Implementation
  *
- * @author Marcus Jaschen <mjaschen@gmail.com>
+ * This class will be removed in release 6.0.
+ * Please use the new `Point` class, which is an
+ * API-compatible drop-in replacement.
+ *
+ * @deprecated
  */
 class Coordinate implements GeometryInterface
 {

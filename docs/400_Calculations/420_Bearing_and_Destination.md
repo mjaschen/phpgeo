@@ -27,10 +27,10 @@ point).
 <?php
 
 use Location\Bearing\BearingSpherical;
-use Location\Coordinate;
+use Location\Point;
 
-$berlin = new Coordinate(52.5, 13.5);
-$london = new Coordinate(51.5, -0.12);
+$berlin = new Point(52.5, 13.5);
+$london = new Point(51.5, -0.12);
 
 $bearingCalculator = new BearingSpherical();
 
@@ -55,10 +55,10 @@ Time elapsed: 0.000285 s
 <?php
 
 use Location\Bearing\BearingEllipsoidal;
-use Location\Coordinate;
+use Location\Point;
 
-$berlin = new Coordinate(52.5, 13.5);
-$london = new Coordinate(51.5, -0.12);
+$berlin = new Point(52.5, 13.5);
+$london = new Point(51.5, -0.12);
 
 $bearingCalculator = new BearingEllipsoidal();
 
@@ -92,10 +92,10 @@ As an example, starting from Berlin, calculate the destination point in
 <?php
 use Location\Bearing\BearingEllipsoidal;
 use Location\Bearing\BearingSpherical;
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalDegrees;
 
-$berlin = new Coordinate(52.5, 13.5);
+$berlin = new Point(52.5, 13.5);
 
 $bearingSpherical = new BearingSpherical();
 $bearingEllipsoidal = new BearingEllipsoidal();
@@ -124,10 +124,10 @@ an initial bearing, and the distance to the destination.
 ``` php
 <?php
 use Location\Bearing\BearingEllipsoidal;
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalDegrees;
 
-$berlin = new Coordinate(52.5, 13.5);
+$berlin = new Point(52.5, 13.5);
 
 $bearingEllipsoidal = new BearingEllipsoidal();
 

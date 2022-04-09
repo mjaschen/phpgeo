@@ -1,16 +1,16 @@
-# Formatting Coordinates
+# Formatting Points
 
-You can format a coordinate in different styles.
+You can format a pair of coordinates, i.e. an instance of the [`Point`](Geometries/Point) class in different styles.
 
 ## Decimal Degrees
 
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalDegrees;
 
-$coordinate = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate = new Point(19.820664, -155.468066); // Mauna Kea Summit
 
 echo $coordinate->format(new DecimalDegrees());
 ```
@@ -28,10 +28,10 @@ constructor argument, as well as the number of decimals (default value is
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalDegrees;
 
-$coordinate = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate = new Point(19.820664, -155.468066); // Mauna Kea Summit
 
 echo $coordinate->format(new DecimalDegrees(', ', 3));
 ```
@@ -47,10 +47,10 @@ The code above produces the output below:
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DMS;
 
-$coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
+$coordinate = new Point(18.911306, -155.678268); // South Point, HI, USA
 
 $formatter = new DMS();
 
@@ -77,10 +77,10 @@ This format is commonly used in the Geocaching community.
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalMinutes;
 
-$coordinate = new Coordinate(43.62310, -70.20787); // Portland Head Light, ME, USA
+$coordinate = new Point(43.62310, -70.20787); // Portland Head Light, ME, USA
 
 $formatter = new DecimalMinutes();
 
@@ -105,10 +105,10 @@ The code above produces the output below:
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\GeoJSON;
 
-$coordinate = new Coordinate(18.911306, -155.678268); // South Point, HI, USA
+$coordinate = new Point(18.911306, -155.678268); // South Point, HI, USA
 
 echo $coordinate->format(new GeoJSON());
 ```

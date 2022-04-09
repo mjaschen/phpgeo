@@ -2,8 +2,8 @@
 
 [TOC]
 
-A polygon consists of an ordered list of locations, i. e. instances of
-the `Coordinate` class. It's very similar to a polyline, but its start
+A polygon consists of an ordered list of locations, i.e. instances of
+the `Point` class. It's very similar to a polyline, but its start
 and end points are connected.
 
 ## Create a polygon
@@ -13,13 +13,13 @@ To create a polygon, just instantiate the class and add points:
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Polygon;
 
 $polygon = new Polygon();
-$polygon->addPoint(new Coordinate(52.5, 13.5));
-$polygon->addPoint(new Coordinate(54.5, 12.5));
-$polygon->addPoint(new Coordinate(55.5, 14.5));
+$polygon->addPoint(new Point(52.5, 13.5));
+$polygon->addPoint(new Point(54.5, 12.5));
+$polygon->addPoint(new Point(55.5, 14.5));
 ?>
 ```
 
@@ -33,14 +33,14 @@ retrieved by calling `getNumberOfPoints()`:
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DMS;
 use Location\Polygon;
 
 $polygon = new Polygon();
-$polygon->addPoint(new Coordinate(52.5, 13.5));
-$polygon->addPoint(new Coordinate(54.5, 12.5));
-$polygon->addPoint(new Coordinate(55.5, 14.5));
+$polygon->addPoint(new Point(52.5, 13.5));
+$polygon->addPoint(new Point(54.5, 12.5));
+$polygon->addPoint(new Point(55.5, 14.5));
 
 printf("The polygon consists of %d points:\n", $polygon->getNumberOfPoints());
 
@@ -66,14 +66,14 @@ returned as an array of `Line` instances.
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Distance\Haversine;
 use Location\Polygon;
 
 $polygon = new Polygon();
-$polygon->addPoint(new Coordinate(52.5, 13.5));
-$polygon->addPoint(new Coordinate(54.5, 12.5));
-$polygon->addPoint(new Coordinate(55.5, 14.5));
+$polygon->addPoint(new Point(52.5, 13.5));
+$polygon->addPoint(new Point(54.5, 12.5));
+$polygon->addPoint(new Point(55.5, 14.5));
 
 foreach ($polygon->getSegments() as $line) {
     printf("%0.3f m\n", $line->getLength(new Haversine()));
@@ -101,16 +101,16 @@ WARNING: The calculation gives inaccurate results. For relatively small polygons
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Polygon;
 
 $formatter = new \Location\Formatter\Coordinate\DecimalDegrees(' ', 10);
 
 $polygon = new Polygon();
-$polygon->addPoint(new Coordinate(0.0000000000, 0.0000000000));
-$polygon->addPoint(new Coordinate(0.0000000000, 0.0008983153));
-$polygon->addPoint(new Coordinate(0.0009043695, 0.0008983153));
-$polygon->addPoint(new Coordinate(0.0009043695, 0.0000000000));
+$polygon->addPoint(new Point(0.0000000000, 0.0000000000));
+$polygon->addPoint(new Point(0.0000000000, 0.0008983153));
+$polygon->addPoint(new Point(0.0009043695, 0.0008983153));
+$polygon->addPoint(new Point(0.0009043695, 0.0000000000));
 
 printf(
     'Polygon Area = %f m², Perimeter = %f m%s',
@@ -140,15 +140,15 @@ original polygon stays unchanged:
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Polygon;
 use Location\Formatter\Coordinate\DecimalDegrees;
 
 $polygon = new Polygon();
-$polygon->addPoint(new Coordinate(52.5, 13.5));
-$polygon->addPoint(new Coordinate(64.1, - 21.9));
-$polygon->addPoint(new Coordinate(40.7, - 74.0));
-$polygon->addPoint(new Coordinate(33.9, - 118.4));
+$polygon->addPoint(new Point(52.5, 13.5));
+$polygon->addPoint(new Point(64.1, - 21.9));
+$polygon->addPoint(new Point(40.7, - 74.0));
+$polygon->addPoint(new Point(33.9, - 118.4));
 
 $reversed = $polygon->getReverse();
 

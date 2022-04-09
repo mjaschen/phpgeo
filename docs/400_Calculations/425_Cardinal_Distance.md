@@ -16,12 +16,12 @@ With *phpgeo* there are two ways to calculate the Cardinal Distances:
 ```php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Distance\Vincenty;
 use Location\CardinalDirection\CardinalDirectionDistancesCalculator;
 
-$coordinate1 = new Coordinate(19.820664, -155.468066); // Mauna Kea Summit
-$coordinate2 = new Coordinate(20.709722, -156.253333); // Haleakala Summit
+$coordinate1 = new Point(19.820664, -155.468066); // Mauna Kea Summit
+$coordinate2 = new Point(20.709722, -156.253333); // Haleakala Summit
 
 $calculator = new Vincenty();
 $cardinalDirectionDistancesCalculator = new CardinalDirectionDistancesCalculator();
@@ -40,17 +40,17 @@ The code above will produce the following output:
 Cardinal Distances: north=98425.507 m; east=0 m; south=0 m; west=82268.492 m.
 ```
 
-## Using the `getCardinalDirectionDistances()` method of a Coordinate instance
+## Using the `getCardinalDirectionDistances()` method of a Point instance
 
 ```php
 <?php
 
 use Location\CardinalDirection\CardinalDirection;
-use Location\Coordinate;
+use Location\Point;
 use Location\Distance\Vincenty;
 
-$point1 = new Coordinate(52.5072, 13.4248); // Berlin, Germany
-$point2 = new Coordinate(52.4284, 13.0276); // Potsdam, Germany
+$point1 = new Point(52.5072, 13.4248); // Berlin, Germany
+$point2 = new Point(52.4284, 13.0276); // Potsdam, Germany
 
 $direction = (new CardinalDirection())->getCardinalDirection($point1, $point2);
 

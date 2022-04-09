@@ -1,5 +1,16 @@
 # Upgrading phpgeo
 
+## (not yet released) Update from phpgeo 5.x to phpgeo 6.x
+
+### Update phpgeo
+
+- run `composer require mjaschen/phpgeo:^6.0` or
+- update the version constraint in your `composer.json` to `^6.0` and run `composer update`
+
+### Update Your Code
+
+- The `Coordinate` and `CoordinateFactory` classes were removed with phpgeo 6.0. With `Point` and `PointFactory` exist API-compatible drop-in replacements. You have to replace each occurrence of the `\Location\Coordinate` class with `\Location\Point` and each occurrence of `\Location\Factory\CoordinateFactory` with `\Location\Factory\PointFactory`.
+
 ## Update from phpgeo 3.x to phpgeo 4.x
 
 ### Requirements

@@ -2,7 +2,7 @@
 
 [TOC]
 
-A line consists of two points, i. e. instances of the `Coordinate` class.
+A line consists of two points, i.e. instances of the `Point` class.
 
 ## Length
 
@@ -12,13 +12,13 @@ expects an instance of a class which implements the `DistanceInterface`.
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Distance\Haversine;
 use Location\Line;
 
 $line = new Line(
-    new Coordinate(52.5, 13.5),
-    new Coordinate(52.6, 13.4)
+    new Point(52.5, 13.5),
+    new Point(52.6, 13.4)
 );
 
 $length = $line->getLength(new Haversine());
@@ -44,13 +44,13 @@ The midpoint of a line is calculated by following the Great Circle (defined by t
 
 declare(strict_types=1);
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Distance\Haversine;
 use Location\Line;
 
 $line = new Line(
-    new Coordinate(35, 45),
-    new Coordinate(35, 135)
+    new Point(35, 45),
+    new Point(35, 135)
 );
 
 $midpoint = $line->getMidpoint();
@@ -86,13 +86,13 @@ Similar to the midpoint calculation but divides the line at the given fraction (
 
 declare(strict_types=1);
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalMinutes;
 use Location\Line;
 
 $line = new Line(
-    new Coordinate(0, 0),
-    new Coordinate(1, 1)
+    new Point(0, 0),
+    new Point(1, 1)
 );
 
 $result = $line->getIntermediatePoint(0.25);
@@ -119,12 +119,12 @@ An instance of `BearingInterface` must be provided as method argument.
 <?php
 
 use Location\Bearing\BearingEllipsoidal;
-use Location\Coordinate;
+use Location\Point;
 use Location\Line;
 
 $line = new Line(
-    new Coordinate(52.5, 13.5),
-    new Coordinate(52.6, 13.4)
+    new Point(52.5, 13.5),
+    new Point(52.6, 13.4)
 );
 
 $bearing = $line->getBearing(new BearingEllipsoidal());
@@ -148,12 +148,12 @@ called the _final bearing._ It can be calculated as well:
 <?php
 
 use Location\Bearing\BearingEllipsoidal;
-use Location\Coordinate;
+use Location\Point;
 use Location\Line;
 
 $line = new Line(
-    new Coordinate(52.5, 13.5),
-    new Coordinate(52.6, 13.4)
+    new Point(52.5, 13.5),
+    new Point(52.6, 13.4)
 );
 
 $bearing = $line->getFinalBearing(new BearingEllipsoidal());

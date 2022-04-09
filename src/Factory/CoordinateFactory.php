@@ -11,7 +11,11 @@ use Location\Ellipsoid;
 /**
  * Coordinate Factory
  *
- * @author Marcus Jaschen <mjaschen@gmail.com>
+ * This class will be removed in release 6.0.
+ * Please use the new `PointFactory` class, which is an
+ * API-compatible drop-in replacement.
+ *
+ * @deprecated
  */
 class CoordinateFactory implements GeometryFactoryInterface
 {

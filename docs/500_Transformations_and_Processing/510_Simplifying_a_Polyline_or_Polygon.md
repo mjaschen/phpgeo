@@ -17,15 +17,15 @@ the _Delta-Bearing algorithm_.
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalDegrees;
 use Location\Polyline;
 use Location\Processor\Polyline\SimplifyDouglasPeucker;
 
 $polyline = new Polyline();
-$polyline->addPoint(new Coordinate(10.0, 10.0));
-$polyline->addPoint(new Coordinate(20.0, 20.0));
-$polyline->addPoint(new Coordinate(30.0, 10.0));
+$polyline->addPoint(new Point(10.0, 10.0));
+$polyline->addPoint(new Point(20.0, 20.0));
+$polyline->addPoint(new Point(30.0, 10.0));
 
 $processor = new SimplifyDouglasPeucker(1500000);
 
@@ -51,15 +51,15 @@ The code above produces the output below:
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Formatter\Coordinate\DecimalDegrees;
 use Location\Polyline;
 use Location\Processor\Polyline\SimplifyBearing;
 
 $polyline = new Polyline();
-$polyline->addPoint(new Coordinate(10.0, 10.0));
-$polyline->addPoint(new Coordinate(20.0, 20.0));
-$polyline->addPoint(new Coordinate(30.0, 10.0));
+$polyline->addPoint(new Point(10.0, 10.0));
+$polyline->addPoint(new Point(20.0, 20.0));
+$polyline->addPoint(new Point(30.0, 10.0));
 
 $processor = new SimplifyBearing(90);
 

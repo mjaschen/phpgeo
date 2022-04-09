@@ -7,15 +7,15 @@ You can format a polygon in different styles.
 ``` php
 <?php
 
-use Location\Coordinate;
+use Location\Point;
 use Location\Polygon;
 use Location\Formatter\Polygon\GeoJSON;
 
 $polygon = new Polygon;
-$polygon->addPoint(new Coordinate(10, 20));
-$polygon->addPoint(new Coordinate(20, 40));
-$polygon->addPoint(new Coordinate(30, 40));
-$polygon->addPoint(new Coordinate(30, 20));
+$polygon->addPoint(new Point(10, 20));
+$polygon->addPoint(new Point(20, 40));
+$polygon->addPoint(new Point(30, 40));
+$polygon->addPoint(new Point(30, 20));
 
 $formatter = new GeoJSON;
 
