@@ -16,6 +16,7 @@ use Location\Formatter\Polygon\FormatterInterface;
 class Polygon implements GeometryInterface
 {
     use GetBoundsTrait;
+    use IntersectionTrait;
 
     /**
      * @var array<Coordinate>
@@ -103,6 +104,8 @@ class Polygon implements GeometryInterface
     }
 
     /**
+     * Returns an array containing the line segments.
+     *
      * @return array<Line>
      */
     public function getSegments(): array
@@ -167,8 +170,8 @@ class Polygon implements GeometryInterface
     public function contains(Coordinate $point): bool
     {
         $numberOfPoints = $this->getNumberOfPoints();
-        $polygonLats    = $this->getLats();
-        $polygonLngs    = $this->getLngs();
+        $polygonLats = $this->getLats();
+        $polygonLngs = $this->getLngs();
 
         $polygonContainsPoint = false;
 
@@ -179,7 +182,7 @@ class Polygon implements GeometryInterface
                     / ($polygonLngs[$altNode] - $polygonLngs[$node]) + $polygonLats[$node]);
 
             if ($condition) {
-                $polygonContainsPoint = ! $polygonContainsPoint;
+                $polygonContainsPoint = !$polygonContainsPoint;
             }
         }
 
@@ -226,8 +229,8 @@ class Polygon implements GeometryInterface
         }
 
         $referencePoint = $this->points[0];
-        $radius         = $referencePoint->getEllipsoid()->getArithmeticMeanRadius();
-        $segments       = $this->getSegments();
+        $radius = $referencePoint->getEllipsoid()->getArithmeticMeanRadius();
+        $segments = $this->getSegments();
 
         foreach ($segments as $segment) {
             $point1 = $segment->getPoint1();
