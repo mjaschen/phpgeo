@@ -17,6 +17,11 @@ use RuntimeException;
 class Line implements GeometryInterface
 {
     use GetBoundsTrait;
+    use IntersectionTrait;
+
+    public const ORIENTATION_COLLINEAR = 0;
+    public const ORIENTATION_CLOCKWISE = 1;
+    public const ORIENTATION_ANTI_CLOCKWISE = 2;
 
     /**
      * @var Coordinate
@@ -86,6 +91,16 @@ class Line implements GeometryInterface
     public function getPoints(): array
     {
         return [$this->point1, $this->point2];
+    }
+
+    /**
+     * Returns an array containing the line segment.
+     *
+     * @return array<Line>
+     */
+    public function getSegments(): array
+    {
+        return [$this];
     }
 
     /**
@@ -199,5 +214,67 @@ class Line implements GeometryInterface
         $lng = atan2($y, $x);
 
         return new Coordinate(rad2deg($lat), rad2deg($lng));
+    }
+
+    /**
+     * Compares the location of a given coordinate to this line returning
+     * its orientation as:
+     *
+     * - 0 if the coordinate is collinear to this line segment
+     * - 1 if the coordinate's orientation is clockwise to this line segment
+     * - 2 if the coordinate's orientation is anti-clockwise to this line segment
+     */
+    public function getOrientation(Coordinate $coordinate)
+    {
+        $crossproduct1 =
+            ($this->point2->getLat() - $this->point1->getLat()) *
+            ($coordinate->getLng() - $this->point2->getLng());
+        $crossproduct2 =
+            ($this->point2->getLng() - $this->point1->getLng()) *
+            ($coordinate->getLat() - $this->point2->getLat());
+        $delta = $crossproduct1 - $crossproduct2;
+
+        if ($delta > 0) {
+            return self::ORIENTATION_CLOCKWISE;
+        } elseif ($delta < 0) {
+            return self::ORIENTATION_ANTI_CLOCKWISE;
+        }
+
+        return self::ORIENTATION_COLLINEAR;
+    }
+
+    /**
+     * Two lines intersect if:
+     *
+     * 1. the points of the given line are oriented into opposite directions
+     * 2. the points of this lines are oriented into opposite directions
+     * 3. the points are collinear and the two line segments are overlapping
+     */
+    public function intersectsLine(Line $line): bool
+    {
+        $orientation = [];
+        $orientation[11] = $this->getOrientation($line->getPoint1());
+        $orientation[12] = $this->getOrientation($line->getPoint2());
+        $orientation[21] = $line->getOrientation($this->getPoint1());
+        $orientation[22] = $line->getOrientation($this->getPoint2());
+
+        // the lines cross
+        if (
+            $orientation[11] !== $orientation[12] &&
+            $orientation[21] !== $orientation[22]
+        ) {
+            return true;
+        }
+
+        // the lines are collinear or touch
+        if (
+            in_array(self::ORIENTATION_COLLINEAR, $orientation) &&
+            $this->intersectsBounds($line->getBounds())
+        ) {
+            return true;
+        }
+
+        // the lines do not overlap
+        return false;
     }
 }

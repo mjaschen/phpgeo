@@ -121,6 +121,29 @@ class Coordinate implements GeometryInterface
         return $this->getDistance($coordinate, new Haversine()) <= $allowedDistance;
     }
 
+    /**
+     * Checks if this point intersects a given geometry.
+     */
+    public function intersects(
+        GeometryInterface $geometry,
+        bool $precise = false
+    ): bool {
+        if (is_a($geometry, 'Location\Coordinate')) {
+            return $this->equals($geometry);
+        }
+
+        return $geometry->contains($this);
+    }
+
+    /**
+     * Checks if two coordinates are equal.
+     */
+    public function equals(Coordinate $coordinate)
+    {
+        return $coordinate->getLng() === $this->lng &&
+            $coordinate->getLat() === $this->lat;
+    }
+
     public function format(FormatterInterface $formatter): string
     {
         return $formatter->format($this);
