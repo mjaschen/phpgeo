@@ -52,6 +52,22 @@ class Bounds
     }
 
     /**
+     * @return Coordinate
+     */
+    public function getNorthEast(): Coordinate
+    {
+        return new Coordinate($this->getNorth(), $this->getEast());
+    }
+
+    /**
+     * @return Coordinate
+     */
+    public function getSouthWest(): Coordinate
+    {
+        return new Coordinate($this->getSouth(), $this->getWest());
+    }
+
+    /**
      * @return float
      */
     public function getNorth(): float
@@ -119,5 +135,23 @@ class Bounds
         }
 
         return $centerLng;
+    }
+
+    /**
+     * Creates the polygon described by this bounds object and returns the
+     * Polygon instance.
+     *
+     * @return Polygon
+     */
+    public function getPolygon(): Polygon
+    {
+        $polygon = new Polygon();
+
+        $polygon->addPoint($this->getNorthWest());
+        $polygon->addPoint($this->getNorthEast());
+        $polygon->addPoint($this->getSouthEast());
+        $polygon->addPoint($this->getSouthWest());
+
+        return $polygon;
     }
 }
