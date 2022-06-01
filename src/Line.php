@@ -224,7 +224,7 @@ class Line implements GeometryInterface
      * - 1 if the coordinate's orientation is clockwise to this line segment
      * - 2 if the coordinate's orientation is anti-clockwise to this line segment
      */
-    public function getOrientation(Coordinate $coordinate)
+    public function getOrientation(Coordinate $coordinate): int
     {
         $crossproduct1 = ($this->point2->getLat() - $this->point1->getLat())
                          * ($coordinate->getLng() - $this->point2->getLng());
