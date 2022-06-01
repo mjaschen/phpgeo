@@ -259,7 +259,8 @@ class Line implements GeometryInterface
         $orientation[22] = $line->getOrientation($this->getPoint2());
 
         // the lines cross
-        if ($orientation[11] !== $orientation[12]
+        if (
+            $orientation[11] !== $orientation[12]
             && $orientation[21] !== $orientation[22]
         ) {
             return true;
