@@ -226,17 +226,17 @@ class Line implements GeometryInterface
      */
     public function getOrientation(Coordinate $coordinate)
     {
-        $crossproduct1 =
-            ($this->point2->getLat() - $this->point1->getLat()) *
-            ($coordinate->getLng() - $this->point2->getLng());
-        $crossproduct2 =
-            ($this->point2->getLng() - $this->point1->getLng()) *
-            ($coordinate->getLat() - $this->point2->getLat());
+        $crossproduct1 = ($this->point2->getLat() - $this->point1->getLat())
+                         * ($coordinate->getLng() - $this->point2->getLng());
+        $crossproduct2 = ($this->point2->getLng() - $this->point1->getLng())
+                         * ($coordinate->getLat() - $this->point2->getLat());
         $delta = $crossproduct1 - $crossproduct2;
 
         if ($delta > 0) {
             return self::ORIENTATION_CLOCKWISE;
-        } elseif ($delta < 0) {
+        }
+
+        if ($delta < 0) {
             return self::ORIENTATION_ANTI_CLOCKWISE;
         }
 
@@ -247,7 +247,7 @@ class Line implements GeometryInterface
      * Two lines intersect if:
      *
      * 1. the points of the given line are oriented into opposite directions
-     * 2. the points of this lines are oriented into opposite directions
+     * 2. the points of this line are oriented into opposite directions
      * 3. the points are collinear and the two line segments are overlapping
      */
     public function intersectsLine(Line $line): bool
@@ -259,17 +259,16 @@ class Line implements GeometryInterface
         $orientation[22] = $line->getOrientation($this->getPoint2());
 
         // the lines cross
-        if (
-            $orientation[11] !== $orientation[12] &&
-            $orientation[21] !== $orientation[22]
+        if ($orientation[11] !== $orientation[12]
+            && $orientation[21] !== $orientation[22]
         ) {
             return true;
         }
 
         // the lines are collinear or touch
         if (
-            in_array(self::ORIENTATION_COLLINEAR, $orientation) &&
-            $this->intersectsBounds($line->getBounds())
+            in_array(self::ORIENTATION_COLLINEAR, $orientation, true)
+            && $this->intersectsBounds($line->getBounds())
         ) {
             return true;
         }

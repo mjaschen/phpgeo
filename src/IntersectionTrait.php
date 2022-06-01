@@ -8,12 +8,9 @@ use Location\CardinalDirection\CardinalDirection;
 
 trait IntersectionTrait
 {
-    public function intersects($geometry, bool $precise = false): bool
+    public function intersects(GeometryInterface $geometry, bool $precise = false): bool
     {
-        if (
-            is_a($geometry, 'Location\Coordinate') ||
-            is_a($geometry, 'Location\Point')
-        ) {
+        if ($geometry instanceof Coordinate) {
             return $this->contains($geometry);
         }
 
@@ -27,59 +24,33 @@ trait IntersectionTrait
     /**
      * Checks if this geometry's bounds and the given bounds intersect.
      */
-    public function intersectsBounds(Bounds $bounds2): bool
+    public function intersectsBounds(Bounds $otherBounds): bool
     {
         $direction = new CardinalDirection();
-        $bounds1 = $this->getBounds();
+        $bounds = $this->getBounds();
 
-        if (
-            $direction->isEastOf(
-                $bounds1->getSouthWest(),
-                $bounds2->getSouthEast()
-            ) ||
-            $direction->isSouthOf(
-                $bounds1->getNorthWest(),
-                $bounds2->getSouthWest()
-            ) ||
-            $direction->isWestOf(
-                $bounds1->getSouthEast(),
-                $bounds2->getSouthWest()
-            ) ||
-            $direction->isNorthOf(
-                $bounds1->getSouthWest(),
-                $bounds2->getNorthWest()
-            )
-        ) {
-            return false;
-        }
-
-        return true;
+        return !(
+            $direction->isEastOf($bounds->getSouthWest(), $otherBounds->getSouthEast())
+            || $direction->isSouthOf($bounds->getNorthWest(), $otherBounds->getSouthWest())
+            || $direction->isWestOf($bounds->getSouthEast(), $otherBounds->getSouthWest())
+            || $direction->isNorthOf($bounds->getSouthWest(), $otherBounds->getNorthWest())
+        );
     }
 
     /**
      * Checks if this geometry and the given geometry intersect by checking
      * their segments for intersections.
      */
-    public function intersectsGeometry($geometry): bool
+    public function intersectsGeometry(GeometryInterface $geometry): bool
     {
-        $segments1 = $this->getSegments();
-        $segments2 = $geometry->getSegments();
-        $intersects = false;
-
-        foreach ($segments1 as $segment1) {
-            foreach ($segments2 as $segment2) {
-                $intersects = $segment1->intersectsLine($segment2);
-
-                if ($intersects === true) {
-                    break;
+        foreach ($this->getSegments() as $segment) {
+            foreach ($geometry->getSegments() as $otherSegment) {
+                if ($segment->intersectsLine($otherSegment)) {
+                    return true;
                 }
-            }
-
-            if ($intersects === true) {
-                break;
             }
         }
 
-        return $intersects;
+        return false;
     }
 }
