@@ -124,6 +124,8 @@ class Coordinate implements GeometryInterface
 
     /**
      * Checks if this point intersects a given geometry.
+     *
+     * @throws InvalidGeometryException
      */
     public function intersects(GeometryInterface $geometry): bool
     {
