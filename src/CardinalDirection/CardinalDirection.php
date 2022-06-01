@@ -6,7 +6,6 @@ namespace Location\CardinalDirection;
 
 use Location\Coordinate;
 
-/** @psalm-immutable */
 class CardinalDirection
 {
     public const CARDINAL_DIRECTION_NONE = 'none';
