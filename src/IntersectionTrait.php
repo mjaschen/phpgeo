@@ -10,7 +10,7 @@ trait IntersectionTrait
 {
     public function intersects(GeometryInterface $geometry, bool $precise = false): bool
     {
-        if ($geometry instanceof Coordinate) {
+        if ($this instanceof Polygon && $geometry instanceof Coordinate) {
             return $this->contains($geometry);
         }
 
