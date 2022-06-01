@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Location;
 
-use Location\Point;
-use Location\Polygon;
-use Location\Line;
 use PHPUnit\Framework\TestCase;
 
 class IntersectionTest extends TestCase
@@ -27,7 +24,7 @@ class IntersectionTest extends TestCase
 
         $this->polygon = new Polygon();
         foreach ($coordinates as $coordinate) {
-            $this->polygon->addPoint(new Point($coordinate[0], $coordinate[1]));
+            $this->polygon->addPoint(new Coordinate($coordinate[0], $coordinate[1]));
         }
     }
 
@@ -35,20 +32,20 @@ class IntersectionTest extends TestCase
     {
         // Lines
         $lineCenterCrossing = new Line(
-            new Point(52.237594, 9.287635),
-            new Point(52.258154, 11.010313)
+            new Coordinate(52.237594, 9.287635),
+            new Coordinate(52.258154, 11.010313)
         );
         $lineTop = new Line(
-            new Point(52.62456, 9.455537),
-            new Point(52.608249, 10.734953)
+            new Coordinate(52.62456, 9.455537),
+            new Coordinate(52.608249, 10.734953)
         );
         $lineBottom = new Line(
-            new Point(51.880405, 9.613366),
-            new Point(51.907345, 10.724879)
+            new Coordinate(51.880405, 9.613366),
+            new Coordinate(51.907345, 10.724879)
         );
         $lineRight = new Line(
-            new Point(52.720262, 10.627496),
-            new Point(51.859671, 10.812188)
+            new Coordinate(52.720262, 10.627496),
+            new Coordinate(51.859671, 10.812188)
         );
 
         // By bounds
@@ -68,24 +65,24 @@ class IntersectionTest extends TestCase
         $this->assertFalse($lineRight->intersects($this->polygon, true));
     }
 
-    public function testPointIntersections(): void
+    public function testCoordinateIntersections(): void
     {
-        // Points
-        $pointContained = new Point(52.328745, 10.151638);
-        $pointOutside = new Point(52.549057, 10.475242);
-        $pointOutsideLine = new Point(52.252717, 10.728334);
+        // Coordinates
+        $CoordinateContained = new Coordinate(52.328745, 10.151638);
+        $CoordinateOutside = new Coordinate(52.549057, 10.475242);
+        $CoordinateOutsideLine = new Coordinate(52.252717, 10.728334);
 
         // By bounds
-        $this->assertTrue($pointContained->intersects($this->polygon, false));
-        $this->assertFalse($pointOutside->intersects($this->polygon, false));
+        $this->assertTrue($CoordinateContained->intersects($this->polygon, false));
+        $this->assertFalse($CoordinateOutside->intersects($this->polygon, false));
         $this->assertFalse(
-            $pointOutsideLine->intersects($this->polygon, false)
+            $CoordinateOutsideLine->intersects($this->polygon, false)
         );
 
         // By shape
-        $this->assertTrue($pointContained->intersects($this->polygon, true));
-        $this->assertFalse($pointOutside->intersects($this->polygon, true));
-        $this->assertFalse($pointOutsideLine->intersects($this->polygon, true));
+        $this->assertTrue($CoordinateContained->intersects($this->polygon, true));
+        $this->assertFalse($CoordinateOutside->intersects($this->polygon, true));
+        $this->assertFalse($CoordinateOutsideLine->intersects($this->polygon, true));
     }
 
     public function testPolygonIntersections(): void
@@ -102,7 +99,7 @@ class IntersectionTest extends TestCase
         ];
         foreach ($coordinates as $coordinate) {
             $polygonLeftIntersecting->addPoint(
-                new Point($coordinate[0], $coordinate[1])
+                new Coordinate($coordinate[0], $coordinate[1])
             );
         }
 
@@ -116,7 +113,7 @@ class IntersectionTest extends TestCase
         ];
         foreach ($coordinates as $coordinate) {
             $polygonRightOutside->addPoint(
-                new Point($coordinate[0], $coordinate[1])
+                new Coordinate($coordinate[0], $coordinate[1])
             );
         }
 
