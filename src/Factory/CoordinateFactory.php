@@ -155,7 +155,7 @@ class CoordinateFactory implements GeometryFactoryInterface
         return preg_replace_callback(
             '/(\d+)(°|\s)\s*(\d+)(\'|′|\s)(\s*([0-9\.]*))("|\'\'|″|′′)?/u',
             static function (array $matches): string {
-                return sprintf('%d %f', $matches[1], $matches[3] + (float)$matches[6] / 60);
+                return sprintf('%d %f', $matches[1], (float)$matches[3] + (float)$matches[6] / 60);
             },
             $string
         );
