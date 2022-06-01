@@ -6,21 +6,10 @@ namespace Location;
 
 use Location\CardinalDirection\CardinalDirection;
 
-/**
- * Trait IntersectionTrait
- *
- * @package Location
- */
 trait IntersectionTrait
 {
-    /**
-     * Checks if this geometry intersects the given geometry.
-     *
-     * @return bool
-     */
     public function intersects($geometry, bool $precise = false): bool
     {
-        // Handle points
         if (
             is_a($geometry, 'Location\Coordinate') ||
             is_a($geometry, 'Location\Point')
@@ -28,19 +17,15 @@ trait IntersectionTrait
             return $this->contains($geometry);
         }
 
-        // Compare precise geometries
         if ($precise === true) {
             return $this->intersectsGeometry($geometry);
         }
 
-        // Compare geometries by bounds
         return $this->intersectsBounds($geometry->getBounds());
     }
 
     /**
      * Checks if this geometry's bounds and the given bounds intersect.
-     *
-     * @return bool
      */
     public function intersectsBounds(Bounds $bounds2): bool
     {
@@ -74,8 +59,6 @@ trait IntersectionTrait
     /**
      * Checks if this geometry and the given geometry intersect by checking
      * their segments for intersections.
-     *
-     * @return bool
      */
     public function intersectsGeometry($geometry): bool
     {

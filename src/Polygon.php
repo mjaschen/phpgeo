@@ -7,12 +7,6 @@ namespace Location;
 use Location\Distance\DistanceInterface;
 use Location\Formatter\Polygon\FormatterInterface;
 
-/**
- * Polygon Implementation
- *
- * @author Paul Vidal <paul.vidal.lujan@gmail.com>
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class Polygon implements GeometryInterface
 {
     use GetBoundsTrait;
@@ -104,8 +98,6 @@ class Polygon implements GeometryInterface
     }
 
     /**
-     * Returns an array containing the line segments.
-     *
      * @return array<Line>
      */
     public function getSegments(): array

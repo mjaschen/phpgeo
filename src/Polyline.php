@@ -106,8 +106,6 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * Returns an array containing the line segments.
-     *
      * @return array<Line>
      */
     public function getSegments(): array
