@@ -156,4 +156,14 @@ class Coordinate implements GeometryInterface
     {
         return !($value < $lower || $value > $upper);
     }
+
+    public function getBounds(): Bounds
+    {
+        throw new \RuntimeException('A single point instance does not provide valid bounds', 5650648759);
+    }
+
+    public function getSegments(): array
+    {
+        throw new \RuntimeException('A single point instance does not contain valid segments', 6029644914);
+    }
 }

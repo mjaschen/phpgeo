@@ -12,4 +12,11 @@ interface GeometryInterface
      * @return array<Coordinate>
      */
     public function getPoints(): array;
+
+    /**
+     * @return array<Line>
+     */
+    public function getSegments(): array;
+
+    public function getBounds(): Bounds;
 }
