@@ -7,9 +7,6 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
-    <!--The complete PSR-2 rule set-->
-    <rule ref="PSR2"/>
-
     <!--The complete PSR-12 rule set-->
     <rule ref="PSR12"/>
 
