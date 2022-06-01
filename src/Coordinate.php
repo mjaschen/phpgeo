@@ -9,6 +9,7 @@ use Location\CardinalDirection\CardinalDirectionDistances;
 use Location\CardinalDirection\CardinalDirectionDistancesCalculator;
 use Location\Distance\DistanceInterface;
 use Location\Distance\Haversine;
+use Location\Exception\InvalidGeometryException;
 use Location\Formatter\Coordinate\FormatterInterface;
 
 /**
@@ -130,7 +131,11 @@ class Coordinate implements GeometryInterface
             return $this->hasSameLocation($geometry);
         }
 
-        return $geometry->contains($this);
+        if ($geometry instanceof Polygon) {
+            return $geometry->contains($this);
+        }
+
+        throw new InvalidGeometryException('Only polygons can contain other geometries', 1655191821);
     }
 
     public function format(FormatterInterface $formatter): string
