@@ -43,6 +43,24 @@ docker run -it --rm --name phpgeo-phpunit \
     php vendor/bin/phpunit
 ```
 
+PHP 8.1:
+
+``` shell
+docker run -it --rm --name phpgeo-phpunit \
+    -v "$PWD":/usr/src/phpgeo \
+    -w /usr/src/phpgeo php:8.1-cli \
+    php vendor/bin/phpunit
+```
+
+… or run all CI tasks at once:
+
+```shell
+for PHP_VERSION in 7.3 7.4 8.0 8.1 ; do \
+  docker run -it --rm -v "$PWD":/phpgeo -w /phpgeo \
+  php:${PHP_VERSION}-cli-mj composer ci \
+done
+```
+
 Besides the unit tests, static test runners are also provided. Run the lint
 command to ensure the sources don't contain any syntax error:
 
