@@ -83,7 +83,7 @@ phpgeo provides the following features (follow the links for examples):
 - [length/distance/perimeter calculations](https://phpgeo.marcusjaschen.de/Calculations/Distance_and_Length.html)
   with different implementations (Haversine, Vincenty)
 - [Geofence](https://phpgeo.marcusjaschen.de/Calculations/Geofence.html) calculation,
-  i. e. answering the question "Is this point contained in that area/polygon?"
+  i.e. answering the question "Is this point contained in that area/polygon?" and other [intersection](https://phpgeo.marcusjaschen.de/Comparisons/Intersections.html) checks between different geometries
 - [formatting and output](https://phpgeo.marcusjaschen.de/Formatting_and_Output/index.html) of geometry objects
   (GeoJSON, nice strings, e. g. `18° 54′ 41″ -155° 40′ 42″`)
 - calculation of [bearing angle between two points](https://phpgeo.marcusjaschen.de/Calculations/Bearing_and_Destination.html#page_Bearing-between-two-points)
@@ -263,17 +263,11 @@ Psalm:
 ./vendor/bin/psalm
 ```
 
-## Miscellaneous
-
-[@clemdesign](https://github.com/clemdesign) created a [TypeScript port](https://github.com/clemdesign/typescript-tsgeo) of phpgeo.
-
 ## Credits
 
-* Marcus Jaschen <mail@marcusjaschen.de>
+* Marcus Jaschen <mail@marcusjaschen.de> and [all contributors](https://github.com/mjaschen/phpgeo/graphs/contributors)
 * [Chris Veness](http://www.movable-type.co.uk/scripts/latlong-vincenty.html) - JavaScript implementation of the [Vincenty formula](http://en.wikipedia.org/wiki/Vincenty%27s_formulae) for distance calculation
 * Ersts,P.J., Horning, N., and M. Polin[Internet] Perpendicular Distance Calculator(version 1.2.2) [Documentation](http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php). American Museum of Natural History, Center for Biodiversity and Conservation. Available from http://biodiversityinformatics.amnh.org/open_source/pdc. Accessed on 2013-07-07.
 * W. Randolph Franklin, PNPOLY - Point Inclusion in Polygon Test [Documentation](http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html)
-* [Richard Barnes](https://github.com/r-barnes) Polyline GeoJSON Formatter
-* [Paul Vidal](https://github.com/paulvl) Polygon Implementation
 
 [Psalm]: https://github.com/vimeo/psalm
