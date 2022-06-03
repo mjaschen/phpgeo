@@ -37,10 +37,10 @@ class Intersection
         $direction = new Direction();
 
         return !(
-            $direction->isEastOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getSouthEast())
-            || $direction->isSouthOf($geometry1->getBounds()->getNorthWest(), $geometry2->getBounds()->getSouthWest())
-            || $direction->isWestOf($geometry1->getBounds()->getSouthEast(), $geometry2->getBounds()->getSouthWest())
-            || $direction->isNorthOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getNorthWest())
+            $direction->pointIsEastOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getSouthEast())
+            || $direction->pointIsSouthOf($geometry1->getBounds()->getNorthWest(), $geometry2->getBounds()->getSouthWest())
+            || $direction->pointIsWestOf($geometry1->getBounds()->getSouthEast(), $geometry2->getBounds()->getSouthWest())
+            || $direction->pointIsNorthOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getNorthWest())
         );
     }
 
