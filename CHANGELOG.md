@@ -3,6 +3,18 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [5.0.0] - 2022-06-03
+
+This release has no breaking changes. Thanks, @nilshoerrmann, for contributing!
+
+### Added
+
+- method `Bounds::getAsPolygon()` which returns a polygon containing the four nodes of the Bounds instance
+- methods `Bounds::getNorthEast()` and `Bounds::getSouthWest()`
+- new public methods: `CardinalDirection::isStrictlyNorth()`, `CardinalDirection::isStrictlyEast()`, `CardinalDirection::isStrictlySouth()` and `CardinalDirection::isStrictlyWest()`
+- new class `Direction` for checking if one point is north, eat, south or west from another point
+- new Class `Intersection` for checking if two geometries intersect each other
+
 ## [4.0.0] - 2021-11-29
 
 ### Changed
