@@ -35,12 +35,14 @@ class Intersection
     public function intersectsBounds(GeometryInterface $geometry1, GeometryInterface $geometry2): bool
     {
         $direction = new Direction();
+        $bounds1 = $geometry1->getBounds();
+        $bounds2 = $geometry2->getBounds();
 
         return !(
-            $direction->pointIsEastOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getSouthEast())
-            || $direction->pointIsSouthOf($geometry1->getBounds()->getNorthWest(), $geometry2->getBounds()->getSouthWest())
-            || $direction->pointIsWestOf($geometry1->getBounds()->getSouthEast(), $geometry2->getBounds()->getSouthWest())
-            || $direction->pointIsNorthOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getNorthWest())
+            $direction->pointIsEastOf($bounds1->getSouthWest(), $bounds2->getSouthEast())
+            || $direction->pointIsSouthOf($bounds1->getNorthWest(), $bounds2->getSouthWest())
+            || $direction->pointIsWestOf($bounds1->getSouthEast(), $bounds2->getSouthWest())
+            || $direction->pointIsNorthOf($bounds1->getSouthWest(), $bounds2->getNorthWest())
         );
     }
 
