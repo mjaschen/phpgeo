@@ -23,7 +23,7 @@ class IntersectionTest extends TestCase
             [51.983342, 10.132727],
             [52.083498, 10.699142],
             [52.457087, 10.590607],
-            [52.56571, 9.998658]
+            [52.56571, 9.998658],
         ];
 
         $this->polygon = new Polygon();
@@ -105,7 +105,7 @@ class IntersectionTest extends TestCase
             [52.518432, 9.77791],
             [51.807794, 9.871935],
             [51.809766, 9.886408],
-            [51.990136, 9.438747]
+            [51.990136, 9.438747],
         ];
         foreach ($coordinates as $coordinate) {
             $polygonLeftIntersecting->addPoint(
@@ -119,7 +119,7 @@ class IntersectionTest extends TestCase
             [52.326314, 10.787294],
             [52.317063, 11.117259],
             [52.317063, 11.117259],
-            [52.533043, 10.747941]
+            [52.533043, 10.747941],
         ];
         foreach ($coordinates as $coordinate) {
             $polygonRightOutside->addPoint(
@@ -151,12 +151,12 @@ class IntersectionTest extends TestCase
         $polyline1 = new Polyline();
         $polyline1->addPoint(new Coordinate(-4, -2));
         $polyline1->addPoint(new Coordinate(5, 2));
-        $polyline1->addPoint(new Coordinate(-1,7));
+        $polyline1->addPoint(new Coordinate(-1, 7));
         $polyline1->addPoint(new Coordinate(-3, 4));
 
         $polyline2 = new Polyline();
-        $polyline2->addPoint(new Coordinate(-8,3));
-        $polyline2->addPoint(new Coordinate(-5,-5));
+        $polyline2->addPoint(new Coordinate(-8, 3));
+        $polyline2->addPoint(new Coordinate(-5, -5));
         $polyline2->addPoint(new Coordinate(4, -3));
 
         $polyline4 = new Polyline();
