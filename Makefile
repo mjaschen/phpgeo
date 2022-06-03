@@ -4,22 +4,13 @@ UPLOAD_PATH=phpgeo.marcusjaschen.de
 PHP ?= php
 
 .PHONY: docs
-docs: daux apidocs
+docs: daux
 
 .PHONY: daux
 daux:
 	rm -Rf build/daux
 	mkdir -p build/daux
 	docker run --rm -v "$(PWD)":/src -w /src daux/daux.io daux generate -d build/daux
-
-.PHONY: apidocs
-apidocs:
-	mkdir -p build
-	mkdir -p build/coverage
-	$(PHP) ./vendor/bin/phploc --log-xml=build/phploc.xml src tests
-	$(PHP) ./vendor/bin/phpcs --report-xml=build/phpcs.xml src
-	$(PHP) ./vendor/bin/phpunit --coverage-xml build/coverage --coverage-html build/coverage
-	$(PHP) ./vendor/bin/phpdox
 
 .PHONY: clean
 clean:

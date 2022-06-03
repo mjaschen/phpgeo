@@ -48,8 +48,6 @@ The 1.x release line has support for PHP >= 5.4. Bugfixes won't be backported.
 
 The documentation is available at https://phpgeo.marcusjaschen.de/
 
-API documentation is available as well: https://phpgeo.marcusjaschen.de/api/
-
 ## Installation
 
 Using [Composer](https://getcomposer.org), just add it to your `composer.json` by running:

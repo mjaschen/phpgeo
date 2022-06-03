@@ -52,16 +52,7 @@ docker run -it --rm --name phpgeo-phpunit \
     php vendor/bin/phpunit
 ```
 
-… or run all CI tasks at once:
-
-```shell
-for PHP_VERSION in 7.3 7.4 8.0 8.1 ; do \
-  docker run -it --rm -v "$PWD":/phpgeo -w /phpgeo \
-  php:${PHP_VERSION}-cli-mj composer ci \
-done
-```
-
-Besides the unit tests, static test runners are also provided. Run the lint
+Alongside with the unit tests, static test runners are also provided. Run the lint
 command to ensure the sources don't contain any syntax error:
 
 ``` shell
@@ -80,6 +71,15 @@ It's possible to run all tests at once:
 composer ci
 ```
 
+… or run all CI tasks with different PHP versions one after another:
+
+```shell
+for PHP_VERSION in 7.3 7.4 8.0 8.1 ; do \
+  docker run -it --rm -v "$PWD":/phpgeo -w /phpgeo \
+  php:${PHP_VERSION}-cli-mj composer ci \
+done
+```
+
 ## Creating the documentation
 
 *phpgeo's* documentation is generated with [Daux](https://daux.io/) from Markdown files.
@@ -93,12 +93,4 @@ make docs
 
 ``` shell
 docker run --rm -it -v "$(pwd)":/phpgeo -w /phpgeo daux/daux.io daux generate -d build/daux
-```
-
-### API Documentation
-
-*phpgeo's* API documentation is generated with *[phpdox](http://phpdox.de/):*
-
-```shell
-make apidocs
 ```

@@ -22,9 +22,3 @@ composer require mjaschen/phpgeo
 ```
 
 _phpgeo_ is now ready to be used in your project!
-
-## Installation of Development Tools
-
-Most of the development dependencies are managed with [Phive](https://phar.io/).
-
-For that you have to install Phive first. Now a simple `phive install -c` fetches all required Phar archives and installs them into the `tools` directory.
