@@ -26,22 +26,21 @@ class Intersection
             return $this->intersectsGeometry($geometry1, $geometry2);
         }
 
-        return $this->intersectsBounds($geometry1, $geometry2->getBounds());
+        return $this->intersectsBounds($geometry1, $geometry2);
     }
 
     /**
      * Checks if this geometry's bounds and the given bounds intersect.
      */
-    public function intersectsBounds(GeometryInterface $geometry, Bounds $otherBounds): bool
+    public function intersectsBounds(GeometryInterface $geometry1, GeometryInterface $geometry2): bool
     {
         $direction = new Direction();
-        $bounds = $geometry->getBounds();
 
         return !(
-            $direction->isEastOf($bounds->getSouthWest(), $otherBounds->getSouthEast())
-            || $direction->isSouthOf($bounds->getNorthWest(), $otherBounds->getSouthWest())
-            || $direction->isWestOf($bounds->getSouthEast(), $otherBounds->getSouthWest())
-            || $direction->isNorthOf($bounds->getSouthWest(), $otherBounds->getNorthWest())
+            $direction->isEastOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getSouthEast())
+            || $direction->isSouthOf($geometry1->getBounds()->getNorthWest(), $geometry2->getBounds()->getSouthWest())
+            || $direction->isWestOf($geometry1->getBounds()->getSouthEast(), $geometry2->getBounds()->getSouthWest())
+            || $direction->isNorthOf($geometry1->getBounds()->getSouthWest(), $geometry2->getBounds()->getNorthWest())
         );
     }
 
