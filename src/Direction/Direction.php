@@ -8,23 +8,23 @@ use Location\Coordinate;
 
 class Direction
 {
-    public function isNorthOf(Coordinate $point1, Coordinate $point2): bool
+    public function isNorthOf(Coordinate $point, Coordinate $compareAgainst): bool
     {
-        return $point1->getLat() > $point2->getLat();
+        return $point->getLat() > $compareAgainst->getLat();
     }
 
-    public function isSouthOf(Coordinate $point1, Coordinate $point2): bool
+    public function isSouthOf(Coordinate $point, Coordinate $compareAgainst): bool
     {
-        return $point1->getLat() < $point2->getLat();
+        return $point->getLat() < $compareAgainst->getLat();
     }
 
-    public function isEastOf(Coordinate $point1, Coordinate $point2): bool
+    public function isEastOf(Coordinate $point, Coordinate $compareAgainst): bool
     {
-        return $point1->getLng() > $point2->getLng();
+        return $point->getLng() > $compareAgainst->getLng();
     }
 
-    public function isWestOf(Coordinate $point1, Coordinate $point2): bool
+    public function isWestOf(Coordinate $point, Coordinate $compareAgainst): bool
     {
-        return $point1->getLng() < $point2->getLng();
+        return $point->getLng() < $compareAgainst->getLng();
     }
 }
