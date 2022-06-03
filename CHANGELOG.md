@@ -3,7 +3,7 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [5.0.0] - 2022-06-03
+## [4.1.0] - 2022-06-03
 
 This release has no breaking changes. Thanks, @nilshoerrmann, for contributing!
 
