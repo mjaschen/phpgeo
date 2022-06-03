@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Location;
 
-use Location\CardinalDirection\CardinalDirection;
+use Location\Direction\Direction;
 
 trait IntersectionTrait
 {
@@ -26,7 +26,7 @@ trait IntersectionTrait
      */
     public function intersectsBounds(Bounds $otherBounds): bool
     {
-        $direction = new CardinalDirection();
+        $direction = new Direction();
         $bounds = $this->getBounds();
 
         return !(

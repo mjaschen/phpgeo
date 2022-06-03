@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Location\CardinalDirection;
 
 use Location\Coordinate;
+use Location\Direction\Direction;
 
 class CardinalDirection
 {
@@ -18,20 +19,30 @@ class CardinalDirection
     public const CARDINAL_DIRECTION_SOUTHEAST = 'south-east';
     public const CARDINAL_DIRECTION_SOUTHWEST = 'south-west';
 
+    /**
+     * @var Direction
+     */
+    private $direction;
+
+    public function __construct()
+    {
+        $this->direction = new Direction();
+    }
+
     public function getCardinalDirection(Coordinate $point1, Coordinate $point2): string
     {
         $directionFunctionMapping = [
             self::CARDINAL_DIRECTION_NORTH => function (Coordinate $point1, Coordinate $point2): bool {
-                return $this->isOnlyNorth($point1, $point2);
+                return $this->isStrictlyNorth($point1, $point2);
             },
             self::CARDINAL_DIRECTION_EAST => function (Coordinate $point1, Coordinate $point2): bool {
-                return $this->isOnlyEast($point1, $point2);
+                return $this->isStrictlyEast($point1, $point2);
             },
             self::CARDINAL_DIRECTION_SOUTH => function (Coordinate $point1, Coordinate $point2): bool {
-                return $this->isOnlySouth($point1, $point2);
+                return $this->isStrictlySouth($point1, $point2);
             },
             self::CARDINAL_DIRECTION_WEST => function (Coordinate $point1, Coordinate $point2): bool {
-                return $this->isOnlyWest($point1, $point2);
+                return $this->isStrictlyWest($point1, $point2);
             },
             self::CARDINAL_DIRECTION_NORTHEAST => function (Coordinate $point1, Coordinate $point2): bool {
                 return $this->isNorthEast($point1, $point2);
@@ -56,87 +67,67 @@ class CardinalDirection
         return self::CARDINAL_DIRECTION_NONE;
     }
 
-    public function isOnlyNorth(Coordinate $point1, Coordinate $point2): bool
+    private function isStrictlyNorth(Coordinate $point1, Coordinate $point2): bool
     {
-        return !$this->isEastOf($point1, $point2)
-            && !$this->isSouthOf($point1, $point2)
-            && !$this->isWestOf($point1, $point2)
-            && $this->isNorthOf($point1, $point2);
+        return !$this->direction->isEastOf($point1, $point2)
+            && !$this->direction->isSouthOf($point1, $point2)
+            && !$this->direction->isWestOf($point1, $point2)
+            && $this->direction->isNorthOf($point1, $point2);
     }
 
-    public function isOnlyEast(Coordinate $point1, Coordinate $point2): bool
+    private function isStrictlyEast(Coordinate $point1, Coordinate $point2): bool
     {
-        return $this->isEastOf($point1, $point2)
-            && !$this->isSouthOf($point1, $point2)
-            && !$this->isWestOf($point1, $point2)
-            && !$this->isNorthOf($point1, $point2);
+        return $this->direction->isEastOf($point1, $point2)
+            && !$this->direction->isSouthOf($point1, $point2)
+            && !$this->direction->isWestOf($point1, $point2)
+            && !$this->direction->isNorthOf($point1, $point2);
     }
 
-    public function isOnlySouth(Coordinate $point1, Coordinate $point2): bool
+    private function isStrictlySouth(Coordinate $point1, Coordinate $point2): bool
     {
-        return !$this->isEastOf($point1, $point2)
-            && $this->isSouthOf($point1, $point2)
-            && !$this->isWestOf($point1, $point2)
-            && !$this->isNorthOf($point1, $point2);
+        return !$this->direction->isEastOf($point1, $point2)
+            && $this->direction->isSouthOf($point1, $point2)
+            && !$this->direction->isWestOf($point1, $point2)
+            && !$this->direction->isNorthOf($point1, $point2);
     }
 
-    public function isOnlyWest(Coordinate $point1, Coordinate $point2): bool
+    private function isStrictlyWest(Coordinate $point1, Coordinate $point2): bool
     {
-        return !$this->isEastOf($point1, $point2)
-            && !$this->isSouthOf($point1, $point2)
-            && $this->isWestOf($point1, $point2)
-            && !$this->isNorthOf($point1, $point2);
+        return !$this->direction->isEastOf($point1, $point2)
+            && !$this->direction->isSouthOf($point1, $point2)
+            && $this->direction->isWestOf($point1, $point2)
+            && !$this->direction->isNorthOf($point1, $point2);
     }
 
-    public function isNorthEast(Coordinate $point1, Coordinate $point2): bool
+    private function isNorthEast(Coordinate $point1, Coordinate $point2): bool
     {
-        return $this->isEastOf($point1, $point2)
-            && !$this->isSouthOf($point1, $point2)
-            && !$this->isWestOf($point1, $point2)
-            && $this->isNorthOf($point1, $point2);
+        return $this->direction->isEastOf($point1, $point2)
+            && !$this->direction->isSouthOf($point1, $point2)
+            && !$this->direction->isWestOf($point1, $point2)
+            && $this->direction->isNorthOf($point1, $point2);
     }
 
-    public function isSouthEast(Coordinate $point1, Coordinate $point2): bool
+    private function isSouthEast(Coordinate $point1, Coordinate $point2): bool
     {
-        return $this->isEastOf($point1, $point2)
-            && $this->isSouthOf($point1, $point2)
-            && !$this->isWestOf($point1, $point2)
-            && !$this->isNorthOf($point1, $point2);
+        return $this->direction->isEastOf($point1, $point2)
+            && $this->direction->isSouthOf($point1, $point2)
+            && !$this->direction->isWestOf($point1, $point2)
+            && !$this->direction->isNorthOf($point1, $point2);
     }
 
-    public function isSouthWest(Coordinate $point1, Coordinate $point2): bool
+    private function isSouthWest(Coordinate $point1, Coordinate $point2): bool
     {
-        return !$this->isEastOf($point1, $point2)
-            && $this->isSouthOf($point1, $point2)
-            && $this->isWestOf($point1, $point2)
-            && !$this->isNorthOf($point1, $point2);
+        return !$this->direction->isEastOf($point1, $point2)
+            && $this->direction->isSouthOf($point1, $point2)
+            && $this->direction->isWestOf($point1, $point2)
+            && !$this->direction->isNorthOf($point1, $point2);
     }
 
-    public function isNorthWest(Coordinate $point1, Coordinate $point2): bool
+    private function isNorthWest(Coordinate $point1, Coordinate $point2): bool
     {
-        return !$this->isEastOf($point1, $point2)
-            && !$this->isSouthOf($point1, $point2)
-            && $this->isWestOf($point1, $point2)
-            && $this->isNorthOf($point1, $point2);
-    }
-
-    public function isNorthOf(Coordinate $point1, Coordinate $point2): bool
-    {
-        return $point1->getLat() > $point2->getLat();
-    }
-
-    public function isSouthOf(Coordinate $point1, Coordinate $point2): bool
-    {
-        return $point1->getLat() < $point2->getLat();
-    }
-
-    public function isEastOf(Coordinate $point1, Coordinate $point2): bool
-    {
-        return $point1->getLng() > $point2->getLng();
-    }
-
-    public function isWestOf(Coordinate $point1, Coordinate $point2): bool
-    {
-        return $point1->getLng() < $point2->getLng();
+        return !$this->direction->isEastOf($point1, $point2)
+            && !$this->direction->isSouthOf($point1, $point2)
+            && $this->direction->isWestOf($point1, $point2)
+            && $this->direction->isNorthOf($point1, $point2);
     }
 }
