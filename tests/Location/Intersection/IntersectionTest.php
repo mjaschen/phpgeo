@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Location;
+namespace Location\Intersection;
 
+use Location\Coordinate;
+use Location\Line;
+use Location\Polygon;
 use PHPUnit\Framework\TestCase;
 
 class IntersectionTest extends TestCase
@@ -48,45 +51,51 @@ class IntersectionTest extends TestCase
             new Coordinate(51.859671, 10.812188)
         );
 
+        $intersection = new Intersection();
+
         // By bounds
         $this->assertTrue(
-            $lineCenterCrossing->intersects($this->polygon, false)
+            $intersection->intersects($lineCenterCrossing, $this->polygon, false)
         );
-        $this->assertFalse($lineTop->intersects($this->polygon, false));
-        $this->assertFalse($lineBottom->intersects($this->polygon, false));
-        $this->assertTrue($lineRight->intersects($this->polygon, false));
+        $this->assertFalse($intersection->intersects($lineTop, $this->polygon, false));
+        $this->assertFalse($intersection->intersects($lineBottom, $this->polygon, false));
+        $this->assertTrue($intersection->intersects($lineRight, $this->polygon, false));
 
         // By shape
         $this->assertTrue(
-            $lineCenterCrossing->intersects($this->polygon, true)
+            $intersection->intersects($lineCenterCrossing, $this->polygon, true)
         );
-        $this->assertFalse($lineTop->intersects($this->polygon, true));
-        $this->assertFalse($lineBottom->intersects($this->polygon, true));
-        $this->assertFalse($lineRight->intersects($this->polygon, true));
+        $this->assertFalse($intersection->intersects($lineTop, $this->polygon, true));
+        $this->assertFalse($intersection->intersects($lineBottom, $this->polygon, true));
+        $this->assertFalse($intersection->intersects($lineRight, $this->polygon, true));
     }
 
     public function testCoordinateIntersections(): void
     {
+        $intersection = new Intersection();
+
         // Coordinates
-        $CoordinateContained = new Coordinate(52.328745, 10.151638);
-        $CoordinateOutside = new Coordinate(52.549057, 10.475242);
-        $CoordinateOutsideLine = new Coordinate(52.252717, 10.728334);
+        $pointContained = new Coordinate(52.328745, 10.151638);
+        $pointOutside = new Coordinate(52.549057, 10.475242);
+        $pointOutsideLine = new Coordinate(52.252717, 10.728334);
 
         // By bounds
-        $this->assertTrue($CoordinateContained->intersects($this->polygon, false));
-        $this->assertFalse($CoordinateOutside->intersects($this->polygon, false));
+        $this->assertTrue($intersection->intersects($pointContained, $this->polygon, false));
+        $this->assertFalse($intersection->intersects($pointOutside, $this->polygon, false));
         $this->assertFalse(
-            $CoordinateOutsideLine->intersects($this->polygon, false)
+            $intersection->intersects($pointOutsideLine, $this->polygon, false)
         );
 
         // By shape
-        $this->assertTrue($CoordinateContained->intersects($this->polygon, true));
-        $this->assertFalse($CoordinateOutside->intersects($this->polygon, true));
-        $this->assertFalse($CoordinateOutsideLine->intersects($this->polygon, true));
+        $this->assertTrue($intersection->intersects($pointContained, $this->polygon, true));
+        $this->assertFalse($intersection->intersects($pointOutside, $this->polygon, true));
+        $this->assertFalse($intersection->intersects($pointOutsideLine, $this->polygon, true));
     }
 
     public function testPolygonIntersections(): void
     {
+        $intersection = new Intersection();
+
         // Polygons
         $polygonLeftIntersecting = new Polygon();
         $coordinates = [
@@ -119,18 +128,18 @@ class IntersectionTest extends TestCase
 
         // By bounds
         $this->assertTrue(
-            $polygonLeftIntersecting->intersects($this->polygon, false)
+            $intersection->intersects($polygonLeftIntersecting, $this->polygon, false)
         );
         $this->assertFalse(
-            $polygonRightOutside->intersects($this->polygon, false)
+            $intersection->intersects($polygonRightOutside, $this->polygon, false)
         );
 
         // By shape
         $this->assertTrue(
-            $polygonLeftIntersecting->intersects($this->polygon, true)
+            $intersection->intersects($polygonLeftIntersecting, $this->polygon, true)
         );
         $this->assertFalse(
-            $polygonRightOutside->intersects($this->polygon, true)
+            $intersection->intersects($polygonRightOutside, $this->polygon, true)
         );
     }
 }

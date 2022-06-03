@@ -166,7 +166,7 @@ class Coordinate implements GeometryInterface
 
     public function getBounds(): Bounds
     {
-        throw new \RuntimeException('A single point instance does not provide valid bounds', 5650648759);
+        return new Bounds($this, $this);
     }
 
     public function getSegments(): array

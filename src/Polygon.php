@@ -10,7 +10,6 @@ use Location\Formatter\Polygon\FormatterInterface;
 class Polygon implements GeometryInterface
 {
     use GetBoundsTrait;
-    use IntersectionTrait;
 
     /**
      * @var array<Coordinate>

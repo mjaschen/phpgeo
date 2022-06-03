@@ -16,7 +16,6 @@ use Location\Formatter\Polyline\FormatterInterface;
 class Polyline implements GeometryInterface
 {
     use GetBoundsTrait;
-    use IntersectionTrait;
 
     /**
      * @var array<Coordinate>

@@ -6,6 +6,7 @@ namespace Location;
 
 use Location\Bearing\BearingInterface;
 use Location\Distance\DistanceInterface;
+use Location\Intersection\Intersection;
 use Location\Utility\Cartesian;
 use RuntimeException;
 
@@ -17,7 +18,6 @@ use RuntimeException;
 class Line implements GeometryInterface
 {
     use GetBoundsTrait;
-    use IntersectionTrait;
 
     public const ORIENTATION_COLLINEAR = 0;
     public const ORIENTATION_CLOCKWISE = 1;
@@ -269,7 +269,7 @@ class Line implements GeometryInterface
         // the lines are collinear or touch
         if (
             in_array(self::ORIENTATION_COLLINEAR, $orientation, true)
-            && $this->intersectsBounds($line->getBounds())
+            && (new Intersection())->intersectsBounds($this, $line->getBounds())
         ) {
             return true;
         }
