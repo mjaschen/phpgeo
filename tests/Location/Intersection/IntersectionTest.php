@@ -7,6 +7,7 @@ namespace Location\Intersection;
 use Location\Coordinate;
 use Location\Line;
 use Location\Polygon;
+use Location\Polyline;
 use PHPUnit\Framework\TestCase;
 
 class IntersectionTest extends TestCase
@@ -141,5 +142,69 @@ class IntersectionTest extends TestCase
         $this->assertFalse(
             $intersection->intersects($polygonRightOutside, $this->polygon, true)
         );
+    }
+
+    public function testPolylineIntersections(): void
+    {
+        $intersection = new Intersection();
+
+        $polyline1 = new Polyline();
+        $polyline1->addPoint(new Coordinate(-4, -2));
+        $polyline1->addPoint(new Coordinate(5, 2));
+        $polyline1->addPoint(new Coordinate(-1,7));
+        $polyline1->addPoint(new Coordinate(-3, 4));
+
+        $polyline2 = new Polyline();
+        $polyline2->addPoint(new Coordinate(-8,3));
+        $polyline2->addPoint(new Coordinate(-5,-5));
+        $polyline2->addPoint(new Coordinate(4, -3));
+
+        $polyline4 = new Polyline();
+        $polyline4->addPoint(new Coordinate(1, 10));
+        $polyline4->addPoint(new Coordinate(-1, 5));
+        $polyline4->addPoint(new Coordinate(-6, 9));
+
+        $polyline3 = new Polyline();
+        $polyline3->addPoint(new Coordinate(11, 13));
+        $polyline3->addPoint(new Coordinate(21, 14));
+        $polyline3->addPoint(new Coordinate(15, 18));
+
+        $polyline5 = new Polyline();
+        $polyline5->addPoint(new Coordinate(9, 22));
+        $polyline5->addPoint(new Coordinate(13, 24));
+        $polyline5->addPoint(new Coordinate(14, 20));
+        $polyline5->addPoint(new Coordinate(8, 15));
+
+        // By bounds
+        $this->assertTrue($intersection->intersects($polyline3, $polyline5, false));
+        $this->assertTrue($intersection->intersects($polyline5, $polyline3, false));
+
+        $this->assertFalse($intersection->intersects($polyline2, $polyline3, false));
+        $this->assertFalse($intersection->intersects($polyline3, $polyline2, false));
+
+        $this->assertTrue($intersection->intersects($polyline1, $polyline2, false));
+        $this->assertTrue($intersection->intersects($polyline2, $polyline1, false));
+
+        $this->assertTrue($intersection->intersects($polyline1, $polyline4, false));
+        $this->assertTrue($intersection->intersects($polyline4, $polyline1, false));
+
+        // By shape
+        $this->assertTrue($intersection->intersects($polyline1, $polyline4, true));
+        $this->assertTrue($intersection->intersects($polyline4, $polyline1, true));
+
+        $this->assertFalse($intersection->intersects($polyline1, $polyline3, true));
+        $this->assertFalse($intersection->intersects($polyline3, $polyline1, true));
+
+        $this->assertFalse($intersection->intersects($polyline1, $polyline5, true));
+        $this->assertFalse($intersection->intersects($polyline5, $polyline1, true));
+
+        $this->assertFalse($intersection->intersects($polyline2, $polyline3, true));
+        $this->assertFalse($intersection->intersects($polyline3, $polyline2, true));
+
+        $this->assertFalse($intersection->intersects($polyline2, $polyline4, true));
+        $this->assertFalse($intersection->intersects($polyline4, $polyline2, true));
+
+        $this->assertFalse($intersection->intersects($polyline2, $polyline5, true));
+        $this->assertFalse($intersection->intersects($polyline5, $polyline2, true));
     }
 }
