@@ -3,9 +3,22 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [4.1.0] - 2022-06-03
+## Unreleased/Upcoming
 
-This release has no breaking changes. Thanks, @nilshoerrmann, for contributing!
+### Added
+
+- `GeometryInterface` provides two new methods: `getBounds()` and `getSegments()`
+
+### Removed
+
+- `setPoint1()` and `setPoint2()` methods from `Line`
+- `setSeparator()`, `useCardinalLetters()` and `setUnits()` methods from `DMS`
+
+## [4.1.0] - Current Version, 2022-06-03
+
+This release has no breaking changes.
+
+Thanks, @nilshoerrmann, for contributing!
 
 ### Added
 
