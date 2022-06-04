@@ -11,6 +11,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 
+- Support for PHP 7.3
 - `setPoint1()` and `setPoint2()` methods from `Line`
 - `setSeparator()`, `useCardinalLetters()` and `setUnits()` methods from `DMS`
 
