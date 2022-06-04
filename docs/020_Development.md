@@ -76,7 +76,7 @@ composer ci
 ```shell
 for PHP_VERSION in 7.3 7.4 8.0 8.1 ; do \
   docker run -it --rm -v "$PWD":/phpgeo -w /phpgeo \
-  php:${PHP_VERSION}-cli-mj composer ci ; \
+  ghcr.io/mjaschen/php:${PHP_VERSION}-cli-mj composer ci || break ; \
 done
 ```
 
