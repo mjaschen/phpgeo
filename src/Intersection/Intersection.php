@@ -59,6 +59,10 @@ class Intersection
      */
     private function intersectsGeometry(GeometryInterface $geometry1, GeometryInterface $geometry2): bool
     {
+        if ($geometry1 instanceof Coordinate && $geometry2 instanceof Coordinate) {
+            return $geometry1->hasSameLocation($geometry2);
+        }
+
         if ($geometry1 instanceof Coordinate || $geometry2 instanceof Coordinate) {
             throw new InvalidGeometryException('Only can check point intersections for polygons', 7311194789);
         }
