@@ -269,7 +269,7 @@ class Line implements GeometryInterface
         // the lines are collinear or touch
         if (
             in_array(self::ORIENTATION_COLLINEAR, $orientation, true)
-            && (new Intersection())->intersectsBounds($this, $line)
+            && (new Intersection())->intersects($this, $line, false)
         ) {
             return true;
         }
