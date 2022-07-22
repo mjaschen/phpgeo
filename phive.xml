@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<phive xmlns="https://phar.io/phive">
-  <phar name="phpdox" version="^0.12.0" installed="0.12.0" location="./tools/phpdox" copy="true"/>
-  <phar name="phpunit" version="^8.0" installed="8.5.4" location="./tools/phpunit" copy="true"/>
-  <phar name="phpcs" version="^3.0" installed="3.5.5" location="./tools/phpcs" copy="true"/>
-  <phar name="psalm" version="^3.0" installed="3.11.4" location="./tools/psalm" copy="true"/>
-  <phar name="phploc" version="^5.0" installed="5.0.0" location="./tools/phploc" copy="true"/>
-</phive>
