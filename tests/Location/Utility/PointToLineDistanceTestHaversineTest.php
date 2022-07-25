@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Location\Utility;
 
 use Location\Coordinate;
-use Location\Distance\Vincenty;
+use Location\Distance\Haversine;
 use Location\Line;
 use PHPUnit\Framework\TestCase;
 
-class PointToLineDistanceTestVincentyTest extends TestCase
+class PointToLineDistanceTestHaversineTest extends TestCase
 {
     /**
      * @var PointToLineDistance
@@ -17,16 +17,16 @@ class PointToLineDistanceTestVincentyTest extends TestCase
     private $pointToLineDistance;
 
     /**
-     * @var Vincenty
+     * @var Haversine
      */
-    private $vincenty;
+    private $haversine;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->vincenty = new Vincenty();
-        $this->pointToLineDistance = new PointToLineDistance($this->vincenty);
+        $this->haversine = new Haversine();
+        $this->pointToLineDistance = new PointToLineDistance($this->haversine);
     }
 
     public function testLineHasTheSameStartAndEndPoint(): void
@@ -35,7 +35,7 @@ class PointToLineDistanceTestVincentyTest extends TestCase
 
         $line = new Line(new Coordinate(52.5, 13.1), new Coordinate(52.5, 13.1));
 
-        $this->assertEquals(27164.059, $this->pointToLineDistance->getDistance($point, $line));
+        $this->assertEqualsWithDelta(27076, $this->pointToLineDistance->getDistance($point, $line), 1);
     }
 
     public function testLinePoint1IsNearer(): void
@@ -47,7 +47,7 @@ class PointToLineDistanceTestVincentyTest extends TestCase
         $line = new Line($linePoint1, $linePoint2);
 
         $this->assertEquals(
-            $point->getDistance($linePoint1, $this->vincenty),
+            $point->getDistance($linePoint1, $this->haversine),
             $this->pointToLineDistance->getDistance($point, $line)
         );
     }
@@ -72,7 +72,7 @@ class PointToLineDistanceTestVincentyTest extends TestCase
         $line = new Line($linePoint1, $linePoint2);
 
         $this->assertEqualsWithDelta(
-            $point->getDistance($linePoint2, $this->vincenty),
+            $point->getDistance($linePoint2, $this->haversine),
             $this->pointToLineDistance->getDistance($point, $line),
             0.001
         );
@@ -91,7 +91,6 @@ class PointToLineDistanceTestVincentyTest extends TestCase
 
     public function testPointIsSameLocationAsLineMidPoint(): void
     {
-
         $linePoint1 = new Coordinate(52.5, 13.1);
         $linePoint2 = new Coordinate(52.6, 13.12);
         $line = new Line($linePoint1, $linePoint2);
@@ -109,8 +108,8 @@ class PointToLineDistanceTestVincentyTest extends TestCase
         $linePoint2 = new Coordinate(52.07, 13.02);
         $line = new Line($linePoint1, $linePoint2);
 
-        $pl1Distance = $point->getDistance($linePoint1, $this->vincenty);
-        $pl2Distance = $point->getDistance($linePoint2, $this->vincenty);
+        $pl1Distance = $point->getDistance($linePoint1, $this->haversine);
+        $pl2Distance = $point->getDistance($linePoint2, $this->haversine);
         $plDistance = $this->pointToLineDistance->getDistance($point, $line);
 
         $this->assertLessThan($pl1Distance, $plDistance);
@@ -143,7 +142,7 @@ class PointToLineDistanceTestVincentyTest extends TestCase
         $linePoint2 = new Coordinate(52.1, 13.5);
         $line = new Line($linePoint1, $linePoint2);
 
-        $this->assertEqualsWithDelta(2069.9, $this->pointToLineDistance->getDistance($point, $line), 0.1);
+        $this->assertEqualsWithDelta(2068, $this->pointToLineDistance->getDistance($point, $line), 1);
     }
 
     public function testPointToLineDistanceCaseA()
@@ -151,8 +150,8 @@ class PointToLineDistanceTestVincentyTest extends TestCase
         $line = new Line(new Coordinate(55.9857757, 13.5475307), new Coordinate(55.9869533, 13.5509295));
         $point0a = new Coordinate(55.9839105, 13.5465958);
 
-        $this->assertEqualsWithDelta(215.636, $point0a->getDistance($line->getPoint1(), $this->vincenty), 0.1);
+        $this->assertEqualsWithDelta(215, $point0a->getDistance($line->getPoint1(), $this->haversine), 1);
 
-        $this->assertEqualsWithDelta(215.636, $this->pointToLineDistance->getDistance($point0a, $line), 0.1);
+        $this->assertEqualsWithDelta(215, $this->pointToLineDistance->getDistance($point0a, $line), 1);
     }
 }
