@@ -36,6 +36,10 @@ class PointToLineDistance
         $this->epsilon = $epsilon;
     }
 
+    /**
+     * @psalm-suppress InvalidReturnType
+     * @throws NotConvergingException
+     */
     public function getDistance(Coordinate $point, Line $line): float
     {
         if ($line->getPoint1()->hasSameLocation($line->getPoint2(), $this->epsilon)) {
@@ -45,6 +49,9 @@ class PointToLineDistance
             return 0.0;
         }
         if ($point->hasSameLocation($line->getPoint2(), $this->epsilon)) {
+            return 0.0;
+        }
+        if ($point->hasSameLocation($line->getMidpoint(), $this->epsilon)) {
             return 0.0;
         }
 
@@ -58,9 +65,8 @@ class PointToLineDistance
 
             $distancePointToLinePoint1 = $point->getDistance($linePoint1, $this->distanceCalculator);
             $distancePointToLinePoint2 = $point->getDistance($linePoint2, $this->distanceCalculator);
-            $distancePointToLineMidPoint = $point->getDistance($lineMidPoint, $this->distanceCalculator);
 
-            if (($distancePointToLinePoint1 + $distancePointToLineMidPoint) <= ($distancePointToLineMidPoint + $distancePointToLinePoint2)) {
+            if ($distancePointToLinePoint1 <= $distancePointToLinePoint2) {
                 $iterationLine = new Line($linePoint1, $lineMidPoint);
             } else {
                 $iterationLine = new Line($lineMidPoint, $linePoint2);
