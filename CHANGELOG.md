@@ -15,7 +15,14 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - `setPoint1()` and `setPoint2()` methods from `Line`
 - `setSeparator()`, `useCardinalLetters()` and `setUnits()` methods from `DMS`
 
-## [4.1.0] - Current Version, 2022-06-03
+## [4.2.0] - Current Version, 2022-07-25
+
+## Changed
+
+- point-to-line distance is calculated iteratively now, fixes #92
+- improved intersection checking for polygon/polygon
+
+## [4.1.0] - 2022-06-03
 
 This release has no breaking changes.
 
