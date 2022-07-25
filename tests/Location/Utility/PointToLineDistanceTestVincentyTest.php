@@ -9,7 +9,7 @@ use Location\Distance\Vincenty;
 use Location\Line;
 use PHPUnit\Framework\TestCase;
 
-class PointToLineDistanceTest extends TestCase
+class PointToLineDistanceTestVincenty extends TestCase
 {
     /**
      * @var PointToLineDistance
@@ -135,12 +135,23 @@ class PointToLineDistanceTest extends TestCase
         $this->assertEqualsWithDelta($pointToLineDistance, $perpendicularDistance, 0.3);
     }
 
+    public function testPointBetweenMidpointAndPoint2(): void
+    {
+        $point = new Coordinate(52.0419763, 13.3061232);
+
+        $linePoint1 = new Coordinate(52.0, 13.0);
+        $linePoint2 = new Coordinate(52.1, 13.5);
+        $line = new Line($linePoint1, $linePoint2);
+
+        $this->assertEqualsWithDelta(2069.9, $this->pointToLineDistance->getDistance($point, $line), 0.1);
+    }
+
     public function testPointToLineDistanceCaseA()
     {
         $line = new Line(new Coordinate(55.9857757, 13.5475307), new Coordinate(55.9869533, 13.5509295));
         $point0a = new Coordinate(55.9839105, 13.5465958);
 
-        $this->assertEqualsWithDelta(215.636, $point0a->getDistance($line->getPoint1(), new Vincenty()), 0.1);
+        $this->assertEqualsWithDelta(215.636, $point0a->getDistance($line->getPoint1(), $this->vincenty), 0.1);
 
         $this->assertEqualsWithDelta(215.636, $this->pointToLineDistance->getDistance($point0a, $line), 0.1);
     }
