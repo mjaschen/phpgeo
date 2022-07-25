@@ -21,13 +21,13 @@ class BearingSpherical implements BearingInterface
     private const EARTH_RADIUS = 6371009.0;
 
     /**
-     * This method calculates the initial bearing between the
-     * two points.
+     * This method calculates the initial bearing (forward azimut) between
+     * the two given points.
      *
      * @param Coordinate $point1
      * @param Coordinate $point2
      *
-     * @return float Bearing Angle
+     * @return float Bearing Angle in degrees
      */
     public function calculateBearing(Coordinate $point1, Coordinate $point2): float
     {
