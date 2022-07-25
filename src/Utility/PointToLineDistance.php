@@ -78,7 +78,10 @@ class PointToLineDistance
 
             $iterationsCounter++;
             if ($iterationsCounter > 100) {
-                throw new NotConvergingException('Calculation of Point to Minor Arc did not converge after 100 iterations.', 6391878367);
+                throw new NotConvergingException(
+                    'Calculation of Point to Minor Arc did not converge after 100 iterations.',
+                    6391878367
+                );
             }
         } while (true);
     }
