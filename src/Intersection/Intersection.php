@@ -66,7 +66,7 @@ class Intersection
         if ($geometry1 instanceof Coordinate || $geometry2 instanceof Coordinate) {
             throw new InvalidGeometryException('Only can check point intersections for polygons', 7311194789);
         }
-        
+
         if (($geometry1 instanceof Polygon) && $geometry1->containsGeometry($geometry2)) {
             return true;
         }
