@@ -52,6 +52,17 @@ class PointToLineDistanceTest extends TestCase
         );
     }
 
+    public function testPointIsSameLocationAsLinePoint1(): void
+    {
+        $point = new Coordinate(52.45, 13.05);
+
+        $linePoint1 = new Coordinate(52.45, 13.05);
+        $linePoint2 = new Coordinate(52.6, 13.12);
+        $line = new Line($linePoint1, $linePoint2);
+
+        $this->assertEquals(0, $this->pointToLineDistance->getDistance($point, $line));
+    }
+
     public function testLinePoint2IsNearer(): void
     {
         $point = new Coordinate(52.6001, 13.1201);
@@ -60,10 +71,34 @@ class PointToLineDistanceTest extends TestCase
         $linePoint2 = new Coordinate(52.6, 13.12);
         $line = new Line($linePoint1, $linePoint2);
 
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             $point->getDistance($linePoint2, $this->vincenty),
-            $this->pointToLineDistance->getDistance($point, $line)
+            $this->pointToLineDistance->getDistance($point, $line),
+            0.001
         );
+    }
+
+    public function testPointIsSameLocationAsLinePoint2(): void
+    {
+        $point = new Coordinate(52.45, 13.05);
+
+        $linePoint1 = new Coordinate(52.5, 13.1);
+        $linePoint2 = new Coordinate(52.45, 13.05);
+        $line = new Line($linePoint1, $linePoint2);
+
+        $this->assertEquals(0, $this->pointToLineDistance->getDistance($point, $line));
+    }
+
+    public function testPointIsSameLocationAsLineMidPoint(): void
+    {
+
+        $linePoint1 = new Coordinate(52.5, 13.1);
+        $linePoint2 = new Coordinate(52.6, 13.12);
+        $line = new Line($linePoint1, $linePoint2);
+
+        $point = $line->getMidpoint();
+
+        $this->assertEquals(0, $this->pointToLineDistance->getDistance($point, $line));
     }
 
     public function testDistanceIsCalculatedToSomewhereOnLine(): void
@@ -95,6 +130,18 @@ class PointToLineDistanceTest extends TestCase
         $perpendicularDistance = $pdCalculator->getPerpendicularDistance($point, $line);
         $pointToLineDistance = $this->pointToLineDistance->getDistance($point, $line);
 
-        $this->assertEquals($pointToLineDistance, $perpendicularDistance);
+        // allowed delta is relatively large because the perpdendicular distance
+        // is calculated with a simple spherical model
+        $this->assertEqualsWithDelta($pointToLineDistance, $perpendicularDistance, 0.3);
+    }
+
+    public function testPointToLineDistanceCaseA()
+    {
+        $line = new Line(new Coordinate(55.9857757, 13.5475307), new Coordinate(55.9869533, 13.5509295));
+        $point0a = new Coordinate(55.9839105, 13.5465958);
+
+        $this->assertEqualsWithDelta(215.636, $point0a->getDistance($line->getPoint1(), new Vincenty()), 0.1);
+
+        $this->assertEqualsWithDelta(215.636, $this->pointToLineDistance->getDistance($point0a, $line), 0.1);
     }
 }
