@@ -30,6 +30,6 @@ class Issue96Test extends TestCase
             new Coordinate(0.0, 10.0)
         );
 
-        //$this->assertFalse($line1->intersectsLine($line2));
+        $this->assertFalse($line1->intersectsLine($line2));
     }
 }
