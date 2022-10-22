@@ -2,7 +2,7 @@
 
 [TOC]
 
-A polygon consists of an ordered list of locations, i. e. instances of
+A polygon consists of an ordered list of locations, i.e. instances of
 the `Coordinate` class. It's very similar to a polyline, but its start
 and end points are connected.
 
@@ -94,7 +94,7 @@ Length calculation is described in the [Distance and Length](../Calculations/Dis
 
 ## Area
 
-It's possible to calculate the area of an polygon. The result is given in square meters (m²).
+It's possible to calculate the area of a polygon. The result is given in square meters (m²).
 
 WARNING: The calculation gives inaccurate results. For relatively small polygons the error should be less than 1 %.
 

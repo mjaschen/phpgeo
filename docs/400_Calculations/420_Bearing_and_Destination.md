@@ -6,7 +6,7 @@ phpgeo can be used to calculate the bearing between two points and to
 get a destination point for a given start point together with a bearing
 angle and a distance.
 
-Multiple calculation algorithms are supported. Currently phpgeo provides
+Multiple calculation algorithms are supported. Currently, phpgeo provides
 methods for calculations with a _spherical_ earth model and with an
 _ellipsoidal_ model. The spherical calculations are very fast, compared
 to the ellipsoidal methods. The ellipsoidal algorithms are a bit more

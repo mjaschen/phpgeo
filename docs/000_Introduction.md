@@ -11,9 +11,9 @@ _phpgeo_ is developed by [Marcus Jaschen](https://www.marcusjaschen.de/) and all
 
 _phpgeo_ is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-The project is hosted on Github:
+The project is hosted on GitHub:
 
-- [Github Project Site](https://github.com/mjaschen/phpgeo)
+- [GitHub Project Site](https://github.com/mjaschen/phpgeo)
 - [Issue Tracker](https://github.com/mjaschen/phpgeo/issues)
 
 ## Privacy

@@ -2,7 +2,7 @@
 
 [TOC]
 
-A line consists of two points, i. e. instances of the `Coordinate` class.
+A line consists of two points, i.e. instances of the `Coordinate` class.
 
 ## Length
 
@@ -141,7 +141,7 @@ The code above will produce the output below:
 The line has a bearing of 328.67 degrees
 ```
 
-This ist the so called _initial bearing._ There exist another bearing angle,
+This is the so-called _initial bearing._ There exist another bearing angle,
 called the _final bearing._ It can be calculated as well:
 
 ``` php

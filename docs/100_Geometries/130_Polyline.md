@@ -2,7 +2,7 @@
 
 [TOC]
 
-A polyline consists of an ordered list of locations, i. e. instances of
+A polyline consists of an ordered list of locations, i.e. instances of
 the `Coordinate` class.
 
 ## Create a polyline
