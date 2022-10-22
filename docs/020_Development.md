@@ -9,7 +9,7 @@ the test command is wrapped as a Composer script:
 composer ci:tests
 ```
 
-Of course it's possible to run PHPUnit directly:
+Of course, it's possible to run PHPUnit directly:
 
 ``` shell
 ./vendor/bin/phpunit

@@ -13,7 +13,7 @@ The 1.x release line has support for PHP >= 5.4. Bugfixes won't be backported.
 ## Installation
 
 _phpgeo_ is best be installed using Composer. Please visit the
-[Composer website](https://getcomposer.org/) website for more information.
+[Composer website](https://getcomposer.org/) for more information.
 
 To install _phpgeo,_ simply “require” it using Composer:
 

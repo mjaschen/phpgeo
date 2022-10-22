@@ -48,7 +48,7 @@ printf(
 );
 ```
 
-The first ellipsoid is created from one the the default configurations. The second one is created by providing a name and the values of *a* and *1/f.*
+The first ellipsoid is created from one of the default configurations. The second one is created by providing a name and the values of *a* and *1/f.*
 
 The code above will produce the output below:
 
