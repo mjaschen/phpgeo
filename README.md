@@ -17,6 +17,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
   - [Requirements](#requirements)
   - [Documentation](#documentation)
   - [Installation](#installation)
+  - [Upgrading](#upgrading)
   - [License](#license)
   - [Features](#features)
   - [Examples/Usage](#examplesusage)
@@ -29,7 +30,7 @@ phpgeo provides abstractions to geographical coordinates (including support for 
       - [GeoJSON](#geojson)
   - [Development](#development)
     - [Run Tests](#run-tests)
-  - [Miscellaneous](#miscellaneous)
+    - [Running GitHub Actions locally](#running-github-actions-locally)
   - [Credits](#credits)
 
 <!-- /MarkdownTOC -->
@@ -261,6 +262,14 @@ Psalm:
 
 ```shell
 ./vendor/bin/psalm
+```
+
+### Running GitHub Actions locally
+
+It's possible to run the whole CI test matrix locally with *[act](https://github.com/nektos/act)*:
+
+```shell
+act --rm -P ubuntu-latest=shivammathur/node:latest
 ```
 
 ## Credits
