@@ -14,8 +14,8 @@ use Location\Coordinate;
  */
 class DMS implements FormatterInterface
 {
-    public const UNITS_UTF8 = 'UTF-8';
-    public const UNITS_ASCII = 'ASCII';
+    final public const UNITS_UTF8 = 'UTF-8';
+    final public const UNITS_ASCII = 'ASCII';
 
     /**
      * @var string Separator string between latitude and longitude
@@ -68,10 +68,8 @@ class DMS implements FormatterInterface
     /**
      * Sets the separator between latitude and longitude values
      *
-     * @param string $separator
      *
      * @return DMS
-     *
      * @deprecated
      */
     public function setSeparator(string $separator): DMS
@@ -82,10 +80,8 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param bool $value
      *
      * @return DMS
-     *
      * @deprecated
      */
     public function useCardinalLetters(bool $value): DMS
@@ -96,11 +92,9 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param string $type
      *
      * @return DMS
      * @throws InvalidArgumentException
-     *
      * @deprecated
      */
     public function setUnits(string $type): DMS
