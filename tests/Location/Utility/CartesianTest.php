@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class CartesianTest extends TestCase
 {
-    private $point;
+    private \Location\Utility\Cartesian $point;
 
     public function setUp(): void
     {
