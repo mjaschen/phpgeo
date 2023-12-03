@@ -7,30 +7,14 @@ namespace Location\Utility;
 class Cartesian
 {
     /**
-     * @var float
-     */
-    private $x;
-    /**
-     * @var float
-     */
-    private $y;
-    /**
-     * @var float
-     */
-    private $z;
-
-    /**
      * Cartesian constructor.
      *
      * @param $x
      * @param $y
      * @param $z
      */
-    public function __construct(float $x, float $y, float $z)
+    public function __construct(private readonly float $x, private readonly float $y, private readonly float $z)
     {
-        $this->x = $x;
-        $this->y = $y;
-        $this->z = $z;
     }
 
     /**
@@ -58,8 +42,6 @@ class Cartesian
     }
 
     /**
-     * @param Cartesian $other
-     *
      * @return Cartesian
      */
     public function add(Cartesian $other): Cartesian
