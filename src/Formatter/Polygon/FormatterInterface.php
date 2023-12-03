@@ -15,8 +15,6 @@ use Location\Polygon;
 interface FormatterInterface
 {
     /**
-     * @param Polygon $polygon
-     *
      * @return string
      */
     public function format(Polygon $polygon): string;

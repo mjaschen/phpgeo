@@ -14,8 +14,6 @@ use Location\Polyline;
 interface FormatterInterface
 {
     /**
-     * @param Polyline $polyline
-     *
      * @return string
      */
     public function format(Polyline $polyline): string;
