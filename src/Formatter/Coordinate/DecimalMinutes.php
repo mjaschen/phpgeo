@@ -14,8 +14,8 @@ use Location\Coordinate;
  */
 class DecimalMinutes implements FormatterInterface
 {
-    public const UNITS_UTF8  = 'UTF-8';
-    public const UNITS_ASCII = 'ASCII';
+    final public const UNITS_UTF8  = 'UTF-8';
+    final public const UNITS_ASCII = 'ASCII';
 
     /**
      * @var string Separator string between latitude and longitude
@@ -27,7 +27,7 @@ class DecimalMinutes implements FormatterInterface
      *
      * @var bool
      */
-    protected $useCardinalLetters;
+    protected $useCardinalLetters = false;
 
     /**
      * @var string
@@ -60,13 +60,9 @@ class DecimalMinutes implements FormatterInterface
         ],
     ];
 
-    /**
-     * @param string $separator
-     */
     public function __construct(string $separator = ' ')
     {
         $this->separator          = $separator;
-        $this->useCardinalLetters = false;
 
         $this->setUnits(self::UNITS_UTF8);
     }
@@ -74,7 +70,6 @@ class DecimalMinutes implements FormatterInterface
     /**
      * Sets the separator between latitude and longitude values
      *
-     * @param string $separator
      *
      * @return DecimalMinutes
      */
@@ -86,8 +81,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param bool $value
-     *
      * @return DecimalMinutes
      */
     public function useCardinalLetters(bool $value): DecimalMinutes
@@ -98,7 +91,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param string $type
      *
      * @return DecimalMinutes
      * @throws \InvalidArgumentException
@@ -123,8 +115,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param int $digits
-     *
      * @return DecimalMinutes
      */
     public function setDigits(int $digits): DecimalMinutes
@@ -135,8 +125,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param string $decimalPoint
-     *
      * @return DecimalMinutes
      */
     public function setDecimalPoint(string $decimalPoint): DecimalMinutes
@@ -187,8 +175,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param float $lat
-     *
      * @return string
      */
     protected function getLatPrefix(float $lat): string
@@ -201,8 +187,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param float $lng
-     *
      * @return string
      */
     protected function getLngPrefix(float $lng): string
@@ -215,8 +199,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param float $lat
-     *
      * @return string
      */
     protected function getLatSuffix(float $lat): string
@@ -233,8 +215,6 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @param float $lng
-     *
      * @return string
      */
     protected function getLngSuffix(float $lng): string
