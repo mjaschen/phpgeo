@@ -17,9 +17,7 @@ class BoundsFactory
     /**
      * Creates a Bounds instance which corners have the given distance from its center.
      *
-     * @param Coordinate $center
      * @param float $distance in meters
-     * @param BearingInterface $bearing
      * @return Bounds
      * @throws InvalidArgumentException if bounds crosses the 180/-180 degrees meridian.
      */
