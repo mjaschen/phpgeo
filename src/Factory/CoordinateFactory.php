@@ -8,11 +8,6 @@ use InvalidArgumentException;
 use Location\Coordinate;
 use Location\Ellipsoid;
 
-/**
- * Coordinate Factory
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class CoordinateFactory implements GeometryFactoryInterface
 {
     /**
@@ -21,7 +16,7 @@ class CoordinateFactory implements GeometryFactoryInterface
      * The string is parsed by a regular expression for a known
      * format of geographical coordinates.
      *
-     * @param string $string formatted geographical coordinate
+     * @param  string  $string  formatted geographical coordinate
      *
      * @throws InvalidArgumentException
      */
@@ -53,7 +48,20 @@ class CoordinateFactory implements GeometryFactoryInterface
             return $result;
         }
 
-        throw new InvalidArgumentException('Format of coordinates was not recognized');
+        throw new InvalidArgumentException('Format of coordinates was not recognized', 2353695193);
+    }
+
+    private static function mergeSecondsToMinutes(string $string): string
+    {
+        return preg_replace_callback(
+            '/(\d+)(°|\s)\s*(\d+)(\'|′|\s)(\s*([0-9\.]*))("|\'\'|″|′′)?/u',
+            static fn(array $matches): string => sprintf(
+                '%d %f',
+                $matches[1],
+                (float)$matches[3] + (float)$matches[6] / 60
+            ),
+            $string
+        );
     }
 
     /**
@@ -68,7 +76,7 @@ class CoordinateFactory implements GeometryFactoryInterface
         $regexp = '/(-?\d{1,2})°?\s+(\d{1,2}\.?\d*)[\'′]?[, ]\s*(-?\d{1,3})°?\s+(\d{1,2}\.?\d*)[\'′]?/u';
 
         if (preg_match($regexp, $string, $match) === 1) {
-            $latitude  = (int)$match[1] >= 0
+            $latitude = (int)$match[1] >= 0
                 ? (int)$match[1] + (float)$match[2] / 60
                 : (int)$match[1] - (float)$match[2] / 60;
             $longitude = (int)$match[3] >= 0
@@ -96,11 +104,11 @@ class CoordinateFactory implements GeometryFactoryInterface
         if (preg_match($regexp, $string, $match) === 1) {
             $latitude = (int)$match[2] + (float)$match[3] / 60;
             if (strtoupper(trim($match[1])) === 'S' || strtoupper(trim($match[4])) === 'S') {
-                $latitude = - $latitude;
+                $latitude = -$latitude;
             }
             $longitude = (int)$match[6] + (float)$match[7] / 60;
             if (strtoupper(trim($match[5])) === 'W' || strtoupper(trim($match[8])) === 'W') {
-                $longitude = - $longitude;
+                $longitude = -$longitude;
             }
 
             return new Coordinate($latitude, $longitude, $ellipsoid);
@@ -137,27 +145,16 @@ class CoordinateFactory implements GeometryFactoryInterface
         if (preg_match($regexp, $string, $match) === 1) {
             $latitude = $match[2];
             if (strtoupper(trim($match[1])) === 'S' || strtoupper(trim($match[3])) === 'S') {
-                $latitude = - $latitude;
+                $latitude = -$latitude;
             }
             $longitude = $match[5];
             if (strtoupper(trim($match[4])) === 'W' || strtoupper(trim($match[6])) === 'W') {
-                $longitude = - $longitude;
+                $longitude = -$longitude;
             }
 
             return new Coordinate((float)$latitude, (float)$longitude, $ellipsoid);
         }
 
         return null;
-    }
-
-    private static function mergeSecondsToMinutes(string $string): string
-    {
-        return preg_replace_callback(
-            '/(\d+)(°|\s)\s*(\d+)(\'|′|\s)(\s*([0-9\.]*))("|\'\'|″|′′)?/u',
-            static function (array $matches): string {
-                return sprintf('%d %f', $matches[1], (float)$matches[3] + (float)$matches[6] / 60);
-            },
-            $string
-        );
     }
 }
