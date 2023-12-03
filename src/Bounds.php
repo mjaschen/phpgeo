@@ -16,10 +16,6 @@ class Bounds
      */
     protected $southEast;
 
-    /**
-     * @param Coordinate $northWest
-     * @param Coordinate $southEast
-     */
     public function __construct(Coordinate $northWest, Coordinate $southEast)
     {
         $this->northWest = $northWest;
