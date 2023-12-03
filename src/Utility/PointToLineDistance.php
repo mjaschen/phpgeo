@@ -4,24 +4,17 @@ declare(strict_types=1);
 
 namespace Location\Utility;
 
-use Location\Bearing\BearingSpherical;
 use Location\Coordinate;
 use Location\Distance\DistanceInterface;
-use Location\Distance\Vincenty;
 use Location\Exception\NotConvergingException;
 use Location\Line;
 
-use function PHPUnit\Framework\throwException;
-
-/**
- * Calculate the distance between a Line (minor arc of a Great Circle) and a Point.
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class PointToLineDistance
 {
-    public function __construct(private readonly DistanceInterface $distanceCalculator, private readonly float $epsilon = 0.001)
-    {
+    public function __construct(
+        private readonly DistanceInterface $distanceCalculator,
+        private readonly float $epsilon = 0.001
+    ) {
     }
 
     /**

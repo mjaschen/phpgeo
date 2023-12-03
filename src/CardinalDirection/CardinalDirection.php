@@ -29,14 +29,38 @@ class CardinalDirection
     public function getCardinalDirection(Coordinate $point1, Coordinate $point2): string
     {
         $directionFunctionMapping = [
-            self::CARDINAL_DIRECTION_NORTH => fn(Coordinate $point1, Coordinate $point2): bool => $this->isStrictlyNorth($point1, $point2),
-            self::CARDINAL_DIRECTION_EAST => fn(Coordinate $point1, Coordinate $point2): bool => $this->isStrictlyEast($point1, $point2),
-            self::CARDINAL_DIRECTION_SOUTH => fn(Coordinate $point1, Coordinate $point2): bool => $this->isStrictlySouth($point1, $point2),
-            self::CARDINAL_DIRECTION_WEST => fn(Coordinate $point1, Coordinate $point2): bool => $this->isStrictlyWest($point1, $point2),
-            self::CARDINAL_DIRECTION_NORTHEAST => fn(Coordinate $point1, Coordinate $point2): bool => $this->isNorthEast($point1, $point2),
-            self::CARDINAL_DIRECTION_SOUTHEAST => fn(Coordinate $point1, Coordinate $point2): bool => $this->isSouthEast($point1, $point2),
-            self::CARDINAL_DIRECTION_SOUTHWEST => fn(Coordinate $point1, Coordinate $point2): bool => $this->isSouthWest($point1, $point2),
-            self::CARDINAL_DIRECTION_NORTHWEST => fn(Coordinate $point1, Coordinate $point2): bool => $this->isNorthWest($point1, $point2),
+            self::CARDINAL_DIRECTION_NORTH => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isStrictlyNorth($point1, $point2),
+            self::CARDINAL_DIRECTION_EAST => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isStrictlyEast($point1, $point2),
+            self::CARDINAL_DIRECTION_SOUTH => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isStrictlySouth($point1, $point2),
+            self::CARDINAL_DIRECTION_WEST => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isStrictlyWest($point1, $point2),
+            self::CARDINAL_DIRECTION_NORTHEAST => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isNorthEast($point1, $point2),
+            self::CARDINAL_DIRECTION_SOUTHEAST => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isSouthEast($point1, $point2),
+            self::CARDINAL_DIRECTION_SOUTHWEST => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isSouthWest($point1, $point2),
+            self::CARDINAL_DIRECTION_NORTHWEST => fn(
+                Coordinate $point1,
+                Coordinate $point2
+            ): bool => $this->isNorthWest($point1, $point2),
         ];
 
         foreach ($directionFunctionMapping as $direction => $checkFunction) {
