@@ -17,8 +17,6 @@ class Polygon implements GeometryInterface
     protected $points = [];
 
     /**
-     * @param Coordinate $point
-     *
      * @return void
      */
     public function addPoint(Coordinate $point): void
@@ -87,8 +85,6 @@ class Polygon implements GeometryInterface
     }
 
     /**
-     * @param FormatterInterface $formatter
-     *
      * @return string
      */
     public function format(FormatterInterface $formatter): string
@@ -128,7 +124,6 @@ class Polygon implements GeometryInterface
      * - it's not detected when a line between two points is outside the polygon
      * - @see contains() for more restrictions
      *
-     * @param GeometryInterface $geometry
      *
      * @return bool
      */
@@ -154,7 +149,6 @@ class Polygon implements GeometryInterface
      *
      * - if the polygons spans over the longitude boundaries at 180/-180 degrees
      *
-     * @param Coordinate $point
      *
      * @return bool
      */

@@ -18,18 +18,10 @@ use RuntimeException;
 class SimplifyBearing implements SimplifyInterface
 {
     /**
-     * @var float
-     */
-    private $bearingAngle;
-
-    /**
      * SimplifyBearing constructor.
-     *
-     * @param float $bearingAngle
      */
-    public function __construct(float $bearingAngle)
+    public function __construct(private readonly float $bearingAngle)
     {
-        $this->bearingAngle = $bearingAngle;
     }
 
     /**
@@ -60,7 +52,6 @@ class SimplifyBearing implements SimplifyInterface
      *
      * This method will be merged with `simplify()` in the next major release.
      *
-     * @param GeometryInterface $geometry
      *
      * @return GeometryInterface
      */

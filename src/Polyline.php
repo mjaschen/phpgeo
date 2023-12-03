@@ -23,8 +23,6 @@ class Polyline implements GeometryInterface
     protected $points = [];
 
     /**
-     * @param Coordinate $point
-     *
      * @return void
      */
     public function addPoint(Coordinate $point): void
@@ -47,8 +45,6 @@ class Polyline implements GeometryInterface
      * same point comparison can be provided. Default allowed distance
      * deviation is 0.001 meters (1 millimeter).
      *
-     * @param Coordinate $point
-     * @param float $allowedDistance
      *
      * @return void
      */
@@ -78,8 +74,6 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @param Coordinate $point
-     * @param float $allowedDistance
      *
      * @return bool
      */
@@ -95,8 +89,6 @@ class Polyline implements GeometryInterface
     }
 
     /**
-     * @param FormatterInterface $formatter
-     *
      * @return string
      */
     public function format(FormatterInterface $formatter): string

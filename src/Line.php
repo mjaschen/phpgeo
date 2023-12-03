@@ -19,9 +19,9 @@ class Line implements GeometryInterface
 {
     use GetBoundsTrait;
 
-    public const ORIENTATION_COLLINEAR = 0;
-    public const ORIENTATION_CLOCKWISE = 1;
-    public const ORIENTATION_ANTI_CLOCKWISE = 2;
+    final public const ORIENTATION_COLLINEAR = 0;
+    final public const ORIENTATION_CLOCKWISE = 1;
+    final public const ORIENTATION_ANTI_CLOCKWISE = 2;
 
     /**
      * @var Coordinate
@@ -33,10 +33,6 @@ class Line implements GeometryInterface
      */
     protected $point2;
 
-    /**
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     */
     public function __construct(Coordinate $point1, Coordinate $point2)
     {
         $this->point1 = $point1;
@@ -44,10 +40,8 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param Coordinate $point1
      *
      * @return void
-     *
      * @deprecated
      */
     public function setPoint1(Coordinate $point1)
@@ -64,10 +58,8 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param Coordinate $point2
      *
      * @return void
-     *
      * @deprecated
      */
     public function setPoint2(Coordinate $point2)
@@ -117,8 +109,6 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param BearingInterface $bearingCalculator
-     *
      * @return float
      */
     public function getBearing(BearingInterface $bearingCalculator): float
@@ -127,8 +117,6 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param BearingInterface $bearingCalculator
-     *
      * @return float
      */
     public function getFinalBearing(BearingInterface $bearingCalculator): float

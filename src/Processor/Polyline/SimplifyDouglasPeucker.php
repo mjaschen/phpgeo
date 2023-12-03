@@ -59,7 +59,6 @@ class SimplifyDouglasPeucker implements SimplifyInterface
      * This method is a workaround to allow simplifying polygons too. It'll be
      * merged with `simplify()` in the next major release.
      *
-     * @param GeometryInterface $geometry
      *
      * @return GeometryInterface
      */
@@ -91,8 +90,6 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     }
 
     /**
-     * @param array $line
-     *
      * @return array
      */
     protected function douglasPeucker(array $line): array
