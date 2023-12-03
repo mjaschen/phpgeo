@@ -20,20 +20,8 @@ use function PHPUnit\Framework\throwException;
  */
 class PointToLineDistance
 {
-    /**
-     * @var DistanceInterface
-     */
-    private $distanceCalculator;
-
-    /**
-     * @var float
-     */
-    private $epsilon;
-
-    public function __construct(DistanceInterface $distanceCalculator, float $epsilon = 0.001)
+    public function __construct(private readonly DistanceInterface $distanceCalculator, private readonly float $epsilon = 0.001)
     {
-        $this->distanceCalculator = $distanceCalculator;
-        $this->epsilon = $epsilon;
     }
 
     /**
