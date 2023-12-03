@@ -23,10 +23,6 @@ class DecimalDegrees implements FormatterInterface
      */
     protected $digits = 5;
 
-    /**
-     * @param string $separator
-     * @param int $digits
-     */
     public function __construct(string $separator = ' ', int $digits = 5)
     {
         $this->separator = $separator;
@@ -51,7 +47,6 @@ class DecimalDegrees implements FormatterInterface
     /**
      * Sets the separator between latitude and longitude values
      *
-     * @param string $separator
      *
      * @return $this
      */
