@@ -114,7 +114,7 @@ class Polygon implements GeometryInterface
 
         // to close the polygon we have to add the final segment between
         // the last point and the first point
-        $segments[] = new Line($this->points[$i - 1], $this->points[0]);
+        $segments[] = new Line($this->points[$length - 1], $this->points[0]);
 
         return $segments;
     }
