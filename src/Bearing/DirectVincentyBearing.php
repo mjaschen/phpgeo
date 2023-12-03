@@ -14,25 +14,10 @@ use Location\Coordinate;
 class DirectVincentyBearing
 {
     /**
-     * @var Coordinate
-     */
-    private $destination;
-
-    /**
-     * @var float
-     */
-    private $bearingFinal;
-
-    /**
      * Bearing constructor.
-     *
-     * @param Coordinate $destination
-     * @param float $bearingFinal
      */
-    public function __construct(Coordinate $destination, float $bearingFinal)
+    public function __construct(private readonly Coordinate $destination, private readonly float $bearingFinal)
     {
-        $this->destination  = $destination;
-        $this->bearingFinal = $bearingFinal;
     }
 
     /**

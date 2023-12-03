@@ -4,44 +4,17 @@ declare(strict_types=1);
 
 namespace Location\Bearing;
 
-/**
- * Value object for a "Direct Vincenty" bearing calculation result.
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class InverseVincentyBearing
 {
-    /**
-     * @var float
-     */
-    private $distance;
-
-    /**
-     * @var float
-     */
-    private $bearingInitial;
-
-    /**
-     * @var float
-     */
-    private $bearingFinal;
-
-    /**
-     * InverseVincentyBearing constructor.
-     *
-     * @param float $distance
-     * @param float $bearingInitial
-     * @param float $bearingFinal
-     */
-    public function __construct(float $distance, float $bearingInitial, float $bearingFinal)
-    {
-        $this->distance       = $distance;
-        $this->bearingInitial = $bearingInitial;
-        $this->bearingFinal   = $bearingFinal;
+    public function __construct(
+        public readonly float $distance,
+        public readonly float $bearingInitial,
+        public readonly float $bearingFinal
+    ) {
     }
 
     /**
-     * @return float
+     * @deprecated use public attribute instead
      */
     public function getDistance(): float
     {
@@ -49,7 +22,7 @@ class InverseVincentyBearing
     }
 
     /**
-     * @return float
+     * @deprecated use public attribute instead
      */
     public function getBearingInitial(): float
     {
@@ -57,7 +30,7 @@ class InverseVincentyBearing
     }
 
     /**
-     * @return float
+     * @deprecated use public attribute instead
      */
     public function getBearingFinal(): float
     {
