@@ -16,8 +16,6 @@ use Location\Exception\NotConvergingException;
  * has done. For more information visit the following URL.
  *
  * @see http://www.movable-type.co.uk/scripts/latlong-vincenty.html
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class BearingEllipsoidal implements BearingInterface
 {
@@ -75,10 +73,6 @@ class BearingEllipsoidal implements BearingInterface
      * The method expects a starting point point, the bearing angle,
      * and the distance to destination.
      *
-     * @param Coordinate $point
-     * @param float $bearing
-     * @param float $distance
-     *
      * @return float
      *
      * @throws NotConvergingException
@@ -89,10 +83,6 @@ class BearingEllipsoidal implements BearingInterface
     }
 
     /**
-     * @param Coordinate $point
-     * @param float $bearing
-     * @param float $distance
-     *
      * @return DirectVincentyBearing
      *
      * @throws NotConvergingException
@@ -167,9 +157,6 @@ class BearingEllipsoidal implements BearingInterface
     }
 
     /**
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     *
      * @return InverseVincentyBearing
      *
      * @throws NotConvergingException
