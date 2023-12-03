@@ -48,11 +48,6 @@ class Ellipsoid
         ],
     ];
 
-    /**
-     * @param string $name
-     * @param float $a
-     * @param float $f
-     */
     public function __construct(string $name, float $a, float $f)
     {
         $this->name = $name;
@@ -61,8 +56,6 @@ class Ellipsoid
     }
 
     /**
-     * @param string $name
-     *
      * @return Ellipsoid
      */
     public static function createDefault(string $name = 'WGS-84'): Ellipsoid
@@ -71,8 +64,6 @@ class Ellipsoid
     }
 
     /**
-     * @param array $config
-     *
      * @return Ellipsoid
      */
     public static function createFromArray(array $config): Ellipsoid
