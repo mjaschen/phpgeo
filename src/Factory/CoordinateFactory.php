@@ -65,11 +65,12 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @return Coordinate|null
      * @throws InvalidArgumentException
      */
-    private static function parseDecimalMinutesWithoutCardinalLetters(string $string, ?Ellipsoid $ellipsoid = null)
-    {
+    private static function parseDecimalMinutesWithoutCardinalLetters(
+        string $string,
+        Ellipsoid|null $ellipsoid = null
+    ): Coordinate|null {
         // Decimal minutes without cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
         // "N52° 12.345′ E13° 23.456′"
@@ -90,11 +91,12 @@ class CoordinateFactory implements GeometryFactoryInterface
     }
 
     /**
-     * @return ?Coordinate
      * @throws InvalidArgumentException
      */
-    private static function parseDecimalMinutesWithCardinalLetters(string $string, ?Ellipsoid $ellipsoid = null)
-    {
+    private static function parseDecimalMinutesWithCardinalLetters(
+        string $string,
+        Ellipsoid|null $ellipsoid = null
+    ): Coordinate|null {
         // Decimal minutes with cardinal letters, e. g. "52 12.345, 13 23.456",
         // "52° 12.345, 13° 23.456", "52° 12.345′, 13° 23.456′", "52 12.345 N, 13 23.456 E",
         // "N52° 12.345′ E13° 23.456′"
