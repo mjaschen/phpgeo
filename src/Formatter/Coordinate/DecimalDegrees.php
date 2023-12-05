@@ -6,27 +6,10 @@ namespace Location\Formatter\Coordinate;
 
 use Location\Coordinate;
 
-/**
- * Coordinate Formatter "Decimal Degrees"
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class DecimalDegrees implements FormatterInterface
 {
-    /**
-     * @var string Separator string between latitude and longitude
-     */
-    protected $separator;
-
-    /**
-     * @var int
-     */
-    protected $digits = 5;
-
-    public function __construct(string $separator = ' ', int $digits = 5)
+    public function __construct(protected string $separator = ' ', protected int $digits = 5)
     {
-        $this->separator = $separator;
-        $this->digits    = $digits;
     }
 
     /**
