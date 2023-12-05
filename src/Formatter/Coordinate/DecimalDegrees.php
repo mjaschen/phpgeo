@@ -12,11 +12,6 @@ class DecimalDegrees implements FormatterInterface
     {
     }
 
-    /**
-     * @param Coordinate $coordinate
-     *
-     * @return string
-     */
     public function format(Coordinate $coordinate): string
     {
         return sprintf(
@@ -30,8 +25,7 @@ class DecimalDegrees implements FormatterInterface
     /**
      * Sets the separator between latitude and longitude values
      *
-     *
-     * @return $this
+     * @deprecated
      */
     public function setSeparator(string $separator): DecimalDegrees
     {
