@@ -12,18 +12,13 @@ use Location\Exception\NotMatchingEllipsoidException;
  * Implementation of distance calculation with http://en.wikipedia.org/wiki/Law_of_haversines
  *
  * @see http://en.wikipedia.org/wiki/Law_of_haversines
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Haversine implements DistanceInterface
 {
     /**
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     *
      * @throws NotMatchingEllipsoidException
      *
-     * @return float
+     * @return float Distance in meters
      */
     public function getDistance(Coordinate $point1, Coordinate $point2): float
     {
