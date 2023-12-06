@@ -7,8 +7,6 @@ namespace Location;
 /**
  * Trait GetBoundsTrait
  *
- * @package Location
- *
  * @property array<Coordinate> $points
  */
 trait GetBoundsTrait
@@ -18,9 +16,6 @@ trait GetBoundsTrait
      */
     abstract public function getPoints(): array;
 
-    /**
-     * @return Bounds
-     */
     public function getBounds(): Bounds
     {
         $latMin = 90.0;
