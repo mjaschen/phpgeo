@@ -31,7 +31,7 @@ jobs:
       run: mkdir -p build/daux
 
     - name: Generate documentation
-      run: bin/daux generate -d build/daux
+      run: vendor/bin/daux generate -d build/daux
 
     - name: Deploy
       uses: easingthemes/ssh-deploy@v4
