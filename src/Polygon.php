@@ -14,7 +14,7 @@ class Polygon implements GeometryInterface
     /**
      * @var array<Coordinate>
      */
-    protected $points = [];
+    protected array $points = [];
 
     /**
      * @return void
@@ -29,9 +29,7 @@ class Polygon implements GeometryInterface
      */
     public function addPoints(array $points): void
     {
-        foreach ($points as $point) {
-            $this->addPoint($point);
-        }
+        $this->points = [...$this->points, ...$points];
     }
 
     /**
@@ -52,7 +50,6 @@ class Polygon implements GeometryInterface
         $lats = [];
 
         foreach ($this->points as $point) {
-            /** @var Coordinate $point */
             $lats[] = $point->getLat();
         }
 
@@ -69,24 +66,17 @@ class Polygon implements GeometryInterface
         $lngs = [];
 
         foreach ($this->points as $point) {
-            /** @var Coordinate $point */
             $lngs[] = $point->getLng();
         }
 
         return $lngs;
     }
 
-    /**
-     * @return int
-     */
     public function getNumberOfPoints(): int
     {
         return count($this->points);
     }
 
-    /**
-     * @return string
-     */
     public function format(FormatterInterface $formatter): string
     {
         return $formatter->format($this);
@@ -123,9 +113,6 @@ class Polygon implements GeometryInterface
      *
      * - it's not detected when a line between two points is outside the polygon
      * - @see contains() for more restrictions
-     *
-     *
-     * @return bool
      */
     public function containsGeometry(GeometryInterface $geometry): bool
     {
@@ -148,9 +135,6 @@ class Polygon implements GeometryInterface
      * For special cases this calculation leads to wrong results:
      *
      * - if the polygons spans over the longitude boundaries at 180/-180 degrees
-     *
-     *
-     * @return bool
      */
     public function contains(Coordinate $point): bool
     {
@@ -178,8 +162,6 @@ class Polygon implements GeometryInterface
      * Calculates the polygon perimeter.
      *
      * @param DistanceInterface $calculator instance of distance calculation class
-     *
-     * @return float
      */
     public function getPerimeter(DistanceInterface $calculator): float
     {
@@ -202,8 +184,6 @@ class Polygon implements GeometryInterface
      * This algorithm gives inaccurate results as it ignores
      * ellipsoid parameters other than to arithmetic mean radius.
      * The error should be < 1 % for small areas.
-     *
-     * @return float
      */
     public function getArea(): float
     {
@@ -218,8 +198,8 @@ class Polygon implements GeometryInterface
         $segments = $this->getSegments();
 
         foreach ($segments as $segment) {
-            $point1 = $segment->getPoint1();
-            $point2 = $segment->getPoint2();
+            $point1 = $segment->point1;
+            $point2 = $segment->point2;
 
             $x1 = deg2rad($point1->getLng() - $referencePoint->getLng()) * cos(deg2rad($point1->getLat()));
             $y1 = deg2rad($point1->getLat() - $referencePoint->getLat());
@@ -238,8 +218,6 @@ class Polygon implements GeometryInterface
     /**
      * Create a new polygon with reversed order of points, i. e. reversed
      * polygon direction.
-     *
-     * @return Polygon
      */
     public function getReverse(): Polygon
     {

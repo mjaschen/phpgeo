@@ -8,11 +8,6 @@ use Location\Distance\DistanceInterface;
 use Location\Exception\InvalidGeometryException;
 use Location\Formatter\Polyline\FormatterInterface;
 
-/**
- * Polyline Implementation
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class Polyline implements GeometryInterface
 {
     use GetBoundsTrait;
@@ -20,7 +15,7 @@ class Polyline implements GeometryInterface
     /**
      * @var array<Coordinate>
      */
-    protected $points = [];
+    protected array $points = [];
 
     /**
      * @return void
@@ -35,18 +30,13 @@ class Polyline implements GeometryInterface
      */
     public function addPoints(array $points): void
     {
-        foreach ($points as $point) {
-            $this->addPoint($point);
-        }
+        $this->points = [...$this->points, ...$points];
     }
 
     /**
      * Adds an unique point to the polyline. A maximum allowed distance for
      * same point comparison can be provided. Default allowed distance
      * deviation is 0.001 meters (1 millimeter).
-     *
-     *
-     * @return void
      */
     public function addUniquePoint(Coordinate $point, float $allowedDistance = .001): void
     {
@@ -65,18 +55,11 @@ class Polyline implements GeometryInterface
         return $this->points;
     }
 
-    /**
-     * @return int
-     */
     public function getNumberOfPoints(): int
     {
         return count($this->points);
     }
 
-    /**
-     *
-     * @return bool
-     */
     public function containsPoint(Coordinate $point, float $allowedDistance = .001): bool
     {
         foreach ($this->points as $existingPoint) {
@@ -88,9 +71,6 @@ class Polyline implements GeometryInterface
         return false;
     }
 
-    /**
-     * @return string
-     */
     public function format(FormatterInterface $formatter): string
     {
         return $formatter->format($this);
@@ -119,8 +99,6 @@ class Polyline implements GeometryInterface
      * Calculates the length of the polyline.
      *
      * @param DistanceInterface $calculator instance of distance calculation class
-     *
-     * @return float
      */
     public function getLength(DistanceInterface $calculator): float
     {
@@ -140,8 +118,6 @@ class Polyline implements GeometryInterface
     /**
      * Create a new polyline with reversed order of points, i. e. reversed
      * polyline direction.
-     *
-     * @return Polyline
      */
     public function getReverse(): Polyline
     {
@@ -161,8 +137,6 @@ class Polyline implements GeometryInterface
      * This currently only works for polylines which don't cross the dateline at
      * 180/-180 degrees longitude.
      *
-     * @return Coordinate
-     *
      * @throws InvalidGeometryException when the polyline doesn't contain any points.
      */
     public function getAveragePoint(): Coordinate
@@ -176,7 +150,6 @@ class Polyline implements GeometryInterface
         }
 
         foreach ($this->points as $point) {
-            // @var Coordinate $point
             $latitude += $point->getLat();
             $longitude += $point->getLng();
         }
