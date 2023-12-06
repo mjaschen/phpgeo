@@ -3,17 +3,25 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## Unreleased/Upcoming
+## [5.0.0]
 
-### Added
-
-- `GeometryInterface` provides two new methods: `getBounds()` and `getSegments()`
+**Warning: Backwards-compatibility-breaking changes**
 
 ### Removed
 
-- Support for PHP 7.3
-- `setPoint1()` and `setPoint2()` methods from `Line`
-- `setSeparator()`, `useCardinalLetters()` and `setUnits()` methods from `DMS`
+- Support for PHP 7.3, 7.4 and 8.0
+- deprecated methods `setPoint1()` and `setPoint2()` from `Line`
+
+### Changed
+
+- `GeometryFactoryInterface::fromString()` now has `GeometryInterface` as return type
+
+### Deprecated
+
+- deprecated methods `getDestination()` and `getBearingFinal()` from `DirectVincentyBearing`
+- deprecated methods `getDistance()`, `getBearingInitial()` and `getBearingFinal()` from `InverseVincentyBearing`
+- deprecated methods `getX()`, `getY()` and `getZ()` from `Cartesian`
+- deprecated methods `getPoint1()` and `getPoint2()` from `Line`
 
 ## [4.2.1] - 2023-12-03
 

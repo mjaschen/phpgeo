@@ -63,8 +63,17 @@ Update the version constraint in the project's `composer.json` and
 run `composer update` or require the new version by running:
 
 ```shell
-composer require mjaschen/phpgeo:^4.0
+composer require mjaschen/phpgeo:^5.0
 ```
+
+### Upgrading to 5.x
+
+*phpgeo* has some breaking changes in the 5.x release line. Please refer to the following list to see what has changed and what you need to do to upgrade your code.
+
+| Change | Description | Action                                                  |
+| --- | --- |---------------------------------------------------------|
+| `setPoint1()` and `setPoint2()` methods removed from `Line` | The `Line` class now is immutable. | Use the constructor to create a new instance of `Line`. |
+| removed support for PHP 7.3, 7.4 and 8.0 | Older PHP versions are no longer supported. | Upgrade to at least PHP 8.1.                            |
 
 ## License
 
