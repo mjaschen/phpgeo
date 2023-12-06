@@ -36,7 +36,7 @@ jobs:
     - name: Deploy
       uses: easingthemes/ssh-deploy@v4
       env:
-        SSH_PRIVATE_KEY: "${{ secrets.DOCS_DEPLOY_SSH_PRIVATE_KEY }}"
+        SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
         ARGS: "-rlgoDzvc -i"
         SOURCE: "build/daux/"
         REMOTE_HOST: "${{ secrets.DOCS_REMOTE_HOST }}"
