@@ -12,7 +12,6 @@ use Location\Utility\PerpendicularDistance;
 use RuntimeException;
 
 /**
- * /**
  * Simplify Polyline with the Douglas-Peucker-Algorithm
  *
  * The Algorithm is described here:
@@ -20,15 +19,10 @@ use RuntimeException;
  *
  * The formula for the Perpendicular Distance is described here:
  * http://biodiversityinformatics.amnh.org/open_source/pdc/documentation.php
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class SimplifyDouglasPeucker implements SimplifyInterface
 {
-    /**
-     * @var float
-     */
-    protected $tolerance;
+    protected float $tolerance;
 
     /**
      * @param float $tolerance the perpendicular distance threshold in meters
@@ -39,9 +33,6 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     }
 
     /**
-     * @param Polyline $polyline
-     *
-     * @return Polyline
      * @throws RuntimeException
      */
     public function simplify(Polyline $polyline): Polyline
@@ -58,9 +49,6 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     /**
      * This method is a workaround to allow simplifying polygons too. It'll be
      * merged with `simplify()` in the next major release.
-     *
-     *
-     * @return GeometryInterface
      */
     public function simplifyGeometry(GeometryInterface $geometry): GeometryInterface
     {
@@ -89,9 +77,6 @@ class SimplifyDouglasPeucker implements SimplifyInterface
         return $result;
     }
 
-    /**
-     * @return array
-     */
     protected function douglasPeucker(array $line): array
     {
         $distanceMax = 0;
