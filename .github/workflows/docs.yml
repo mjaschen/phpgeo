@@ -35,13 +35,13 @@ jobs:
 
     - name: Deploy
       uses: easingthemes/ssh-deploy@v4
-      env:
-        SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         ARGS: "-rlgoDzvc -i"
         SOURCE: "build/daux/"
-        REMOTE_HOST: "${{ secrets.DOCS_REMOTE_HOST }}"
-        REMOTE_USER: "${{ secrets.DOCS_REMOTE_TARGET_PATH }}"
-        TARGET: "${{ secrets.DOCS_REMOTE_USER }}"
+        REMOTE_HOST: ${{ secrets.DOCS_REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.DOCS_REMOTE_TARGET_PATH }}
+        TARGET: ${{ secrets.DOCS_REMOTE_USER }}
         EXCLUDE: ".DS_Store, .git*"
         SCRIPT_BEFORE: |
           whoami
