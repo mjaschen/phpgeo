@@ -8,6 +8,9 @@ use Location\Polyline;
 
 class GeoJSON implements FormatterInterface
 {
+    /**
+     * @throws \JsonException
+     */
     public function format(Polyline $polyline): string
     {
         $points = [];

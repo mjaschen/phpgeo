@@ -8,6 +8,9 @@ use Location\Coordinate;
 
 class GeoJSON implements FormatterInterface
 {
+    /**
+     * @throws \JsonException
+     */
     public function format(Coordinate $coordinate): string
     {
         return json_encode(
@@ -17,7 +20,8 @@ class GeoJSON implements FormatterInterface
                     $coordinate->getLng(),
                     $coordinate->getLat(),
                 ],
-            ]
+            ],
+            JSON_THROW_ON_ERROR
         );
     }
 }
