@@ -4,32 +4,8 @@ declare(strict_types=1);
 
 namespace Location;
 
-/**
- * Ellipsoid
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class Ellipsoid
 {
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * The semi-major axis
-     *
-     * @var float
-     */
-    protected $a;
-
-    /**
-     * The Inverse Flattening (1/f)
-     *
-     * @var float
-     */
-    protected $f;
-
     /**
      * Some often used ellipsoids
      *
@@ -48,40 +24,30 @@ class Ellipsoid
         ],
     ];
 
-    public function __construct(string $name, float $a, float $f)
+    /**
+     * @param  string  $name
+     * @param  float  $a The semi-major axis
+     * @param  float  $f The Inverse Flattening (1/f)
+     */
+    public function __construct(public readonly string $name, public readonly float $a, public readonly float $f)
     {
-        $this->name = $name;
-        $this->a    = $a;
-        $this->f    = $f;
     }
 
-    /**
-     * @return Ellipsoid
-     */
     public static function createDefault(string $name = 'WGS-84'): Ellipsoid
     {
         return static::createFromArray(static::$configs[$name]);
     }
 
-    /**
-     * @return Ellipsoid
-     */
     public static function createFromArray(array $config): Ellipsoid
     {
         return new self($config['name'], $config['a'], $config['f']);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return float
-     */
     public function getA(): float
     {
         return $this->a;
@@ -89,17 +55,12 @@ class Ellipsoid
 
     /**
      * Calculation of the semi-minor axis
-     *
-     * @return float
      */
     public function getB(): float
     {
         return $this->a * (1 - 1 / $this->f);
     }
 
-    /**
-     * @return float
-     */
     public function getF(): float
     {
         return $this->f;
@@ -109,8 +70,6 @@ class Ellipsoid
      * Calculates the arithmetic mean radius
      *
      * @see http://home.online.no/~sigurdhu/WGS84_Eng.html
-     *
-     * @return float
      */
     public function getArithmeticMeanRadius(): float
     {
