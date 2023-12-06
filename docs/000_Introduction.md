@@ -1,15 +1,15 @@
 # What is *phpgeo?*
 
-_phpgeo_ is a small PHP library which provides abstractions to geographical
+*phpgeo* is a small PHP library which provides abstractions to geographical
 coordinates (including support for different ellipsoids), polylines
-("GPS Tracks"), polygons, bounds, and more. _phpgeo_ allows you to perform
+("GPS Tracks"), polygons, bounds, and more. *phpgeo* allows you to perform
 different calculations with these abstractions, as distances, track
 lengths, etc.
 
-_phpgeo_ is developed by [Marcus Jaschen](https://www.marcusjaschen.de/) and all
+*phpgeo* is developed by [Marcus Jaschen](https://www.marcusjaschen.de/) and all
 [contributors](https://github.com/mjaschen/phpgeo/graphs/contributors).
 
-_phpgeo_ is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+*phpgeo* is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 The project is hosted on GitHub:
 
