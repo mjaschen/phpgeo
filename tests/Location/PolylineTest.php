@@ -156,4 +156,24 @@ class PolylineTest extends TestCase
 
         $middle = $polyline->getAveragePoint();
     }
+
+    public function testIfAddPointsArrayWorksAsExpected(): void
+    {
+        $polyline = new Polyline();
+
+        $this->assertEquals([], $polyline->getPoints());
+
+        $point0 = new Coordinate(0, 10);
+        $polyline->addPoint($point0);
+
+        $this->assertEquals([$point0], $polyline->getPoints());
+
+        $point1 = new Coordinate(10, 10);
+        $point2 = new Coordinate(10, 20);
+
+        $points = [$point1, $point2];
+        $polyline->addPoints($points);
+
+        $this->assertEquals([$point0, $point1, $point2], $polyline->getPoints());
+    }
 }
