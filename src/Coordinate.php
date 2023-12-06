@@ -12,27 +12,9 @@ use Location\Distance\Haversine;
 use Location\Exception\InvalidGeometryException;
 use Location\Formatter\Coordinate\FormatterInterface;
 
-/**
- * Coordinate Implementation
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class Coordinate implements GeometryInterface
 {
-    /**
-     * @var float
-     */
-    protected $lat;
-
-    /**
-     * @var float
-     */
-    protected $lng;
-
-    /**
-     * @var Ellipsoid
-     */
-    protected $ellipsoid;
+    protected Ellipsoid $ellipsoid;
 
     /**
      * @param float $lat -90.0 .. +90.0
@@ -41,7 +23,7 @@ class Coordinate implements GeometryInterface
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(float $lat, float $lng, ?Ellipsoid $ellipsoid = null)
+    public function __construct(protected float $lat, protected float $lng, Ellipsoid|null $ellipsoid = null)
     {
         if (! $this->isValidLatitude($lat)) {
             throw new InvalidArgumentException('Latitude value must be numeric -90.0 .. +90.0 (given: ' . $lat . ')');
@@ -52,9 +34,6 @@ class Coordinate implements GeometryInterface
                 'Longitude value must be numeric -180.0 .. +180.0 (given: ' . $lng . ')'
             );
         }
-
-        $this->lat = $lat;
-        $this->lng = $lng;
 
         if ($ellipsoid instanceof Ellipsoid) {
             $this->ellipsoid = $ellipsoid;
