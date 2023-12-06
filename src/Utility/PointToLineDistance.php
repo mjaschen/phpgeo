@@ -23,13 +23,13 @@ class PointToLineDistance
      */
     public function getDistance(Coordinate $point, Line $line): float
     {
-        if ($line->getPoint1()->hasSameLocation($line->getPoint2(), $this->epsilon)) {
-            return $this->distanceCalculator->getDistance($point, $line->getPoint1());
+        if ($line->point1->hasSameLocation($line->point2, $this->epsilon)) {
+            return $this->distanceCalculator->getDistance($point, $line->point1);
         }
-        if ($point->hasSameLocation($line->getPoint1(), $this->epsilon)) {
+        if ($point->hasSameLocation($line->point1, $this->epsilon)) {
             return 0.0;
         }
-        if ($point->hasSameLocation($line->getPoint2(), $this->epsilon)) {
+        if ($point->hasSameLocation($line->point2, $this->epsilon)) {
             return 0.0;
         }
         if ($point->hasSameLocation($line->getMidpoint(), $this->epsilon)) {
@@ -40,8 +40,8 @@ class PointToLineDistance
         $iterationLine = clone $line;
 
         do {
-            $linePoint1 = $iterationLine->getPoint1();
-            $linePoint2 = $iterationLine->getPoint2();
+            $linePoint1 = $iterationLine->point1;
+            $linePoint2 = $iterationLine->point2;
             $lineMidPoint = $iterationLine->getMidpoint();
 
             $distancePointToLinePoint1 = $point->getDistance($linePoint1, $this->distanceCalculator);

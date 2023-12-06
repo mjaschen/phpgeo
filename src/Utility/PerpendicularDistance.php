@@ -9,8 +9,6 @@ use Location\Line;
 
 /**
  * Calculate the perpendicular distance between a Line and a Point with a simple spherical model.
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class PerpendicularDistance
 {
@@ -20,15 +18,15 @@ class PerpendicularDistance
 
         $ellipsoidRadius = $ellipsoid->getArithmeticMeanRadius();
 
-        $firstLinePointLat = $this->deg2radLatitude($line->getPoint1()->getLat());
-        $firstLinePointLng = $this->deg2radLongitude($line->getPoint1()->getLng());
+        $firstLinePointLat = $this->deg2radLatitude($line->point1->getLat());
+        $firstLinePointLng = $this->deg2radLongitude($line->point1->getLng());
 
         $firstLinePointX = $ellipsoidRadius * cos($firstLinePointLng) * sin($firstLinePointLat);
         $firstLinePointY = $ellipsoidRadius * sin($firstLinePointLng) * sin($firstLinePointLat);
         $firstLinePointZ = $ellipsoidRadius * cos($firstLinePointLat);
 
-        $secondLinePointLat = $this->deg2radLatitude($line->getPoint2()->getLat());
-        $secondLinePointLng = $this->deg2radLongitude($line->getPoint2()->getLng());
+        $secondLinePointLat = $this->deg2radLatitude($line->point2->getLat());
+        $secondLinePointLng = $this->deg2radLongitude($line->point2->getLng());
 
         $secondLinePointX = $ellipsoidRadius * cos($secondLinePointLng) * sin($secondLinePointLat);
         $secondLinePointY = $ellipsoidRadius * sin($secondLinePointLng) * sin($secondLinePointLat);
