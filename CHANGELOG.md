@@ -14,6 +14,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Changed
 
+- `master` is now renamed to `main`
 - `GeometryFactoryInterface::fromString()` now has `GeometryInterface` as return type
 
 ### Deprecated
@@ -27,7 +28,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Changed
 
-- use proper variable as index for array access 
+- use proper variable as index for array access
 
 ## [4.2.0] - 2022-07-25
 
