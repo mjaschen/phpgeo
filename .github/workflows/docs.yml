@@ -37,19 +37,12 @@ jobs:
       run: vendor/bin/daux generate -d build/daux
 
     - name: Deploy Documentation Website
-      uses: easingthemes/ssh-deploy@v4
-      with:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-rlgoDzvc -i"
-        SOURCE: "build/daux/"
-        REMOTE_HOST: ${{ secrets.DOCS_REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.DOCS_REMOTE_TARGET_PATH }}
-        TARGET: ${{ secrets.DOCS_REMOTE_USER }}
-        EXCLUDE: ".DS_Store, .git*"
-        SCRIPT_BEFORE: |
-          whoami
-          ls -al "${{ secrets.DOCS_REMOTE_TARGET_PATH }}"
-        SCRIPT_AFTER: |
-          whoami
-          ls -al "${{ secrets.DOCS_REMOTE_TARGET_PATH }}"
-          echo $RSYNC_STDOUT
+      uses: AEnterprise/rsync-deploy@v1.0.2
+      env:
+        DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-e -c -r --delete"
+        SERVER_PORT: 22
+        FOLDER: "./build/daux/"
+        SERVER_IP: ${{ secrets.DOCS_REMOTE_HOST }}
+        USERNAME: ${{ secrets.DOCS_REMOTE_USER }}
+        SERVER_DESTINATION: ${{ secrets.DOCS_REMOTE_TARGET_PATH }}
