@@ -4,50 +4,34 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 [![Latest Stable Version](https://poser.pugx.org/mjaschen/phpgeo/v)](//packagist.org/packages/mjaschen/phpgeo)
 [![Total Downloads](https://poser.pugx.org/mjaschen/phpgeo/downloads)](//packagist.org/packages/mjaschen/phpgeo)
-[![phpgeo Tests](https://github.com/mjaschen/phpgeo/actions/workflows/php.yml/badge.svg)](https://github.com/mjaschen/phpgeo/actions/workflows/php.yml)
+[![phpgeo Tests](https://github.com/mjaschen/phpgeo/actions/workflows/ci.yml/badge.svg)](https://github.com/mjaschen/phpgeo/actions/workflows/ci.yml)
+[![Documentation Status](https://github.com/mjaschen/phpgeo/actions/workflows/docs.yml/badge.svg)](https://github.com/mjaschen/phpgeo/actions/workflows/docs.yml)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mjaschen/phpgeo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mjaschen/phpgeo/?branch=master)
 [![License](https://poser.pugx.org/mjaschen/phpgeo/license)](//packagist.org/packages/mjaschen/phpgeo)
-
-## Table of Contents
-
-<!-- MarkdownTOC autolink=true bracket=round depth=0 autoanchor=false -->
-
-- [phpgeo - A Simple Geo Library for PHP](#phpgeo---a-simple-geo-library-for-php)
-  - [Table of Contents](#table-of-contents)
-  - [Requirements](#requirements)
-  - [Documentation](#documentation)
-  - [Installation](#installation)
-  - [Upgrading](#upgrading)
-  - [License](#license)
-  - [Features](#features)
-  - [Examples/Usage](#examplesusage)
-    - [Distance between two coordinates (Vincenty's Formula)](#distance-between-two-coordinates-vincentys-formula)
-    - [Simplifying a polyline](#simplifying-a-polyline)
-    - [Polygon contains a point (e.g. "GPS geofence")](#polygon-contains-a-point-eg-gps-geofence)
-    - [Formatted output of coordinates](#formatted-output-of-coordinates)
-      - [Decimal Degrees](#decimal-degrees)
-      - [Degrees/Minutes/Seconds (DMS)](#degreesminutesseconds-dms)
-      - [GeoJSON](#geojson)
-  - [Development](#development)
-    - [Run Tests](#run-tests)
-    - [Running GitHub Actions locally](#running-github-actions-locally)
-  - [Credits](#credits)
-
-<!-- /MarkdownTOC -->
 
 ## Requirements
 
 Minimum required PHP version is 7.3. *phpgeo* fully supports PHP 8 and is tested up to PHP 8.2.
 
-The 3.x releases require PHP >= 7.2 but don't get feature updates any longer. Bugfixes will be backported.
+New features will only go into the main branch and won't be backported.
 
-The 2.x releases require PHP >= 7.0 but don't get feature updates any longer. Bugfixes won't be backported.
-
-The 1.x release line has support for PHP >= 5.4. Bugfixes won't be backported.
+| PHP Version | phpgeo Version | Support Status   | Composer Install                      |
+|-------------|----------------|------------------|---------------------------------------|
+| 8.2         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
+| 8.1         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
+| 8.0         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
+| 7.4         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
+| 7.3         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
+| 7.2         | 3.x            | ⚠️ security only  | `composer require mjaschen/phpgeo:^3.0`|
+| 7.1         | 2.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^2.0`|
+| 7.0         | 2.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^2.0`|
+| 5.6         | 1.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^1.0`|
+| 5.5         | 1.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^1.0`|
+| 5.4         | 1.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^1.0`|
 
 ## Documentation
 
-The documentation is available at https://phpgeo.marcusjaschen.de/
+The documentation is available at [phpgeo.marcusjaschen.de](https://phpgeo.marcusjaschen.de/).
 
 ## Installation
 
@@ -100,7 +84,7 @@ phpgeo provides the following features (follow the links for examples):
 
 ## Examples/Usage
 
-This list is incomplete, please visit the [documentation site](https://phpgeo.marcusjaschen.de/)
+This list is incomplete, please visit the **[documentation site](https://phpgeo.marcusjaschen.de/)**
 for the full monty of documentation and examples!
 
 ### Distance between two coordinates (Vincenty's Formula)
