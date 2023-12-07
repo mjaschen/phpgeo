@@ -1,0 +1,48 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - master
+      - docs
+
+jobs:
+
+  documentation:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@2.28.0
+      with:
+        php-version: 8.1
+        extensions: mbstring, dom, intl, iconv
+
+    - name: Install Dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest --dev
+
+    - name: Install Daux
+      run: composer require daux/daux.io:^0.22.0 --prefer-dist --no-progress --no-suggest --dev
+
+    - name: Create Build Directory
+      run: mkdir -p build/daux
+
+    - name: Generate Documentation
+      run: vendor/bin/daux generate -d build/daux
+
+    - name: Deploy Documentation Website
+      uses: AEnterprise/rsync-deploy@v1.0.2
+      env:
+        DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-e -c -r --delete"
+        SERVER_PORT: 22
+        FOLDER: "./build/daux/"
+        SERVER_IP: ${{ secrets.DOCS_REMOTE_HOST }}
+        USERNAME: ${{ secrets.DOCS_REMOTE_USER }}
+        SERVER_DESTINATION: ${{ secrets.DOCS_REMOTE_TARGET_PATH }}
