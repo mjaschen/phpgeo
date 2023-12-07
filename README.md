@@ -16,7 +16,7 @@ Minimum required PHP version is 7.3. *phpgeo* fully supports PHP 8 and is tested
 New features will only go into the main branch and won't be backported.
 
 | PHP Version | phpgeo Version | Support Status   | Composer Install                      |
-|-------------|----------------|------------------|---------------------------------------|
+|:-------------:|:----------------:|:------------------:|---------------------------------------|
 | 8.2         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
 | 8.1         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
 | 8.0         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
