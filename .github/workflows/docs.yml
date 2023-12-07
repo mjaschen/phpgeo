@@ -24,16 +24,19 @@ jobs:
         php-version: 8.1
         extensions: mbstring, dom, intl, iconv
 
-    - name: Install dependencies
+    - name: Install Dependencies
       run: composer install --prefer-dist --no-progress --no-suggest --dev
 
-    - name: Create build directory
+    - name: Install Daux
+      run: composer require daux/daux.io:^0.22.0 --prefer-dist --no-progress --no-suggest --dev
+
+    - name: Create Build Directory
       run: mkdir -p build/daux
 
-    - name: Generate documentation
+    - name: Generate Documentation
       run: vendor/bin/daux generate -d build/daux
 
-    - name: Deploy
+    - name: Deploy Documentation Website
       uses: easingthemes/ssh-deploy@v4
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
