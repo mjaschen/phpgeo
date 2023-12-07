@@ -15,7 +15,7 @@
 
 `setPoint1()` and `setPoint2()` methods were removed from `Line` – the `Line` class now is immutable. Use the constructor to create a new instance of `Line`.
 
-There are some new deprecations introduced in 5.0, please see the change log for a detailed list and update your code accordingly to be prepared for 6.0.
+There are some new deprecations introduced in 5.0, please see the [change log](https://github.com/mjaschen/phpgeo/blob/main/CHANGELOG.md) for a detailed list and update your code accordingly to be prepared for 6.0.
 
 ## Update from phpgeo 3.x to phpgeo 4.x
 
