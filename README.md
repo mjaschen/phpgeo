@@ -11,23 +11,27 @@ phpgeo provides abstractions to geographical coordinates (including support for 
 
 ## Requirements
 
-Minimum required PHP version is 7.3. *phpgeo* fully supports PHP 8 and is tested up to PHP 8.2.
+Minimum required PHP version is 8.1. *phpgeo* is tested up to PHP 8.3.
 
 New features will only go into the main branch and won't be backported.
 
-| PHP Version | phpgeo Version | Support Status   | Composer Install                      |
-|:-------------:|:----------------:|:------------------:|---------------------------------------|
-| 8.2         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
-| 8.1         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
-| 8.0         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
-| 7.4         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
-| 7.3         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`    |
-| 7.2         | 3.x            | ⚠️ security only  | `composer require mjaschen/phpgeo:^3.0`|
-| 7.1         | 2.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^2.0`|
-| 7.0         | 2.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^2.0`|
-| 5.6         | 1.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^1.0`|
-| 5.5         | 1.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^1.0`|
-| 5.4         | 1.x            | ❌ end of life    | `composer require mjaschen/phpgeo:^1.0`|
+It's possible to install older versions of *phpgeo* for older PHP versions.
+Please refer to the following table for the compatibility matrix:
+
+| PHP Version | phpgeo Version |   Support Status   | Composer Install                        |
+| :---------: | :------------: | :----------------: | --------------------------------------- |
+|     8.3     |      5.x       |     ✅ active      | `composer require mjaschen/phpgeo`      |
+|     8.2     |      5.x       |     ✅ active      | `composer require mjaschen/phpgeo`      |
+|     8.1     |      5.x       |     ✅ active      | `composer require mjaschen/phpgeo`      |
+|     8.0     |      4.x       | ⚠️ security only | `composer require mjaschen/phpgeo:^4.0` |
+|     7.4     |      4.x       | ⚠️ security only | `composer require mjaschen/phpgeo:^4.0` |
+|     7.3     |      4.x       | ⚠️ security only | `composer require mjaschen/phpgeo:^4.0` |
+|     7.2     |      3.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^3.0` |
+|     7.1     |      2.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^2.0` |
+|     7.0     |      2.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^2.0` |
+|     5.6     |      1.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^1.0` |
+|     5.5     |      1.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^1.0` |
+|     5.4     |      1.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^1.0` |
 
 ## Documentation
 
@@ -54,10 +58,10 @@ composer require mjaschen/phpgeo:^5.0
 
 *phpgeo* has some breaking changes in the 5.x release line. Please refer to the following list to see what has changed and what you need to do to upgrade your code.
 
-| Change | Description | Action                                                  |
-| --- | --- |---------------------------------------------------------|
-| `setPoint1()` and `setPoint2()` methods removed from `Line` | The `Line` class now is immutable. | Use the constructor to create a new instance of `Line`. |
-| removed support for PHP 7.3, 7.4 and 8.0 | Older PHP versions are no longer supported. | Upgrade to at least PHP 8.1.                            |
+| Change                                                      | Description                                 | Action                                                  |
+| ----------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------- |
+| `setPoint1()` and `setPoint2()` methods removed from `Line` | The `Line` class now is immutable.          | Use the constructor to create a new instance of `Line`. |
+| removed support for PHP 7.3, 7.4 and 8.0                    | Older PHP versions are no longer supported. | Upgrade to at least PHP 8.1.                            |
 
 ## License
 

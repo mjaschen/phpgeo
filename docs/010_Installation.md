@@ -2,31 +2,29 @@
 
 ## Requirements
 
-*phpgeo* requires at least PHP 8.1.
+Minimum required PHP version is 8.1. *phpgeo* is tested up to PHP 8.3.
 
-The 4.x releases require PHP >= 7.3 but don't get feature updates any longer. Bugfixes will be backported.
+New features will only go into the main branch and won't be backported.
 
-The 3.x releases require PHP >= 7.2 but don't get feature updates any longer. Bugfixes won't be backported.
-
-The 2.x releases require PHP >= 7.0 but don't get feature updates any longer. Bugfixes won't be backported.
-
-The 1.x release line has support for PHP >= 5.4. Bugfixes won't be backported.
+It's possible to install previous versions of *phpgeo* for older PHP versions.
+Please refer to the following table for the compatibility matrix:
 
 ### Compatibility Matrix
 
-| PHP Version | phpgeo Version | Support Status   | Composer Install                         |
-|:-----------:|:--------------:|:----------------:|------------------------------------------|
-| 8.2         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`      |
-| 8.1         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`      |
-| 8.0         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`      |
-| 7.4         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`      |
-| 7.3         | 4.x            | ✅ active         | `composer require mjaschen/phpgeo`      |
-| 7.2         | 3.x            | ⚠️ security only   | `composer require mjaschen/phpgeo:^3.0` |
-| 7.1         | 2.x            | ❌ end of life     | `composer require mjaschen/phpgeo:^2.0` |
-| 7.0         | 2.x            | ❌ end of life     | `composer require mjaschen/phpgeo:^2.0` |
-| 5.6         | 1.x            | ❌ end of life     | `composer require mjaschen/phpgeo:^1.0` |
-| 5.5         | 1.x            | ❌ end of life     | `composer require mjaschen/phpgeo:^1.0` |
-| 5.4         | 1.x            | ❌ end of life     | `composer require mjaschen/phpgeo:^1.0` |
+| PHP Version | phpgeo Version |   Support Status   | Composer Install                        |
+| :---------: | :------------: | :----------------: | --------------------------------------- |
+|     8.3     |      5.x       |     ✅ active      | `composer require mjaschen/phpgeo`      |
+|     8.2     |      5.x       |     ✅ active      | `composer require mjaschen/phpgeo`      |
+|     8.1     |      5.x       |     ✅ active      | `composer require mjaschen/phpgeo`      |
+|     8.0     |      4.x       | ⚠️ security only | `composer require mjaschen/phpgeo:^4.0` |
+|     7.4     |      4.x       | ⚠️ security only | `composer require mjaschen/phpgeo:^4.0` |
+|     7.3     |      4.x       | ⚠️ security only | `composer require mjaschen/phpgeo:^4.0` |
+|     7.2     |      3.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^3.0` |
+|     7.1     |      2.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^2.0` |
+|     7.0     |      2.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^2.0` |
+|     5.6     |      1.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^1.0` |
+|     5.5     |      1.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^1.0` |
+|     5.4     |      1.x       |   ❌ end of life   | `composer require mjaschen/phpgeo:^1.0` |
 
 ## Installation
 
