@@ -26,6 +26,26 @@ class PolygonTest extends TestCase
         $this->assertEquals([$point1, $point2], $polygon->getPoints());
     }
 
+    public function testIfAddPointsArrayWorksAsExpected(): void
+    {
+        $polygon = new Polygon();
+
+        $this->assertEquals([], $polygon->getPoints());
+
+        $point0 = new Coordinate(0, 10);
+        $polygon->addPoint($point0);
+
+        $this->assertEquals([$point0], $polygon->getPoints());
+
+        $point1 = new Coordinate(10, 10);
+        $point2 = new Coordinate(10, 20);
+
+        $points = [$point1, $point2];
+        $polygon->addPoints($points);
+
+        $this->assertEquals([$point0, $point1, $point2], $polygon->getPoints());
+    }
+
     public function testIfGetNumberOfPointsWorksAsExpected(): void
     {
         $polygon = new Polygon();

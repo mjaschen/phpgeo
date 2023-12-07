@@ -137,7 +137,7 @@ class PolylineTest extends TestCase
         $this->assertTrue($middle->hasSameLocation(new Coordinate(47.8, -50.2), 0.000001));
     }
 
-    public function testGetAveragePointCrossingDateLine(): void
+    public function testGetAveragePointCrossingDateLine(): never
     {
         $polyline = new Polyline();
         $polyline->addPoint(new Coordinate(80.0, 179.0));
@@ -155,5 +155,25 @@ class PolylineTest extends TestCase
         $this->expectExceptionCode(9464188927);
 
         $middle = $polyline->getAveragePoint();
+    }
+
+    public function testIfAddPointsArrayWorksAsExpected(): void
+    {
+        $polyline = new Polyline();
+
+        $this->assertEquals([], $polyline->getPoints());
+
+        $point0 = new Coordinate(0, 10);
+        $polyline->addPoint($point0);
+
+        $this->assertEquals([$point0], $polyline->getPoints());
+
+        $point1 = new Coordinate(10, 10);
+        $point2 = new Coordinate(10, 20);
+
+        $points = [$point1, $point2];
+        $polyline->addPoints($points);
+
+        $this->assertEquals([$point0, $point1, $point2], $polyline->getPoints());
     }
 }

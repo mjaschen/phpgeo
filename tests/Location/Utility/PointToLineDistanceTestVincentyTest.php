@@ -11,15 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 class PointToLineDistanceTestVincentyTest extends TestCase
 {
-    /**
-     * @var PointToLineDistance
-     */
-    private $pointToLineDistance;
+    private \Location\Utility\PointToLineDistance $pointToLineDistance;
 
-    /**
-     * @var Vincenty
-     */
-    private $vincenty;
+    private \Location\Distance\Vincenty $vincenty;
 
     public function setUp(): void
     {

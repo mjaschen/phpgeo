@@ -12,19 +12,14 @@ use Location\Exception\NotMatchingEllipsoidException;
  * Implementation of distance calculation with Vincenty Method
  *
  * @see http://www.movable-type.co.uk/scripts/latlong-vincenty.html
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class Vincenty implements DistanceInterface
 {
     /**
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     *
      * @throws NotMatchingEllipsoidException
      * @throws NotConvergingException
      *
-     * @return float
+     * @return float Distance in meters
      */
     public function getDistance(Coordinate $point1, Coordinate $point2): float
     {

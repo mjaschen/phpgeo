@@ -11,15 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 class PointToLineDistanceTestHaversineTest extends TestCase
 {
-    /**
-     * @var PointToLineDistance
-     */
-    private $pointToLineDistance;
+    private \Location\Utility\PointToLineDistance $pointToLineDistance;
 
-    /**
-     * @var Haversine
-     */
-    private $haversine;
+    private \Location\Distance\Haversine $haversine;
 
     public function setUp(): void
     {

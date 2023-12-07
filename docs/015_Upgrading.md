@@ -1,10 +1,27 @@
 # Upgrading phpgeo
 
+## Update from phpgeo 4.x to phpgeo 5.x
+
+### Requirements
+
+- *phpgeo* 5.x requires at least PHP 8.1.
+
+### Update phpgeo
+
+- run `composer require mjaschen/phpgeo:^5.0` or
+- update the version constraint in your `composer.json` to `^5.0` and run `composer update`
+
+### Update Your Code
+
+`setPoint1()` and `setPoint2()` methods were removed from `Line` – the `Line` class now is immutable. Use the constructor to create a new instance of `Line`.
+
+There are some new deprecations introduced in 5.0, please see the change log for a detailed list and update your code accordingly to be prepared for 6.0.
+
 ## Update from phpgeo 3.x to phpgeo 4.x
 
 ### Requirements
 
-- _phpgeo_ 4.x requires at least PHP 7.3 and fully supports PHP 8
+- *phpgeo* 4.x requires at least PHP 7.3 and fully supports PHP 8
 
 ### Update phpgeo
 
@@ -22,7 +39,7 @@ No breaking changes were introduced with *phpgeo* 3.0.
 
 ### Requirements
 
-- _phpgeo_ 3.x requires at least PHP 7.2
+- *phpgeo* 3.x requires at least PHP 7.2
 
 ### Update phpgeo
 

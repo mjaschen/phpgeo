@@ -6,37 +6,14 @@ namespace Location\Bearing;
 
 use Location\Coordinate;
 
-/**
- * Value object for a "Direct Vincenty" bearing calculation result.
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class DirectVincentyBearing
 {
-    /**
-     * @var Coordinate
-     */
-    private $destination;
-
-    /**
-     * @var float
-     */
-    private $bearingFinal;
-
-    /**
-     * Bearing constructor.
-     *
-     * @param Coordinate $destination
-     * @param float $bearingFinal
-     */
-    public function __construct(Coordinate $destination, float $bearingFinal)
+    public function __construct(public readonly Coordinate $destination, public readonly float $bearingFinal)
     {
-        $this->destination  = $destination;
-        $this->bearingFinal = $bearingFinal;
     }
 
     /**
-     * @return Coordinate
+     * @deprecated use public attribute instead
      */
     public function getDestination(): Coordinate
     {
@@ -44,7 +21,7 @@ class DirectVincentyBearing
     }
 
     /**
-     * @return float
+     * @deprecated use public attribute instead
      */
     public function getBearingFinal(): float
     {

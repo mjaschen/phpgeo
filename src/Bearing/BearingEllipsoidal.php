@@ -16,8 +16,6 @@ use Location\Exception\NotConvergingException;
  * has done. For more information visit the following URL.
  *
  * @see http://www.movable-type.co.uk/scripts/latlong-vincenty.html
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class BearingEllipsoidal implements BearingInterface
 {
@@ -28,9 +26,6 @@ class BearingEllipsoidal implements BearingInterface
      * If the two points share the same location, the bearing
      * value will be 0.0.
      *
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     *
      * @return float Bearing Angle
      */
     public function calculateBearing(Coordinate $point1, Coordinate $point2): float
@@ -39,35 +34,29 @@ class BearingEllipsoidal implements BearingInterface
             return 0.0;
         }
 
-        return $this->inverseVincenty($point1, $point2)->getBearingInitial();
+        return $this->inverseVincenty($point1, $point2)->bearingInitial;
     }
 
     /**
      * Calculates the final bearing between the two points.
      *
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     *
-     * @return float
+     * @return float Bearing Angle
      */
     public function calculateFinalBearing(Coordinate $point1, Coordinate $point2): float
     {
-        return $this->inverseVincenty($point1, $point2)->getBearingFinal();
+        return $this->inverseVincenty($point1, $point2)->bearingFinal;
     }
 
     /**
      * Calculates a destination point for the given point, bearing angle,
      * and distance.
      *
-     * @param Coordinate $point
      * @param float $bearing the bearing angle between 0 and 360 degrees
      * @param float $distance the distance to the destination point in meters
-     *
-     * @return Coordinate
      */
     public function calculateDestination(Coordinate $point, float $bearing, float $distance): Coordinate
     {
-        return $this->directVincenty($point, $bearing, $distance)->getDestination();
+        return $this->directVincenty($point, $bearing, $distance)->destination;
     }
 
     /**
@@ -75,26 +64,16 @@ class BearingEllipsoidal implements BearingInterface
      * The method expects a starting point point, the bearing angle,
      * and the distance to destination.
      *
-     * @param Coordinate $point
-     * @param float $bearing
-     * @param float $distance
-     *
-     * @return float
+     * @return float Bearing Angle
      *
      * @throws NotConvergingException
      */
     public function calculateDestinationFinalBearing(Coordinate $point, float $bearing, float $distance): float
     {
-        return $this->directVincenty($point, $bearing, $distance)->getBearingFinal();
+        return $this->directVincenty($point, $bearing, $distance)->bearingFinal;
     }
 
     /**
-     * @param Coordinate $point
-     * @param float $bearing
-     * @param float $distance
-     *
-     * @return DirectVincentyBearing
-     *
      * @throws NotConvergingException
      */
     private function directVincenty(Coordinate $point, float $bearing, float $distance): DirectVincentyBearing
@@ -167,11 +146,6 @@ class BearingEllipsoidal implements BearingInterface
     }
 
     /**
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     *
-     * @return InverseVincentyBearing
-     *
      * @throws NotConvergingException
      */
     private function inverseVincenty(Coordinate $point1, Coordinate $point2): InverseVincentyBearing

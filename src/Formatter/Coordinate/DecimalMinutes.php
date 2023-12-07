@@ -7,44 +7,34 @@ namespace Location\Formatter\Coordinate;
 use InvalidArgumentException;
 use Location\Coordinate;
 
-/**
- * Coordinate Formatter "DecimalMinutes"
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class DecimalMinutes implements FormatterInterface
 {
-    public const UNITS_UTF8  = 'UTF-8';
-    public const UNITS_ASCII = 'ASCII';
-
-    /**
-     * @var string Separator string between latitude and longitude
-     */
-    protected $separator;
+    final public const UNITS_UTF8 = 'UTF-8';
+    final public const UNITS_ASCII = 'ASCII';
 
     /**
      * Use cardinal letters for N/S and W/E instead of minus sign
      *
      * @var bool
      */
-    protected $useCardinalLetters;
+    protected bool $useCardinalLetters = false;
 
     /**
      * @var string
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
-    protected $unitType;
+    protected string $unitType;
 
     /**
      * @var int
      */
-    protected $digits = 3;
+    protected int $digits = 3;
 
     /**
      * @var string
      */
-    protected $decimalPoint = '.';
+    protected string $decimalPoint = '.';
 
     /**
      * @var array
@@ -60,52 +50,17 @@ class DecimalMinutes implements FormatterInterface
         ],
     ];
 
-    /**
-     * @param string $separator
-     */
-    public function __construct(string $separator = ' ')
+    public function __construct(protected string $separator = ' ')
     {
-        $this->separator          = $separator;
-        $this->useCardinalLetters = false;
-
         $this->setUnits(self::UNITS_UTF8);
     }
 
     /**
-     * Sets the separator between latitude and longitude values
-     *
-     * @param string $separator
-     *
-     * @return DecimalMinutes
-     */
-    public function setSeparator(string $separator): DecimalMinutes
-    {
-        $this->separator = $separator;
-
-        return $this;
-    }
-
-    /**
-     * @param bool $value
-     *
-     * @return DecimalMinutes
-     */
-    public function useCardinalLetters(bool $value): DecimalMinutes
-    {
-        $this->useCardinalLetters = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return DecimalMinutes
      * @throws \InvalidArgumentException
      */
     public function setUnits(string $type): DecimalMinutes
     {
-        if (! array_key_exists($type, $this->units)) {
+        if (!array_key_exists($type, $this->units)) {
             throw new InvalidArgumentException('Invalid unit type');
         }
 
@@ -115,18 +70,32 @@ class DecimalMinutes implements FormatterInterface
     }
 
     /**
-     * @return string
+     * Sets the separator between latitude and longitude values
+     *
+     * @deprecated Use the constructor instead
      */
+    public function setSeparator(string $separator): DecimalMinutes
+    {
+        $this->separator = $separator;
+
+        return $this;
+    }
+
+    /**
+     * @return DecimalMinutes
+     */
+    public function useCardinalLetters(bool $value): DecimalMinutes
+    {
+        $this->useCardinalLetters = $value;
+
+        return $this;
+    }
+
     public function getUnitType(): string
     {
         return $this->unitType;
     }
 
-    /**
-     * @param int $digits
-     *
-     * @return DecimalMinutes
-     */
     public function setDigits(int $digits): DecimalMinutes
     {
         $this->digits = $digits;
@@ -134,11 +103,6 @@ class DecimalMinutes implements FormatterInterface
         return $this;
     }
 
-    /**
-     * @param string $decimalPoint
-     *
-     * @return DecimalMinutes
-     */
     public function setDecimalPoint(string $decimalPoint): DecimalMinutes
     {
         $this->decimalPoint = $decimalPoint;
@@ -146,27 +110,22 @@ class DecimalMinutes implements FormatterInterface
         return $this;
     }
 
-    /**
-     * @param Coordinate $coordinate
-     *
-     * @return string
-     */
     public function format(Coordinate $coordinate): string
     {
         $lat = $coordinate->getLat();
         $lng = $coordinate->getLng();
 
-        $latValue   = abs($lat);
+        $latValue = abs($lat);
         $latDegrees = (int)$latValue;
 
         $latMinutesDecimal = $latValue - $latDegrees;
-        $latMinutes        = 60 * $latMinutesDecimal;
+        $latMinutes = 60 * $latMinutesDecimal;
 
-        $lngValue   = abs($lng);
+        $lngValue = abs($lng);
         $lngDegrees = (int)$lngValue;
 
         $lngMinutesDecimal = $lngValue - $lngDegrees;
-        $lngMinutes        = 60 * $lngMinutesDecimal;
+        $lngMinutes = 60 * $lngMinutesDecimal;
 
         return sprintf(
             '%s%02d%s %s%s%s%s%s%03d%s %s%s%s',
@@ -186,11 +145,6 @@ class DecimalMinutes implements FormatterInterface
         );
     }
 
-    /**
-     * @param float $lat
-     *
-     * @return string
-     */
     protected function getLatPrefix(float $lat): string
     {
         if ($this->useCardinalLetters || $lat >= 0) {
@@ -200,28 +154,9 @@ class DecimalMinutes implements FormatterInterface
         return '-';
     }
 
-    /**
-     * @param float $lng
-     *
-     * @return string
-     */
-    protected function getLngPrefix(float $lng): string
-    {
-        if ($this->useCardinalLetters || $lng >= 0) {
-            return '';
-        }
-
-        return '-';
-    }
-
-    /**
-     * @param float $lat
-     *
-     * @return string
-     */
     protected function getLatSuffix(float $lat): string
     {
-        if (! $this->useCardinalLetters) {
+        if (!$this->useCardinalLetters) {
             return '';
         }
 
@@ -232,14 +167,18 @@ class DecimalMinutes implements FormatterInterface
         return ' S';
     }
 
-    /**
-     * @param float $lng
-     *
-     * @return string
-     */
+    protected function getLngPrefix(float $lng): string
+    {
+        if ($this->useCardinalLetters || $lng >= 0) {
+            return '';
+        }
+
+        return '-';
+    }
+
     protected function getLngSuffix(float $lng): string
     {
-        if (! $this->useCardinalLetters) {
+        if (!$this->useCardinalLetters) {
             return '';
         }
 

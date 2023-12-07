@@ -6,17 +6,10 @@ namespace Location\Formatter\Coordinate;
 
 use Location\Coordinate;
 
-/**
- * GeoJSON Coordinate Formatter
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class GeoJSON implements FormatterInterface
 {
     /**
-     * @param Coordinate $coordinate
-     *
-     * @return string
+     * @throws \JsonException
      */
     public function format(Coordinate $coordinate): string
     {
@@ -27,7 +20,8 @@ class GeoJSON implements FormatterInterface
                     $coordinate->getLng(),
                     $coordinate->getLat(),
                 ],
-            ]
+            ],
+            JSON_THROW_ON_ERROR
         );
     }
 }

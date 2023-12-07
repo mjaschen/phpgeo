@@ -4,22 +4,13 @@ declare(strict_types=1);
 
 namespace Location\Formatter\Polygon;
 
-use Location\Coordinate;
+use JsonException;
 use Location\Exception\InvalidPolygonException;
 use Location\Polygon;
 
-/**
- * GeoJSON Polygon Formatter
- *
- * @author Richard Barnes <rbarnes@umn.edu>
- */
 class GeoJSON implements FormatterInterface
 {
     /**
-     * @param Polygon $polygon
-     *
-     * @return string
-     *
      * @throws InvalidPolygonException
      */
     public function format(Polygon $polygon): string
@@ -30,7 +21,6 @@ class GeoJSON implements FormatterInterface
 
         $points = [];
 
-        /** @var Coordinate $point */
         foreach ($polygon->getPoints() as $point) {
             $points[] = [$point->getLng(), $point->getLat()];
         }
@@ -39,7 +29,8 @@ class GeoJSON implements FormatterInterface
             [
                 'type' => 'Polygon',
                 'coordinates' => [$points],
-            ]
+            ],
+            JSON_THROW_ON_ERROR
         );
     }
 }

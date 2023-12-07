@@ -6,17 +6,10 @@ namespace Location\Formatter\Polyline;
 
 use Location\Polyline;
 
-/**
- * GeoJSON Polyline Formatter
- *
- * @author Richard Barnes <rbarnes@umn.edu>
- */
 class GeoJSON implements FormatterInterface
 {
     /**
-     * @param Polyline $polyline
-     *
-     * @return string
+     * @throws \JsonException
      */
     public function format(Polyline $polyline): string
     {
@@ -30,7 +23,8 @@ class GeoJSON implements FormatterInterface
             [
                 'type'        => 'LineString',
                 'coordinates' => $points,
-            ]
+            ],
+            JSON_THROW_ON_ERROR
         );
     }
 }

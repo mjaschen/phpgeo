@@ -6,24 +6,8 @@ namespace Location;
 
 class Bounds
 {
-    /**
-     * @var Coordinate
-     */
-    protected $northWest;
-
-    /**
-     * @var Coordinate
-     */
-    protected $southEast;
-
-    /**
-     * @param Coordinate $northWest
-     * @param Coordinate $southEast
-     */
-    public function __construct(Coordinate $northWest, Coordinate $southEast)
+    public function __construct(private readonly Coordinate $northWest, private readonly Coordinate $southEast)
     {
-        $this->northWest = $northWest;
-        $this->southEast = $southEast;
     }
 
     public function getNorthWest(): Coordinate

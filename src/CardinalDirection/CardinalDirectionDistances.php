@@ -9,32 +9,12 @@ use Location\Exception\InvalidDistanceException;
 /** @psalm-immutable */
 class CardinalDirectionDistances
 {
-    /**
-     * @var float
-     */
-    private $north;
-
-    /**
-     * @var float
-     */
-    private $east;
-
-    /**
-     * @var float
-     */
-    private $south;
-
-    /**
-     * @var float
-     */
-    private $west;
-
-    private function __construct(float $north, float $east, float $south, float $west)
-    {
-        $this->north = $north;
-        $this->east = $east;
-        $this->south = $south;
-        $this->west = $west;
+    private function __construct(
+        private readonly float $north,
+        private readonly float $east,
+        private readonly float $south,
+        private readonly float $west
+    ) {
     }
 
     /**
@@ -54,6 +34,19 @@ class CardinalDirectionDistances
         $this->assertPositiveFloat($north);
 
         return new self($north, $this->east, $this->south, $this->west);
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-mutation-free
+     *
+     * @throws InvalidDistanceException
+     */
+    private function assertPositiveFloat(float $value): void
+    {
+        if ($value < 0) {
+            throw new InvalidDistanceException('Negative distance is invalid.', 1_857_757_416);
+        }
     }
 
     /**
@@ -116,18 +109,5 @@ class CardinalDirectionDistances
     public function getWest(): float
     {
         return $this->west;
-    }
-
-    /**
-     * @psalm-pure
-     * @psalm-mutation-free
-     *
-     * @throws InvalidDistanceException
-     */
-    private function assertPositiveFloat(float $value): void
-    {
-        if ($value < 0) {
-            throw new InvalidDistanceException('Negative distance is invalid.', 1857757416);
-        }
     }
 }

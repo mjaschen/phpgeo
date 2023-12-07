@@ -10,53 +10,20 @@ use Location\Intersection\Intersection;
 use Location\Utility\Cartesian;
 use RuntimeException;
 
-/**
- * Line Implementation
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class Line implements GeometryInterface
 {
     use GetBoundsTrait;
 
-    public const ORIENTATION_COLLINEAR = 0;
-    public const ORIENTATION_CLOCKWISE = 1;
-    public const ORIENTATION_ANTI_CLOCKWISE = 2;
+    final public const ORIENTATION_COLLINEAR = 0;
+    final public const ORIENTATION_CLOCKWISE = 1;
+    final public const ORIENTATION_ANTI_CLOCKWISE = 2;
 
-    /**
-     * @var Coordinate
-     */
-    protected $point1;
-
-    /**
-     * @var Coordinate
-     */
-    protected $point2;
-
-    /**
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     */
-    public function __construct(Coordinate $point1, Coordinate $point2)
+    public function __construct(public readonly Coordinate $point1, public readonly Coordinate $point2)
     {
-        $this->point1 = $point1;
-        $this->point2 = $point2;
     }
 
     /**
-     * @param Coordinate $point1
-     *
-     * @return void
-     *
-     * @deprecated
-     */
-    public function setPoint1(Coordinate $point1)
-    {
-        $this->point1 = $point1;
-    }
-
-    /**
-     * @return Coordinate
+     * @deprecated Use property instead
      */
     public function getPoint1(): Coordinate
     {
@@ -64,19 +31,7 @@ class Line implements GeometryInterface
     }
 
     /**
-     * @param Coordinate $point2
-     *
-     * @return void
-     *
-     * @deprecated
-     */
-    public function setPoint2(Coordinate $point2)
-    {
-        $this->point2 = $point2;
-    }
-
-    /**
-     * @return Coordinate
+     * @deprecated Use property instead
      */
     public function getPoint2(): Coordinate
     {
@@ -105,32 +60,20 @@ class Line implements GeometryInterface
 
     /**
      * Calculates the length of the line (distance between the two
-     * coordinates).
+     * coordinates in meters).
      *
      * @param DistanceInterface $calculator instance of distance calculation class
-     *
-     * @return float
      */
     public function getLength(DistanceInterface $calculator): float
     {
         return $calculator->getDistance($this->point1, $this->point2);
     }
 
-    /**
-     * @param BearingInterface $bearingCalculator
-     *
-     * @return float
-     */
     public function getBearing(BearingInterface $bearingCalculator): float
     {
         return $bearingCalculator->calculateBearing($this->point1, $this->point2);
     }
 
-    /**
-     * @param BearingInterface $bearingCalculator
-     *
-     * @return float
-     */
     public function getFinalBearing(BearingInterface $bearingCalculator): float
     {
         return $bearingCalculator->calculateFinalBearing($this->point1, $this->point2);
@@ -138,8 +81,6 @@ class Line implements GeometryInterface
 
     /**
      * Create a new instance with reversed point order, i. e. reversed direction.
-     *
-     * @return Line
      */
     public function getReverse(): Line
     {
@@ -150,8 +91,6 @@ class Line implements GeometryInterface
      * Get the midpoint of a Line segment
      *
      * @see http://www.movable-type.co.uk/scripts/latlong.html#midpoint
-     *
-     * @return Coordinate
      */
     public function getMidpoint(): Coordinate
     {
@@ -165,8 +104,8 @@ class Line implements GeometryInterface
         $B = new Cartesian(cos($lat2) * cos($deltaLng), cos($lat2) * sin($deltaLng), sin($lat2));
         $C = $A->add($B);
 
-        $latMid = atan2($C->getZ(), sqrt($C->getX() ** 2 + $C->getY() ** 2));
-        $lngMid = $lng1 + atan2($C->getY(), $C->getX());
+        $latMid = atan2($C->z, sqrt($C->x ** 2 + $C->y ** 2));
+        $lngMid = $lng1 + atan2($C->y, $C->x);
 
         return new Coordinate(rad2deg($latMid), rad2deg($lngMid));
     }
@@ -179,8 +118,6 @@ class Line implements GeometryInterface
      * @see http://www.edwilliams.org/avform.htm#Intermediate
      *
      * @param float $fraction 0.0 ... 1.0 (smaller or larger values work too)
-     *
-     * @return Coordinate
      *
      * @throws RuntimeException
      */
@@ -253,10 +190,10 @@ class Line implements GeometryInterface
     public function intersectsLine(Line $line): bool
     {
         $orientation = [];
-        $orientation[11] = $this->getOrientation($line->getPoint1());
-        $orientation[12] = $this->getOrientation($line->getPoint2());
-        $orientation[21] = $line->getOrientation($this->getPoint1());
-        $orientation[22] = $line->getOrientation($this->getPoint2());
+        $orientation[11] = $this->getOrientation($line->point1);
+        $orientation[12] = $this->getOrientation($line->point2);
+        $orientation[21] = $line->getOrientation($this->point1);
+        $orientation[22] = $line->getOrientation($this->point2);
 
         // the lines cross
         if (

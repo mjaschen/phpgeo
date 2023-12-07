@@ -10,32 +10,13 @@ use Location\Polygon;
 use Location\Polyline;
 use RuntimeException;
 
-/**
- * Simplify Polyline.
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class SimplifyBearing implements SimplifyInterface
 {
-    /**
-     * @var float
-     */
-    private $bearingAngle;
-
-    /**
-     * SimplifyBearing constructor.
-     *
-     * @param float $bearingAngle
-     */
-    public function __construct(float $bearingAngle)
+    public function __construct(private readonly float $bearingAngle)
     {
-        $this->bearingAngle = $bearingAngle;
     }
 
     /**
-     * @param Polyline $polyline
-     *
-     * @return Polyline
      * @throws RuntimeException
      */
     public function simplify(Polyline $polyline): Polyline
@@ -57,12 +38,6 @@ class SimplifyBearing implements SimplifyInterface
      * 3. calculate the difference between b1 and b2: deltaB; if deltaB is
      *    smaller than the threshold angle, remove the middle point p2
      * 4. start again at (1.) as long as the polyline contains more points
-     *
-     * This method will be merged with `simplify()` in the next major release.
-     *
-     * @param GeometryInterface $geometry
-     *
-     * @return GeometryInterface
      */
     public function simplifyGeometry(GeometryInterface $geometry): GeometryInterface
     {

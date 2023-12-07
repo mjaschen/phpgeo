@@ -4,36 +4,17 @@ declare(strict_types=1);
 
 namespace Location\Utility;
 
-use Location\Bearing\BearingSpherical;
 use Location\Coordinate;
 use Location\Distance\DistanceInterface;
-use Location\Distance\Vincenty;
 use Location\Exception\NotConvergingException;
 use Location\Line;
 
-use function PHPUnit\Framework\throwException;
-
-/**
- * Calculate the distance between a Line (minor arc of a Great Circle) and a Point.
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class PointToLineDistance
 {
-    /**
-     * @var DistanceInterface
-     */
-    private $distanceCalculator;
-
-    /**
-     * @var float
-     */
-    private $epsilon;
-
-    public function __construct(DistanceInterface $distanceCalculator, float $epsilon = 0.001)
-    {
-        $this->distanceCalculator = $distanceCalculator;
-        $this->epsilon = $epsilon;
+    public function __construct(
+        private readonly DistanceInterface $distanceCalculator,
+        private readonly float $epsilon = 0.001
+    ) {
     }
 
     /**
@@ -42,13 +23,13 @@ class PointToLineDistance
      */
     public function getDistance(Coordinate $point, Line $line): float
     {
-        if ($line->getPoint1()->hasSameLocation($line->getPoint2(), $this->epsilon)) {
-            return $this->distanceCalculator->getDistance($point, $line->getPoint1());
+        if ($line->point1->hasSameLocation($line->point2, $this->epsilon)) {
+            return $this->distanceCalculator->getDistance($point, $line->point1);
         }
-        if ($point->hasSameLocation($line->getPoint1(), $this->epsilon)) {
+        if ($point->hasSameLocation($line->point1, $this->epsilon)) {
             return 0.0;
         }
-        if ($point->hasSameLocation($line->getPoint2(), $this->epsilon)) {
+        if ($point->hasSameLocation($line->point2, $this->epsilon)) {
             return 0.0;
         }
         if ($point->hasSameLocation($line->getMidpoint(), $this->epsilon)) {
@@ -59,8 +40,8 @@ class PointToLineDistance
         $iterationLine = clone $line;
 
         do {
-            $linePoint1 = $iterationLine->getPoint1();
-            $linePoint2 = $iterationLine->getPoint2();
+            $linePoint1 = $iterationLine->point1;
+            $linePoint2 = $iterationLine->point2;
             $lineMidPoint = $iterationLine->getMidpoint();
 
             $distancePointToLinePoint1 = $point->getDistance($linePoint1, $this->distanceCalculator);

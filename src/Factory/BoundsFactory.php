@@ -9,18 +9,13 @@ use Location\Bearing\BearingInterface;
 use Location\Bounds;
 use Location\Coordinate;
 
-/**
- * Bounds Factory
- */
 class BoundsFactory
 {
     /**
      * Creates a Bounds instance which corners have the given distance from its center.
      *
-     * @param Coordinate $center
      * @param float $distance in meters
-     * @param BearingInterface $bearing
-     * @return Bounds
+     *
      * @throws InvalidArgumentException if bounds crosses the 180/-180 degrees meridian.
      */
     public static function expandFromCenterCoordinate(

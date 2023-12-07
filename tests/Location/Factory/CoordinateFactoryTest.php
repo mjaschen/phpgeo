@@ -381,7 +381,7 @@ class CoordinateFactoryTest extends TestCase
     /**
      * Data provider for decimal seconds parser test.
      */
-    public function dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected(): ?Generator
+    public static function dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected(): ?Generator
     {
         $expected = new Coordinate(52.20575, 13.576116667);
         $expectedLat = $expected->getLat();

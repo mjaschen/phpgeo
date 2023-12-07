@@ -6,35 +6,12 @@ namespace Location\Utility;
 
 class Cartesian
 {
-    /**
-     * @var float
-     */
-    private $x;
-    /**
-     * @var float
-     */
-    private $y;
-    /**
-     * @var float
-     */
-    private $z;
-
-    /**
-     * Cartesian constructor.
-     *
-     * @param $x
-     * @param $y
-     * @param $z
-     */
-    public function __construct(float $x, float $y, float $z)
+    public function __construct(public readonly float $x, public readonly float $y, public readonly float $z)
     {
-        $this->x = $x;
-        $this->y = $y;
-        $this->z = $z;
     }
 
     /**
-     * @return float
+     * @deprecated Use property instead
      */
     public function getX(): float
     {
@@ -42,7 +19,7 @@ class Cartesian
     }
 
     /**
-     * @return float
+     * @deprecated Use property instead
      */
     public function getY(): float
     {
@@ -50,18 +27,13 @@ class Cartesian
     }
 
     /**
-     * @return float
+     * @deprecated Use property instead
      */
     public function getZ(): float
     {
         return $this->z;
     }
 
-    /**
-     * @param Cartesian $other
-     *
-     * @return Cartesian
-     */
     public function add(Cartesian $other): Cartesian
     {
         return new self(

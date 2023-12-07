@@ -10,8 +10,6 @@ use Location\Coordinate;
 /**
  * Calculation of bearing between two points using a
  * simple spherical model of the earth.
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
  */
 class BearingSpherical implements BearingInterface
 {
@@ -23,9 +21,6 @@ class BearingSpherical implements BearingInterface
     /**
      * This method calculates the initial bearing (forward azimut) between
      * the two given points.
-     *
-     * @param Coordinate $point1
-     * @param Coordinate $point2
      *
      * @return float Bearing Angle in degrees
      */
@@ -51,10 +46,7 @@ class BearingSpherical implements BearingInterface
     /**
      * Calculates the final bearing between the two points.
      *
-     * @param Coordinate $point1
-     * @param Coordinate $point2
-     *
-     * @return float
+     * @return float Bearing Angle in degrees
      */
     public function calculateFinalBearing(Coordinate $point1, Coordinate $point2): float
     {
@@ -67,11 +59,9 @@ class BearingSpherical implements BearingInterface
      * Calculates a destination point for the given point, bearing angle,
      * and distance.
      *
-     * @param Coordinate $point
      * @param float $bearing the bearing angle between 0 and 360 degrees
      * @param float $distance the distance to the destination point in meters
      *
-     * @return Coordinate
      * @throws InvalidArgumentException
      */
     public function calculateDestination(Coordinate $point, float $bearing, float $distance): Coordinate

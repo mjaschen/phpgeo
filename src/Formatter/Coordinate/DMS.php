@@ -7,31 +7,22 @@ namespace Location\Formatter\Coordinate;
 use InvalidArgumentException;
 use Location\Coordinate;
 
-/**
- * Coordinate Formatter "DMS"
- *
- * @author Marcus Jaschen <mjaschen@gmail.com>
- */
 class DMS implements FormatterInterface
 {
-    public const UNITS_UTF8 = 'UTF-8';
-    public const UNITS_ASCII = 'ASCII';
+    final public const UNITS_UTF8 = 'UTF-8';
+    final public const UNITS_ASCII = 'ASCII';
 
     /**
      * @var string Separator string between latitude and longitude
      */
-    protected $separator;
+    protected string $separator;
 
     /**
      * Use cardinal letters for N/S and W/E instead of minus sign
-     *
-     * @var bool
      */
-    protected $useCardinalLetters;
+    protected bool $useCardinalLetters;
 
     /**
-     * @var string
-     *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $unitType;
@@ -68,11 +59,7 @@ class DMS implements FormatterInterface
     /**
      * Sets the separator between latitude and longitude values
      *
-     * @param string $separator
-     *
-     * @return DMS
-     *
-     * @deprecated
+     * @deprecated use constructor instead
      */
     public function setSeparator(string $separator): DMS
     {
@@ -82,11 +69,7 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param bool $value
-     *
-     * @return DMS
-     *
-     * @deprecated
+     * @deprecated use constructor instead
      */
     public function useCardinalLetters(bool $value): DMS
     {
@@ -96,12 +79,8 @@ class DMS implements FormatterInterface
     }
 
     /**
-     * @param string $type
-     *
-     * @return DMS
      * @throws InvalidArgumentException
-     *
-     * @deprecated
+     * @deprecated use constructor instead
      */
     public function setUnits(string $type): DMS
     {
@@ -114,19 +93,11 @@ class DMS implements FormatterInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUnitType(): string
     {
         return $this->unitType;
     }
 
-    /**
-     * @param Coordinate $coordinate
-     *
-     * @return string
-     */
     public function format(Coordinate $coordinate): string
     {
         $lat = $coordinate->getLat();
@@ -179,15 +150,6 @@ class DMS implements FormatterInterface
         return '-';
     }
 
-    protected function getLngPrefix(float $lng): string
-    {
-        if ($this->useCardinalLetters || $lng >= 0) {
-            return '';
-        }
-
-        return '-';
-    }
-
     protected function getLatSuffix(float $lat): string
     {
         if (!$this->useCardinalLetters) {
@@ -199,6 +161,15 @@ class DMS implements FormatterInterface
         }
 
         return ' S';
+    }
+
+    protected function getLngPrefix(float $lng): string
+    {
+        if ($this->useCardinalLetters || $lng >= 0) {
+            return '';
+        }
+
+        return '-';
     }
 
     protected function getLngSuffix(float $lng): string
