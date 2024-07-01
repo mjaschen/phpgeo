@@ -47,6 +47,9 @@ The code above will produce the output below:
 128130.850
 ```
 
+!!! warning "WARNING"
+Vincenty's formular can fail to converge for (nearly) antipodal points. [See also](http://www.movable-type.co.uk/scripts/latlong-vincenty.html).
+
 ## Distance Between Two Points (Haversine Formula)
 
 There exist different methods for calculating the distance between
