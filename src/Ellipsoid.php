@@ -14,20 +14,20 @@ class Ellipsoid
     protected static $configs = [
         'WGS-84' => [
             'name' => 'World Geodetic System 1984',
-            'a'    => 6378137.0,
-            'f'    => 298.257223563,
+            'a' => 6378137.0,
+            'f' => 298.257223563,
         ],
         'GRS-80' => [
             'name' => 'Geodetic Reference System 1980',
-            'a'    => 6378137.0,
-            'f'    => 298.257222100,
+            'a' => 6378137.0,
+            'f' => 298.257222100,
         ],
     ];
 
     /**
      * @param  string  $name
-     * @param  float  $a The semi-major axis
-     * @param  float  $f The Inverse Flattening (1/f)
+     * @param  float  $a  The semi-major axis
+     * @param  float  $f  The Inverse Flattening (1/f)
      */
     public function __construct(public readonly string $name, public readonly float $a, public readonly float $f)
     {
@@ -38,6 +38,9 @@ class Ellipsoid
         return static::createFromArray(static::$configs[$name]);
     }
 
+    /**
+     * @param  array{name: string, a: float, f: float}  $config
+     */
     public static function createFromArray(array $config): Ellipsoid
     {
         return new self($config['name'], $config['a'], $config['f']);
