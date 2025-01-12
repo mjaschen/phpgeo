@@ -148,7 +148,7 @@ class Coordinate implements GeometryInterface
         return new Bounds($this, $this);
     }
 
-    public function getSegments(): array
+    public function getSegments(): never
     {
         throw new \RuntimeException('A single point instance does not contain valid segments', 6029644914);
     }
