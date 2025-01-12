@@ -145,16 +145,16 @@ class CoordinateFactory implements GeometryFactoryInterface
         $regexp = '/([NS]?\s*)(\d{1,2}\.?\d*)°?(\s*[NS]?)[, ]\s*([EW]?\s*)(\d{1,3}\.?\d*)°?(\s*[EW]?)/ui';
 
         if (preg_match($regexp, $string, $match) === 1) {
-            $latitude = $match[2];
+            $latitude = (float)$match[2];
             if (strtoupper(trim($match[1])) === 'S' || strtoupper(trim($match[3])) === 'S') {
                 $latitude = -$latitude;
             }
-            $longitude = $match[5];
+            $longitude = (float)$match[5];
             if (strtoupper(trim($match[4])) === 'W' || strtoupper(trim($match[6])) === 'W') {
                 $longitude = -$longitude;
             }
 
-            return new Coordinate((float)$latitude, (float)$longitude, $ellipsoid);
+            return new Coordinate($latitude, $longitude, $ellipsoid);
         }
 
         return null;
