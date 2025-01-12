@@ -14,32 +14,19 @@ class DecimalMinutes implements FormatterInterface
 
     /**
      * Use cardinal letters for N/S and W/E instead of minus sign
-     *
-     * @var bool
      */
     protected bool $useCardinalLetters = false;
 
-    /**
-     * @var string
-     *
-     * @psalm-suppress PropertyNotSetInConstructor
-     */
     protected string $unitType;
 
-    /**
-     * @var int
-     */
     protected int $digits = 3;
 
-    /**
-     * @var string
-     */
     protected string $decimalPoint = '.';
 
     /**
-     * @var array
+     * @var array{'UTF-8': array{deg: string, min: string}, 'ASCII': array{deg: string, min: string}}
      */
-    protected $units = [
+    protected array $units = [
         'UTF-8' => [
             'deg' => '°',
             'min' => '′',

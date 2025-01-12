@@ -22,10 +22,7 @@ class DMS implements FormatterInterface
      */
     protected bool $useCardinalLetters;
 
-    /**
-     * @psalm-suppress PropertyNotSetInConstructor
-     */
-    protected $unitType;
+    protected string $unitType;
 
     /**
      * @var array<string, array{deg: string, min: string, sec: string}>
@@ -43,9 +40,6 @@ class DMS implements FormatterInterface
         ],
     ];
 
-    /**
-     * @throws InvalidArgumentException
-     */
     public function __construct(
         string $separator = ' ',
         bool $useCardinalLetters = false,

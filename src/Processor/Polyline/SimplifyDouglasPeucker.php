@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Location\Processor\Polyline;
 
+use Location\Coordinate;
 use Location\GeometryInterface;
 use Location\Line;
 use Location\Polygon;
@@ -25,7 +26,7 @@ class SimplifyDouglasPeucker implements SimplifyInterface
     protected float $tolerance;
 
     /**
-     * @param float $tolerance the perpendicular distance threshold in meters
+     * @param  float  $tolerance  the perpendicular distance threshold in meters
      */
     public function __construct(float $tolerance)
     {
@@ -77,6 +78,10 @@ class SimplifyDouglasPeucker implements SimplifyInterface
         return $result;
     }
 
+    /**
+     * @param  Coordinate[]  $line
+     * @return  Coordinate[]
+     */
     protected function douglasPeucker(array $line): array
     {
         $distanceMax = 0;
