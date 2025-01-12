@@ -12,4 +12,6 @@ interface GeometryInterface
      * @return array<Coordinate>
      */
     public function getPoints(): array;
+
+    public function getBounds(): Bounds;
 }
