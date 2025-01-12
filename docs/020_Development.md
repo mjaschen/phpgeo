@@ -32,10 +32,10 @@ command to ensure the sources don't contain any syntax error:
 composer ci:lint
 ```
 
-A static code analysis with [Psalm](https://psalm.dev/) is configured as well:
+A static code analysis with [PHPStan](https://phpstan.org/) is configured as well:
 
 ``` shell
-composer ci:psalm
+composer ci:phpstan
 ```
 
 It's possible to run all tests at once:
@@ -47,7 +47,7 @@ composer ci
 … or run all CI tasks with different PHP versions one after another:
 
 ```shell
-for PHP_VERSION in 8.1 8.2 8.3 ; do \
+for PHP_VERSION in 8.2 8.3 8.4 ; do \
   docker run -it --rm -v "$PWD":/phpgeo -w /phpgeo \
   ghcr.io/mjaschen/php:${PHP_VERSION}-cli-mj composer ci || break ; \
 done

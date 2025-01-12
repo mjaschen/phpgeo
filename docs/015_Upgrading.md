@@ -1,6 +1,24 @@
 # Upgrading phpgeo
 
-## Update from phpgeo 4.x to phpgeo 5.x
+### Upgrade from phpgeo 5.x to phpgeo 6.x
+
+### Requirements
+
+- *phpgeo* 6.x requires at least PHP 8.2.
+
+### Update phpgeo
+
+- run `composer require mjaschen/phpgeo:^6.0` or
+- update the version constraint in your `composer.json` to `^6.0` and run `composer update`
+
+### Update Your Code
+
+*phpgeo* has some breaking changes in the 6.x release line. Please refer to the following list to see what has changed
+and what you need to do to upgrade your code.
+
+- Ensure your class has a `getBounds()` method if you implement `GeometryInterface` in your own classes.
+
+## Upgrade from phpgeo 4.x to phpgeo 5.x
 
 ### Requirements
 
@@ -17,7 +35,7 @@
 
 There are some new deprecations introduced in 5.0, please see the [change log](https://github.com/mjaschen/phpgeo/blob/main/CHANGELOG.md) for a detailed list and update your code accordingly to be prepared for 6.0.
 
-## Update from phpgeo 3.x to phpgeo 4.x
+## Upgrade from phpgeo 3.x to phpgeo 4.x
 
 ### Requirements
 
@@ -35,7 +53,7 @@ There are some new deprecations introduced in 5.0, please see the [change log](h
 
 No breaking changes were introduced with *phpgeo* 3.0.
 
-## Update from phpgeo 2.x to phpgeo 3.x
+## Upgrade from phpgeo 2.x to phpgeo 3.x
 
 ### Requirements
 
