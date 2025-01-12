@@ -3,11 +3,23 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [5.1.0]
+## [6.0.0]
+
+**Warning: Backwards-compatibility-breaking changes** (see README for upgrade details)
 
 ### Added
 
 - Support for PHP 8.4
+- `GeometryLinesInterface` for geometries containing lines (`Line`, `Polyline`, `Polygon`)
+- `getBounds()` method to `GeometryInterface`
+
+### Removed
+
+- Support for PHP 8.1
+
+### Changed
+
+- Replaced Psalm with PHPStan for static code analysis
 
 ## [5.0.0]
 
