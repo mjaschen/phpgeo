@@ -7,7 +7,7 @@ namespace Location;
 use Location\Distance\DistanceInterface;
 use Location\Formatter\Polygon\FormatterInterface;
 
-class Polygon implements GeometryInterface
+class Polygon implements GeometryLinesInterface
 {
     use GetBoundsTrait;
 

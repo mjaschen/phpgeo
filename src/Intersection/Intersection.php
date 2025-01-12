@@ -9,6 +9,7 @@ use Location\Coordinate;
 use Location\Direction\Direction;
 use Location\Exception\InvalidGeometryException;
 use Location\GeometryInterface;
+use Location\GeometryLinesInterface;
 use Location\Line;
 use Location\Polygon;
 use Location\Polyline;
@@ -25,6 +26,10 @@ class Intersection
             return $geometry2->contains($geometry1);
         }
 
+        if (!($geometry1 instanceof GeometryLinesInterface && $geometry2 instanceof GeometryLinesInterface)) {
+            throw new InvalidGeometryException('Only can check intersections for geometries with lines', 3285305710);
+        }
+
         if ($precise === true) {
             return $this->intersectsGeometry($geometry1, $geometry2);
         }
@@ -38,9 +43,7 @@ class Intersection
     private function intersectsBounds(GeometryInterface $geometry1, GeometryInterface $geometry2): bool
     {
         $direction = new Direction();
-        /** @var Coordinate|Line|Polyline|Polygon $geometry1 */
         $bounds1 = $geometry1->getBounds();
-        /** @var Coordinate|Line|Polyline|Polygon $geometry2 */
         $bounds2 = $geometry2->getBounds();
 
         return !(
@@ -57,7 +60,7 @@ class Intersection
      *
      * @throws InvalidGeometryException
      */
-    private function intersectsGeometry(GeometryInterface $geometry1, GeometryInterface $geometry2): bool
+    private function intersectsGeometry(GeometryLinesInterface $geometry1, GeometryLinesInterface $geometry2): bool
     {
         if ($geometry1 instanceof Coordinate && $geometry2 instanceof Coordinate) {
             return $geometry1->hasSameLocation($geometry2);
@@ -75,9 +78,7 @@ class Intersection
             return true;
         }
 
-        /** @var Line|Polyline|Polygon $geometry1 */
         foreach ($geometry1->getSegments() as $segment) {
-            /** @var Line|Polyline|Polygon $geometry2 */
             foreach ($geometry2->getSegments() as $otherSegment) {
                 if ($segment->intersectsLine($otherSegment)) {
                     return true;

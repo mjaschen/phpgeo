@@ -10,7 +10,7 @@ use Location\Intersection\Intersection;
 use Location\Utility\Cartesian;
 use RuntimeException;
 
-class Line implements GeometryInterface
+class Line implements GeometryLinesInterface
 {
     use GetBoundsTrait;
 

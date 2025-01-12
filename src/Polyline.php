@@ -8,7 +8,7 @@ use Location\Distance\DistanceInterface;
 use Location\Exception\InvalidGeometryException;
 use Location\Formatter\Polyline\FormatterInterface;
 
-class Polyline implements GeometryInterface
+class Polyline implements GeometryLinesInterface
 {
     use GetBoundsTrait;
 
