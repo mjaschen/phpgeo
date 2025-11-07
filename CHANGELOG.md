@@ -3,6 +3,12 @@
 All notable changes to `mjaschen/phpgeo` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [6.0.1]
+
+### Added
+
+- Support for PHP 8.5
+
 ## [6.0.0]
 
 **Warning: Backwards-compatibility-breaking changes** (see README for upgrade details)

@@ -12,7 +12,7 @@ calculate geographical distances between coordinates with high precision.
 
 ## Requirements
 
-Minimum required PHP version is 8.2. *phpgeo* is tested up to PHP 8.4.
+The minimum required PHP version is 8.2. *phpgeo* is tested up to PHP 8.5.
 
 New features will only go into the main branch and won't be backported.
 
@@ -21,6 +21,7 @@ Please refer to the following table for the compatibility matrix:
 
 | PHP Version | phpgeo Version |  Support Status  | Composer Install                        |
 |:-----------:|:--------------:|:----------------:|-----------------------------------------|
+|     8.5     |      6.x       |     ✅ active     | `composer require mjaschen/phpgeo`      |
 |     8.4     |      6.x       |     ✅ active     | `composer require mjaschen/phpgeo`      |
 |     8.3     |      6.x       |     ✅ active     | `composer require mjaschen/phpgeo`      |
 |     8.2     |      6.x       |     ✅ active     | `composer require mjaschen/phpgeo`      |
