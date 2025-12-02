@@ -198,9 +198,9 @@ class Line implements GeometryLinesInterface
     /**
      * Two lines intersect if:
      *
-     * 1. the points of the given line are oriented into opposite directions
-     * 2. the points of this line are oriented into opposite directions
-     * 3. the points are collinear and the two line segments are overlapping
+     * 1. The points of the given line are oriented into opposite directions
+     * 2. The points of this line are oriented into opposite directions
+     * 3. The points are collinear and the line segments are overlapping
      */
     public function intersectsLine(Line $line): bool
     {
@@ -219,14 +219,31 @@ class Line implements GeometryLinesInterface
         }
 
         // the lines are collinear or touch
-        if (
-            in_array(self::ORIENTATION_COLLINEAR, $orientation, true)
-            && (new Intersection())->intersects($this, $line, false)
-        ) {
+        if (!in_array(self::ORIENTATION_COLLINEAR, $orientation, true)) {
+            return false;
+        }
+
+        if ($orientation[11] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($line->point1, $this->getBounds())) {
+            return true;
+        }
+        if ($orientation[12] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($line->point2, $this->getBounds())) {
+            return true;
+        }
+        if ($orientation[21] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($this->point1, $line->getBounds())) {
+            return true;
+        }
+        if ($orientation[22] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($this->point2, $line->getBounds())) {
             return true;
         }
 
         // the lines do not overlap
         return false;
+    }
+    private function isPointInBounds(Coordinate $point, Bounds $bounds): bool
+    {
+        return $point->getLat() >= $bounds->getSouth()
+            && $point->getLat() <= $bounds->getNorth()
+            && $point->getLng() >= $bounds->getWest()
+            && $point->getLng() <= $bounds->getEast();
     }
 }
