@@ -6,7 +6,6 @@ namespace Location;
 
 use Location\Bearing\BearingInterface;
 use Location\Distance\DistanceInterface;
-use Location\Intersection\Intersection;
 use Location\Utility\Cartesian;
 use RuntimeException;
 
@@ -18,9 +17,7 @@ class Line implements GeometryLinesInterface
     final public const ORIENTATION_CLOCKWISE = 1;
     final public const ORIENTATION_ANTI_CLOCKWISE = 2;
 
-    public function __construct(public readonly Coordinate $point1, public readonly Coordinate $point2)
-    {
-    }
+    public function __construct(public readonly Coordinate $point1, public readonly Coordinate $point2) {}
 
     /**
      * @deprecated Use property instead
@@ -62,7 +59,7 @@ class Line implements GeometryLinesInterface
      * Calculates the length of the line (distance between the two
      * coordinates in meters).
      *
-     * @param DistanceInterface $calculator instance of distance calculation class
+     * @param  DistanceInterface  $calculator  instance of distance calculation class
      */
     public function getLength(DistanceInterface $calculator): float
     {
@@ -117,7 +114,7 @@ class Line implements GeometryLinesInterface
      * @see http://www.movable-type.co.uk/scripts/latlong.html#intermediate-point
      * @see http://www.edwilliams.org/avform.htm#Intermediate
      *
-     * @param float $fraction 0.0 ... 1.0 (smaller or larger values work too)
+     * @param  float  $fraction  0.0 ... 1.0 (smaller or larger values work too)
      *
      * @throws RuntimeException
      */
@@ -133,7 +130,7 @@ class Line implements GeometryLinesInterface
         if ($lat1 + $lat2 == 0.0 && abs($lng1 - $lng2) == M_PI) {
             throw new RuntimeException(
                 'Start and end points are antipodes, route is therefore undefined.',
-                5382449689
+                5382449689,
             );
         }
 
@@ -151,48 +148,6 @@ class Line implements GeometryLinesInterface
         $lng = atan2($y, $x);
 
         return new Coordinate(rad2deg($lat), rad2deg($lng));
-    }
-
-    /**
-     * Compares the location of a given coordinate to this line returning
-     * its orientation as:
-     *
-     * - 0 if the coordinate is collinear to this line segment
-     * - 1 if the coordinate's orientation is clockwise to this line segment
-     * - 2 if the coordinate's orientation is anti-clockwise to this line segment
-     */
-    public function getOrientation(Coordinate $coordinate): int
-    {
-        $crossproduct1 = ($this->point2->getLat() - $this->point1->getLat())
-                         * $this->getDeltaLng($this->point2, $coordinate);
-        $crossproduct2 = $this->getDeltaLng($this->point1, $this->point2)
-                         * ($coordinate->getLat() - $this->point2->getLat());
-        $delta = $crossproduct1 - $crossproduct2;
-
-        if ($delta > 0) {
-            return self::ORIENTATION_CLOCKWISE;
-        }
-
-        if ($delta < 0) {
-            return self::ORIENTATION_ANTI_CLOCKWISE;
-        }
-
-        return self::ORIENTATION_COLLINEAR;
-    }
-
-    private function getDeltaLng(Coordinate $point1, Coordinate $point2): float
-    {
-        $deltaLng = $point2->getLng() - $point1->getLng();
-
-        if ($deltaLng > 180) {
-            return $deltaLng - 360;
-        }
-
-        if ($deltaLng < -180) {
-            return $deltaLng + 360;
-        }
-
-        return $deltaLng;
     }
 
     /**
@@ -223,22 +178,77 @@ class Line implements GeometryLinesInterface
             return false;
         }
 
-        if ($orientation[11] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($line->point1, $this->getBounds())) {
+        if ($orientation[11] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+                $line->point1,
+                $this->getBounds(),
+            )) {
             return true;
         }
-        if ($orientation[12] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($line->point2, $this->getBounds())) {
+        if ($orientation[12] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+                $line->point2,
+                $this->getBounds(),
+            )) {
             return true;
         }
-        if ($orientation[21] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($this->point1, $line->getBounds())) {
+        if ($orientation[21] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+                $this->point1,
+                $line->getBounds(),
+            )) {
             return true;
         }
-        if ($orientation[22] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds($this->point2, $line->getBounds())) {
+        if ($orientation[22] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+                $this->point2,
+                $line->getBounds(),
+            )) {
             return true;
         }
 
         // the lines do not overlap
         return false;
     }
+
+    /**
+     * Compares the location of a given coordinate to this line returning
+     * its orientation as:
+     *
+     * - 0 if the coordinate is collinear to this line segment
+     * - 1 if the coordinate's orientation is clockwise to this line segment
+     * - 2 if the coordinate's orientation is anti-clockwise to this line segment
+     */
+    public function getOrientation(Coordinate $coordinate): int
+    {
+        $crossproduct1 = ($this->point2->getLat() - $this->point1->getLat())
+            * $this->getDeltaLng($this->point2, $coordinate);
+        $crossproduct2 = $this->getDeltaLng($this->point1, $this->point2)
+            * ($coordinate->getLat() - $this->point2->getLat());
+        $delta = $crossproduct1 - $crossproduct2;
+
+        if ($delta > 0) {
+            return self::ORIENTATION_CLOCKWISE;
+        }
+
+        if ($delta < 0) {
+            return self::ORIENTATION_ANTI_CLOCKWISE;
+        }
+
+        return self::ORIENTATION_COLLINEAR;
+    }
+
+    private function getDeltaLng(Coordinate $point1, Coordinate $point2): float
+    {
+        $deltaLng = $point2->getLng() - $point1->getLng();
+
+        if ($deltaLng > 180) {
+            return $deltaLng - 360;
+        }
+
+        if ($deltaLng < -180) {
+            return $deltaLng + 360;
+        }
+
+        return $deltaLng;
+    }
+
     private function isPointInBounds(Coordinate $point, Bounds $bounds): bool
     {
         return $point->getLat() >= $bounds->getSouth()
