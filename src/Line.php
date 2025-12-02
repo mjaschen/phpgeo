@@ -17,7 +17,9 @@ class Line implements GeometryLinesInterface
     final public const ORIENTATION_CLOCKWISE = 1;
     final public const ORIENTATION_ANTI_CLOCKWISE = 2;
 
-    public function __construct(public readonly Coordinate $point1, public readonly Coordinate $point2) {}
+    public function __construct(public readonly Coordinate $point1, public readonly Coordinate $point2)
+    {
+    }
 
     /**
      * @deprecated Use property instead
@@ -178,28 +180,36 @@ class Line implements GeometryLinesInterface
             return false;
         }
 
-        if ($orientation[11] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+        if (
+            $orientation[11] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
                 $line->point1,
                 $this->getBounds(),
-            )) {
+            )
+        ) {
             return true;
         }
-        if ($orientation[12] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+        if (
+            $orientation[12] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
                 $line->point2,
                 $this->getBounds(),
-            )) {
+            )
+        ) {
             return true;
         }
-        if ($orientation[21] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+        if (
+            $orientation[21] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
                 $this->point1,
                 $line->getBounds(),
-            )) {
+            )
+        ) {
             return true;
         }
-        if ($orientation[22] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
+        if (
+            $orientation[22] === self::ORIENTATION_COLLINEAR && $this->isPointInBounds(
                 $this->point2,
                 $line->getBounds(),
-            )) {
+            )
+        ) {
             return true;
         }
 
