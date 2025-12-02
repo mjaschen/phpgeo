@@ -164,8 +164,8 @@ class Line implements GeometryLinesInterface
     public function getOrientation(Coordinate $coordinate): int
     {
         $crossproduct1 = ($this->point2->getLat() - $this->point1->getLat())
-                         * ($coordinate->getLng() - $this->point2->getLng());
-        $crossproduct2 = ($this->point2->getLng() - $this->point1->getLng())
+                         * $this->getDeltaLng($this->point2->getLng(), $coordinate->getLng());
+        $crossproduct2 = $this->getDeltaLng($this->point1->getLng(), $this->point2->getLng())
                          * ($coordinate->getLat() - $this->point2->getLat());
         $delta = $crossproduct1 - $crossproduct2;
 
@@ -178,6 +178,21 @@ class Line implements GeometryLinesInterface
         }
 
         return self::ORIENTATION_COLLINEAR;
+    }
+
+    private function getDeltaLng(float $lng1, float $lng2): float
+    {
+        $deltaLng = $lng2 - $lng1;
+
+        if ($deltaLng > 180) {
+            return $deltaLng - 360;
+        }
+
+        if ($deltaLng < -180) {
+            return $deltaLng + 360;
+        }
+
+        return $deltaLng;
     }
 
     /**
