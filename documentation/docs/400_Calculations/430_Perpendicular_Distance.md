@@ -5,8 +5,8 @@ a line (in the two-dimensional plane) respectively between a point and a
 [great circle](https://en.wikipedia.org/wiki/Great_circle) on a spherical surface.
 
 With _phpgeo_ it is possible to calculate the perpendicular distance between a
-point (instance of the [`Coordinate`](../Geometries/Coordinate) class) and a
-Great Circle - which is defined by a [`Line`](../Geometries/Line). A line is
+point (instance of the [`Coordinate`](../100_Geometries/110_Coordinate.md) class) and a
+Great Circle - which is defined by a [`Line`](../100_Geometries/120_Line.md). A line is
 defined by a pair of coordinates.
 
 The distance between points *P* and *X* is the perpendicular distance in the following sketch:

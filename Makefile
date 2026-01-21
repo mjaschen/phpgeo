@@ -8,9 +8,21 @@ docs: daux
 
 .PHONY: daux
 daux:
-	rm -Rf build/daux
-	mkdir -p build/daux
-	docker run --rm -v "$(PWD)":/src -w /src daux/daux.io daux generate -d build/daux
+	rm -Rf build/documentation
+	mkdir -p build/documentation
+	cd documentation && \
+		python3 -m venv .venv && \
+		. .venv/bin/activate && \
+		pip install -r requirements.txt && \
+		mkdocs build -d ../build/documentation
+
+.PHONY: serve-docs
+serve-docs:
+	cd documentation && \
+		python3 -m venv .venv && \
+		. .venv/bin/activate && \
+		pip install -r requirements.txt && \
+		mkdocs serve -f mkdocs.yml --livereload --watch docs --watch mkdocs.yml
 
 .PHONY: clean
 clean:
@@ -18,7 +30,7 @@ clean:
 
 .PHONY: upload_docs
 upload_docs: docs
-	rsync --recursive --delete build/daux/ $(UPLOAD_HOST):$(UPLOAD_PATH)/
+	rsync --recursive --delete build/documentation/ $(UPLOAD_HOST):$(UPLOAD_PATH)/
 
 .PHONY: ci
 ci: lint coding-standards composer-validate sniff static-analysis-psalm unit-tests

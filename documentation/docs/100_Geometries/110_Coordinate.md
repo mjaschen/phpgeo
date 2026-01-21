@@ -12,4 +12,4 @@ Geographic latitude and longitude values are float numbers between
 -90.0 and 90.0 (degrees latitude) and -180.0 and 180.0 (degrees longitude).
 
 The Ellipsoid is a representation of an approximated shape of the earth and
-is abstracted in its own [`Ellipsoid`](Ellipsoid) Link class.
+is abstracted in its own [`Ellipsoid`](300_Ellipsoid.md) Link class.

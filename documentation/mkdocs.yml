@@ -1,0 +1,69 @@
+site_name: phpgeo
+site_description: A Simple Yet Powerful Geo Library for PHP
+site_url: https://mjaschen.github.io/phpgeo/
+repo_url: https://github.com/mjaschen/phpgeo
+repo_name: mjaschen/phpgeo
+edit_uri: edit/main/documentation/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: index.md
+  - Installation: 010_Installation.md
+  - Upgrading: 015_Upgrading.md
+  - Development: 020_Development.md
+  - Geometries:
+      - Overview: 100_Geometries/index.md
+      - Coordinate: 100_Geometries/110_Coordinate.md
+      - Line: 100_Geometries/120_Line.md
+      - Polyline: 100_Geometries/130_Polyline.md
+      - Polygon: 100_Geometries/140_Polygon.md
+      - Bounds: 100_Geometries/200_Bounds.md
+      - Ellipsoid: 100_Geometries/300_Ellipsoid.md
+  - Comparisons:
+      - Same Point Comparison: 300_Comparisons/310_Same_Point_Comparison.md
+      - Directions: 300_Comparisons/320_Directions.md
+      - Intersections: 300_Comparisons/340_Intersections.md
+  - Calculations:
+      - Overview: 400_Calculations/index.md
+      - Distance and Length: 400_Calculations/410_Distance_and_Length.md
+      - Bearing and Destination: 400_Calculations/420_Bearing_and_Destination.md
+      - Cardinal Distance: 400_Calculations/425_Cardinal_Distance.md
+      - Perpendicular Distance: 400_Calculations/430_Perpendicular_Distance.md
+      - Distance Between Point and Line: 400_Calculations/435_Distance_Between_Point_and_Line.md
+      - Geofence: 400_Calculations/440_Geofence.md
+  - Transformations and Processing:
+      - Overview: 500_Transformations_and_Processing/index.md
+      - Simplifying a Polyline or Polygon: 500_Transformations_and_Processing/510_Simplifying_a_Polyline_or_Polygon.md
+  - Formatting and Output:
+      - Overview: 600_Formatting_and_Output/index.md
+      - Coordinates: 600_Formatting_and_Output/100_Coordinates.md
+      - Polylines: 600_Formatting_and_Output/130_Polylines.md
+      - Polygons: 600_Formatting_and_Output/140_Polygons.md
+  - Parsing and Input:
+      - Overview: 700_Parsing_and_Input/index.md
+      - Coordinates Parser: 700_Parsing_and_Input/110_Coordinates_Parser.md
+  - Further Reading: 900_Further_Reading.md

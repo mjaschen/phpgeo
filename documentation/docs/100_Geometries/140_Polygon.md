@@ -1,6 +1,5 @@
 # Polygon
 
-[TOC]
 
 A polygon consists of an ordered list of locations, i.e. instances of
 the `Coordinate` class. It's very similar to a polyline, but its start
@@ -90,7 +89,7 @@ The code above will produce the output below:
 
 ## Length/Perimeter
 
-Length calculation is described in the [Distance and Length](../Calculations/Distance_and_Length) section.
+Length calculation is described in the [Distance and Length](../400_Calculations/410_Distance_and_Length.md) section.
 
 ## Area
 

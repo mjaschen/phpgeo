@@ -1,6 +1,5 @@
 # Bearing and Destination
 
-[TOC]
 
 phpgeo can be used to calculate the bearing between two points and to
 get a destination point for a given start point together with a bearing

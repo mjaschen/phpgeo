@@ -1,6 +1,5 @@
 # Simplifying a polyline/polygon
 
-[TOC]
 
 Polylines and polygons can be simplified to save storage space or bandwidth.
 

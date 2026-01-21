@@ -55,15 +55,10 @@ done
 
 ## Creating the documentation
 
-*phpgeo's* documentation is generated with [Daux](https://daux.io/) from Markdown files.
-The `Makefile` provides a helper target for generating the complete documentation:
+*phpgeo's* documentation is generated with [Material for
+MkDocs](https://squidfunk.github.io/mkdocs-material/) from Markdown files. The
+`Makefile` provides a helper target for generating the complete documentation:
 
 ``` shell
 make docs
-```
-
-*Daux* can also be run from its official Docker image:
-
-``` shell
-docker run --rm -it -v "$(pwd)":/phpgeo -w /phpgeo daux/daux.io daux generate -d build/daux
 ```
