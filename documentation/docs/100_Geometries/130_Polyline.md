@@ -1,6 +1,5 @@
 # Polyline
 
-[TOC]
 
 A polyline consists of an ordered list of locations, i.e. instances of
 the `Coordinate` class.
@@ -59,7 +58,7 @@ Segment length: 169.21 kilometers
 
 ## Length
 
-Length calculation is described in the [Distance and Length](../Calculations/Distance_and_Length) section.
+Length calculation is described in the [Distance and Length](../400_Calculations/410_Distance_and_Length.md) section.
 
 ## Average Point
 

@@ -1,6 +1,5 @@
 # Line
 
-[TOC]
 
 A line consists of two points, i.e. instances of the `Coordinate` class.
 

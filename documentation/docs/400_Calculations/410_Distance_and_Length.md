@@ -1,6 +1,5 @@
 # Distance and Length
 
-[TOC]
 
 ## Distance Between Two Points (Vincenty's Formula)
 
@@ -77,7 +76,7 @@ The code above will produce the output below:
 length of a GPS track or a route. A polyline consists of at least two points.
 Points are instances of the `Coordinate` class.
 
-For more details about polylines/GPS tracks see the [`Polyline`](../Geometries/Polyline) section.
+For more details about polylines/GPS tracks see the [`Polyline`](../100_Geometries/130_Polyline.md) section.
 
 ``` php
 <?php

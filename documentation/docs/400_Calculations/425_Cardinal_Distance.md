@@ -7,7 +7,6 @@ In the following example the Cardinal Distances are labeled *N* and *E:*
 
 ![Cardinal Distance](cardinal-distance.png)
 
-[TOC]
 
 With *phpgeo* there are two ways to calculate the Cardinal Distances:
 

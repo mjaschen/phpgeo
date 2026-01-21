@@ -1,8 +1,8 @@
 # Distance Between a Point and a Line
 
 It's possible to calculate the shortest distance between a point and a
-[`Line`](../Geometries/Line). As [`Polyline`](../Geometries/Polyline)
-and [`Polygon`](../Geometries/Polygon) are also built upon the `Line` class
+[`Line`](../100_Geometries/120_Line.md). As [`Polyline`](../100_Geometries/130_Polyline.md)
+and [`Polygon`](../100_Geometries/140_Polygon.md) are also built upon the `Line` class
 it's also possible to calculate distances from a point the polyline/polygon
 by iterating over their segments.
 
