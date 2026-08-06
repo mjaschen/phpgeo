@@ -2,6 +2,7 @@ UPLOAD_HOST=phpgeo.marcusjaschen.de
 UPLOAD_PATH=phpgeo.marcusjaschen.de
 
 PHP ?= php
+UV ?= uv
 
 .PHONY: docs
 docs: daux
@@ -11,18 +12,14 @@ daux:
 	rm -Rf build/documentation
 	mkdir -p build/documentation
 	cd documentation && \
-		python3 -m venv .venv && \
-		. .venv/bin/activate && \
-		pip install -r requirements.txt && \
-		mkdocs build -d ../build/documentation
+		$(UV) sync --frozen && \
+		$(UV) run --frozen mkdocs build -d ../build/documentation
 
 .PHONY: serve-docs
 serve-docs:
 	cd documentation && \
-		python3 -m venv .venv && \
-		. .venv/bin/activate && \
-		pip install -r requirements.txt && \
-		mkdocs serve -f mkdocs.yml --livereload --watch docs --watch mkdocs.yml
+		$(UV) sync --frozen && \
+		$(UV) run --frozen mkdocs serve -f mkdocs.yml --livereload --watch docs --watch mkdocs.yml
 
 .PHONY: clean
 clean:

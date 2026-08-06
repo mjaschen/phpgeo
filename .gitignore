@@ -8,4 +8,5 @@
 /docs/phpdox/
 /tools/
 /build/
+/documentation/.venv/
 .phpunit.result.cache

@@ -1,8 +1,8 @@
-# Coordinate
+# Coordinate/Point
 
 The `Coordinate` class is the most important class of phpgeo and provides the
-base for all features. It's a representation of a geographic location and
-consists of three parts:
+base for all features. It's a representation of a geographic location (point)
+and consists of three parts:
 
 - Geographic Latitude
 - Geographic Longitude

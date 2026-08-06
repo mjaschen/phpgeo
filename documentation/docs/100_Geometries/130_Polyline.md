@@ -2,7 +2,7 @@
 
 
 A polyline consists of an ordered list of locations, i.e. instances of
-the `Coordinate` class.
+the [`Coordinate`](110_Coordinate.md) class.
 
 ## Create a polyline
 

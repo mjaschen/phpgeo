@@ -26,19 +26,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
-          cache: "pip"
-          cache-dependency-path: documentation/requirements.txt
+          python-version: "3.12"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v9
+        with:
+          enable-cache: true
+          cache-dependency-glob: documentation/uv.lock
 
       - name: Install dependencies
         working-directory: documentation
-        run: |
-          pip install -r requirements.txt
+        run: uv sync --frozen
 
       - name: Build Documentation
         working-directory: documentation
         run: |
-          mkdocs build -d ../build/documentation
+          uv run --frozen mkdocs build -d ../build/documentation
 
       - name: Login to GHCR
         uses: docker/login-action@v3
