@@ -59,6 +59,19 @@ done
 MkDocs](https://squidfunk.github.io/mkdocs-material/) from Markdown files. The
 `Makefile` provides a helper target for generating the complete documentation:
 
-``` shell
+```shell
 make docs
+```
+
+The documentation project is managed with [uv](https://docs.astral.sh/uv/). To
+install its locked dependencies directly, run:
+
+```shell
+uv sync --directory documentation --frozen
+```
+
+To preview the site locally with live reload:
+
+```shell
+make serve-docs
 ```

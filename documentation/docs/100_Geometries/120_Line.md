@@ -1,7 +1,8 @@
 # Line
 
 
-A line consists of two points, i.e. instances of the `Coordinate` class.
+A line consists of two points, i.e. instances of the
+[`Coordinate`](110_Coordinate.md) class.
 
 ## Length
 

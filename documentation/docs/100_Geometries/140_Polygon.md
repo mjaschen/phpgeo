@@ -1,9 +1,9 @@
 # Polygon
 
 
-A polygon consists of an ordered list of locations, i.e. instances of
-the `Coordinate` class. It's very similar to a polyline, but its start
-and end points are connected.
+A polygon consists of an ordered list of locations, i.e. instances of the
+[`Coordinate`](110_Coordinate.md) class. It's very similar to a polyline, but
+its start and end points are connected.
 
 ## Create a polygon
 
