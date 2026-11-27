@@ -6,11 +6,12 @@ namespace Location\CardinalDirection;
 
 use Generator;
 use Location\Coordinate;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class CardinalDirectionTest extends TestCase
 {
-    /** @dataProvider getCardinalDirectionProvider */
+    #[DataProvider('getCardinalDirectionProvider')]
     public function testGetCardinalDirection(Coordinate $point1, Coordinate $point2, string $expected): void
     {
         $this->assertSame(

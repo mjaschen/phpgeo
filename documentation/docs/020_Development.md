@@ -38,20 +38,17 @@ A static code analysis with [PHPStan](https://phpstan.org/) is configured as wel
 composer ci:phpstan
 ```
 
-It's possible to run all tests at once:
+Run `composer ci:sniff` to check coding standards with PHP_CodeSniffer.
+
+Run all checks and tests with:
 
 ``` shell
 composer ci
 ```
 
-… or run all CI tasks with different PHP versions one after another:
-
-```shell
-for PHP_VERSION in 8.2 8.3 8.4 ; do \
-  docker run -it --rm -v "$PWD":/phpgeo -w /phpgeo \
-  ghcr.io/mjaschen/php:${PHP_VERSION}-cli-mj composer ci || break ; \
-done
-```
+GitHub Actions runs these checks on PHP 8.2, 8.3, 8.4, 8.5, and 8.6.
+For a local run, install dependencies with `composer install` using the PHP
+version you want to test, then run `composer ci`.
 
 ## Creating the documentation
 
