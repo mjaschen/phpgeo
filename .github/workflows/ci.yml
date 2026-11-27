@@ -14,12 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         php-versions:
           - "8.2"
           - "8.3"
           - "8.4"
           - "8.5"
+          - "8.6"
 
     name: "phpgeo CI run - PHP ${{ matrix.php-versions }}"
 
@@ -30,32 +32,23 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ matrix.php-versions }}"
-          coverage: xdebug
+          extensions: mbstring
+          tools: composer:v2
+          coverage: none
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
+      - name: Locate Composer package cache
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
-          path: vendor
-          key: "${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('composer.json') }}"
-          restore-keys: |
-            ${{ runner.os }}-php-${{ matrix.php-versions }}-
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Lint PHP Sources
-        run: composer run-script ci:lint
-
-      - name: PHP Code Sniffer
-        run: composer run-script ci:sniff
-
-      - name: Static Analysis
-        run: composer run-script ci:phpstan
-
-      - name: Unit Tests
-        run: composer run-script ci:tests
+      - name: Run CI checks
+        run: composer ci

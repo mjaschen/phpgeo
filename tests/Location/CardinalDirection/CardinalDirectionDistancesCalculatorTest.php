@@ -7,11 +7,12 @@ namespace Location\CardinalDirection;
 use Generator;
 use Location\Coordinate;
 use Location\Distance\Vincenty;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class CardinalDirectionDistancesCalculatorTest extends TestCase
 {
-    /** @dataProvider getCardinalDirectionDistancesProvider */
+    #[DataProvider('getCardinalDirectionDistancesProvider')]
     public function testGetCardinalDirectionDistances(
         Coordinate $point1,
         Coordinate $point2,

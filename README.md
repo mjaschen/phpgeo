@@ -270,7 +270,8 @@ echo $coordinate->format(new GeoJSON()); // { "type" : "point" , "coordinates" :
 Before submitting a pull request, please be sure to run all checks and tests and ensure everything is green.
 
 - lint PHP files for syntax errors: `composer ci:lint`
-- run static analysis with [Psalm][] and report errors: `composer ci:psalm`
+- check coding standards with PHP_CodeSniffer: `composer ci:sniff`
+- run static analysis with PHPStan: `composer ci:phpstan`
 - run unit tests with PHPUnit: `composer ci:tests`
 
 To run all checks and tests at once, just use `composer ci`.

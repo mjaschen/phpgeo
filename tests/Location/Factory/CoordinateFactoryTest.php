@@ -7,6 +7,7 @@ namespace Location\Factory;
 use Generator;
 use InvalidArgumentException;
 use Location\Coordinate;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class CoordinateFactoryTest extends TestCase
@@ -362,12 +363,11 @@ class CoordinateFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected
-     *
      * @param float $expectedLat
      * @param float $expectedLng
      * @param string $string
      */
+    #[DataProvider('dataIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected')]
     public function testIfFromStringWithIntegerMinutesAndDecimalSecondsWorksAsExpected(
         $expectedLat,
         $expectedLng,

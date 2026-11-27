@@ -29,29 +29,25 @@ clean:
 upload_docs: docs
 	rsync --recursive --delete build/documentation/ $(UPLOAD_HOST):$(UPLOAD_PATH)/
 
-.PHONY: ci
-ci: lint coding-standards composer-validate sniff static-analysis-psalm unit-tests
+.PHONY: ci coding-standards composer-validate lint sniff static-analysis static-analysis-psalm unit-tests
+ci:
+	composer ci
 
-.PHONY: coding-standards
 coding-standards: sniff
 
-.PHONY: composer-validate
 composer-validate:
-	composer validate --no-check-publish
+	composer ci:composer-validate
 
-.PHONY: lint
 lint:
-	$(PHP) ./vendor/bin/parallel-lint src
+	composer ci:lint
 
-.PHONY: sniff
 sniff:
-	# the `-` prefix ignores the exit status of the command
-	-$(PHP) ./vendor/bin/phpcs --standard=codesniffer_rules.xml src
+	composer ci:sniff
 
-.PHONY: static-analysis-psalm
-static-analysis-psalm:
-	$(PHP) ./vendor/bin/psalm
+static-analysis-psalm: static-analysis
 
-.PHONY: unit-tests
+static-analysis:
+	composer ci:phpstan
+
 unit-tests:
-	$(PHP) ./vendor/bin/phpunit
+	composer ci:tests

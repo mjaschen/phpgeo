@@ -227,7 +227,7 @@ class PolygonTest extends TestCase
         $polygon->addPoint(new Coordinate(0.0009043695, 0.0000000000));
 
         // https://geographiclib.sourceforge.io/cgi-bin/Planimeter?type=polygon&rhumb=geodesic&input=0.0000000000+0.0000000000%0D%0A0.0000000000+0.0008983153%0D%0A0.0009043695+0.0008983153%0D%0A0.0009043695+0.0000000000&norm=decdegrees&option=Submit
-        //$this->assertEquals(10000.0, $polygon->getArea(), '', 1.0);
+        $this->assertEqualsWithDelta(10000.0, $polygon->getArea(), 100.0);
     }
 
     public function testIfPolygonContainsGeometryWithPolygonInsideWorksAsExpected(): void
